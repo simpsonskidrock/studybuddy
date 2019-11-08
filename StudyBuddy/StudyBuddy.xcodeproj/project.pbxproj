@@ -13,6 +13,7 @@
 		4E7A26AB237569B200AE7B2D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E7A26A9237569B200AE7B2D /* Main.storyboard */; };
 		4E7A26AD237569B500AE7B2D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4E7A26AC237569B500AE7B2D /* Assets.xcassets */; };
 		4E7A26B0237569B500AE7B2D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E7A26AE237569B500AE7B2D /* LaunchScreen.storyboard */; };
+		4E7A26BC23756F1800AE7B2D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7A26BB23756F1800AE7B2D /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		4E7A26AC237569B500AE7B2D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4E7A26AF237569B500AE7B2D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4E7A26B1237569B500AE7B2D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4E7A26BB23756F1800AE7B2D /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 				4E7A26A5237569B200AE7B2D /* SceneDelegate.swift */,
 				4E7A26A7237569B200AE7B2D /* ViewController.swift */,
 				4E7A26A9237569B200AE7B2D /* Main.storyboard */,
+				4E7A26BB23756F1800AE7B2D /* LoginViewController.swift */,
 				4E7A26AC237569B500AE7B2D /* Assets.xcassets */,
 				4E7A26AE237569B500AE7B2D /* LaunchScreen.storyboard */,
 				4E7A26B1237569B500AE7B2D /* Info.plist */,
@@ -138,6 +141,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E7A26BC23756F1800AE7B2D /* LoginViewController.swift in Sources */,
 				4E7A26A8237569B200AE7B2D /* ViewController.swift in Sources */,
 				4E7A26A4237569B200AE7B2D /* AppDelegate.swift in Sources */,
 				4E7A26A6237569B200AE7B2D /* SceneDelegate.swift in Sources */,
