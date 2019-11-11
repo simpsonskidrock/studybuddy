@@ -16,13 +16,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter username and password" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ixe-F1-PaD">
-                                <rect key="frame" x="50" y="346" width="275" height="23"/>
+                                <rect key="frame" x="50" y="404" width="275" height="23"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sMM-9h-LpN">
-                                <rect key="frame" x="87.5" y="379" width="200" height="34"/>
+                                <rect key="frame" x="87.5" y="437" width="200" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="cCg-wZ-tJz"/>
                                 </constraints>
@@ -30,7 +30,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dHc-7A-Ip5">
-                                <rect key="frame" x="87.5" y="423" width="200" height="34"/>
+                                <rect key="frame" x="87.5" y="481" width="200" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="CdA-jC-VUa"/>
                                 </constraints>
@@ -38,18 +38,18 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MPd-Si-9vs">
-                                <rect key="frame" x="79.5" y="467" width="216" height="58"/>
+                                <rect key="frame" x="133.5" y="525" width="108" height="29"/>
                                 <state key="normal" image="signup"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nFR-gv-gcG">
-                                <rect key="frame" x="79.5" y="569" width="216" height="58"/>
+                                <rect key="frame" x="133.5" y="598" width="108" height="29"/>
                                 <state key="normal" image="login"/>
                                 <connections>
-                                    <segue destination="emp-4k-vXY" kind="presentation" id="3B2-Hl-571"/>
+                                    <segue destination="emp-4k-vXY" kind="presentation" modalPresentationStyle="fullScreen" id="3B2-Hl-571"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="or" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LwB-hV-5gv">
-                                <rect key="frame" x="79.5" y="535" width="216" height="24"/>
+                                <rect key="frame" x="133.5" y="564" width="108" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -134,7 +134,7 @@
             <objects>
                 <viewController title="Tab Search" id="NX8-sG-Dpz" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="71X-Ig-rXi">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="gUY-UF-g4p"/>
@@ -150,7 +150,7 @@
             <objects>
                 <viewController title="Tab Profile" id="DOk-qN-hlv" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Uim-nd-6Yq">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="OQg-cN-GLz" customClass="viewcontroller">
@@ -353,7 +353,7 @@
             <objects>
                 <viewController title="Tab Contacts" id="K2s-Zw-jlr" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="4pu-go-Zgt">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
