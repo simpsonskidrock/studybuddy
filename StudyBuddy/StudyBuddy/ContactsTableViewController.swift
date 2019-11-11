@@ -1,5 +1,5 @@
 //
-//  MessagesTableViewController.swift
+//  ContactsTableViewController.swift
 //  StudyBuddy
 //
 //  Created by admin on 11.11.19.
@@ -18,7 +18,7 @@ struct Headline {
   }
 
 
-class MessagesTableViewController: UITableViewController {
+class ContactsTableViewController: UITableViewController {
 
     var headlines = [
         Headline(id:1,title:"Lorem Ipsum", text: "dolor sit amet,",image: "Apple"),
@@ -86,7 +86,7 @@ class MessagesTableViewController: UITableViewController {
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+        }
     }
     */
 
