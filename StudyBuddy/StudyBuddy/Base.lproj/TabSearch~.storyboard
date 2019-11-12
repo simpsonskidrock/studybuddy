@@ -126,6 +126,22 @@
             </objects>
             <point key="canvasLocation" x="249" y="151"/>
         </scene>
+        <!--Tab Search-->
+        <scene sceneID="Gah-xN-yyD">
+            <objects>
+                <viewController title="Tab Search" id="NX8-sG-Dpz" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="71X-Ig-rXi">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="gUY-UF-g4p"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="" image="magnifyingglass" catalog="system" id="IW0-Lw-rMb"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uPo-sN-Aqu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2264" y="8"/>
+        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="5u2-0A-5BO">
             <objects>
@@ -138,13 +154,54 @@
                     </tabBar>
                     <connections>
                         <segue destination="o7d-wz-F83" kind="relationship" relationship="viewControllers" id="HfH-7i-0bM"/>
-                        <segue destination="paV-xM-ush" kind="relationship" relationship="viewControllers" id="9VP-YA-xqz"/>
-                        <segue destination="hyW-mZ-4oX" kind="relationship" relationship="viewControllers" id="cyD-97-CQB"/>
+                        <segue destination="NX8-sG-Dpz" kind="relationship" relationship="viewControllers" id="9VP-YA-xqz"/>
+                        <segue destination="K2s-Zw-jlr" kind="relationship" relationship="viewControllers" id="cyD-97-CQB"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bal-QM-uQ0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1164" y="151"/>
+        </scene>
+        <!--Tab Contacts-->
+        <scene sceneID="W4G-3b-9qp">
+            <objects>
+                <viewController title="Tab Contacts" id="K2s-Zw-jlr" customClass="ContactsTableViewController" customModule="StudyBuddy" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="4pu-go-Zgt">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="LabelCell" textLabel="eu7-Vc-vFU" detailTextLabel="hha-ys-L3d" rowHeight="60" style="IBUITableViewCellStyleSubtitle" id="jdG-8X-CJi">
+                                <rect key="frame" x="0.0" y="28" width="414" height="60"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jdG-8X-CJi" id="XGF-8x-sSB">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Erster Eintrag" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="eu7-Vc-vFU">
+                                            <rect key="frame" x="20.000000000000007" y="9.9999999999999982" width="103.66666666666667" height="20.333333333333332"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hha-ys-L3d">
+                                            <rect key="frame" x="19.999999999999996" y="33.333333333333329" width="43.666666666666664" height="14.333333333333334"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                    </tableView>
+                    <tabBarItem key="tabBarItem" title="" image="person.3" catalog="system" id="zfG-zy-BJz"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Xxr-zW-fTr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2264" y="671"/>
         </scene>
         <!--TabProfile-->
         <scene sceneID="ngd-kw-loT">
@@ -154,31 +211,13 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ev7-D3-14H" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1949" y="117"/>
-        </scene>
-        <!--TabSearch-->
-        <scene sceneID="jkz-Qi-Lsy">
-            <objects>
-                <viewControllerPlaceholder storyboardName="TabSearch" id="paV-xM-ush" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="jpQ-kN-zUZ"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="NIc-s4-LhJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1951" y="151"/>
-        </scene>
-        <!--TabContacts-->
-        <scene sceneID="x3h-uh-93b">
-            <objects>
-                <viewControllerPlaceholder storyboardName="TabContacts" id="hyW-mZ-4oX" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="jpz-WF-wKK"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="cIP-pd-Lni" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1960" y="185"/>
+            <point key="canvasLocation" x="2263.768115942029" y="-650.22321428571422"/>
         </scene>
     </scenes>
     <resources>
         <image name="fountainicon" width="75" height="75"/>
+        <image name="magnifyingglass" catalog="system" width="64" height="56"/>
+        <image name="person.3" catalog="system" width="72" height="35"/>
         <image name="studybuddyicon" width="186" height="29"/>
     </resources>
     <inferredMetricsTieBreakers>
