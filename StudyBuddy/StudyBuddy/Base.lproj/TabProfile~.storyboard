@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="DOk-qN-hlv">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -11,11 +12,11 @@
             <objects>
                 <viewController title="Tab Profile" id="DOk-qN-hlv" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Uim-nd-6Yq">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="OQg-cN-GLz" customClass="viewcontroller">
-                                <rect key="frame" x="20" y="44" width="560" height="443"/>
+                                <rect key="frame" x="20" y="44" width="374" height="739"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lmG-33-Swb">
@@ -89,6 +90,6 @@
     </scenes>
     <resources>
         <image name="person.crop.circle" catalog="system" width="64" height="60"/>
-        <image name="user" width="170.66667175292969" height="170.66667175292969"/>
+        <image name="user" width="256" height="256"/>
     </resources>
 </document>

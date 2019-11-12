@@ -13,9 +13,9 @@
 		4E7A26AB237569B200AE7B2D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E7A26A9237569B200AE7B2D /* Main.storyboard */; };
 		4E7A26AD237569B500AE7B2D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4E7A26AC237569B500AE7B2D /* Assets.xcassets */; };
 		4E7A26B0237569B500AE7B2D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E7A26AE237569B500AE7B2D /* LaunchScreen.storyboard */; };
-		730A5B90237AFE0800E9E4FB /* TabProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 730A5B8F237AFE0800E9E4FB /* TabProfile.storyboard */; };
 		730A5B93237AFE2700E9E4FB /* TabSearch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 730A5B91237AFE2700E9E4FB /* TabSearch.storyboard */; };
-		730A5B95237AFE4D00E9E4FB /* TabContacts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 730A5B94237AFE4D00E9E4FB /* TabContacts.storyboard */; };
+		7315EFFA237B0E020061D8A6 /* TabProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7315EFF8237B0E020061D8A6 /* TabProfile.storyboard */; };
+		7315EFFD237B0E700061D8A6 /* TabContacts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7315EFFB237B0E700061D8A6 /* TabContacts.storyboard */; };
 		84737F31237988310024DD2E /* ContactsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84737F30237988310024DD2E /* ContactsTableViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -28,9 +28,9 @@
 		4E7A26AC237569B500AE7B2D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4E7A26AF237569B500AE7B2D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4E7A26B1237569B500AE7B2D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		730A5B8F237AFE0800E9E4FB /* TabProfile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TabProfile.storyboard; sourceTree = SOURCE_ROOT; };
 		730A5B92237AFE2700E9E4FB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/TabSearch.storyboard; sourceTree = "<group>"; };
-		730A5B94237AFE4D00E9E4FB /* TabContacts.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TabContacts.storyboard; sourceTree = SOURCE_ROOT; };
+		7315EFF9237B0E020061D8A6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/TabProfile.storyboard; sourceTree = "<group>"; };
+		7315EFFC237B0E700061D8A6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/TabContacts.storyboard; sourceTree = "<group>"; };
 		84737F30237988310024DD2E /* ContactsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -68,9 +68,9 @@
 				4E7A26A5237569B200AE7B2D /* SceneDelegate.swift */,
 				4E7A26A7237569B200AE7B2D /* ViewController.swift */,
 				4E7A26A9237569B200AE7B2D /* Main.storyboard */,
-				730A5B8F237AFE0800E9E4FB /* TabProfile.storyboard */,
+				7315EFF8237B0E020061D8A6 /* TabProfile.storyboard */,
 				730A5B91237AFE2700E9E4FB /* TabSearch.storyboard */,
-				730A5B94237AFE4D00E9E4FB /* TabContacts.storyboard */,
+				7315EFFB237B0E700061D8A6 /* TabContacts.storyboard */,
 				4E7A26AC237569B500AE7B2D /* Assets.xcassets */,
 				4E7A26AE237569B500AE7B2D /* LaunchScreen.storyboard */,
 				4E7A26B1237569B500AE7B2D /* Info.plist */,
@@ -137,11 +137,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				730A5B90237AFE0800E9E4FB /* TabProfile.storyboard in Resources */,
-				730A5B95237AFE4D00E9E4FB /* TabContacts.storyboard in Resources */,
+				7315EFFD237B0E700061D8A6 /* TabContacts.storyboard in Resources */,
 				730A5B93237AFE2700E9E4FB /* TabSearch.storyboard in Resources */,
 				4E7A26B0237569B500AE7B2D /* LaunchScreen.storyboard in Resources */,
 				4E7A26AD237569B500AE7B2D /* Assets.xcassets in Resources */,
+				7315EFFA237B0E020061D8A6 /* TabProfile.storyboard in Resources */,
 				4E7A26AB237569B200AE7B2D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -185,6 +185,22 @@
 				730A5B92237AFE2700E9E4FB /* Base */,
 			);
 			name = TabSearch.storyboard;
+			sourceTree = "<group>";
+		};
+		7315EFF8237B0E020061D8A6 /* TabProfile.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7315EFF9237B0E020061D8A6 /* Base */,
+			);
+			name = TabProfile.storyboard;
+			sourceTree = "<group>";
+		};
+		7315EFFB237B0E700061D8A6 /* TabContacts.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7315EFFC237B0E700061D8A6 /* Base */,
+			);
+			name = TabContacts.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
