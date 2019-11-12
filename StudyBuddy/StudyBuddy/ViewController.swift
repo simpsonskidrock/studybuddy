@@ -19,35 +19,22 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var SignupButton: UIButton!
     override func viewDidLoad() {
-     
+        
         super.viewDidLoad()
         SetupUI()
     }
     
     func SetupUI() {
-            LoginButton.setTitle("Log In", for: UIControl.State.normal)
-            LoginButton.titleLabel?.font = UIFont.systemFont(ofSize: 18)
-            LoginButton.layer.cornerRadius = 5
-            LoginButton.clipsToBounds = true
+        LoginButton.setTitle("Log In", for: UIControl.State.normal)
+        LoginButton.titleLabel?.font = UIFont.systemFont(ofSize: 18)
+        LoginButton.layer.cornerRadius = 5
+        LoginButton.clipsToBounds = true
         
         SignupButton.setTitle("Sign Up", for: UIControl.State.normal)
         SignupButton.titleLabel?.font = UIFont.systemFont(ofSize: 18)
         SignupButton.layer.cornerRadius = 5
         SignupButton.clipsToBounds = true
         
-        }
+    }
     
-        
-      
-        }
-        
-
-    
-
-        
-        
-    
-
-
-
-
+}

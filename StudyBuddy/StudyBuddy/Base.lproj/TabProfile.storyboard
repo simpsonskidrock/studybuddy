@@ -125,6 +125,11 @@
         </scene>
     </scenes>
     <resources>
+<<<<<<< HEAD:StudyBuddy/TabProfile.storyboard
         <image name="user" width="170.66667175292969" height="170.66667175292969"/>
+=======
+        <image name="person.crop.circle" catalog="system" width="64" height="60"/>
+        <image name="user" width="256" height="256"/>
+>>>>>>> e9de2c89f5a21008638bca0dfba84a2a484869db:StudyBuddy/StudyBuddy/Base.lproj/TabProfile.storyboard
     </resources>
 </document>
