@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		29477749237B3B4700F866B2 /* Sign Up .storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29477748237B3B4700F866B2 /* Sign Up .storyboard */; };
+		2947774B237B3F1900F866B2 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2947774A237B3F1900F866B2 /* SignUpViewController.swift */; };
+		2947774D237B422500F866B2 /* SignUpViewController+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2947774C237B422500F866B2 /* SignUpViewController+UI.swift */; };
 		4E7A26A4237569B200AE7B2D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7A26A3237569B200AE7B2D /* AppDelegate.swift */; };
 		4E7A26A6237569B200AE7B2D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7A26A5237569B200AE7B2D /* SceneDelegate.swift */; };
 		4E7A26A8237569B200AE7B2D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7A26A7237569B200AE7B2D /* ViewController.swift */; };
@@ -20,6 +23,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		29477748237B3B4700F866B2 /* Sign Up .storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Sign Up .storyboard"; sourceTree = "<group>"; };
+		2947774A237B3F1900F866B2 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		2947774C237B422500F866B2 /* SignUpViewController+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SignUpViewController+UI.swift"; sourceTree = "<group>"; };
 		4E7A26A0237569B200AE7B2D /* StudyBuddy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StudyBuddy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E7A26A3237569B200AE7B2D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4E7A26A5237569B200AE7B2D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -67,7 +73,10 @@
 				4E7A26A3237569B200AE7B2D /* AppDelegate.swift */,
 				4E7A26A5237569B200AE7B2D /* SceneDelegate.swift */,
 				4E7A26A7237569B200AE7B2D /* ViewController.swift */,
+				2947774C237B422500F866B2 /* SignUpViewController+UI.swift */,
+				2947774A237B3F1900F866B2 /* SignUpViewController.swift */,
 				4E7A26A9237569B200AE7B2D /* Main.storyboard */,
+				29477748237B3B4700F866B2 /* Sign Up .storyboard */,
 				730A5B8F237AFE0800E9E4FB /* TabProfile.storyboard */,
 				730A5B91237AFE2700E9E4FB /* TabSearch.storyboard */,
 				730A5B94237AFE4D00E9E4FB /* TabContacts.storyboard */,
@@ -140,6 +149,7 @@
 				730A5B90237AFE0800E9E4FB /* TabProfile.storyboard in Resources */,
 				730A5B95237AFE4D00E9E4FB /* TabContacts.storyboard in Resources */,
 				730A5B93237AFE2700E9E4FB /* TabSearch.storyboard in Resources */,
+				29477749237B3B4700F866B2 /* Sign Up .storyboard in Resources */,
 				4E7A26B0237569B500AE7B2D /* LaunchScreen.storyboard in Resources */,
 				4E7A26AD237569B500AE7B2D /* Assets.xcassets in Resources */,
 				4E7A26AB237569B200AE7B2D /* Main.storyboard in Resources */,
@@ -153,10 +163,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2947774D237B422500F866B2 /* SignUpViewController+UI.swift in Sources */,
 				4E7A26A8237569B200AE7B2D /* ViewController.swift in Sources */,
 				84737F31237988310024DD2E /* ContactsTableViewController.swift in Sources */,
 				4E7A26A4237569B200AE7B2D /* AppDelegate.swift in Sources */,
 				4E7A26A6237569B200AE7B2D /* SceneDelegate.swift in Sources */,
+				2947774B237B3F1900F866B2 /* SignUpViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
