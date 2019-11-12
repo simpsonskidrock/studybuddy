@@ -16,6 +16,7 @@
 		730A5B93237AFE2700E9E4FB /* TabSearch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 730A5B91237AFE2700E9E4FB /* TabSearch.storyboard */; };
 		7315EFFA237B0E020061D8A6 /* TabProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7315EFF8237B0E020061D8A6 /* TabProfile.storyboard */; };
 		7315EFFD237B0E700061D8A6 /* TabContacts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7315EFFB237B0E700061D8A6 /* TabContacts.storyboard */; };
+		734BAD02237B0F2A001821D6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 734BAD01237B0F2A001821D6 /* GoogleService-Info.plist */; };
 		84737F31237988310024DD2E /* ContactsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84737F30237988310024DD2E /* ContactsTableViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -31,6 +32,7 @@
 		730A5B92237AFE2700E9E4FB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/TabSearch.storyboard; sourceTree = "<group>"; };
 		7315EFF9237B0E020061D8A6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/TabProfile.storyboard; sourceTree = "<group>"; };
 		7315EFFC237B0E700061D8A6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/TabContacts.storyboard; sourceTree = "<group>"; };
+		734BAD01237B0F2A001821D6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		84737F30237988310024DD2E /* ContactsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -75,6 +77,7 @@
 				4E7A26AE237569B500AE7B2D /* LaunchScreen.storyboard */,
 				4E7A26B1237569B500AE7B2D /* Info.plist */,
 				84737F30237988310024DD2E /* ContactsTableViewController.swift */,
+				734BAD01237B0F2A001821D6 /* GoogleService-Info.plist */,
 			);
 			path = StudyBuddy;
 			sourceTree = "<group>";
@@ -143,6 +146,7 @@
 				4E7A26AD237569B500AE7B2D /* Assets.xcassets in Resources */,
 				7315EFFA237B0E020061D8A6 /* TabProfile.storyboard in Resources */,
 				4E7A26AB237569B200AE7B2D /* Main.storyboard in Resources */,
+				734BAD02237B0F2A001821D6 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
