@@ -10,6 +10,7 @@
         <!--View Controller-->
         <scene sceneID="RSg-cB-FoR">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Mpu-m9-oqL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController id="g7l-FH-hud" customClass="ViewController" customModule="StudyBuddy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="rEe-vY-cjF" customClass="LoginViewController">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -77,7 +78,7 @@
                                                             <color key="titleColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                                         </state>
                                                         <connections>
-                                                            <segue destination="emp-4k-vXY" kind="presentation" modalPresentationStyle="fullScreen" id="jeS-Tl-RT2"/>
+                                                            <segue destination="emp-4k-vXY" kind="presentation" modalPresentationStyle="fullScreen" id="JRR-OT-1HX"/>
                                                         </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="or" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LwB-hV-5gv">
@@ -93,7 +94,7 @@
                                                             <color key="titleColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                                         </state>
                                                         <connections>
-                                                            <segue destination="emp-4k-vXY" kind="presentation" modalPresentationStyle="fullScreen" id="TrO-sG-j7u"/>
+                                                            <segue destination="o0o-ho-zst" kind="presentation" id="JJs-2q-20s"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -122,14 +123,13 @@
                         <outlet property="SignupButton" destination="nFR-gv-gcG" id="DKR-X0-a8x"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Mpu-m9-oqL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="249" y="151"/>
+            <point key="canvasLocation" x="-175" y="18"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="5u2-0A-5BO">
             <objects>
-                <tabBarController id="emp-4k-vXY" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="UITabBarController-emp-4k-vXY" id="emp-4k-vXY" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="5qF-qo-9XZ"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="hwK-Jd-1iq">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
@@ -176,12 +176,17 @@
             </objects>
             <point key="canvasLocation" x="1960" y="185"/>
         </scene>
+        <!--SignUp-->
+        <scene sceneID="ko0-qp-07d">
+            <objects>
+                <viewControllerPlaceholder storyboardName="SignUp" id="o0o-ho-zst" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="g4h-gJ-Gvx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="482" y="459"/>
+        </scene>
     </scenes>
     <resources>
         <image name="fountainicon" width="75" height="75"/>
         <image name="studybuddyicon" width="186" height="29"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="TrO-sG-j7u"/>
-    </inferredMetricsTieBreakers>
 </document>

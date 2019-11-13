@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		29477749237B3B4700F866B2 /* Sign Up .storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29477748237B3B4700F866B2 /* Sign Up .storyboard */; };
 		2947774B237B3F1900F866B2 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2947774A237B3F1900F866B2 /* SignUpViewController.swift */; };
 		2947774D237B422500F866B2 /* SignUpViewController+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2947774C237B422500F866B2 /* SignUpViewController+UI.swift */; };
 		4E7A26A4237569B200AE7B2D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7A26A3237569B200AE7B2D /* AppDelegate.swift */; };
@@ -16,17 +15,15 @@
 		4E7A26AB237569B200AE7B2D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E7A26A9237569B200AE7B2D /* Main.storyboard */; };
 		4E7A26AD237569B500AE7B2D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4E7A26AC237569B500AE7B2D /* Assets.xcassets */; };
 		4E7A26B0237569B500AE7B2D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E7A26AE237569B500AE7B2D /* LaunchScreen.storyboard */; };
-		730A5B90237AFE0800E9E4FB /* TabProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 730A5B8F237AFE0800E9E4FB /* TabProfile.storyboard */; };
 		730A5B93237AFE2700E9E4FB /* TabSearch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 730A5B91237AFE2700E9E4FB /* TabSearch.storyboard */; };
-		730A5B95237AFE4D00E9E4FB /* TabContacts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 730A5B94237AFE4D00E9E4FB /* TabContacts.storyboard */; };
-		7315EFFA237B0E020061D8A6 /* TabProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7315EFF8237B0E020061D8A6 /* TabProfile.storyboard */; };
 		7315EFFD237B0E700061D8A6 /* TabContacts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7315EFFB237B0E700061D8A6 /* TabContacts.storyboard */; };
 		734BAD02237B0F2A001821D6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 734BAD01237B0F2A001821D6 /* GoogleService-Info.plist */; };
+		7364F79C237BFE4F006DA70A /* TabProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7364F79B237BFE4F006DA70A /* TabProfile.storyboard */; };
+		73C725D0237C0046002AB8E2 /* SignUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73C725CE237C0046002AB8E2 /* SignUp.storyboard */; };
 		84737F31237988310024DD2E /* ContactsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84737F30237988310024DD2E /* ContactsTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		29477748237B3B4700F866B2 /* Sign Up .storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Sign Up .storyboard"; sourceTree = "<group>"; };
 		2947774A237B3F1900F866B2 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		2947774C237B422500F866B2 /* SignUpViewController+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SignUpViewController+UI.swift"; sourceTree = "<group>"; };
 		4E7A26A0237569B200AE7B2D /* StudyBuddy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StudyBuddy.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -37,12 +34,11 @@
 		4E7A26AC237569B500AE7B2D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4E7A26AF237569B500AE7B2D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4E7A26B1237569B500AE7B2D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		730A5B8F237AFE0800E9E4FB /* TabProfile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TabProfile.storyboard; sourceTree = SOURCE_ROOT; };
 		730A5B92237AFE2700E9E4FB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/TabSearch.storyboard; sourceTree = "<group>"; };
-		730A5B94237AFE4D00E9E4FB /* TabContacts.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TabContacts.storyboard; sourceTree = SOURCE_ROOT; };
-		7315EFF9237B0E020061D8A6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/TabProfile.storyboard; sourceTree = "<group>"; };
 		7315EFFC237B0E700061D8A6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/TabContacts.storyboard; sourceTree = "<group>"; };
 		734BAD01237B0F2A001821D6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		7364F79B237BFE4F006DA70A /* TabProfile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TabProfile.storyboard; sourceTree = "<group>"; };
+		73C725CF237C0046002AB8E2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/SignUp.storyboard; sourceTree = "<group>"; };
 		84737F30237988310024DD2E /* ContactsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -82,17 +78,12 @@
 				2947774C237B422500F866B2 /* SignUpViewController+UI.swift */,
 				2947774A237B3F1900F866B2 /* SignUpViewController.swift */,
 				4E7A26A9237569B200AE7B2D /* Main.storyboard */,
-<<<<<<< HEAD
-				29477748237B3B4700F866B2 /* Sign Up .storyboard */,
-				730A5B8F237AFE0800E9E4FB /* TabProfile.storyboard */,
-=======
-				7315EFF8237B0E020061D8A6 /* TabProfile.storyboard */,
->>>>>>> e9de2c89f5a21008638bca0dfba84a2a484869db
+				73C725CE237C0046002AB8E2 /* SignUp.storyboard */,
 				730A5B91237AFE2700E9E4FB /* TabSearch.storyboard */,
-				730A5B94237AFE4D00E9E4FB /* TabContacts.storyboard */,
 				7315EFFB237B0E700061D8A6 /* TabContacts.storyboard */,
 				4E7A26AC237569B500AE7B2D /* Assets.xcassets */,
 				4E7A26AE237569B500AE7B2D /* LaunchScreen.storyboard */,
+				7364F79B237BFE4F006DA70A /* TabProfile.storyboard */,
 				4E7A26B1237569B500AE7B2D /* Info.plist */,
 				84737F30237988310024DD2E /* ContactsTableViewController.swift */,
 				734BAD01237B0F2A001821D6 /* GoogleService-Info.plist */,
@@ -160,10 +151,10 @@
 			files = (
 				7315EFFD237B0E700061D8A6 /* TabContacts.storyboard in Resources */,
 				730A5B93237AFE2700E9E4FB /* TabSearch.storyboard in Resources */,
-				29477749237B3B4700F866B2 /* Sign Up .storyboard in Resources */,
+				73C725D0237C0046002AB8E2 /* SignUp.storyboard in Resources */,
 				4E7A26B0237569B500AE7B2D /* LaunchScreen.storyboard in Resources */,
+				7364F79C237BFE4F006DA70A /* TabProfile.storyboard in Resources */,
 				4E7A26AD237569B500AE7B2D /* Assets.xcassets in Resources */,
-				7315EFFA237B0E020061D8A6 /* TabProfile.storyboard in Resources */,
 				4E7A26AB237569B200AE7B2D /* Main.storyboard in Resources */,
 				734BAD02237B0F2A001821D6 /* GoogleService-Info.plist in Resources */,
 			);
@@ -212,20 +203,20 @@
 			name = TabSearch.storyboard;
 			sourceTree = "<group>";
 		};
-		7315EFF8237B0E020061D8A6 /* TabProfile.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				7315EFF9237B0E020061D8A6 /* Base */,
-			);
-			name = TabProfile.storyboard;
-			sourceTree = "<group>";
-		};
 		7315EFFB237B0E700061D8A6 /* TabContacts.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				7315EFFC237B0E700061D8A6 /* Base */,
 			);
 			name = TabContacts.storyboard;
+			sourceTree = "<group>";
+		};
+		73C725CE237C0046002AB8E2 /* SignUp.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				73C725CF237C0046002AB8E2 /* Base */,
+			);
+			name = SignUp.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
