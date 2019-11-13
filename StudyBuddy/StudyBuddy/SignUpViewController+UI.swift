@@ -23,14 +23,14 @@ extension SignUpViewController {
     func setupEmailTextField() {
         emailContainerView.layer.borderWidth = 1
         emailContainerView.layer.cornerRadius = 3
-        emailTextField.clipsToBounds = true
+        emailContainerView.clipsToBounds = true
         emailTextField.borderStyle = .none
         
     }
     func setupPasswordTextField() {
         passwordContainerView.layer.borderWidth = 1
         passwordContainerView.layer.cornerRadius = 3
-        passwordTextField.clipsToBounds = true
+        passwordContainerView.clipsToBounds = true
         passwordTextField.borderStyle = .none
         
     }
