@@ -27,7 +27,7 @@
                                                 <state key="normal" image="logout (1)"/>
                                             </button>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="user" translatesAutoresizingMaskIntoConstraints="NO" id="nrJ-ei-Jo8">
-                                                <rect key="frame" x="101.66666666666669" y="88.666666666666671" width="170.66666666666663" height="170.66666666666663"/>
+                                                <rect key="frame" x="101.66666666666667" y="88.666666666666671" width="170.66666666666663" height="170.66666666666663"/>
                                             </imageView>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
