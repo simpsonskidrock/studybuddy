@@ -10,8 +10,7 @@
         <!--View Controller-->
         <scene sceneID="RSg-cB-FoR">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Mpu-m9-oqL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <viewController id="g7l-FH-hud" customClass="ViewController" customModule="StudyBuddy" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="idMainStoryboard" id="g7l-FH-hud" customClass="ViewController" customModule="StudyBuddy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="rEe-vY-cjF" customClass="LoginViewController">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -123,6 +122,7 @@
                         <outlet property="SignupButton" destination="nFR-gv-gcG" id="DKR-X0-a8x"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Mpu-m9-oqL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-175" y="18"/>
         </scene>
