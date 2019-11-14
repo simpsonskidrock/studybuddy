@@ -27,20 +27,21 @@ struct ContentView: View {
             CustomTextField(
                 placeholder: Text("username").foregroundColor(.lmuLightGrey),
                 text: $usernameText
-            ).padding(.horizontal)
+            ).padding(.horizontal, 50)
             CustomTextField(
                 placeholder: Text("password").foregroundColor(.lmuLightGrey),
                 text: $passwordText
-            ).padding(.horizontal)
-                
+            ).padding(.horizontal, 50)
+            
             HStack(spacing: 8) {
                 Spacer()
                 Button(action: {
                     self.loggedIn.toggle()
                 }) {
                     Text("Log In")
-                }.sheet(isPresented: $loggedIn) {
-                    GeneralTabView()
+                }.buttonStyle(StudyButtonStyle())
+                    .sheet(isPresented: $loggedIn) {
+                        GeneralTabView()
                 }
                 Spacer()
                 Text("or").foregroundColor(Color.white)
@@ -49,8 +50,9 @@ struct ContentView: View {
                     self.isRegistered.toggle()
                 }) {
                     Text("Register")
-                }.sheet(isPresented: $isRegistered) {
-                    RegisterView()
+                }.buttonStyle(StudyButtonStyle())
+                    .sheet(isPresented: $isRegistered) {
+                        RegisterView()
                 }
                 Spacer()
             }

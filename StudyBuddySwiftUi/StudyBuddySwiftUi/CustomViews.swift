@@ -19,7 +19,7 @@ struct CustomTextField: View {
     @Binding var text: String
     var editingChanged: (Bool)->() = { _ in }
     var commit: ()->() = { }
-
+    
     var body: some View {
         ZStack(alignment: .leading) {
             if text.isEmpty { placeholder }
@@ -27,5 +27,22 @@ struct CustomTextField: View {
         }
     }
 }
+
+struct StudyButtonStyle: ButtonStyle {
+    
+
+    func makeBody(configuration: Self.Configuration) -> some View {
+        configuration.label
+            .frame(minWidth: 100, maxWidth: .infinity)
+            .padding()
+            .foregroundColor(.white)
+            .background(Color.lmuDarkGrey)
+            .cornerRadius(10)
+            .padding(.horizontal, 20)
+            .scaleEffect(configuration.isPressed ? 0.9 : 1.0)
+    }
+}
+
+
 
 
