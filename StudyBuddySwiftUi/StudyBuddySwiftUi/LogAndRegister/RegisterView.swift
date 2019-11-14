@@ -11,17 +11,22 @@ import SwiftUI
 
 struct RegisterView: View {
     @State var loggedIn = false
+    @State private var userName: String = ""
+    @State private var password: String = ""
+    @State private var repeatedPassword: String = ""
+    
     var body: some View {
         VStack(spacing: 16) {
             Spacer()
             Text("StudyBuddy")
             Spacer()
             Text("Enter username or password")
-            TextField("username", text: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Value@*/.constant("")/*@END_MENU_TOKEN@*/)
+            TextField("username", text: $userName)
                 .padding(.horizontal)
-            TextField("password", text: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Value@*/.constant("")/*@END_MENU_TOKEN@*/)
+            
+            TextField("password", text: $password)
                 .padding(.horizontal)
-            TextField("repeat password", text: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Value@*/.constant("")/*@END_MENU_TOKEN@*/)
+            TextField("repeat password", text: $repeatedPassword)
                 .padding(.horizontal)
             HStack(spacing: 8) {
                 Spacer()

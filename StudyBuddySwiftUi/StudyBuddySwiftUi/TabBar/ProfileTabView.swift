@@ -10,14 +10,28 @@ import Foundation
 import SwiftUI
 
 struct ProfileTabView: View {
+    @State var loggedOut = false
     var body: some View {
-        NavigationView {
-            List {
-                Text("Hello World")
-                Text("Hello World")
-                Text("Hello World")
+        VStack() {
+            HStack() {
+                Button(action: {
+                    self.loggedOut.toggle()
+                }) {
+                    Image(systemName: "arrow.uturn.left")
+                }.sheet(isPresented: $loggedOut) {
+                    ContentView()
+                }
+                Spacer()
+            }.padding(.leading, 10)
+            NavigationView {
+                List {
+                    Text("Hello World")
+                    Text("Hello World")
+                    Text("Hello World")
+                }
+                .navigationBarTitle("Profil")
             }
-            .navigationBarTitle("Profil")
+            Spacer()
         }
     }
 }
