@@ -10,12 +10,31 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        Text("Hello, World!")
+        Text("Content View")
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        AppView()
+    }
+}
+
+struct AppView: View {
+    var body: some View {
+        TabView {
+            ProfileTabView()
+                .tabItem {
+                    Image(systemName: "person")
+            }
+            SearchTabView()
+                .tabItem {
+                    Image(systemName: "magnifyingglass")
+            }
+            ContactsTabView()
+                .tabItem {
+                    Image(systemName: "person.3")
+            }
+        }
     }
 }
