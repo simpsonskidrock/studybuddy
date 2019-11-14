@@ -1,3 +1,3 @@
-StudyBuddy: workspace for project
+StudyBuddy: workspace for project with storyboard
 
-Test: tests which can be helpful for project
+StudyBuddySwiftUi: workspace for project with SwiftUI
