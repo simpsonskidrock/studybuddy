@@ -12,13 +12,32 @@ import SwiftUI
 struct RegisterView: View {
     @State var loggedIn = false
     var body: some View {
-        Button(action: {
-            self.loggedIn.toggle()
-        }) {
-            Text("Register")
-        }.sheet(isPresented: $loggedIn) {
-            GeneralTabView()
+        VStack(spacing: 16) {
+            Spacer()
+            Text("StudyBuddy")
+            Spacer()
+            Text("Enter username or password")
+            TextField("username", text: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Value@*/.constant("")/*@END_MENU_TOKEN@*/)
+                .padding(.horizontal)
+            TextField("password", text: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Value@*/.constant("")/*@END_MENU_TOKEN@*/)
+                .padding(.horizontal)
+            TextField("repeat password", text: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Value@*/.constant("")/*@END_MENU_TOKEN@*/)
+                .padding(.horizontal)
+            HStack(spacing: 8) {
+                Spacer()
+                Button(action: {
+                    self.loggedIn.toggle()
+                }) {
+                    Text("Register")
+                }.sheet(isPresented: $loggedIn) {
+                    GeneralTabView()
+                }
+                Spacer()
+            }
+            Spacer()
         }
+        .padding(.horizontal, 20.0)
+        .background(Color.lmuGreen.edgesIgnoringSafeArea(.vertical))
     }
 }
 
