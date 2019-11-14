@@ -14,18 +14,15 @@ extension Color {
     static let lmuDarkGrey = Color("LMU Dark Grey")
 }
 
-struct CustomTextField: View {
-    var placeholder: Text
-    @Binding var text: String
-    var editingChanged: (Bool)->() = { _ in }
-    var commit: ()->() = { }
-    
-    var body: some View {
-        ZStack(alignment: .leading) {
-            if text.isEmpty { placeholder }
-            TextField("", text: $text, onEditingChanged: editingChanged, onCommit: commit)
-        }
-    }
+
+
+public struct StudyTextFieldStyle : TextFieldStyle {
+  public func _body(configuration: TextField<Self._Label>) -> some View {
+    configuration
+      .padding(7)
+        .background(Color.white)
+    .cornerRadius(10)
+  }
 }
 
 struct StudyButtonStyle: ButtonStyle {

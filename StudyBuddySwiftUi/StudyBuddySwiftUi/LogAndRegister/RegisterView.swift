@@ -11,9 +11,10 @@ import SwiftUI
 
 struct RegisterView: View {
     @State var loggedIn = false
-    @State private var usernameText: String = ""
-    @State private var passwordText: String = ""
-    @State private var repeatedPasswordText: String = ""
+    @State private var username: String = "username"
+    @State private var password: String = "password"
+    @State private var repeatPassword: String = "repeat password"
+
     
     var body: some View {
         VStack(spacing: 16) {
@@ -22,18 +23,17 @@ struct RegisterView: View {
             Spacer()
             
             Text("Enter username or password").foregroundColor(Color.white)
-            CustomTextField(
-                placeholder: Text("username").foregroundColor(.lmuLightGrey),
-                text: $usernameText
-            ).padding(.horizontal, 50)
-            CustomTextField(
-                placeholder: Text("password").foregroundColor(.lmuLightGrey),
-                text: $passwordText
-            ).padding(.horizontal, 50)
-            CustomTextField(
-                placeholder: Text("repeat password").foregroundColor(.lmuLightGrey),
-                text: $repeatedPasswordText
-            ).padding(.horizontal, 50)
+            
+            TextField("", text: $username)
+            .textFieldStyle(StudyTextFieldStyle())
+            .padding(.horizontal, 50)
+            TextField("", text: $password)
+            .textFieldStyle(StudyTextFieldStyle())
+            .padding(.horizontal, 50)
+            TextField("", text: $repeatPassword)
+            .textFieldStyle(StudyTextFieldStyle())
+            .padding(.horizontal, 50)
+
             
             HStack(spacing: 8) {
                 Spacer()

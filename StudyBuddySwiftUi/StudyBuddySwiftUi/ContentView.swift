@@ -11,9 +11,9 @@ import SwiftUI
 struct ContentView: View {
     @State var loggedIn = false
     @State var isRegistered = false
-    @State var usernameText = ""
-    @State var passwordText = ""
-    
+    @State var username = "username"
+    @State var password = "password"
+    @State var name: String = "John"
     
     var body: some View {
         
@@ -24,14 +24,14 @@ struct ContentView: View {
             Spacer()
             Text("Enter username or password").foregroundColor(Color.white)
             
-            CustomTextField(
-                placeholder: Text("username").foregroundColor(.lmuLightGrey),
-                text: $usernameText
-            ).padding(.horizontal, 50)
-            CustomTextField(
-                placeholder: Text("password").foregroundColor(.lmuLightGrey),
-                text: $passwordText
-            ).padding(.horizontal, 50)
+            
+            TextField("", text: $username)
+            .textFieldStyle(StudyTextFieldStyle())
+            .padding(.horizontal, 50)
+            SecureField("", text: $password)
+            .textFieldStyle(StudyTextFieldStyle())
+                .padding(.horizontal, 50)
+            
             
             HStack(spacing: 8) {
                 Spacer()
