@@ -11,30 +11,38 @@ import SwiftUI
 
 struct RegisterView: View {
     @State var loggedIn = false
-    @State private var userName: String = ""
-    @State private var password: String = ""
-    @State private var repeatedPassword: String = ""
+    @State private var usernameText: String = ""
+    @State private var passwordText: String = ""
+    @State private var repeatedPasswordText: String = ""
     
     var body: some View {
         VStack(spacing: 16) {
             Spacer()
-            Text("StudyBuddy")
+            Text("StudyBuddy").font(.largeTitle).foregroundColor(Color.white)
             Spacer()
-            Text("Enter username or password")
-            TextField("username", text: $userName)
-                .padding(.horizontal)
             
-            TextField("password", text: $password)
-                .padding(.horizontal)
-            TextField("repeat password", text: $repeatedPassword)
-                .padding(.horizontal)
+            Text("Enter username or password").foregroundColor(Color.white)
+            CustomTextField(
+                placeholder: Text("username").foregroundColor(.lmuLightGrey),
+                text: $usernameText
+            ).padding(.horizontal, 50)
+            CustomTextField(
+                placeholder: Text("password").foregroundColor(.lmuLightGrey),
+                text: $passwordText
+            ).padding(.horizontal, 50)
+            CustomTextField(
+                placeholder: Text("repeat password").foregroundColor(.lmuLightGrey),
+                text: $repeatedPasswordText
+            ).padding(.horizontal, 50)
+            
             HStack(spacing: 8) {
                 Spacer()
                 Button(action: {
                     self.loggedIn.toggle()
                 }) {
                     Text("Register")
-                }.sheet(isPresented: $loggedIn) {
+                }.buttonStyle(StudyButtonStyle())
+                    .sheet(isPresented: $loggedIn) {
                     GeneralTabView()
                 }
                 Spacer()
