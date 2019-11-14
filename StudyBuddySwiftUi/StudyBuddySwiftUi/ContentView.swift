@@ -11,18 +11,28 @@ import SwiftUI
 struct ContentView: View {
     @State var loggedIn = false
     @State var isRegistered = false
+    @State var usernameText = ""
+    @State var passwordText = ""
+    
+    
     var body: some View {
         
         VStack(spacing: 16) {
             Spacer()
             Image("fountainicon")
-            Text("StudyBuddy")
+            Text("StudyBuddy").font(.largeTitle).foregroundColor(Color.white)
             Spacer()
-            Text("Enter username or password")
-            TextField("username", text: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Value@*/.constant("")/*@END_MENU_TOKEN@*/)
-            .padding(.horizontal)
-            TextField("password", text: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Value@*/.constant("")/*@END_MENU_TOKEN@*/)
-            .padding(.horizontal)
+            Text("Enter username or password").foregroundColor(Color.white)
+            
+            CustomTextField(
+                placeholder: Text("username").foregroundColor(.lmuLightGrey),
+                text: $usernameText
+            ).padding(.horizontal)
+            CustomTextField(
+                placeholder: Text("password").foregroundColor(.lmuLightGrey),
+                text: $passwordText
+            ).padding(.horizontal)
+                
             HStack(spacing: 8) {
                 Spacer()
                 Button(action: {
@@ -33,7 +43,7 @@ struct ContentView: View {
                     GeneralTabView()
                 }
                 Spacer()
-                Text("or")
+                Text("or").foregroundColor(Color.white)
                 Spacer()
                 Button(action: {
                     self.isRegistered.toggle()
@@ -54,11 +64,6 @@ struct ContentView: View {
         
         
     }
-}
-
-extension Color {
-    static let lmuGreen = Color("LMU Green")
-    
 }
 
 struct ContentView_Previews: PreviewProvider {
