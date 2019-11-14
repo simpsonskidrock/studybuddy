@@ -9,32 +9,33 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State var loggedIn = false
+    @State var isRegistered = false
     var body: some View {
-        Text("Content View")
+        VStack {
+            Image("fountainicon").resizable()
+            .aspectRatio(contentMode: ContentMode.fit)
+            Text("StudyBuddy")
+            Button(action: {
+                self.loggedIn.toggle()
+            }) {
+                Text("Log In")
+            }.sheet(isPresented: $loggedIn) {
+                GeneralTabView()
+            }
+            Button(action: {
+                self.isRegistered.toggle()
+            }) {
+                Text("Register")
+            }.sheet(isPresented: $isRegistered) {
+                RegisterView()
+            }
+        }.background(Color("LMU Green"))
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        AppView()
-    }
-}
-
-struct AppView: View {
-    var body: some View {
-        TabView {
-            ProfileTabView()
-                .tabItem {
-                    Image(systemName: "person")
-            }
-            SearchTabView()
-                .tabItem {
-                    Image(systemName: "magnifyingglass")
-            }
-            ContactsTabView()
-                .tabItem {
-                    Image(systemName: "person.3")
-            }
-        }
+        ContentView()
     }
 }
