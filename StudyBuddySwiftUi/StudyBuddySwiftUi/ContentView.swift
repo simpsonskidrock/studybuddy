@@ -12,26 +12,53 @@ struct ContentView: View {
     @State var loggedIn = false
     @State var isRegistered = false
     var body: some View {
-        VStack {
-            Image("fountainicon").resizable()
-            .aspectRatio(contentMode: ContentMode.fit)
+        
+        VStack(spacing: 16) {
+            Spacer()
+            Image("fountainicon")
             Text("StudyBuddy")
-            Button(action: {
-                self.loggedIn.toggle()
-            }) {
-                Text("Log In")
-            }.sheet(isPresented: $loggedIn) {
-                GeneralTabView()
+            Spacer()
+            Text("Enter username or password")
+            TextField("username", text: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Value@*/.constant("")/*@END_MENU_TOKEN@*/)
+            .padding(.horizontal)
+            TextField("password", text: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Value@*/.constant("")/*@END_MENU_TOKEN@*/)
+            .padding(.horizontal)
+            HStack(spacing: 8) {
+                Spacer()
+                Button(action: {
+                    self.loggedIn.toggle()
+                }) {
+                    Text("Log In")
+                }.sheet(isPresented: $loggedIn) {
+                    GeneralTabView()
+                }
+                Spacer()
+                Text("or")
+                Spacer()
+                Button(action: {
+                    self.isRegistered.toggle()
+                }) {
+                    Text("Register")
+                }.sheet(isPresented: $isRegistered) {
+                    RegisterView()
+                }
+                Spacer()
             }
-            Button(action: {
-                self.isRegistered.toggle()
-            }) {
-                Text("Register")
-            }.sheet(isPresented: $isRegistered) {
-                RegisterView()
-            }
-        }.background(Color("LMU Green"))
+            Spacer()
+        }
+        .padding(.horizontal, 20.0)
+        .background(Color.lmuGreen.edgesIgnoringSafeArea(.vertical))
+        
+        
+        
+        
+        
     }
+}
+
+extension Color {
+    static let lmuGreen = Color("LMU Green")
+    
 }
 
 struct ContentView_Previews: PreviewProvider {
