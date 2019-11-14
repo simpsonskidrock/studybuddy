@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		732BCEDA237D97EB00555AB1 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732BCED9237D97EB00555AB1 /* Colors.swift */; };
 		7367D1F6237D6670002EE928 /* ProfileTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7367D1F5237D6670002EE928 /* ProfileTabView.swift */; };
 		7367D1F8237D7255002EE928 /* SearchTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7367D1F7237D7255002EE928 /* SearchTabView.swift */; };
 		7367D1FA237D7279002EE928 /* ContactsTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7367D1F9237D7279002EE928 /* ContactsTabView.swift */; };
@@ -21,6 +20,7 @@
 		73B9D15C237C2485000E268E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73B9D15A237C2485000E268E /* LaunchScreen.storyboard */; };
 		73B9D167237C2485000E268E /* StudyBuddySwiftUiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B9D166237C2485000E268E /* StudyBuddySwiftUiTests.swift */; };
 		73B9D172237C2485000E268E /* StudyBuddySwiftUiUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B9D171237C2485000E268E /* StudyBuddySwiftUiUITests.swift */; };
+		84B3AD5E237D973800CB2160 /* CustomViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B3AD5D237D973800CB2160 /* CustomViews.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,7 +41,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		732BCED9237D97EB00555AB1 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		7367D1F5237D6670002EE928 /* ProfileTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTabView.swift; sourceTree = "<group>"; };
 		7367D1F7237D7255002EE928 /* SearchTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTabView.swift; sourceTree = "<group>"; };
 		7367D1F9237D7279002EE928 /* ContactsTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsTabView.swift; sourceTree = "<group>"; };
@@ -61,6 +60,7 @@
 		73B9D16D237C2485000E268E /* StudyBuddySwiftUiUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StudyBuddySwiftUiUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		73B9D171237C2485000E268E /* StudyBuddySwiftUiUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyBuddySwiftUiUITests.swift; sourceTree = "<group>"; };
 		73B9D173237C2485000E268E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		84B3AD5D237D973800CB2160 /* CustomViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomViews.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,8 +135,8 @@
 				73B9D14F237C2484000E268E /* AppDelegate.swift */,
 				73B9D151237C2484000E268E /* SceneDelegate.swift */,
 				73B9D153237C2484000E268E /* ContentView.swift */,
+				84B3AD5D237D973800CB2160 /* CustomViews.swift */,
 				73B9D155237C2485000E268E /* Assets.xcassets */,
-				732BCED9237D97EB00555AB1 /* Colors.swift */,
 				73B9D15A237C2485000E268E /* LaunchScreen.storyboard */,
 				73B9D15D237C2485000E268E /* Info.plist */,
 				73B9D157237C2485000E268E /* Preview Content */,
@@ -302,13 +302,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				73B9D150237C2484000E268E /* AppDelegate.swift in Sources */,
-				732BCEDA237D97EB00555AB1 /* Colors.swift in Sources */,
 				7367D1FA237D7279002EE928 /* ContactsTabView.swift in Sources */,
 				7367D1FF237D8496002EE928 /* GeneralTabView.swift in Sources */,
 				7367D1F8237D7255002EE928 /* SearchTabView.swift in Sources */,
 				73B9D152237C2484000E268E /* SceneDelegate.swift in Sources */,
 				7367D202237D85F5002EE928 /* RegisterView.swift in Sources */,
 				7367D1F6237D6670002EE928 /* ProfileTabView.swift in Sources */,
+				84B3AD5E237D973800CB2160 /* CustomViews.swift in Sources */,
 				73B9D154237C2484000E268E /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
