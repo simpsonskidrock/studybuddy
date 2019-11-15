@@ -13,16 +13,25 @@ struct RegisterView: View {
     @State var loggedIn = false
     @State private var username: String = "username"
     @State private var password: String = "password"
-    @State private var repeatPassword: String = "repeat password"
+    @State private var repeatPassword: String = "Confirm password"
 
     
     var body: some View {
         VStack(spacing: 16) {
+            Text("Sign Up").font(.largeTitle).foregroundColor(.lmuLightGrey)
             Spacer()
             Text("StudyBuddy").font(.largeTitle).foregroundColor(Color.white)
-            Spacer()
+            HStack {
+                Image(systemName: "person.badge.plus")
+                .frame(width: 150.0, height: 150.0)
+                    .clipShape(Circle())
+                    .overlay(
+                        Circle().stroke(Color.white, lineWidth: 5)
+                )
+                
+            }
             
-            Text("Enter username or password").foregroundColor(Color.white)
+            Text("Create a new Account").foregroundColor(Color.white)
             
             TextField("", text: $username)
             .textFieldStyle(StudyTextFieldStyle())
