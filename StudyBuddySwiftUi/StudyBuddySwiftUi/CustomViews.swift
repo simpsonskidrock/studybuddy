@@ -19,7 +19,7 @@ extension Color {
 public struct StudyTextFieldStyle : TextFieldStyle {
   public func _body(configuration: TextField<Self._Label>) -> some View {
     configuration
-      .padding(7)
+      .padding()
         .background(Color.white)
     .cornerRadius(10)
   }
@@ -30,16 +30,14 @@ struct StudyButtonStyle: ButtonStyle {
 
     func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label
-            .frame(minWidth: 100, maxWidth: .infinity)
+            .frame(minWidth: 100, maxWidth: 200)
             .padding()
             .foregroundColor(.white)
             .background(Color.lmuDarkGrey)
-            .cornerRadius(10)
-            .padding(.horizontal, 20)
+            .cornerRadius(25)
+            .padding(10)
             .scaleEffect(configuration.isPressed ? 0.9 : 1.0)
-    }
+
+
 }
-
-
-
-
+}

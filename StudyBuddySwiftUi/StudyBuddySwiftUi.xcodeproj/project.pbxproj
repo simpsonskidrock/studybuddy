@@ -559,7 +559,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9PV32G6D3K;
+				DEVELOPMENT_TEAM = 6T8T8284X7;
 				INFOPLIST_FILE = StudyBuddySwiftUiUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -579,7 +579,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9PV32G6D3K;
+				DEVELOPMENT_TEAM = 6T8T8284X7;
 				INFOPLIST_FILE = StudyBuddySwiftUiUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

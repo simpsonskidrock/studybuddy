@@ -10,9 +10,11 @@ import SwiftUI
 
 struct ContentView: View {
     @State var loggedIn = false
+    @State var forgotpassword = false
+
     @State var isRegistered = false
-    @State var username = "username"
-    @State var password = "password"
+    @State var username = ""
+    @State var password = ""
     @State var name: String = "John"
     
     var body: some View {
@@ -25,10 +27,10 @@ struct ContentView: View {
             Text("Enter username or password").foregroundColor(Color.white)
             
             
-            TextField("", text: $username)
+            TextField("Username", text: $username)
             .textFieldStyle(StudyTextFieldStyle())
             .padding(.horizontal, 50)
-            SecureField("", text: $password)
+            SecureField("Password", text: $password)
             .textFieldStyle(StudyTextFieldStyle())
                 .padding(.horizontal, 50)
             
@@ -56,15 +58,20 @@ struct ContentView: View {
                 }
                 Spacer()
             }
-            Spacer()
+            HStack {
+                  Text("Forgot your password?").foregroundColor(Color.lmuLightGrey)
+                  
+                            Button(action: {
+                                self.forgotpassword.toggle()
+                            }) {
+                              Text("Click hier") .foregroundColor(.white)
+                            }
+                            }
+            
         }
         .padding(.horizontal, 20.0)
         .background(Color.lmuGreen.edgesIgnoringSafeArea(.vertical))
-        
-        
-        
-        
-        
+ 
     }
 }
 
