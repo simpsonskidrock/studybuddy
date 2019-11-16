@@ -65,6 +65,8 @@ struct ContentView: View {
                                 self.forgotpassword.toggle()
                             }) {
                               Text("Click hier") .foregroundColor(.white)
+                            }.sheet(isPresented: $forgotpassword) {
+                                    ChangePasswordView()
                             }
                             }
             

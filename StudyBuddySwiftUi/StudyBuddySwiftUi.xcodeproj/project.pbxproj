@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		290AD9CE237F9BDA008F515D /* ChangePasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290AD9CD237F9BDA008F515D /* ChangePasswordView.swift */; };
 		7367D1F6237D6670002EE928 /* ProfileTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7367D1F5237D6670002EE928 /* ProfileTabView.swift */; };
 		7367D1F8237D7255002EE928 /* SearchTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7367D1F7237D7255002EE928 /* SearchTabView.swift */; };
 		7367D1FA237D7279002EE928 /* ContactsTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7367D1F9237D7279002EE928 /* ContactsTabView.swift */; };
@@ -41,6 +42,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		290AD9CD237F9BDA008F515D /* ChangePasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordView.swift; sourceTree = "<group>"; };
 		7367D1F5237D6670002EE928 /* ProfileTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTabView.swift; sourceTree = "<group>"; };
 		7367D1F7237D7255002EE928 /* SearchTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTabView.swift; sourceTree = "<group>"; };
 		7367D1F9237D7279002EE928 /* ContactsTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsTabView.swift; sourceTree = "<group>"; };
@@ -88,6 +90,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		290AD9CC237F9B9B008F515D /* Reset Password */ = {
+			isa = PBXGroup;
+			children = (
+				290AD9CD237F9BDA008F515D /* ChangePasswordView.swift */,
+			);
+			path = "Reset Password";
+			sourceTree = "<group>";
+		};
 		7367D1FD237D841F002EE928 /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
@@ -130,6 +140,7 @@
 		73B9D14E237C2484000E268E /* StudyBuddySwiftUi */ = {
 			isa = PBXGroup;
 			children = (
+				290AD9CC237F9B9B008F515D /* Reset Password */,
 				7367D200237D8550002EE928 /* LogAndRegister */,
 				7367D1FD237D841F002EE928 /* TabBar */,
 				73B9D14F237C2484000E268E /* AppDelegate.swift */,
@@ -308,6 +319,7 @@
 				73B9D152237C2484000E268E /* SceneDelegate.swift in Sources */,
 				7367D202237D85F5002EE928 /* RegisterView.swift in Sources */,
 				7367D1F6237D6670002EE928 /* ProfileTabView.swift in Sources */,
+				290AD9CE237F9BDA008F515D /* ChangePasswordView.swift in Sources */,
 				84B3AD5E237D973800CB2160 /* CustomViews.swift in Sources */,
 				73B9D154237C2484000E268E /* ContentView.swift in Sources */,
 			);
@@ -516,7 +528,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9PV32G6D3K;
+				DEVELOPMENT_TEAM = 6T8T8284X7;
 				INFOPLIST_FILE = StudyBuddySwiftUiTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -538,7 +550,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9PV32G6D3K;
+				DEVELOPMENT_TEAM = 6T8T8284X7;
 				INFOPLIST_FILE = StudyBuddySwiftUiTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
