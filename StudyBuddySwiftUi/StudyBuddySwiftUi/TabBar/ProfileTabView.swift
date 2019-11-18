@@ -19,7 +19,7 @@ struct ProfileTabView: View {
                 }) {
                     Image(systemName: "arrow.uturn.left")
                 }.sheet(isPresented: $loggedOut) {
-                    ContentView()
+                    LoginView()
                 }
                 Spacer()
             }.padding(.leading, 10)
