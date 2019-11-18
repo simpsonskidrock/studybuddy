@@ -14,21 +14,17 @@ extension Color {
     static let lmuDarkGrey = Color("LMU Dark Grey")
 }
 
-
-
 public struct StudyTextFieldStyle : TextFieldStyle {
-  public func _body(configuration: TextField<Self._Label>) -> some View {
-    configuration
-      .padding()
-        .background(Color.white)
-    .cornerRadius(10)
-  }
+    public func _body(configuration: TextField<Self._Label>) -> some View {
+        configuration
+            .padding()
+            .background(Color.white)
+            .cornerRadius(10)
+    }
 }
 
-struct StudyButtonStyle: ButtonStyle {
-    
-
-    func makeBody(configuration: Self.Configuration) -> some View {
+public struct StudyButtonStyle: ButtonStyle {
+    public func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label
             .frame(minWidth: 100, maxWidth: 200)
             .padding()
@@ -37,7 +33,5 @@ struct StudyButtonStyle: ButtonStyle {
             .cornerRadius(25)
             .padding(10)
             .scaleEffect(configuration.isPressed ? 0.9 : 1.0)
-
-
-}
+    }
 }

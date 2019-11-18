@@ -34,7 +34,6 @@ struct ContentView: View {
             .textFieldStyle(StudyTextFieldStyle())
                 .padding(.horizontal, 50)
             
-            
             HStack(spacing: 8) {
                 Spacer()
                 Button(action: {
