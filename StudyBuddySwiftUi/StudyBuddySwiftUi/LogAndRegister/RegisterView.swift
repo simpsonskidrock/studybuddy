@@ -13,9 +13,9 @@ struct RegisterView: View {
     @State var registered = false
     @State var goToLogin = false
 
-    @State private var username: String = "username"
-    @State private var password: String = "password"
-    @State private var repeatPassword: String = "Confirm password"
+    @State private var username: String = ""
+    @State private var password: String = ""
+    @State private var repeatPassword: String = ""
 
     var body: some View {
         ZStack {
@@ -35,13 +35,13 @@ struct RegisterView: View {
             VStack {
                 Text("Create a new Account").foregroundColor(Color.white)
             
-                TextField("", text: $username)
+                TextField("Username", text: $username)
                 .textFieldStyle(StudyTextFieldStyle())
                 .padding(.horizontal, 50)
-                TextField("", text: $password)
+                TextField("Password", text: $password)
                 .textFieldStyle(StudyTextFieldStyle())
                 .padding(.horizontal, 50)
-                TextField("", text: $repeatPassword)
+                TextField("Confirm Password", text: $repeatPassword)
                 .textFieldStyle(StudyTextFieldStyle())
                 .padding(.horizontal, 50)
             }
