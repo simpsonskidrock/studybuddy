@@ -13,7 +13,7 @@ struct RegisterView: View {
     @State var registered = false
     @State var goToLogin = false
     
-    @State private var username: String = ""
+    @State private var email: String = ""
     @State private var password: String = ""
     @State private var repeatPassword: String = ""
     
@@ -36,7 +36,7 @@ struct RegisterView: View {
                 VStack {
                     Text("Create a new Account").foregroundColor(Color.white)
                     
-                    TextField("Username", text: $username)
+                    TextField("E-mail", text: $email)
                         .textFieldStyle(StudyTextFieldStyle())
                         .padding(.horizontal, 50)
                     TextField("Password", text: $password)

@@ -13,7 +13,7 @@ struct LoginView: View {
     @State var forgotpassword = false
 
     @State var isRegistered = false
-    @State var username = ""
+    @State var email = ""
     @State var password = ""
     @State var name: String = "John"
     
@@ -24,10 +24,10 @@ struct LoginView: View {
             Image("fountainicon")
             Text("StudyBuddy").font(.largeTitle).foregroundColor(Color.white)
             Spacer()
-            Text("Enter username and password").foregroundColor(Color.white)
+            Text("Enter email and password").foregroundColor(Color.white)
             
             
-            TextField("Username", text: $username)
+            TextField("Email", text: $email)
             .textFieldStyle(StudyTextFieldStyle())
             .padding(.horizontal, 50)
             SecureField("Password", text: $password)
