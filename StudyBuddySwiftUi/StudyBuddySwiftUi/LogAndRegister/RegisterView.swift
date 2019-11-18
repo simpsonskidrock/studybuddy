@@ -55,18 +55,19 @@ struct RegisterView: View {
                         .sheet(isPresented: $registered) {
                         GeneralTabView()
             }
-            HStack {
+           HStack {
                 Text("Already have an account?").foregroundColor(Color.lmuLightGrey)
                 
-                          Button(action: {
-                              self.goToLogin.toggle()
-                          }) {
-                            Text("Sign In") .foregroundColor(.white)
-                          }.sheet(isPresented: $goToLogin) {
-                                 ContentView()
+                 Button(action: {
+                            self.goToLogin.toggle()
+                        }) {
+                           Text("Sign In") .foregroundColor(.white)
+                        }.sheet(isPresented: $goToLogin) {
+            
+                          ContentView()
                           }
                           
-            }
+           }
           
             
             

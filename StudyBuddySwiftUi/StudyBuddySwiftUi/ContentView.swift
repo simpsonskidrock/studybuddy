@@ -58,7 +58,7 @@ struct ContentView: View {
                 }
                 Spacer()
             }
-            HStack {
+          HStack {
                   Text("Forgot your password?").foregroundColor(Color.lmuLightGrey)
                   
                             Button(action: {

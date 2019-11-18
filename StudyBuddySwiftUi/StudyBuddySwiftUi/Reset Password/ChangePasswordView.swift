@@ -2,7 +2,7 @@
 //  ChangePasswordView.swift
 //  StudyBuddySwiftUi
 //
-//  Created by Liliane Kabboura on 16.11.19.
+//  Created by Liliane Kabboura on 17.11.19.
 //  Copyright © 2019 Annika Jung. All rights reserved.
 //
 
