@@ -24,7 +24,7 @@ struct LoginView: View {
             Image("fountainicon")
             Text("StudyBuddy").font(.largeTitle).foregroundColor(Color.white)
             Spacer()
-            Text("Enter username or password").foregroundColor(Color.white)
+            Text("Enter username and password").foregroundColor(Color.white)
             
             
             TextField("Username", text: $username)
@@ -63,7 +63,7 @@ struct LoginView: View {
                             Button(action: {
                                 self.forgotpassword.toggle()
                             }) {
-                              Text("Click hier") .foregroundColor(.white)
+                              Text("Click here") .foregroundColor(.white)
                             }.sheet(isPresented: $forgotpassword) {
                                     ChangePasswordView()
                             }
