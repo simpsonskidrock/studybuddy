@@ -9,6 +9,8 @@
 import SwiftUI
 
 struct LoginView: View {
+   @ObservedObject private var keyboard = KeyboardResponder()
+
     @State var loggedIn = false
     @State var forgotpassword = false
 
@@ -26,6 +28,7 @@ struct LoginView: View {
             Spacer()
             Image("fountainicon")
             Text("StudyBuddy").font(.largeTitle).foregroundColor(Color.white)
+            
             Spacer()
             Text("Enter email and password").foregroundColor(Color.white)
             
@@ -81,7 +84,9 @@ struct LoginView: View {
         }
         .padding(.horizontal, 20.0)
         .background(Color.lmuGreen.edgesIgnoringSafeArea(.vertical))
-            
+        .padding(.bottom, keyboard.currentHeight)
+        .edgesIgnoringSafeArea(.bottom)
+        .animation(.easeOut(duration: 0.16))
         .alert(isPresented: $showingMessageAlert) {
             
             Alert(title: Text("Error"), message: Text("Please enter a valid Email and Password"), dismissButton: .default(Text("OK")))
@@ -94,6 +99,21 @@ struct LoginView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         LoginView()
+    }
+    struct GeometryGetter: View {
+        @Binding var rect: CGRect
+
+        var body: some View {
+            GeometryReader { geometry in
+                Group { () -> AnyView in
+                    DispatchQueue.main.async {
+                        self.rect = geometry.frame(in: .global)
+                    }
+
+                    return AnyView(Color.clear)
+                }
+            }
+        }
     }
     
  

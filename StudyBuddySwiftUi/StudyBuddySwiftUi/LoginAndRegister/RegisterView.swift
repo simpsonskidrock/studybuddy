@@ -9,6 +9,7 @@
 import SwiftUI
 
 struct RegisterView: View {
+    @ObservedObject private var keyboard = KeyboardResponder()
     @State var registered = false
     @State var goToLogin = false
     
@@ -75,6 +76,9 @@ struct RegisterView: View {
             }
             .padding(.horizontal)
             .background(Color.lmuGreen.edgesIgnoringSafeArea(.vertical))
+                .padding(.bottom, keyboard.currentHeight)
+                .edgesIgnoringSafeArea(.bottom)
+                .animation(.easeOut(duration: 0.16))
             .alert(isPresented: $showingMessageAlert) {
                        
                        Alert(title: Text("Field is required"), message: Text("you have left a field empty!"), dismissButton: .default(Text("OK")))

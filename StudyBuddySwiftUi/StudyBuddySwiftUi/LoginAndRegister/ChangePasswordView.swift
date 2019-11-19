@@ -9,6 +9,8 @@
 import SwiftUI
 
 struct ChangePasswordView: View {
+    @ObservedObject private var keyboard = KeyboardResponder()
+
     @State var registered = false
     @State var goToLogin = false
     
@@ -19,11 +21,12 @@ struct ChangePasswordView: View {
     
     var body: some View {
         ZStack {
-            VStack(spacing: 16) {
+            VStack {
                 Spacer()
                 Text("Change Password").font(.largeTitle).foregroundColor(.lmuLightGrey)
                 Spacer()
             Text("StudyBuddy").font(.largeTitle).foregroundColor(Color.white)
+                Spacer()
                 VStack {
                     Text("Enter new password").foregroundColor(Color.white)
                     TextField("E-mail", text: $email)
@@ -64,6 +67,9 @@ struct ChangePasswordView: View {
             }
             .padding(.horizontal)
             .background(Color.lmuGreen.edgesIgnoringSafeArea(.vertical))
+            .padding(.bottom, keyboard.currentHeight)
+            .edgesIgnoringSafeArea(.bottom)
+            .animation(.easeOut(duration: 0.16))
         }
     }
     
@@ -73,4 +79,20 @@ struct ChangePasswordView_Previews: PreviewProvider {
     static var previews: some View {
         ChangePasswordView()
     }
+    struct GeometryGetter: View {
+        @Binding var rect: CGRect
+
+        var body: some View {
+            GeometryReader { geometry in
+                Group { () -> AnyView in
+                    DispatchQueue.main.async {
+                        self.rect = geometry.frame(in: .global)
+                    }
+
+                    return AnyView(Color.clear)
+                }
+            }
+        }
+    }
+    
 }
