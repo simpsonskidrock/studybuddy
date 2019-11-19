@@ -15,10 +15,12 @@ struct RegisterView: View {
     @State private var email: String = ""
     @State private var password: String = ""
     @State private var repeatPassword: String = ""
+    @State private var showingMessageAlert = false
     
+
     var body: some View {
         ZStack {
-            VStack(spacing: 16) {
+            VStack {
                 Spacer()
                 Text("Sign Up").font(.largeTitle).foregroundColor(.lmuLightGrey)
                 Spacer()
@@ -44,7 +46,12 @@ struct RegisterView: View {
                         .padding(.horizontal, 50)
                 }
                 Button(action: {
-                    self.registered.toggle()
+                    
+                    if (self.password.count == 0 || self.email.count == 0 || self.repeatPassword.count == 0 ){
+                      self.showingMessageAlert = true
+                  } else {
+                      self.registered.toggle()
+                  }
                 }) {
                     Text("Register")
                         .font(.system(size: 20))
@@ -68,6 +75,11 @@ struct RegisterView: View {
             }
             .padding(.horizontal)
             .background(Color.lmuGreen.edgesIgnoringSafeArea(.vertical))
+            .alert(isPresented: $showingMessageAlert) {
+                       
+                       Alert(title: Text("Field is required"), message: Text("you have left a field empty!"), dismissButton: .default(Text("OK")))
+                       
+                   }
         }
     }
 }

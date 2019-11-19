@@ -57,7 +57,6 @@ struct ChangePasswordView: View {
                     }) {
                         Text("Cancel") .foregroundColor(.white)
                     }.sheet(isPresented: $goToLogin) {
-                        
                         LoginView()
                     }
                 }

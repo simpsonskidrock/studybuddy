@@ -16,6 +16,9 @@ struct LoginView: View {
     @State var email = ""
     @State var password = ""
     @State var name: String = "John"
+    @State private var showingMessageAlert = false
+    
+
     
     var body: some View {
         
@@ -37,7 +40,13 @@ struct LoginView: View {
             HStack(spacing: 8) {
                 Spacer()
                 Button(action: {
-                    self.loggedIn.toggle()
+                    if (self.password.count == 0 || self.email.count == 0){
+                                 
+                                  self.showingMessageAlert = true
+                              } else {
+                                  self.loggedIn.toggle()
+
+                              }
                 }) {
                     Text("Log In")
                 }.buttonStyle(StudyButtonStyle())
@@ -72,6 +81,12 @@ struct LoginView: View {
         }
         .padding(.horizontal, 20.0)
         .background(Color.lmuGreen.edgesIgnoringSafeArea(.vertical))
+            
+        .alert(isPresented: $showingMessageAlert) {
+            
+            Alert(title: Text("Error"), message: Text("Please enter a valid Email and Password"), dismissButton: .default(Text("OK")))
+            
+        }
  
     }
 }
@@ -80,4 +95,6 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         LoginView()
     }
+    
+ 
 }
