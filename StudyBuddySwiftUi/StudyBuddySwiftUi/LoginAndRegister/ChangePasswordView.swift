@@ -9,9 +9,65 @@
 import SwiftUI
 
 struct ChangePasswordView: View {
+    @State var registered = false
+    @State var goToLogin = false
+    
+    @State private var email: String = ""
+    @State private var oldPassword: String = ""
+    @State private var newPassword: String = ""
+    @State private var repeatNewPassword: String = ""
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack {
+            VStack(spacing: 16) {
+                Spacer()
+                Text("Change Password").font(.largeTitle).foregroundColor(.lmuLightGrey)
+                Spacer()
+            Text("StudyBuddy").font(.largeTitle).foregroundColor(Color.white)
+                VStack {
+                    Text("Enter new password").foregroundColor(Color.white)
+                    TextField("E-mail", text: $email)
+                        .textFieldStyle(StudyTextFieldStyle())
+                        .padding(.horizontal, 50)
+                    TextField("Old Password", text: $oldPassword)
+                    .textFieldStyle(StudyTextFieldStyle())
+                    .padding(.horizontal, 50)
+                    TextField("New Password", text: $newPassword)
+                        .textFieldStyle(StudyTextFieldStyle())
+                        .padding(.horizontal, 50)
+                    TextField("Confirm New Password", text: $repeatNewPassword)
+                        .textFieldStyle(StudyTextFieldStyle())
+                        .padding(.horizontal, 50)
+                }
+                Button(action: {
+                    self.registered.toggle()
+                }) {
+                    Text("Change Password")
+                        .font(.system(size: 20))
+                        .fontWeight(.heavy)
+                }.buttonStyle(StudyButtonStyle())
+                    .sheet(isPresented: $registered) {
+                        GeneralTabView()
+                }
+                HStack {
+                    Text("Don't want to change your password?").foregroundColor(Color.lmuLightGrey)
+                    
+                    Button(action: {
+                        self.goToLogin.toggle()
+                    }) {
+                        Text("Cancel") .foregroundColor(.white)
+                    }.sheet(isPresented: $goToLogin) {
+                        
+                        LoginView()
+                    }
+                }
+                Spacer()
+            }
+            .padding(.horizontal)
+            .background(Color.lmuGreen.edgesIgnoringSafeArea(.vertical))
+        }
     }
+    
 }
 
 struct ChangePasswordView_Previews: PreviewProvider {
