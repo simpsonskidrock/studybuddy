@@ -107,14 +107,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		290AD9CC237F9B9B008F515D /* Reset Password */ = {
-			isa = PBXGroup;
-			children = (
-				292EF2F92381F5760062FBB5 /* ChangePasswordView.swift */,
-			);
-			path = "Reset Password";
-			sourceTree = "<group>";
-		};
 		561B709E320987F037396E70 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -136,12 +128,14 @@
 			path = TabBar;
 			sourceTree = "<group>";
 		};
-		7367D200237D8550002EE928 /* LogAndRegister */ = {
+		7367D200237D8550002EE928 /* LoginAndRegister */ = {
 			isa = PBXGroup;
 			children = (
+				73B9D153237C2484000E268E /* LoginView.swift */,
+				292EF2F92381F5760062FBB5 /* ChangePasswordView.swift */,
 				7367D201237D85F5002EE928 /* RegisterView.swift */,
 			);
-			path = LogAndRegister;
+			path = LoginAndRegister;
 			sourceTree = "<group>";
 		};
 		73B9D143237C2484000E268E = {
@@ -169,12 +163,10 @@
 		73B9D14E237C2484000E268E /* StudyBuddySwiftUi */ = {
 			isa = PBXGroup;
 			children = (
-				290AD9CC237F9B9B008F515D /* Reset Password */,
-				7367D200237D8550002EE928 /* LogAndRegister */,
+				7367D200237D8550002EE928 /* LoginAndRegister */,
 				7367D1FD237D841F002EE928 /* TabBar */,
 				73B9D14F237C2484000E268E /* AppDelegate.swift */,
 				73B9D151237C2484000E268E /* SceneDelegate.swift */,
-				73B9D153237C2484000E268E /* LoginView.swift */,
 				84B3AD5D237D973800CB2160 /* CustomViewElements.swift */,
 				73B9D155237C2485000E268E /* Assets.xcassets */,
 				73B9D15A237C2485000E268E /* LaunchScreen.storyboard */,
