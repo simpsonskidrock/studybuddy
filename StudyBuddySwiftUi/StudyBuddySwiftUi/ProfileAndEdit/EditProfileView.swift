@@ -28,8 +28,6 @@ struct EditProfileView: View {
                 
                 Spacer()
                 
-        
-                
                 Button(action: {
                     
                 }){
@@ -61,7 +59,7 @@ struct EditProfileView: View {
                     Text("Name:")
                         .foregroundColor(.black)
                         .fontWeight(.semibold)
-                    TextField("Enter You name", text:  $name)
+                    TextField("Enter your name", text:  $name)
                     
                 }
                 HStack{
@@ -73,18 +71,21 @@ struct EditProfileView: View {
                 }
                 VStack{
                     
-                    ScrollView(.vertical) {
-                        Text("Description / Characteristics").foregroundColor(.black)
-                            .autocapitalization(/*@START_MENU_TOKEN@*/.none/*@END_MENU_TOKEN@*/)
+                  Text("Description")
+                  .foregroundColor(.black)
                         TextField("Describe your self", text: $description)
+                    .fixedSize(horizontal: false, vertical: true)
+                        .lineLimit(5)
+                            .multilineTextAlignment(.leading)
                         
-                    }
-                    ScrollView(.vertical) {
-                        Text("Hashtags").foregroundColor(.black)
-                        TextField("#", text: $hashtag)
+                    
+                   Text("Hashtags")
+                                    .foregroundColor(.black)
+                        
+                    TextField("#", text: $hashtag).lineLimit(nil)
                         
                         
-                    }
+                    
                 }
             }
             
@@ -100,6 +101,8 @@ struct EditProfileView: View {
             }.padding()
                 
                 .foregroundColor(.lmuLightGrey)
+            Spacer()
+            
             
         } .padding(.horizontal)
             .background(Color.lmuGreen.edgesIgnoringSafeArea(.vertical))
