@@ -86,16 +86,19 @@ struct RegisterView: View {
                  .sheet(isPresented: $registered) {
                  GeneralTabView()
                  }                                                                   */
+                if (error){
+                    Text("ERROR")
+                }
+                    else
+                {
                 NavigationLink(destination: GeneralTabView()) {
                     Text("Register")
                 }.buttonStyle(StudyButtonStyle())
-                    
-               
+                    .simultaneousGesture(TapGesture().onEnded{self.signUP()})
+                }
                 
                 HStack {
-                    Button(action: signUP) {
-                        Text("Sign Up")
-                    }
+                    
                     Text("Already have an account?").foregroundColor(Color.lmuLightGrey)
                     Button(action: {
                         self.mode.wrappedValue.dismiss()
