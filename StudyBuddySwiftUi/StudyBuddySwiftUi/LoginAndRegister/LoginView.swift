@@ -8,14 +8,19 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct LoginView: View {
+   @ObservedObject private var keyboard = KeyboardResponder()
+
     @State var loggedIn = false
     @State var forgotpassword = false
 
     @State var isRegistered = false
-    @State var username = ""
+    @State var email = ""
     @State var password = ""
     @State var name: String = "John"
+    @State private var showingMessageAlert = false
+    
+
     
     var body: some View {
         
@@ -23,22 +28,28 @@ struct ContentView: View {
             Spacer()
             Image("fountainicon")
             Text("StudyBuddy").font(.largeTitle).foregroundColor(Color.white)
+            
             Spacer()
-            Text("Enter username or password").foregroundColor(Color.white)
+            Text("Enter email and password").foregroundColor(Color.white)
             
             
-            TextField("Username", text: $username)
+            TextField("Email", text: $email)
             .textFieldStyle(StudyTextFieldStyle())
             .padding(.horizontal, 50)
             SecureField("Password", text: $password)
             .textFieldStyle(StudyTextFieldStyle())
                 .padding(.horizontal, 50)
             
-            
             HStack(spacing: 8) {
                 Spacer()
                 Button(action: {
-                    self.loggedIn.toggle()
+                    if (self.password.count == 0 || self.email.count == 0){
+                                 
+                                  self.showingMessageAlert = true
+                              } else {
+                                  self.loggedIn.toggle()
+
+                              }
                 }) {
                     Text("Log In")
                 }.buttonStyle(StudyButtonStyle())
@@ -64,7 +75,7 @@ struct ContentView: View {
                             Button(action: {
                                 self.forgotpassword.toggle()
                             }) {
-                              Text("Click hier") .foregroundColor(.white)
+                              Text("Click here") .foregroundColor(.white)
                             }.sheet(isPresented: $forgotpassword) {
                                     ChangePasswordView()
                             }
@@ -73,12 +84,37 @@ struct ContentView: View {
         }
         .padding(.horizontal, 20.0)
         .background(Color.lmuGreen.edgesIgnoringSafeArea(.vertical))
+        .padding(.bottom, keyboard.currentHeight)
+        .edgesIgnoringSafeArea(.bottom)
+        .animation(.easeOut(duration: 0.16))
+        .alert(isPresented: $showingMessageAlert) {
+            
+            Alert(title: Text("Error"), message: Text("Please enter a valid Email and Password"), dismissButton: .default(Text("OK")))
+            
+        }
  
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        LoginView()
     }
+    struct GeometryGetter: View {
+        @Binding var rect: CGRect
+
+        var body: some View {
+            GeometryReader { geometry in
+                Group { () -> AnyView in
+                    DispatchQueue.main.async {
+                        self.rect = geometry.frame(in: .global)
+                    }
+
+                    return AnyView(Color.clear)
+                }
+            }
+        }
+    }
+    
+ 
 }

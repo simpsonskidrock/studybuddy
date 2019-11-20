@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		291441192384BBAF00998C4A /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 291441182384BBAF00998C4A /* EditProfileView.swift */; };
 		292EF2FA2381F5760062FBB5 /* ChangePasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292EF2F92381F5760062FBB5 /* ChangePasswordView.swift */; };
+		293AA0732384947A00436E02 /* KeyboardSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 293AA0722384947A00436E02 /* KeyboardSettings.swift */; };
 		4E5B7ECC2382A871002C72B2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4E5B7ECB2382A871002C72B2 /* GoogleService-Info.plist */; };
 		5F6706AD580144BD7E148704 /* Pods_StudyBuddySwiftUi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E880CE267D995F2D844EA96D /* Pods_StudyBuddySwiftUi.framework */; };
 		7367D1F6237D6670002EE928 /* ProfileTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7367D1F5237D6670002EE928 /* ProfileTabView.swift */; };
@@ -17,13 +19,13 @@
 		7367D202237D85F5002EE928 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7367D201237D85F5002EE928 /* RegisterView.swift */; };
 		73B9D150237C2484000E268E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B9D14F237C2484000E268E /* AppDelegate.swift */; };
 		73B9D152237C2484000E268E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B9D151237C2484000E268E /* SceneDelegate.swift */; };
-		73B9D154237C2484000E268E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B9D153237C2484000E268E /* ContentView.swift */; };
+		73B9D154237C2484000E268E /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B9D153237C2484000E268E /* LoginView.swift */; };
 		73B9D156237C2485000E268E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73B9D155237C2485000E268E /* Assets.xcassets */; };
 		73B9D159237C2485000E268E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73B9D158237C2485000E268E /* Preview Assets.xcassets */; };
 		73B9D15C237C2485000E268E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73B9D15A237C2485000E268E /* LaunchScreen.storyboard */; };
 		73B9D167237C2485000E268E /* StudyBuddySwiftUiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B9D166237C2485000E268E /* StudyBuddySwiftUiTests.swift */; };
 		73B9D172237C2485000E268E /* StudyBuddySwiftUiUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B9D171237C2485000E268E /* StudyBuddySwiftUiUITests.swift */; };
-		84B3AD5E237D973800CB2160 /* CustomViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B3AD5D237D973800CB2160 /* CustomViews.swift */; };
+		84B3AD5E237D973800CB2160 /* CustomViewElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B3AD5D237D973800CB2160 /* CustomViewElements.swift */; };
 		CF854863D7027E9469E19F2D /* Pods_StudyBuddySwiftUiTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76516A7E48373BF7697BBA75 /* Pods_StudyBuddySwiftUiTests.framework */; };
 		E87DA23D6B154FEDD64065D7 /* Pods_StudyBuddySwiftUiUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82F6226B31D87D2778C9E4BA /* Pods_StudyBuddySwiftUiUITests.framework */; };
 /* End PBXBuildFile section */
@@ -47,7 +49,9 @@
 
 /* Begin PBXFileReference section */
 		117D2FA1FE202F08383D7EB9 /* Pods-StudyBuddySwiftUiUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StudyBuddySwiftUiUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StudyBuddySwiftUiUITests/Pods-StudyBuddySwiftUiUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		291441182384BBAF00998C4A /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
 		292EF2F92381F5760062FBB5 /* ChangePasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordView.swift; sourceTree = "<group>"; };
+		293AA0722384947A00436E02 /* KeyboardSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardSettings.swift; sourceTree = "<group>"; };
 		4E5B7ECB2382A871002C72B2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5229308A2865911F0E6F797C /* Pods-StudyBuddySwiftUiTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StudyBuddySwiftUiTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-StudyBuddySwiftUiTests/Pods-StudyBuddySwiftUiTests.release.xcconfig"; sourceTree = "<group>"; };
 		598C953324D99E410D1B9A0F /* Pods-StudyBuddySwiftUi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StudyBuddySwiftUi.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StudyBuddySwiftUi/Pods-StudyBuddySwiftUi.debug.xcconfig"; sourceTree = "<group>"; };
@@ -60,7 +64,7 @@
 		73B9D14C237C2484000E268E /* StudyBuddySwiftUi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StudyBuddySwiftUi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73B9D14F237C2484000E268E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		73B9D151237C2484000E268E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		73B9D153237C2484000E268E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		73B9D153237C2484000E268E /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		73B9D155237C2485000E268E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		73B9D158237C2485000E268E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		73B9D15B237C2485000E268E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -73,7 +77,7 @@
 		73B9D173237C2485000E268E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		76516A7E48373BF7697BBA75 /* Pods_StudyBuddySwiftUiTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StudyBuddySwiftUiTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		82F6226B31D87D2778C9E4BA /* Pods_StudyBuddySwiftUiUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StudyBuddySwiftUiUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		84B3AD5D237D973800CB2160 /* CustomViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomViews.swift; sourceTree = "<group>"; };
+		84B3AD5D237D973800CB2160 /* CustomViewElements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomViewElements.swift; sourceTree = "<group>"; };
 		C9A3931C9E7E135C89EFD08A /* Pods-StudyBuddySwiftUi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StudyBuddySwiftUi.release.xcconfig"; path = "Pods/Target Support Files/Pods-StudyBuddySwiftUi/Pods-StudyBuddySwiftUi.release.xcconfig"; sourceTree = "<group>"; };
 		E880CE267D995F2D844EA96D /* Pods_StudyBuddySwiftUi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StudyBuddySwiftUi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F13381C1CD44DACE1E441D9D /* Pods-StudyBuddySwiftUiTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StudyBuddySwiftUiTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StudyBuddySwiftUiTests/Pods-StudyBuddySwiftUiTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -107,12 +111,12 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		290AD9CC237F9B9B008F515D /* Reset Password */ = {
+		291441152384B96500998C4A /* ProfileAndEdit */ = {
 			isa = PBXGroup;
 			children = (
-				292EF2F92381F5760062FBB5 /* ChangePasswordView.swift */,
+				291441182384BBAF00998C4A /* EditProfileView.swift */,
 			);
-			path = "Reset Password";
+			path = ProfileAndEdit;
 			sourceTree = "<group>";
 		};
 		561B709E320987F037396E70 /* Frameworks */ = {
@@ -136,12 +140,14 @@
 			path = TabBar;
 			sourceTree = "<group>";
 		};
-		7367D200237D8550002EE928 /* LogAndRegister */ = {
+		7367D200237D8550002EE928 /* LoginAndRegister */ = {
 			isa = PBXGroup;
 			children = (
+				73B9D153237C2484000E268E /* LoginView.swift */,
+				292EF2F92381F5760062FBB5 /* ChangePasswordView.swift */,
 				7367D201237D85F5002EE928 /* RegisterView.swift */,
 			);
-			path = LogAndRegister;
+			path = LoginAndRegister;
 			sourceTree = "<group>";
 		};
 		73B9D143237C2484000E268E = {
@@ -169,13 +175,13 @@
 		73B9D14E237C2484000E268E /* StudyBuddySwiftUi */ = {
 			isa = PBXGroup;
 			children = (
-				290AD9CC237F9B9B008F515D /* Reset Password */,
-				7367D200237D8550002EE928 /* LogAndRegister */,
+				291441152384B96500998C4A /* ProfileAndEdit */,
+				7367D200237D8550002EE928 /* LoginAndRegister */,
 				7367D1FD237D841F002EE928 /* TabBar */,
 				73B9D14F237C2484000E268E /* AppDelegate.swift */,
 				73B9D151237C2484000E268E /* SceneDelegate.swift */,
-				73B9D153237C2484000E268E /* ContentView.swift */,
-				84B3AD5D237D973800CB2160 /* CustomViews.swift */,
+				84B3AD5D237D973800CB2160 /* CustomViewElements.swift */,
+				293AA0722384947A00436E02 /* KeyboardSettings.swift */,
 				73B9D155237C2485000E268E /* Assets.xcassets */,
 				73B9D15A237C2485000E268E /* LaunchScreen.storyboard */,
 				4E5B7ECB2382A871002C72B2 /* GoogleService-Info.plist */,
@@ -447,10 +453,12 @@
 				7367D1F8237D7255002EE928 /* SearchTabView.swift in Sources */,
 				73B9D152237C2484000E268E /* SceneDelegate.swift in Sources */,
 				7367D202237D85F5002EE928 /* RegisterView.swift in Sources */,
+				291441192384BBAF00998C4A /* EditProfileView.swift in Sources */,
 				7367D1F6237D6670002EE928 /* ProfileTabView.swift in Sources */,
 				292EF2FA2381F5760062FBB5 /* ChangePasswordView.swift in Sources */,
-				84B3AD5E237D973800CB2160 /* CustomViews.swift in Sources */,
-				73B9D154237C2484000E268E /* ContentView.swift in Sources */,
+				84B3AD5E237D973800CB2160 /* CustomViewElements.swift in Sources */,
+				73B9D154237C2484000E268E /* LoginView.swift in Sources */,
+				293AA0732384947A00436E02 /* KeyboardSettings.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

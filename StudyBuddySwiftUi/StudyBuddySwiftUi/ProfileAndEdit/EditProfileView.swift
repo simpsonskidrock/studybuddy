@@ -1,21 +1,21 @@
 //
-//  ChangePasswordView.swift
+//  EditProfileView.swift
 //  StudyBuddySwiftUi
 //
-//  Created by Liliane Kabboura on 17.11.19.
+//  Created by Liliane Kabboura on 20.11.19.
 //  Copyright © 2019 Annika Jung. All rights reserved.
 //
 
 import SwiftUI
 
-struct ChangePasswordView: View {
+struct EditProfileView: View {
     var body: some View {
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
     }
 }
 
-struct ChangePasswordView_Previews: PreviewProvider {
+struct EditProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        ChangePasswordView()
+        EditProfileView()
     }
 }
