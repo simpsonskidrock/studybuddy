@@ -11,14 +11,7 @@ import SwiftUI
 
 struct ContactsTabView: View {
     var body: some View {
-        NavigationView {
-            List {
-                Text("Hello World")
-                Text("Hello World")
-                Text("Hello World")
-            }
-            .navigationBarTitle("Contacts")
-        }
+        Text("Hello ContactsTab")
     }
 }
 
