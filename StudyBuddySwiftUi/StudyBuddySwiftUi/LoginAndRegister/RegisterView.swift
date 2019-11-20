@@ -9,16 +9,16 @@
 import SwiftUI
 
 struct RegisterView: View {
+    @Environment(\.presentationMode) var mode
     @ObservedObject private var keyboard = KeyboardResponder()
     @State var registered = false
-    @State var goToLogin = false
     
     @State private var email: String = ""
     @State private var password: String = ""
     @State private var repeatPassword: String = ""
     @State private var showingMessageAlert = false
     
-
+    
     var body: some View {
         ZStack {
             VStack {
@@ -46,29 +46,32 @@ struct RegisterView: View {
                         .textFieldStyle(StudyTextFieldStyle())
                         .padding(.horizontal, 50)
                 }
-                Button(action: {
-                    
-                    if (self.password.count == 0 || self.email.count == 0 || self.repeatPassword.count == 0 ){
-                      self.showingMessageAlert = true
-                  } else {
-                      self.registered.toggle()
-                  }
-                }) {
+                
+                // todo: for alert if login data is incorrect
+                /*    Button(action: {
+                 if (self.password.count == 0 || self.email.count == 0 || self.repeatPassword.count == 0 ){
+                 self.showingMessageAlert = true
+                 } else {
+                 self.registered.toggle()
+                 }
+                 }) {
+                 Text("Register")
+                 .font(.system(size: 20))
+                 .fontWeight(.heavy)
+                 }.buttonStyle(StudyButtonStyle())
+                 .sheet(isPresented: $registered) {
+                 GeneralTabView()
+                 }                                                                   */
+                NavigationLink(destination: GeneralTabView()) {
                     Text("Register")
-                        .font(.system(size: 20))
-                        .fontWeight(.heavy)
                 }.buttonStyle(StudyButtonStyle())
-                    .sheet(isPresented: $registered) {
-                        GeneralTabView()
-                }
+                
                 HStack {
                     Text("Already have an account?").foregroundColor(Color.lmuLightGrey)
                     Button(action: {
-                        self.goToLogin.toggle()
+                        self.mode.wrappedValue.dismiss()
                     }) {
                         Text("Sign In") .foregroundColor(.white)
-                        }.sheet(isPresented: $goToLogin) {
-                        LoginView()
                     }
                 }
                 Spacer()
@@ -76,15 +79,14 @@ struct RegisterView: View {
             }
             .padding(.horizontal)
             .background(Color.lmuGreen.edgesIgnoringSafeArea(.vertical))
-                .padding(.bottom, keyboard.currentHeight)
-                .edgesIgnoringSafeArea(.bottom)
-                .animation(.easeOut(duration: 0.16))
+            .padding(.bottom, keyboard.currentHeight)
+            .edgesIgnoringSafeArea(.bottom)
+            .animation(.easeOut(duration: 0.16))
             .alert(isPresented: $showingMessageAlert) {
-                       
-                       Alert(title: Text("Field is required"), message: Text("you have left a field empty!"), dismissButton: .default(Text("OK")))
-                       
-                   }
-        }
+                
+                Alert(title: Text("Field is required"), message: Text("you have left a field empty!"), dismissButton: .default(Text("OK")))
+            }
+        }.navigationBarHidden(true).navigationBarBackButtonHidden(true)
     }
 }
 
