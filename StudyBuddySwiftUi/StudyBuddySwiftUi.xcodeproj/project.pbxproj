@@ -12,8 +12,6 @@
 		293AA0732384947A00436E02 /* KeyboardSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 293AA0722384947A00436E02 /* KeyboardSettings.swift */; };
 		3391BDFC238557B600643581 /* SessionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3391BDFB238557B600643581 /* SessionStore.swift */; };
 		3391BDFE238557FC00643581 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3391BDFD238557FB00643581 /* User.swift */; };
-		3391BE002385599300643581 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3391BDFF2385599300643581 /* ContentView.swift */; };
-		3391BE0423855BAC00643581 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3391BE0323855BAC00643581 /* SignInView.swift */; };
 		4E5B7ECC2382A871002C72B2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4E5B7ECB2382A871002C72B2 /* GoogleService-Info.plist */; };
 		5F6706AD580144BD7E148704 /* Pods_StudyBuddySwiftUi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E880CE267D995F2D844EA96D /* Pods_StudyBuddySwiftUi.framework */; };
 		7367D1F6237D6670002EE928 /* ProfileTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7367D1F5237D6670002EE928 /* ProfileTabView.swift */; };
@@ -58,8 +56,6 @@
 		293AA0722384947A00436E02 /* KeyboardSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardSettings.swift; sourceTree = "<group>"; };
 		3391BDFB238557B600643581 /* SessionStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionStore.swift; sourceTree = "<group>"; };
 		3391BDFD238557FB00643581 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		3391BDFF2385599300643581 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		3391BE0323855BAC00643581 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		4E5B7ECB2382A871002C72B2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5229308A2865911F0E6F797C /* Pods-StudyBuddySwiftUiTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StudyBuddySwiftUiTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-StudyBuddySwiftUiTests/Pods-StudyBuddySwiftUiTests.release.xcconfig"; sourceTree = "<group>"; };
 		598C953324D99E410D1B9A0F /* Pods-StudyBuddySwiftUi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StudyBuddySwiftUi.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StudyBuddySwiftUi/Pods-StudyBuddySwiftUi.debug.xcconfig"; sourceTree = "<group>"; };
@@ -188,10 +184,8 @@
 				7367D1FD237D841F002EE928 /* TabBar */,
 				73B9D14F237C2484000E268E /* AppDelegate.swift */,
 				3391BDFB238557B600643581 /* SessionStore.swift */,
-				3391BDFF2385599300643581 /* ContentView.swift */,
 				3391BDFD238557FB00643581 /* User.swift */,
 				73B9D151237C2484000E268E /* SceneDelegate.swift */,
-				3391BE0323855BAC00643581 /* SignInView.swift */,
 				84B3AD5D237D973800CB2160 /* CustomViewElements.swift */,
 				293AA0722384947A00436E02 /* KeyboardSettings.swift */,
 				73B9D155237C2485000E268E /* Assets.xcassets */,
@@ -465,13 +459,11 @@
 				7367D1FF237D8496002EE928 /* GeneralTabView.swift in Sources */,
 				7367D1F8237D7255002EE928 /* SearchTabView.swift in Sources */,
 				73B9D152237C2484000E268E /* SceneDelegate.swift in Sources */,
-				3391BE0423855BAC00643581 /* SignInView.swift in Sources */,
 				3391BDFE238557FC00643581 /* User.swift in Sources */,
 				7367D202237D85F5002EE928 /* RegisterView.swift in Sources */,
 				291441192384BBAF00998C4A /* EditProfileView.swift in Sources */,
 				7367D1F6237D6670002EE928 /* ProfileTabView.swift in Sources */,
 				292EF2FA2381F5760062FBB5 /* ChangePasswordView.swift in Sources */,
-				3391BE002385599300643581 /* ContentView.swift in Sources */,
 				84B3AD5E237D973800CB2160 /* CustomViewElements.swift in Sources */,
 				73B9D154237C2484000E268E /* LoginView.swift in Sources */,
 				293AA0732384947A00436E02 /* KeyboardSettings.swift in Sources */,
