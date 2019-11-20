@@ -100,7 +100,6 @@ struct ProfileTabView: View {
             }.padding()
         } .padding(.horizontal)
             .background(Color.lmuGreen.edgesIgnoringSafeArea(.vertical))
-            .navigationBarTitle("Profil")
     }
 }
 

@@ -11,14 +11,7 @@ import SwiftUI
 
 struct SearchTabView: View {
     var body: some View {
-        NavigationView {
-            List {
-                Text("Hello World")
-                Text("Hello World")
-                Text("Hello World")
-            }
-            .navigationBarTitle("Search")
-        }
+        Text("Hello SearchTab")
     }
 }
 

@@ -67,7 +67,7 @@ struct RegisterView: View {
                         self.goToLogin.toggle()
                     }) {
                         Text("Sign In") .foregroundColor(.white)
-                    }.sheet(isPresented: $goToLogin) {
+                        }.sheet(isPresented: $goToLogin) {
                         LoginView()
                     }
                 }
