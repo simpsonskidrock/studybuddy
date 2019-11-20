@@ -10,7 +10,7 @@ import Foundation
 import SwiftUI
 
 struct ProfileTabView: View {
-    @State var loggedOut = false
+    @Environment(\.presentationMode) var mode
     @State var editProfile = false
     
     var body: some View {
@@ -24,31 +24,19 @@ struct ProfileTabView: View {
                     .padding(.top, 5)
                 
                 Spacer()
-                
                 Button(action: {
-                    self.loggedOut.toggle() 
-                    
+                    self.mode.wrappedValue.dismiss()
                 }){
-                  
-                        HStack {
-                            Image(systemName: "arrow.uturn.left")
-                                .font(.system(size: 20))
-                            Text("Logout")
-                                .fontWeight(.semibold)
-                                .font(.system(size: 20))
-                        }
-                    }
-                .sheet(isPresented: $loggedOut) {
-                        LoginView()
-                }.foregroundColor(.lmuLightGrey)
-                     .padding()
-                    
-                    
-                    
-               
+                    HStack {
+                        Image(systemName: "arrow.uturn.left")
+                            .font(.system(size: 20))
+                        Text("Logout")
+                            .fontWeight(.semibold)
+                            .font(.system(size: 20))
+                    }.foregroundColor(.lmuLightGrey)
+                }.padding()
             }.frame(height: 50)
                 .padding(.leading, 10)
-            
             VStack{
                 Text("StudyBuddy").font(.largeTitle).foregroundColor(Color.white)
                 Image(systemName: "person.badge.plus")
@@ -59,7 +47,6 @@ struct ProfileTabView: View {
                         .stroke(Color.white, lineWidth: 5)
                         .frame(width: 150, height: 150))
                     .padding(.vertical, 35)
-                
                 Text("Your Name")
                     .foregroundColor(.black)
                     
@@ -68,38 +55,35 @@ struct ProfileTabView: View {
                     .foregroundColor(.black)
                     .fontWeight(.semibold)
                 VStack{
-                    
                     ScrollView(.vertical) {
-                        
                         Text("Description / Characteristics").foregroundColor(.black)
                             .autocapitalization(/*@START_MENU_TOKEN@*/.none/*@END_MENU_TOKEN@*/)
                     }
                     ScrollView(.vertical) {
-                        
                         Text("Hashtags").foregroundColor(.black)
                     }
                 }
             }
-        
-                Button(action: {
-                    self.editProfile.toggle()
-
-                }) {
-                    HStack {
-                        Image(systemName: "pencil")
-                            .font(.system(size: 20))
-                        Text("Edit Profile")
-                            .fontWeight(.semibold)
-                            .font(.system(size: 20))
-                    }
+            Button(action: {
+                self.editProfile.toggle()
+                
+            }) {
+                HStack {
+                    Image(systemName: "pencil")
+                        .font(.system(size: 20))
+                    Text("Edit Profile")
+                        .fontWeight(.semibold)
+                        .font(.system(size: 20))
                 }
-                    .sheet(isPresented: $editProfile) {
-                            EditProfileView()
-                    }
-                .foregroundColor(.lmuLightGrey)
-           
+            }
+            .sheet(isPresented: $editProfile) {
+                EditProfileView()
+            }
+            .foregroundColor(.lmuLightGrey)
+            
         } .padding(.horizontal)
             .background(Color.lmuGreen.edgesIgnoringSafeArea(.vertical))
+            .navigationBarHidden(true).navigationBarBackButtonHidden(true)
     }
 }
 

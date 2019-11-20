@@ -9,6 +9,7 @@
 import SwiftUI
 
 struct EditProfileView: View {
+    @Environment(\.presentationMode) var mode
     @State var name = ""
     @State var fieldOfStudy = ""
     @State var description = ""
@@ -31,7 +32,7 @@ struct EditProfileView: View {
         
                 
                 Button(action: {
-                    
+                    self.mode.wrappedValue.dismiss()
                 }){
                     Text("Cancel")
                         .fontWeight(.semibold)
