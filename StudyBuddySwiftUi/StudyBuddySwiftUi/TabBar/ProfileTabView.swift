@@ -80,7 +80,7 @@ struct ProfileTabView: View {
                     }
                 }
             }
-            Button(action: {}){
+        
                 Button(action: {
                     self.editProfile.toggle()
 
@@ -97,7 +97,7 @@ struct ProfileTabView: View {
                             EditProfileView()
                     }
                 .foregroundColor(.lmuLightGrey)
-            }.padding()
+           
         } .padding(.horizontal)
             .background(Color.lmuGreen.edgesIgnoringSafeArea(.vertical))
             .navigationBarTitle("Profil")
