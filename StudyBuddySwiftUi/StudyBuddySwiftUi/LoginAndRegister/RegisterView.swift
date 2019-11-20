@@ -7,23 +7,33 @@
 //
 
 import SwiftUI
+import Firebase
 
 struct RegisterView: View {
     @Environment(\.presentationMode) var mode
     @ObservedObject private var keyboard = KeyboardResponder()
     @State var registered = false
     
-    @State private var email: String = ""
-    @State private var password: String = ""
+    @State var email: String = ""
+    @State var password: String = ""
     @State private var repeatPassword: String = ""
     @State private var showingMessageAlert = false
+    
+    @EnvironmentObject var session: SessionStore
+    
+    
+    func signUp(email: String, password: String, handler: @escaping AuthDataResultCallback) {
+        Auth.auth().createUser(withEmail: email, password: password, completion: handler)
+    }
+    
+        
     
     
     var body: some View {
         ZStack {
             VStack {
                 Spacer()
-                Text("Sign Up").font(.largeTitle).foregroundColor(.lmuLightGrey)
+                Text("SignUp").font(.largeTitle).foregroundColor(.lmuLightGrey)
                 Spacer()
                 Text("StudyBuddy").font(.largeTitle).foregroundColor(Color.white)
                 Image(systemName: "person.badge.plus")
@@ -89,6 +99,7 @@ struct RegisterView: View {
         }.navigationBarHidden(true).navigationBarBackButtonHidden(true)
     }
 }
+
 
 struct RegisterView_Previews: PreviewProvider {
     static var previews: some View {

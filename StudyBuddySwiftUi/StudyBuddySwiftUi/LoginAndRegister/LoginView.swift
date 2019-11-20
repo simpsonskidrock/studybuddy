@@ -18,6 +18,7 @@ struct LoginView: View {
 
     @EnvironmentObject var session: SessionStore
     @State private var showingMessageAlert = false
+     func getUser () {      session.listen()  }
     
     func signIn () {
           loading = true
@@ -86,7 +87,7 @@ struct LoginView: View {
                 }
                 Spacer()
                 }
-                }
+                }.onAppear(perform: getUser)
             .padding(.horizontal, 20.0)
             .background(Color.lmuGreen.edgesIgnoringSafeArea(.vertical))
             .padding(.bottom, keyboard.currentHeight)
