@@ -1,35 +1,31 @@
 //
-//  ProfileTabView.swift
+//  ProfileView.swift
 //  StudyBuddySwiftUi
 //
-//  Created by Annika Jung on 14.11.19.
+//  Created by Liliane Kabboura on 20.11.19.
 //  Copyright © 2019 Annika Jung. All rights reserved.
 //
 
 import Foundation
 import SwiftUI
 
-struct ProfileTabView: View {
+struct ProfileView: View {
     @State var loggedOut = false
-    @State var editProfile = false
-    
     var body: some View {
         VStack{
             HStack{
                 Text("Profile")
                     .foregroundColor(.lmuLightGrey)
-                    .font(.system(size: 20))
+                    .font(.system(size: 30))
                     .fontWeight(.semibold)
                     .padding(.leading, 10)
                     .padding(.top, 5)
                 
                 Spacer()
                 
-                Button(action: {
-                    self.loggedOut.toggle() 
-                    
-                }){
-                  
+                Button(action: {}){
+                    Button(action: {
+                    }) {
                         HStack {
                             Image(systemName: "arrow.uturn.left")
                                 .font(.system(size: 20))
@@ -37,20 +33,13 @@ struct ProfileTabView: View {
                                 .fontWeight(.semibold)
                                 .font(.system(size: 20))
                         }
-                    }
-                .sheet(isPresented: $loggedOut) {
-                        LoginView()
-                }.foregroundColor(.lmuLightGrey)
-                     .padding()
-                    
-                    
-                    
-               
+                    }.foregroundColor(.lmuLightGrey)
+                }.padding()
             }.frame(height: 50)
                 .padding(.leading, 10)
             
             VStack{
-                Text("StudyBuddy").font(.largeTitle).foregroundColor(Color.white)
+             Text("StudyBuddy").font(.largeTitle).foregroundColor(Color.white)
                 Image(systemName: "person.badge.plus")
                     .resizable()
                     .frame(width: 90, height: 90)
@@ -81,31 +70,28 @@ struct ProfileTabView: View {
                 }
             }
             Button(action: {}){
-                Button(action: {
-                    self.editProfile.toggle()
-
-                }) {
-                    HStack {
-                        Image(systemName: "pencil")
-                            .font(.system(size: 20))
-                        Text("Edit Profile")
-                            .fontWeight(.semibold)
-                            .font(.system(size: 20))
-                    }
-                }
-                    .sheet(isPresented: $editProfile) {
-                            EditProfileView()
-                    }
-                .foregroundColor(.lmuLightGrey)
-            }.padding()
+                               Button(action: {
+                               }) {
+                                   HStack {
+                                       Image(systemName: "pencil")
+                                           .font(.system(size: 20))
+                                       Text("Edit Profile")
+                                           .fontWeight(.semibold)
+                                           .font(.system(size: 20))
+                                   }
+                               }.foregroundColor(.lmuLightGrey)
+                           }.padding()
+            
         } .padding(.horizontal)
             .background(Color.lmuGreen.edgesIgnoringSafeArea(.vertical))
-            .navigationBarTitle("Profil")
     }
+    
 }
 
-struct ProfileTabView_Previews: PreviewProvider {
+
+
+struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileTabView()
+        ProfileView()
     }
 }

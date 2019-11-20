@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		291441192384BBAF00998C4A /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 291441182384BBAF00998C4A /* EditProfileView.swift */; };
 		292EF2FA2381F5760062FBB5 /* ChangePasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292EF2F92381F5760062FBB5 /* ChangePasswordView.swift */; };
 		293AA0732384947A00436E02 /* KeyboardSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 293AA0722384947A00436E02 /* KeyboardSettings.swift */; };
 		4E5B7ECC2382A871002C72B2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4E5B7ECB2382A871002C72B2 /* GoogleService-Info.plist */; };
@@ -48,6 +49,7 @@
 
 /* Begin PBXFileReference section */
 		117D2FA1FE202F08383D7EB9 /* Pods-StudyBuddySwiftUiUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StudyBuddySwiftUiUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StudyBuddySwiftUiUITests/Pods-StudyBuddySwiftUiUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		291441182384BBAF00998C4A /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
 		292EF2F92381F5760062FBB5 /* ChangePasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordView.swift; sourceTree = "<group>"; };
 		293AA0722384947A00436E02 /* KeyboardSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardSettings.swift; sourceTree = "<group>"; };
 		4E5B7ECB2382A871002C72B2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -109,6 +111,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		291441152384B96500998C4A /* ProfileAndEdit */ = {
+			isa = PBXGroup;
+			children = (
+				291441182384BBAF00998C4A /* EditProfileView.swift */,
+			);
+			path = ProfileAndEdit;
+			sourceTree = "<group>";
+		};
 		561B709E320987F037396E70 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -165,6 +175,7 @@
 		73B9D14E237C2484000E268E /* StudyBuddySwiftUi */ = {
 			isa = PBXGroup;
 			children = (
+				291441152384B96500998C4A /* ProfileAndEdit */,
 				7367D200237D8550002EE928 /* LoginAndRegister */,
 				7367D1FD237D841F002EE928 /* TabBar */,
 				73B9D14F237C2484000E268E /* AppDelegate.swift */,
@@ -442,6 +453,7 @@
 				7367D1F8237D7255002EE928 /* SearchTabView.swift in Sources */,
 				73B9D152237C2484000E268E /* SceneDelegate.swift in Sources */,
 				7367D202237D85F5002EE928 /* RegisterView.swift in Sources */,
+				291441192384BBAF00998C4A /* EditProfileView.swift in Sources */,
 				7367D1F6237D6670002EE928 /* ProfileTabView.swift in Sources */,
 				292EF2FA2381F5760062FBB5 /* ChangePasswordView.swift in Sources */,
 				84B3AD5E237D973800CB2160 /* CustomViewElements.swift in Sources */,
