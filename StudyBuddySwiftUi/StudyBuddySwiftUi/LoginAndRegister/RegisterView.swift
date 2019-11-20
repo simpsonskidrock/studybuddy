@@ -10,6 +10,7 @@ import SwiftUI
 import Firebase
 
 struct RegisterView: View {
+  
     @Environment(\.presentationMode) var mode
     @ObservedObject private var keyboard = KeyboardResponder()
     @State var registered = false
@@ -23,6 +24,14 @@ struct RegisterView: View {
     
     @EnvironmentObject var session: SessionStore
     
+    func showAlert() {
+        let alert = UIAlertController(title: "Error", message: "Wrong Email or Password",         preferredStyle: UIAlertController.Style.alert)
+
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { _ in
+             
+          }))
+    
+    }
     
     func signUP (){
         loading = true
@@ -39,11 +48,9 @@ struct RegisterView: View {
             }
         
     }
-    
-        
-    
-    
+
     var body: some View {
+        
         ZStack {
             VStack {
                 Spacer()
@@ -85,8 +92,13 @@ struct RegisterView: View {
                  }.buttonStyle(StudyButtonStyle())
                  .sheet(isPresented: $registered) {
                  GeneralTabView()
-                 }                                                                   */
+                 }
+                 */
+                
+               
+                
                 if (error){
+                    
                     Text("ERROR")
                 }
                     else

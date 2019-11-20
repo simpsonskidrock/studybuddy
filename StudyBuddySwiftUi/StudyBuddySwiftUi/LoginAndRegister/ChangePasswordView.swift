@@ -9,6 +9,10 @@
 import SwiftUI
 
 struct ChangePasswordView: View {
+    @State private var showAlert = false
+    var alert: Alert {
+        Alert(title: Text("Error"), message: Text("Hello SwiftUI"), dismissButton: .default(Text("Dismiss")))
+    }
     @Environment(\.presentationMode) var mode
     @ObservedObject private var keyboard = KeyboardResponder()
     
@@ -29,10 +33,10 @@ struct ChangePasswordView: View {
                     TextField("E-mail", text: $email)
                         .textFieldStyle(StudyTextFieldStyle())
                         .padding(.horizontal, 50)
-                    TextField("New Password", text: $newPassword)
+                    SecureField("New Password", text: $newPassword)
                         .textFieldStyle(StudyTextFieldStyle())
                         .padding(.horizontal, 50)
-                    TextField("Confirm New Password", text: $repeatNewPassword)
+                   SecureField("Confirm New Password", text: $repeatNewPassword)
                         .textFieldStyle(StudyTextFieldStyle())
                         .padding(.horizontal, 50)
                 }
