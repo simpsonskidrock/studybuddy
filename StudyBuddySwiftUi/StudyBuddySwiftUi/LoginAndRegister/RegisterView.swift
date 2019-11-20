@@ -14,6 +14,8 @@ struct RegisterView: View {
     @ObservedObject private var keyboard = KeyboardResponder()
     @State var registered = false
     
+    @State var loading = false
+    @State var error = false
     @State var email: String = ""
     @State var password: String = ""
     @State private var repeatPassword: String = ""
@@ -22,8 +24,20 @@ struct RegisterView: View {
     @EnvironmentObject var session: SessionStore
     
     
-    func signUp(email: String, password: String, handler: @escaping AuthDataResultCallback) {
-        Auth.auth().createUser(withEmail: email, password: password, completion: handler)
+    func signUP (){
+        loading = true
+        error = false
+        session.signUp(email: email, password: password) {(result, error) in self.loading = false
+            if error != nil {
+                print("Error")
+                self.error = true
+            }
+            else {
+                self.email = ""
+                self.password = ""
+            }
+            }
+        
     }
     
         
@@ -75,8 +89,13 @@ struct RegisterView: View {
                 NavigationLink(destination: GeneralTabView()) {
                     Text("Register")
                 }.buttonStyle(StudyButtonStyle())
+                    
+               
                 
                 HStack {
+                    Button(action: signUP) {
+                        Text("Sign Up")
+                    }
                     Text("Already have an account?").foregroundColor(Color.lmuLightGrey)
                     Button(action: {
                         self.mode.wrappedValue.dismiss()
