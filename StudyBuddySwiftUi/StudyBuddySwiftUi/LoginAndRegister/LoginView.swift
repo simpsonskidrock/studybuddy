@@ -55,7 +55,7 @@ struct LoginView: View {
               
              
                 
-                HStack(spacing: 8) {
+                HStack {
                     Spacer()
                     
                   
@@ -68,15 +68,15 @@ struct LoginView: View {
                         Text("Log In")
                     }.buttonStyle(StudyButtonStyle())                 .simultaneousGesture(TapGesture().onEnded{self.signIn()})
                     
-                    Spacer()
+                  
                     Text("or").foregroundColor(Color.white)
-                    Spacer()
+                  
                     
                     NavigationLink(destination: RegisterView()) {
                         Text("Register")
                     }.buttonStyle(StudyButtonStyle())
                     
-                    Spacer()
+                }
                 }
                 HStack {
                     Text("Forgot your password?").foregroundColor(Color.lmuLightGrey)
@@ -86,18 +86,19 @@ struct LoginView: View {
                     }
                 }
                 Spacer()
+                
                 }
-                }.onAppear(perform: getUser)
+            .onAppear(perform: getUser)
             .padding(.horizontal, 20.0)
             .background(Color.lmuGreen.edgesIgnoringSafeArea(.vertical))
             .padding(.bottom, keyboard.currentHeight)
             .edgesIgnoringSafeArea(.bottom)
             .animation(.easeOut(duration: 0.16))
-            .alert(isPresented: $showingMessageAlert) {
+           // .alert(isPresented: $showingMessageAlert) {
                 
-                Alert(title: Text("Error"), message: Text("Please enter a valid Email and Password"), dismissButton: .default(Text("OK")))
+            //    Alert(title: Text("Error"), message: Text("Please enter a valid Email and Password"), dismissButton: .default(Text("OK")))
                 
-            }
+            
         }
     }
 }
