@@ -27,9 +27,7 @@ struct SignInView : View {
         VStack {
             TextField("email", text: $email)
             SecureField("enter password", text: $password)
-            if (error) {
-                Text("ahhh crap")
-            }
+            
             Button(action: signIn) {
                 Text("Sign in")
             }
