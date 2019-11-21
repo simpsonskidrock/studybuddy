@@ -65,10 +65,10 @@ struct RegisterView: View {
                     TextField("E-mail", text: $email)
                         .textFieldStyle(StudyTextFieldStyle())
                         .padding(.horizontal, 50)
-                    TextField("Password", text: $password)
+                    SecureField("Password", text: $password)
                         .textFieldStyle(StudyTextFieldStyle())
                         .padding(.horizontal, 50)
-                    TextField("Confirm Password", text: $repeatPassword)
+                    SecureField("Confirm Password", text: $repeatPassword)
                         .textFieldStyle(StudyTextFieldStyle())
                         .padding(.horizontal, 50)
                 }
