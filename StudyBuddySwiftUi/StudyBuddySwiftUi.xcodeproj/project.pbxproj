@@ -17,6 +17,7 @@
 		3391BE0423855BAC00643581 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3391BE0323855BAC00643581 /* SignInView.swift */; };
 		4E5B7ECC2382A871002C72B2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4E5B7ECB2382A871002C72B2 /* GoogleService-Info.plist */; };
 		5F6706AD580144BD7E148704 /* Pods_StudyBuddySwiftUi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E880CE267D995F2D844EA96D /* Pods_StudyBuddySwiftUi.framework */; };
+		73321153238586C100B7660A /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73321152238586C100B7660A /* ChatView.swift */; };
 		7367D1F6237D6670002EE928 /* ProfileTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7367D1F5237D6670002EE928 /* ProfileTabView.swift */; };
 		7367D1F8237D7255002EE928 /* SearchTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7367D1F7237D7255002EE928 /* SearchTabView.swift */; };
 		7367D1FA237D7279002EE928 /* ContactsTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7367D1F9237D7279002EE928 /* ContactsTabView.swift */; };
@@ -66,6 +67,7 @@
 		5229308A2865911F0E6F797C /* Pods-StudyBuddySwiftUiTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StudyBuddySwiftUiTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-StudyBuddySwiftUiTests/Pods-StudyBuddySwiftUiTests.release.xcconfig"; sourceTree = "<group>"; };
 		598C953324D99E410D1B9A0F /* Pods-StudyBuddySwiftUi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StudyBuddySwiftUi.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StudyBuddySwiftUi/Pods-StudyBuddySwiftUi.debug.xcconfig"; sourceTree = "<group>"; };
 		63A1D570831FA0B30FC24AE1 /* Pods-StudyBuddySwiftUiUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StudyBuddySwiftUiUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-StudyBuddySwiftUiUITests/Pods-StudyBuddySwiftUiUITests.release.xcconfig"; sourceTree = "<group>"; };
+		73321152238586C100B7660A /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		7367D1F5237D6670002EE928 /* ProfileTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTabView.swift; sourceTree = "<group>"; };
 		7367D1F7237D7255002EE928 /* SearchTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTabView.swift; sourceTree = "<group>"; };
 		7367D1F9237D7279002EE928 /* ContactsTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsTabView.swift; sourceTree = "<group>"; };
@@ -139,6 +141,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		733211512385868800B7660A /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				73321152238586C100B7660A /* ChatView.swift */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
 		7367D1FD237D841F002EE928 /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
@@ -185,6 +195,7 @@
 		73B9D14E237C2484000E268E /* StudyBuddySwiftUi */ = {
 			isa = PBXGroup;
 			children = (
+				733211512385868800B7660A /* Chat */,
 				291441152384B96500998C4A /* ProfileAndEdit */,
 				7367D200237D8550002EE928 /* LoginAndRegister */,
 				7367D1FD237D841F002EE928 /* TabBar */,
@@ -466,6 +477,7 @@
 				73B9D150237C2484000E268E /* AppDelegate.swift in Sources */,
 				7367D1FA237D7279002EE928 /* ContactsTabView.swift in Sources */,
 				7367D1FF237D8496002EE928 /* GeneralTabView.swift in Sources */,
+				73321153238586C100B7660A /* ChatView.swift in Sources */,
 				7367D1F8237D7255002EE928 /* SearchTabView.swift in Sources */,
 				73B9D152237C2484000E268E /* SceneDelegate.swift in Sources */,
 				3391BE0423855BAC00643581 /* SignInView.swift in Sources */,
