@@ -52,7 +52,8 @@ class SessionStore : ObservableObject {
         do {
             try Auth.auth().signOut()
             self.session = nil
-            print("successfully logged out")‚
+            print("successfully logged out")
+
           
         } catch let signOutError as NSError {
              print ("Error signing out: %@", signOutError)
