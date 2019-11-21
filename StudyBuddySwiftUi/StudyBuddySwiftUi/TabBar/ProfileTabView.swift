@@ -22,7 +22,6 @@ struct ProfileTabView: View {
                     .fontWeight(.semibold)
                     .padding(.leading, 10)
                     .padding(.top, 5)
-                
                 Spacer()
                 Button(action: {
                     self.mode.wrappedValue.dismiss()
@@ -49,7 +48,6 @@ struct ProfileTabView: View {
                     .padding(.vertical, 35)
                 Text("Your Name")
                     .foregroundColor(.black)
-                    
                     .fontWeight(.semibold)
                 Text("Field of Study")
                     .foregroundColor(.black)
@@ -66,7 +64,6 @@ struct ProfileTabView: View {
             }
             Button(action: {
                 self.editProfile.toggle()
-                
             }) {
                 HStack {
                     Image(systemName: "pencil")
@@ -80,10 +77,7 @@ struct ProfileTabView: View {
                 EditProfileView()
             }
             .foregroundColor(.lmuLightGrey)
-            
-        } .padding(.horizontal)
-            .background(Color.lmuGreen.edgesIgnoringSafeArea(.vertical))
-            .navigationBarHidden(true).navigationBarBackButtonHidden(true)
+        } .padding(.horizontal) .background(Color.lmuGreen.edgesIgnoringSafeArea(.vertical)) .navigationBarHidden(true).navigationBarBackButtonHidden(true)
     }
 }
 

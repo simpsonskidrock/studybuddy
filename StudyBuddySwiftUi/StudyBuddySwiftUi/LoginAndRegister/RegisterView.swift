@@ -10,11 +10,11 @@ import SwiftUI
 import Firebase
 
 struct RegisterView: View {
-  
+    
     @Environment(\.presentationMode) var mode
     @ObservedObject private var keyboard = KeyboardResponder()
-    @State var registered = false
     
+    @State var registered = false
     @State var loading = false
     @State var error = false
     @State var email: String = ""
@@ -26,11 +26,8 @@ struct RegisterView: View {
     
     func showAlert() {
         let alert = UIAlertController(title: "Error", message: "Wrong Email or Password",         preferredStyle: UIAlertController.Style.alert)
-
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { _ in
-             
-          }))
-    
+        }))
     }
     
     func signUP (){
@@ -45,12 +42,10 @@ struct RegisterView: View {
                 self.email = ""
                 self.password = ""
             }
-            }
-        
+        }
     }
-
+    
     var body: some View {
-        
         ZStack {
             VStack {
                 Spacer()
@@ -94,21 +89,14 @@ struct RegisterView: View {
                  GeneralTabView()
                  }
                  */
-                
-               
-                
                 if (error){
-                    
                     Text("ERROR")
                 }
-                    else
-                {
-                NavigationLink(destination: GeneralTabView()) {
-                    Text("Register")
-                }.buttonStyle(StudyButtonStyle())
-                    .simultaneousGesture(TapGesture().onEnded{self.signUP()})
+                else {
+                    NavigationLink(destination: GeneralTabView()) {
+                        Text("Register")
+                    }.buttonStyle(StudyButtonStyle()) .simultaneousGesture(TapGesture().onEnded{self.signUP()})
                 }
-                
                 HStack {
                     
                     Text("Already have an account?").foregroundColor(Color.lmuLightGrey)
@@ -121,16 +109,13 @@ struct RegisterView: View {
                 Spacer()
                 Spacer()
             }
-            .padding(.horizontal)
-            .background(Color.lmuGreen.edgesIgnoringSafeArea(.vertical))
+            .padding(.horizontal) .background(Color.lmuGreen.edgesIgnoringSafeArea(.vertical))
             .padding(.bottom, keyboard.currentHeight)
             .edgesIgnoringSafeArea(.bottom)
             .animation(.easeOut(duration: 0.16))
             .alert(isPresented: $showingMessageAlert) {
-                
                 Alert(title: Text("Field is required"), message: Text("you have left a field empty!"), dismissButton: .default(Text("OK")))
-            }
-        }.navigationBarHidden(true).navigationBarBackButtonHidden(true)
+            } }.navigationBarHidden(true).navigationBarBackButtonHidden(true)
     }
 }
 

@@ -24,7 +24,6 @@ struct ContactsTabView: View {
                     Spacer()
                     Button(action: {
                         self.chatSelected.toggle()
-                        
                     }) {
                         Image(systemName: "bubble.left.and.bubble.right")
                             .font(.system(size: 20))
@@ -34,11 +33,23 @@ struct ContactsTabView: View {
                     }
                     .foregroundColor(.lmuLightGrey)
                 }
-                Text("Person2")
-                Text("Person3")
+                HStack {
+                    Text("Person2")
+                    Spacer()
+                    Button(action: {
+                        self.chatSelected.toggle()
+                    }) {
+                        Image(systemName: "bubble.left.and.bubble.right")
+                            .font(.system(size: 20))
+                    }
+                    .sheet(isPresented: $showChat) {
+                        ChatView()
+                    }
+                    .foregroundColor(.lmuLightGrey)
+                }
             }
             Spacer()
-        }
+        }.navigationBarTitle("Chats")
     }
 }
 

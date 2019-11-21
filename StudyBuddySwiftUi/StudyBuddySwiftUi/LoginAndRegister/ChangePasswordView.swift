@@ -10,9 +10,11 @@ import SwiftUI
 
 struct ChangePasswordView: View {
     @State private var showAlert = false
+    
     var alert: Alert {
         Alert(title: Text("Error"), message: Text("Hello SwiftUI"), dismissButton: .default(Text("Dismiss")))
     }
+    
     @Environment(\.presentationMode) var mode
     @ObservedObject private var keyboard = KeyboardResponder()
     
@@ -36,7 +38,7 @@ struct ChangePasswordView: View {
                     SecureField("New Password", text: $newPassword)
                         .textFieldStyle(StudyTextFieldStyle())
                         .padding(.horizontal, 50)
-                   SecureField("Confirm New Password", text: $repeatNewPassword)
+                    SecureField("Confirm New Password", text: $repeatNewPassword)
                         .textFieldStyle(StudyTextFieldStyle())
                         .padding(.horizontal, 50)
                 }
@@ -44,7 +46,6 @@ struct ChangePasswordView: View {
                     Text("Change Password").font(.system(size: 20))
                         .fontWeight(.heavy)
                 }.buttonStyle(StudyButtonStyle())
-                
                 HStack {
                     Text("Don't want to change your password?").foregroundColor(Color.lmuLightGrey)
                     Button(action: {
@@ -55,12 +56,10 @@ struct ChangePasswordView: View {
                 }
                 Spacer()
             }
-            .padding(.horizontal)
-            .background(Color.lmuGreen.edgesIgnoringSafeArea(.vertical))
+            .padding(.horizontal) .background(Color.lmuGreen.edgesIgnoringSafeArea(.vertical))
             .padding(.bottom, keyboard.currentHeight)
             .edgesIgnoringSafeArea(.bottom)
             .animation(.easeOut(duration: 0.16))
-            
         }.navigationBarHidden(true)
             .navigationBarBackButtonHidden(true)
     }
@@ -72,18 +71,15 @@ struct ChangePasswordView_Previews: PreviewProvider {
     }
     struct GeometryGetter: View {
         @Binding var rect: CGRect
-        
         var body: some View {
             GeometryReader { geometry in
                 Group { () -> AnyView in
                     DispatchQueue.main.async {
                         self.rect = geometry.frame(in: .global)
                     }
-                    
                     return AnyView(Color.clear)
                 }
             }
         }
     }
-    
 }
