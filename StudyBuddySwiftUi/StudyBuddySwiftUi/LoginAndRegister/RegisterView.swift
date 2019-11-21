@@ -17,23 +17,34 @@ struct RegisterView: View {
     
     @State var registered = false
     @State var loading = false
-    @State var error_FieldIsEmpty = false
+    @State var error = false
+    @State var tempAlert: Alert = nil
+    
     @State var email: String = ""
     @State var password: String = ""
     @State private var repeatPassword: String = ""
-    @State private var showingMessageAlert = false
-
+    
     func signUP (){
         self.loading = true
-        self.error_FieldIsEmpty = false
-        session.signUp(email: email, password: password) {(result, error_FieldIsEmpty) in self.loading = false
-            if error_FieldIsEmpty != nil {
-                print("Error")
-                self.error_FieldIsEmpty = true
-            }
-            else {
-                self.email = ""
-                self.password = ""
+        self.error = false
+        if (self.email == "" || self.password == "" || self.repeatPassword == "") {
+            self.error = true
+            self.tempAlert = Alert.alertEmptyField
+        } else if (self.password != self.repeatPassword) {
+            self.error = true
+            self.tempAlert = Alert.alertUnequalPassword
+        }
+        else {
+            session.signUp(email: email, password: password) {(result, error_FieldIsEmpty) in self.loading = false
+                if error_FieldIsEmpty != nil {
+                    print("Error")
+                    self.error = true
+                    self.tempAlert = Alert.alertIncorrectData
+                }
+                else {
+                    self.email = ""
+                    self.password = ""
+                }
             }
         }
     }
@@ -67,7 +78,8 @@ struct RegisterView: View {
                 }
                 NavigationLink(destination: GeneralTabView()) {
                     Text("Register")
-                }.buttonStyle(StudyButtonStyle()) .simultaneousGesture(TapGesture().onEnded{self.signUP()})
+                }.buttonStyle(StudyButtonStyle())
+                    .simultaneousGesture(TapGesture().onEnded{self.signUP()})
                 HStack {
                     Text("Already have an account?").foregroundColor(Color.lmuLightGrey)
                     Button(action: {
@@ -83,9 +95,10 @@ struct RegisterView: View {
             .padding(.bottom, keyboard.currentHeight)
             .edgesIgnoringSafeArea(.bottom)
             .animation(.easeOut(duration: 0.16))
-            .alert(isPresented: $error_FieldIsEmpty) {
-                Alert.alertEmptyField
-            } }.navigationBarHidden(true).navigationBarBackButtonHidden(true)
+            .alert(isPresented: $error) {
+                self.tempAlert.unsafelyUnwrapped
+            }
+        }.navigationBarHidden(true).navigationBarBackButtonHidden(true)
     }
 }
 

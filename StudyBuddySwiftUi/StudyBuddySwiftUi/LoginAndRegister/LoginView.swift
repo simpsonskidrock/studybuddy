@@ -15,7 +15,8 @@ struct LoginView: View {
     @State var email: String = ""
     @State var password: String = ""
     @State var loading = false
-    @State var error_FieldIsEmpty = false
+    @State var error = false
+    @State var tempAlert: Alert = nil
     
     func getUser () {
         session.listen()
@@ -23,14 +24,20 @@ struct LoginView: View {
     
     func signIn () {
         self.loading = true
-        self.error_FieldIsEmpty = false
-        session.signIn(email: email, password: password) { (result, error_FieldIsEmpty) in
-            self.loading = false
-            if error_FieldIsEmpty != nil {
-                self.error_FieldIsEmpty = true
-            } else {
-                self.email = ""
-                self.password = ""
+        self.error = false
+        if (self.email == "" || self.password == "") {
+            self.error = true
+            self.tempAlert = Alert.alertEmptyField
+        } else {
+            session.signIn(email: email, password: password) { (result, error_FieldIsEmpty) in
+                self.loading = false
+                if error_FieldIsEmpty != nil {
+                    self.error = true
+                    self.tempAlert = Alert.alertIncorrectData
+                } else {
+                    self.email = ""
+                    self.password = ""
+                }
             }
         }
     }
@@ -55,12 +62,11 @@ struct LoginView: View {
                     Spacer()
                     NavigationLink(destination: GeneralTabView()) {
                         Text("Log In")
-                    }.buttonStyle(StudyButtonStyle())                 .simultaneousGesture(TapGesture().onEnded{self.signIn()})
+                    }.buttonStyle(StudyButtonStyle()).simultaneousGesture(TapGesture().onEnded{self.signIn()})
                     Text("or").foregroundColor(Color.white)
                     NavigationLink(destination: RegisterView()) {
                         Text("Register")
                     }.buttonStyle(StudyButtonStyle())
-                    
                 }
                 HStack {
                     Text("Forgot your password?").foregroundColor(Color.lmuLightGrey)
@@ -75,8 +81,8 @@ struct LoginView: View {
             .padding(.bottom, keyboard.currentHeight)
             .edgesIgnoringSafeArea(.bottom)
             .animation(.easeOut(duration: 0.16))
-            .alert(isPresented: $error_FieldIsEmpty) {
-                Alert.alertEmptyField
+            .alert(isPresented: $error) {
+                self.tempAlert.unsafelyUnwrapped
             }
         }
     }

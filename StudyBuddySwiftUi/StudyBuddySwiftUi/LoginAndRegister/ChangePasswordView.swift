@@ -14,16 +14,34 @@ struct ChangePasswordView: View {
     @ObservedObject private var keyboard = KeyboardResponder()
     
     @State var loading = false
-    @State var error_FieldIsEmpty = false
+    @State var error = false
+    @State var tempAlert: Alert = nil
+    
     @State private var email: String = ""
     @State private var newPassword: String = ""
     @State private var repeatNewPassword: String = ""
     
-    func checkIfAFieldIsEmpty (){
+    func changePassword() {
         self.loading = true
-        self.error_FieldIsEmpty = false
-        if ( self.email == "" || self.newPassword == "" || self.repeatNewPassword == "" ) {
-            self.error_FieldIsEmpty = true
+        self.error = false
+        if (self.email == "" || self.newPassword == "" || self.repeatNewPassword == "") {
+            self.error = true
+            self.tempAlert = Alert.alertEmptyField
+        } else if (self.newPassword != self.repeatNewPassword) {
+            self.error = true
+            self.tempAlert = Alert.alertUnequalPassword
+        } else {
+            //todo password change and not creating a new user
+            /* session.signUp(email: email, password: newPassword) {(result, error_FieldIsEmpty) in self.loading = false
+                if error_FieldIsEmpty != nil {
+                    print("Error")
+                    self.error_FieldIsEmpty = true
+                }
+                else { */
+                    self.email = ""
+                    self.newPassword = ""
+               // }
+        //    }
         }
     }
     
@@ -50,7 +68,7 @@ struct ChangePasswordView: View {
                 NavigationLink(destination: GeneralTabView()) {
                     Text("Change Password").font(.system(size: 20))
                         .fontWeight(.heavy)
-                }.buttonStyle(StudyButtonStyle()).simultaneousGesture(TapGesture().onEnded{self.checkIfAFieldIsEmpty()})
+                }.buttonStyle(StudyButtonStyle()).simultaneousGesture(TapGesture().onEnded{self.changePassword()})
                 HStack {
                     Text("Don't want to change your password?").foregroundColor(Color.lmuLightGrey)
                     Button(action: {
@@ -65,8 +83,8 @@ struct ChangePasswordView: View {
             .padding(.bottom, keyboard.currentHeight)
             .edgesIgnoringSafeArea(.bottom)
             .animation(.easeOut(duration: 0.16))
-            .alert(isPresented: $error_FieldIsEmpty) {
-                Alert.alertEmptyField
+            .alert(isPresented: $error) {
+                self.tempAlert.unsafelyUnwrapped
             }
         }.navigationBarHidden(true)
             .navigationBarBackButtonHidden(true)
