@@ -7,23 +7,54 @@
 //
 
 import SwiftUI
+import Firebase
 
 struct RegisterView: View {
+  
     @Environment(\.presentationMode) var mode
     @ObservedObject private var keyboard = KeyboardResponder()
     @State var registered = false
     
-    @State private var email: String = ""
-    @State private var password: String = ""
+    @State var loading = false
+    @State var error = false
+    @State var email: String = ""
+    @State var password: String = ""
     @State private var repeatPassword: String = ""
     @State private var showingMessageAlert = false
     
+    @EnvironmentObject var session: SessionStore
     
+    func showAlert() {
+        let alert = UIAlertController(title: "Error", message: "Wrong Email or Password",         preferredStyle: UIAlertController.Style.alert)
+
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { _ in
+             
+          }))
+    
+    }
+    
+    func signUP (){
+        loading = true
+        error = false
+        session.signUp(email: email, password: password) {(result, error) in self.loading = false
+            if error != nil {
+                print("Error")
+                self.error = true
+            }
+            else {
+                self.email = ""
+                self.password = ""
+            }
+            }
+        
+    }
+
     var body: some View {
+        
         ZStack {
             VStack {
                 Spacer()
-                Text("Sign Up").font(.largeTitle).foregroundColor(.lmuLightGrey)
+                Text("SignUp").font(.largeTitle).foregroundColor(.lmuLightGrey)
                 Spacer()
                 Text("StudyBuddy").font(.largeTitle).foregroundColor(Color.white)
                 Image(systemName: "person.badge.plus")
@@ -61,12 +92,25 @@ struct RegisterView: View {
                  }.buttonStyle(StudyButtonStyle())
                  .sheet(isPresented: $registered) {
                  GeneralTabView()
-                 }                                                                   */
+                 }
+                 */
+                
+               
+                
+                if (error){
+                    
+                    Text("ERROR")
+                }
+                    else
+                {
                 NavigationLink(destination: GeneralTabView()) {
                     Text("Register")
                 }.buttonStyle(StudyButtonStyle())
+                    .simultaneousGesture(TapGesture().onEnded{self.signUP()})
+                }
                 
                 HStack {
+                    
                     Text("Already have an account?").foregroundColor(Color.lmuLightGrey)
                     Button(action: {
                         self.mode.wrappedValue.dismiss()
@@ -89,6 +133,7 @@ struct RegisterView: View {
         }.navigationBarHidden(true).navigationBarBackButtonHidden(true)
     }
 }
+
 
 struct RegisterView_Previews: PreviewProvider {
     static var previews: some View {
