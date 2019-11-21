@@ -45,6 +45,7 @@ struct RegisterView: View {
         }
     }
     
+    
     var body: some View {
         ZStack {
             VStack {
@@ -65,14 +66,13 @@ struct RegisterView: View {
                     TextField("E-mail", text: $email)
                         .textFieldStyle(StudyTextFieldStyle())
                         .padding(.horizontal, 50)
-                    TextField("Password", text: $password)
+                   SecureField("Password", text: $password)
                         .textFieldStyle(StudyTextFieldStyle())
                         .padding(.horizontal, 50)
-                    TextField("Confirm Password", text: $repeatPassword)
+                    SecureField("Confirm Password", text: $repeatPassword)
                         .textFieldStyle(StudyTextFieldStyle())
                         .padding(.horizontal, 50)
                 }
-                
                 // todo: for alert if login data is incorrect
                 /*    Button(action: {
                  if (self.password.count == 0 || self.email.count == 0 || self.repeatPassword.count == 0 ){

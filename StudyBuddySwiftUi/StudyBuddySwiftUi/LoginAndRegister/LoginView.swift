@@ -22,6 +22,8 @@ struct LoginView: View {
         session.listen()
     }
     
+    
+    
     func signIn () {
         loading = true
         error = false
@@ -35,6 +37,8 @@ struct LoginView: View {
             }
         }
     }
+    
+    
     
     var body: some View {
         NavigationView {
