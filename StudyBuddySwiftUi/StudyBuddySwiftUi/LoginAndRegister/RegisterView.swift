@@ -89,14 +89,9 @@ struct RegisterView: View {
                  GeneralTabView()
                  }
                  */
-                if (error){
-                    Text("ERROR")
-                }
-                else {
-                    NavigationLink(destination: GeneralTabView()) {
-                        Text("Register")
-                    }.buttonStyle(StudyButtonStyle()) .simultaneousGesture(TapGesture().onEnded{self.signUP()})
-                }
+                NavigationLink(destination: GeneralTabView()) {
+                    Text("Register")
+                }.buttonStyle(StudyButtonStyle()) .simultaneousGesture(TapGesture().onEnded{self.signUP()})
                 HStack {
                     
                     Text("Already have an account?").foregroundColor(Color.lmuLightGrey)
@@ -113,8 +108,8 @@ struct RegisterView: View {
             .padding(.bottom, keyboard.currentHeight)
             .edgesIgnoringSafeArea(.bottom)
             .animation(.easeOut(duration: 0.16))
-            .alert(isPresented: $showingMessageAlert) {
-                Alert(title: Text("Field is required"), message: Text("you have left a field empty!"), dismissButton: .default(Text("OK")))
+            .alert(isPresented: $error) {
+                Alert(title: Text("Field is required"), message: Text("You have left a field empty!"), dismissButton: .default(Text("OK")))
             } }.navigationBarHidden(true).navigationBarBackButtonHidden(true)
     }
 }
