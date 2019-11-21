@@ -48,13 +48,14 @@ class SessionStore : ObservableObject {
         Auth.auth().signIn(withEmail: email, password: password, completion: handler)
     }
 
-    func signOut () -> Bool {
+    func signOut () {
         do {
             try Auth.auth().signOut()
             self.session = nil
-            return true
-        } catch {
-            return false
+            print("successfully logged out")‚
+          
+        } catch let signOutError as NSError {
+             print ("Error signing out: %@", signOutError)
         }
     }
     

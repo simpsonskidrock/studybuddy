@@ -10,8 +10,16 @@ import Foundation
 import SwiftUI
 
 struct ProfileTabView: View {
+    @EnvironmentObject var session: SessionStore
+
     @Environment(\.presentationMode) var mode
     @State var editProfile = false
+   
+    func getUser () {
+        session.listen()
+    }
+    
+   
     
     var body: some View {
         VStack{
@@ -24,6 +32,7 @@ struct ProfileTabView: View {
                     .padding(.top, 5)
                 Spacer()
                 Button(action: {
+                    self.session.signOut()
                     self.mode.wrappedValue.dismiss()
                 }){
                     HStack {
