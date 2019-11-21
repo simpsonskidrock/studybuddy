@@ -17,10 +17,6 @@ struct LoginView: View {
     @State var loading = false
     @State var error_FieldIsEmpty = false
     
-    var alertEmptyField: Alert = Alert(title: Text("Field is required"), message: Text("You have left a field empty!"), dismissButton: .default(Text("OK")))
-    
-    var alertIncorrectLogInData: Alert = Alert(title: Text("Error"), message: Text("Please enter a valid Email and Password"), dismissButton: .default(Text("OK")))
-    
     func getUser () {
         session.listen()
     }
@@ -80,7 +76,7 @@ struct LoginView: View {
             .edgesIgnoringSafeArea(.bottom)
             .animation(.easeOut(duration: 0.16))
             .alert(isPresented: $error_FieldIsEmpty) {
-                self.alertEmptyField
+                Alert.alertEmptyField
             }
         }
     }

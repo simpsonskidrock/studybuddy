@@ -20,6 +20,7 @@
 		7367D1FA237D7279002EE928 /* ContactsTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7367D1F9237D7279002EE928 /* ContactsTabView.swift */; };
 		7367D1FF237D8496002EE928 /* GeneralTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7367D1FE237D8496002EE928 /* GeneralTabView.swift */; };
 		7367D202237D85F5002EE928 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7367D201237D85F5002EE928 /* RegisterView.swift */; };
+		73A69B4923869D2700ECEAC2 /* ListedAlerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A69B4823869D2700ECEAC2 /* ListedAlerts.swift */; };
 		73B9D150237C2484000E268E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B9D14F237C2484000E268E /* AppDelegate.swift */; };
 		73B9D152237C2484000E268E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B9D151237C2484000E268E /* SceneDelegate.swift */; };
 		73B9D154237C2484000E268E /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B9D153237C2484000E268E /* LoginView.swift */; };
@@ -67,6 +68,7 @@
 		7367D1F9237D7279002EE928 /* ContactsTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsTabView.swift; sourceTree = "<group>"; };
 		7367D1FE237D8496002EE928 /* GeneralTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralTabView.swift; sourceTree = "<group>"; };
 		7367D201237D85F5002EE928 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
+		73A69B4823869D2700ECEAC2 /* ListedAlerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListedAlerts.swift; sourceTree = "<group>"; };
 		73B9D14C237C2484000E268E /* StudyBuddySwiftUi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StudyBuddySwiftUi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73B9D14F237C2484000E268E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		73B9D151237C2484000E268E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -168,6 +170,7 @@
 			isa = PBXGroup;
 			children = (
 				3391BDFD238557FB00643581 /* User.swift */,
+				73A69B4823869D2700ECEAC2 /* ListedAlerts.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -214,13 +217,13 @@
 		73B9D14E237C2484000E268E /* StudyBuddySwiftUi */ = {
 			isa = PBXGroup;
 			children = (
-				739A53232386984200A46746 /* Services */,
 				739A5322238697FE00A46746 /* Additions */,
 				739A531E2386942A00A46746 /* Models */,
-				733211512385868800B7660A /* Chat */,
-				291441152384B96500998C4A /* ProfileAndEdit */,
 				7367D200237D8550002EE928 /* LoginAndRegister */,
 				7367D1FD237D841F002EE928 /* TabBar */,
+				291441152384B96500998C4A /* ProfileAndEdit */,
+				733211512385868800B7660A /* Chat */,
+				739A53232386984200A46746 /* Services */,
 				73B9D14F237C2484000E268E /* AppDelegate.swift */,
 				73B9D151237C2484000E268E /* SceneDelegate.swift */,
 				73B9D155237C2485000E268E /* Assets.xcassets */,
@@ -501,6 +504,7 @@
 				7367D1F6237D6670002EE928 /* ProfileTabView.swift in Sources */,
 				292EF2FA2381F5760062FBB5 /* ChangePasswordView.swift in Sources */,
 				84B3AD5E237D973800CB2160 /* CustomViewElements.swift in Sources */,
+				73A69B4923869D2700ECEAC2 /* ListedAlerts.swift in Sources */,
 				73B9D154237C2484000E268E /* LoginView.swift in Sources */,
 				293AA0732384947A00436E02 /* KeyboardSettings.swift in Sources */,
 			);

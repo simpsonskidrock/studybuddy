@@ -10,10 +10,8 @@ import Foundation
 import SwiftUI
 
 struct ProfileTabView: View {
-    
     @Environment(\.presentationMode) var mode
     @State var editProfile = false
-    
     
     var body: some View {
         VStack{
@@ -27,7 +25,6 @@ struct ProfileTabView: View {
                 Spacer()
                 Button(action: {
                     self.mode.wrappedValue.dismiss()
-                    
                 }){
                     HStack {
                         Image(systemName: "arrow.uturn.left")

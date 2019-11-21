@@ -22,9 +22,7 @@ struct RegisterView: View {
     @State var password: String = ""
     @State private var repeatPassword: String = ""
     @State private var showingMessageAlert = false
-    
-    var alertEmptyRegistrationField: Alert = Alert(title: Text("Field is required"), message: Text("You have left a field empty!"), dismissButton: .default(Text("OK")))
-    
+
     func signUP (){
         self.loading = true
         self.error_FieldIsEmpty = false
@@ -86,7 +84,7 @@ struct RegisterView: View {
             .edgesIgnoringSafeArea(.bottom)
             .animation(.easeOut(duration: 0.16))
             .alert(isPresented: $error_FieldIsEmpty) {
-                self.alertEmptyRegistrationField
+                Alert.alertEmptyField
             } }.navigationBarHidden(true).navigationBarBackButtonHidden(true)
     }
 }

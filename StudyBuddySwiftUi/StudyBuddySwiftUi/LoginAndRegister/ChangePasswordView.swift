@@ -19,12 +19,12 @@ struct ChangePasswordView: View {
     @State private var newPassword: String = ""
     @State private var repeatNewPassword: String = ""
     
-    var alertEmptyField: Alert = Alert(title: Text("Field is required"), message: Text("You have left a field empty!"), dismissButton: .default(Text("OK")))
-    
     func checkIfAFieldIsEmpty (){
         self.loading = true
         self.error_FieldIsEmpty = false
-        // todo
+        if ( self.email == "" || self.newPassword == "" || self.repeatNewPassword == "" ) {
+            self.error_FieldIsEmpty = true
+        }
     }
     
     var body: some View {
@@ -66,7 +66,7 @@ struct ChangePasswordView: View {
             .edgesIgnoringSafeArea(.bottom)
             .animation(.easeOut(duration: 0.16))
             .alert(isPresented: $error_FieldIsEmpty) {
-                self.alertEmptyField
+                Alert.alertEmptyField
             }
         }.navigationBarHidden(true)
             .navigationBarBackButtonHidden(true)
