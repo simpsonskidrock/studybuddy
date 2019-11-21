@@ -30,6 +30,9 @@ struct RegisterView: View {
         if (self.email == "" || self.password == "" || self.repeatPassword == "") {
             self.error = true
             self.tempAlert = Alert.alertEmptyField
+        } else if (self.password.count < 6 || self.repeatPassword.count < 6) {
+            self.error = true
+            self.tempAlert = Alert.alertToShortPassword
         } else if (self.password != self.repeatPassword) {
             self.error = true
             self.tempAlert = Alert.alertUnequalPassword

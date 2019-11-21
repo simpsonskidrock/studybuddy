@@ -14,4 +14,6 @@ extension Alert {
     static let alertIncorrectData: Alert = Alert(title: Text("Error"), message: Text("Please enter a valid Email and Password"), dismissButton: .default(Text("OK")))
     
     static let alertUnequalPassword: Alert = Alert(title: Text("Error"), message: Text("Confimation of password is different to new password"), dismissButton: .default(Text("OK")))
+    
+    static let alertToShortPassword: Alert = Alert(title: Text("Error"), message: Text("Password needs to have minimum 6 characters."), dismissButton: .default(Text("OK")))
 }
