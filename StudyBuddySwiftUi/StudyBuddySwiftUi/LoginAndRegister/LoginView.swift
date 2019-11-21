@@ -18,7 +18,9 @@ struct LoginView: View {
     
     @EnvironmentObject var session: SessionStore
     @State private var showingMessageAlert = false
-    func getUser () {      session.listen()  }
+    func getUser () {
+        session.listen()
+    }
     
     func signIn () {
         loading = true

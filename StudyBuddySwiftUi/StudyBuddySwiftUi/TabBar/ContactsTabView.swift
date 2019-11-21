@@ -10,7 +10,6 @@ import Foundation
 import SwiftUI
 
 struct ContactsTabView: View {
-    @State var chatSelected = false
     @State var showChat = false
     
     var body: some View {
@@ -23,7 +22,7 @@ struct ContactsTabView: View {
                     Text("Person1")
                     Spacer()
                     Button(action: {
-                        self.chatSelected.toggle()
+                        self.showChat.toggle()
                     }) {
                         Image(systemName: "bubble.left.and.bubble.right")
                             .font(.system(size: 20))
@@ -37,7 +36,7 @@ struct ContactsTabView: View {
                     Text("Person2")
                     Spacer()
                     Button(action: {
-                        self.chatSelected.toggle()
+                        self.showChat.toggle()
                     }) {
                         Image(systemName: "bubble.left.and.bubble.right")
                             .font(.system(size: 20))
