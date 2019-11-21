@@ -9,36 +9,35 @@
 import SwiftUI
 
 struct LoginView: View {
+    @EnvironmentObject var session: SessionStore
     @ObservedObject private var keyboard = KeyboardResponder()
     
     @State var email: String = ""
     @State var password: String = ""
     @State var loading = false
-    @State var error = false
+    @State var error_FieldIsEmpty = false
     
-    @EnvironmentObject var session: SessionStore
-    @State private var showingMessageAlert = false
+    var alertEmptyField: Alert = Alert(title: Text("Field is required"), message: Text("You have left a field empty!"), dismissButton: .default(Text("OK")))
+    
+    var alertIncorrectLogInData: Alert = Alert(title: Text("Error"), message: Text("Please enter a valid Email and Password"), dismissButton: .default(Text("OK")))
+    
     func getUser () {
         session.listen()
     }
     
-    
-    
     func signIn () {
-        loading = true
-        error = false
-        session.signIn(email: email, password: password) { (result, error) in
+        self.loading = true
+        self.error_FieldIsEmpty = false
+        session.signIn(email: email, password: password) { (result, error_FieldIsEmpty) in
             self.loading = false
-            if error != nil {
-                self.error = true
+            if error_FieldIsEmpty != nil {
+                self.error_FieldIsEmpty = true
             } else {
                 self.email = ""
                 self.password = ""
             }
         }
     }
-    
-    
     
     var body: some View {
         NavigationView {
@@ -80,8 +79,8 @@ struct LoginView: View {
             .padding(.bottom, keyboard.currentHeight)
             .edgesIgnoringSafeArea(.bottom)
             .animation(.easeOut(duration: 0.16))
-            .alert(isPresented: $error) {
-                Alert(title: Text("Error"), message: Text("Please enter a valid Email and Password"), dismissButton: .default(Text("OK")))
+            .alert(isPresented: $error_FieldIsEmpty) {
+                self.alertEmptyField
             }
         }
     }

@@ -9,18 +9,23 @@
 import SwiftUI
 
 struct ChangePasswordView: View {
-    @State private var showAlert = false
-    
-    var alert: Alert {
-        Alert(title: Text("Error"), message: Text("Hello SwiftUI"), dismissButton: .default(Text("Dismiss")))
-    }
-    
     @Environment(\.presentationMode) var mode
+    @EnvironmentObject var session: SessionStore
     @ObservedObject private var keyboard = KeyboardResponder()
     
+    @State var loading = false
+    @State var error_FieldIsEmpty = false
     @State private var email: String = ""
     @State private var newPassword: String = ""
     @State private var repeatNewPassword: String = ""
+    
+    var alertEmptyField: Alert = Alert(title: Text("Field is required"), message: Text("You have left a field empty!"), dismissButton: .default(Text("OK")))
+    
+    func checkIfAFieldIsEmpty (){
+        self.loading = true
+        self.error_FieldIsEmpty = false
+        // todo
+    }
     
     var body: some View {
         ZStack {
@@ -45,7 +50,7 @@ struct ChangePasswordView: View {
                 NavigationLink(destination: GeneralTabView()) {
                     Text("Change Password").font(.system(size: 20))
                         .fontWeight(.heavy)
-                }.buttonStyle(StudyButtonStyle())
+                }.buttonStyle(StudyButtonStyle()).simultaneousGesture(TapGesture().onEnded{self.checkIfAFieldIsEmpty()})
                 HStack {
                     Text("Don't want to change your password?").foregroundColor(Color.lmuLightGrey)
                     Button(action: {
@@ -60,6 +65,9 @@ struct ChangePasswordView: View {
             .padding(.bottom, keyboard.currentHeight)
             .edgesIgnoringSafeArea(.bottom)
             .animation(.easeOut(duration: 0.16))
+            .alert(isPresented: $error_FieldIsEmpty) {
+                self.alertEmptyField
+            }
         }.navigationBarHidden(true)
             .navigationBarBackButtonHidden(true)
     }

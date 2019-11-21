@@ -164,6 +164,14 @@
 			path = LoginAndRegister;
 			sourceTree = "<group>";
 		};
+		739A531E2386942A00A46746 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				3391BDFD238557FB00643581 /* User.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		73B9D143237C2484000E268E = {
 			isa = PBXGroup;
 			children = (
@@ -189,13 +197,13 @@
 		73B9D14E237C2484000E268E /* StudyBuddySwiftUi */ = {
 			isa = PBXGroup;
 			children = (
+				739A531E2386942A00A46746 /* Models */,
 				733211512385868800B7660A /* Chat */,
 				291441152384B96500998C4A /* ProfileAndEdit */,
 				7367D200237D8550002EE928 /* LoginAndRegister */,
 				7367D1FD237D841F002EE928 /* TabBar */,
 				73B9D14F237C2484000E268E /* AppDelegate.swift */,
 				3391BDFB238557B600643581 /* SessionStore.swift */,
-				3391BDFD238557FB00643581 /* User.swift */,
 				73B9D151237C2484000E268E /* SceneDelegate.swift */,
 				84B3AD5D237D973800CB2160 /* CustomViewElements.swift */,
 				293AA0722384947A00436E02 /* KeyboardSettings.swift */,
