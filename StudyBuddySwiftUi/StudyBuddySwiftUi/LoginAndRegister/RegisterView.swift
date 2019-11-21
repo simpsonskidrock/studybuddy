@@ -60,7 +60,7 @@ struct RegisterView: View {
                     TextField("E-mail", text: $email)
                         .textFieldStyle(StudyTextFieldStyle())
                         .padding(.horizontal, 50)
-                   SecureField("Password", text: $password)
+                    SecureField("Password", text: $password)
                         .textFieldStyle(StudyTextFieldStyle())
                         .padding(.horizontal, 50)
                     SecureField("Confirm Password", text: $repeatPassword)
