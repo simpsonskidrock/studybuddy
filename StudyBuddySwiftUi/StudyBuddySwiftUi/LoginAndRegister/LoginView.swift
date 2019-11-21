@@ -54,19 +54,14 @@ struct LoginView: View {
                     .padding(.horizontal, 50)
                 HStack {
                     Spacer()
-                    if (error) {
-                        Text("Unknown User/Password")
-                    }
-                    else
-                    {
-                        NavigationLink(destination: GeneralTabView()) {
-                            Text("Log In")
-                        }.buttonStyle(StudyButtonStyle())                 .simultaneousGesture(TapGesture().onEnded{self.signIn()})
-                        Text("or").foregroundColor(Color.white)
-                        NavigationLink(destination: RegisterView()) {
-                            Text("Register")
-                        }.buttonStyle(StudyButtonStyle())
-                    }
+                    NavigationLink(destination: GeneralTabView()) {
+                        Text("Log In")
+                    }.buttonStyle(StudyButtonStyle())                 .simultaneousGesture(TapGesture().onEnded{self.signIn()})
+                    Text("or").foregroundColor(Color.white)
+                    NavigationLink(destination: RegisterView()) {
+                        Text("Register")
+                    }.buttonStyle(StudyButtonStyle())
+                    
                 }
                 HStack {
                     Text("Forgot your password?").foregroundColor(Color.lmuLightGrey)
@@ -81,8 +76,9 @@ struct LoginView: View {
             .padding(.bottom, keyboard.currentHeight)
             .edgesIgnoringSafeArea(.bottom)
             .animation(.easeOut(duration: 0.16))
-            // .alert(isPresented: $showingMessageAlert) {
-            //    Alert(title: Text("Error"), message: Text("Please enter a valid Email and Password"), dismissButton: .default(Text("OK")))
+            .alert(isPresented: $error) {
+                Alert(title: Text("Error"), message: Text("Please enter a valid Email and Password"), dismissButton: .default(Text("OK")))
+            }
         }
     }
 }
