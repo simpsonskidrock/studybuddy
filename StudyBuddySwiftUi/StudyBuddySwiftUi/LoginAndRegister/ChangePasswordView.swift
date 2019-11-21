@@ -29,7 +29,7 @@ struct ChangePasswordView: View {
             self.tempAlert = Alert.alertEmptyField
         } else if (self.newPassword.count < 6 || self.repeatNewPassword.count < 6) {
             self.error = true
-            self.tempAlert = Alert.alertToShortPassword
+            self.tempAlert = Alert.alertTooShortPassword
         } else if (self.newPassword != self.repeatNewPassword) {
             self.error = true
             self.tempAlert = Alert.alertUnequalPassword

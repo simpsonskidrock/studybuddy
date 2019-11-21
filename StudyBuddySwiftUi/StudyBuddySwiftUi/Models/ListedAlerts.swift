@@ -15,5 +15,5 @@ extension Alert {
     
     static let alertUnequalPassword: Alert = Alert(title: Text("Error"), message: Text("Confimation of password is different to new password"), dismissButton: .default(Text("OK")))
     
-    static let alertToShortPassword: Alert = Alert(title: Text("Error"), message: Text("Password needs to have minimum 6 characters."), dismissButton: .default(Text("OK")))
+    static let alertTooShortPassword: Alert = Alert(title: Text("Error"), message: Text("Password needs to have minimum 6 characters."), dismissButton: .default(Text("OK")))
 }
