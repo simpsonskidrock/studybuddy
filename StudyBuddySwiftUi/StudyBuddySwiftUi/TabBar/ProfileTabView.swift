@@ -84,6 +84,7 @@ struct ProfileTabView: View {
             }
             .sheet(isPresented: $editProfile) {
                 EditProfileView()
+                Spacer()
             }
             .foregroundColor(.lmuLightGrey)
         } .padding(.horizontal) .background(Color.lmuGreen.edgesIgnoringSafeArea(.vertical)) .navigationBarHidden(true).navigationBarBackButtonHidden(true)

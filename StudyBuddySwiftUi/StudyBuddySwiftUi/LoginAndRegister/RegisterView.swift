@@ -55,7 +55,7 @@ struct RegisterView: View {
     var body: some View {
         ZStack {
             VStack {
-                Spacer()
+               
                 Text("SignUp").font(.largeTitle).foregroundColor(.lmuLightGrey)
                 Spacer()
                 Text("StudyBuddy").font(.largeTitle).foregroundColor(Color.white)
