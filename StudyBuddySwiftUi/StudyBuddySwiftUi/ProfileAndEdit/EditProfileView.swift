@@ -13,7 +13,7 @@ struct EditProfileView: View {
     @State var name = ""
     @State var fieldOfStudy = ""
     @State var description = ""
-    @State var hashtag = ""
+    @State var hashtags = ""
     
     var body: some View {
         VStack{
@@ -66,7 +66,7 @@ struct EditProfileView: View {
                         .multilineTextAlignment(.leading)
                     
                     Text("Hashtags").foregroundColor(.black)
-                    TextField("#", text: $hashtag).lineLimit(nil)
+                    TextField("#", text: $hashtags).lineLimit(nil)
                 }
             }
             Button(action: {

@@ -10,11 +10,13 @@ struct User {
     var uid: String
     var email: String?
     var displayName: String?
+    var fieldOfStudy: String?
+    var description: String?
+    var hashtags: String?
 
     init(uid: String, displayName: String?, email: String?) {
         self.uid = uid
         self.email = email
         self.displayName = displayName
     }
-
 }
