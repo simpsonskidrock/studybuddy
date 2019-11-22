@@ -51,7 +51,6 @@ struct ChangePasswordView: View {
     var body: some View {
         ZStack {
             VStack {
-                Spacer()
                 Text("Change Password").font(.largeTitle).foregroundColor(.lmuLightGrey)
                 Spacer()
                 Text("StudyBuddy").font(.largeTitle).foregroundColor(Color.white)
