@@ -18,7 +18,7 @@ struct EditProfileView: View {
     var body: some View {
         VStack{
             HStack{
-                Text( "Edit profile")
+                Text("Edit profile")
                     .foregroundColor(.lmuLightGrey)
                     .font(.system(size: 20))
                     .fontWeight(.semibold)
@@ -70,7 +70,8 @@ struct EditProfileView: View {
                 }
             }
             Button(action: {
-                // NavigationLink(destination: GeneralTabView())
+                // todo saving
+                self.mode.wrappedValue.dismiss()
             }) {
                 Text("Save").fontWeight(.semibold).font(.system(size: 20))
             }.padding().foregroundColor(.lmuLightGrey)

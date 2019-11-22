@@ -11,15 +11,12 @@ import SwiftUI
 
 struct ProfileTabView: View {
     @EnvironmentObject var session: SessionStore
-
     @Environment(\.presentationMode) var mode
     @State var editProfile = false
    
     func getUser () {
         session.listen()
     }
-    
-   
     
     var body: some View {
         VStack{
