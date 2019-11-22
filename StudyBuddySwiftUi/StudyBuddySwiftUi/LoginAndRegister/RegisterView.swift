@@ -55,7 +55,6 @@ struct RegisterView: View {
     var body: some View {
         ZStack {
             VStack {
-               
                 Text("SignUp").font(.largeTitle).foregroundColor(.lmuLightGrey)
                 Spacer()
                 Text("StudyBuddy").font(.largeTitle).foregroundColor(Color.white)
@@ -63,9 +62,7 @@ struct RegisterView: View {
                     .resizable()
                     .frame(width: 100, height: 100.0)
                     .colorInvert()
-                    .overlay(Circle()
-                        .stroke(Color.white, lineWidth: 5)
-                        .frame(width: 150, height: 150))
+                    .overlay(Circle().stroke(Color.white, lineWidth: 5).frame(width: 150, height: 150))
                     .padding(.vertical, 35)
                 VStack {
                     Text("Create a new Account").foregroundColor(Color.white)
@@ -94,7 +91,8 @@ struct RegisterView: View {
                 Spacer()
                 Spacer()
             }
-            .padding(.horizontal) .background(Color.lmuGreen.edgesIgnoringSafeArea(.vertical))
+            .padding(.horizontal)
+            .background(Color.lmuGreen.edgesIgnoringSafeArea(.vertical))
             .padding(.bottom, keyboard.currentHeight)
             .edgesIgnoringSafeArea(.bottom)
             .animation(.easeOut(duration: 0.16))
