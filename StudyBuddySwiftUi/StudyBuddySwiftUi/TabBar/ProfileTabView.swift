@@ -21,12 +21,14 @@ struct ProfileTabView: View {
     var body: some View {
         VStack{
             HStack{
+                
                 Text("Profile")
                     .foregroundColor(.lmuLightGrey)
                     .font(.system(size: 20))
                     .fontWeight(.semibold)
                     .padding(.leading, 10)
                     .padding(.top, 5)
+                
                 Spacer()
                 Button(action: {
                     self.session.signOut()
@@ -44,29 +46,7 @@ struct ProfileTabView: View {
                 .padding(.leading, 10)
             VStack{
                 Text("StudyBuddy").font(.largeTitle).foregroundColor(Color.white)
-                Image(systemName: "person.badge.plus")
-                    .resizable()
-                    .frame(width: 90, height: 90)
-                    .colorInvert()
-                    .overlay(Circle()
-                        .stroke(Color.white, lineWidth: 5)
-                        .frame(width: 150, height: 150))
-                    .padding(.vertical, 35)
-                Text("Your Name")
-                    .foregroundColor(.black)
-                    .fontWeight(.semibold)
-                Text("Field of Study")
-                    .foregroundColor(.black)
-                    .fontWeight(.semibold)
-                VStack{
-                    ScrollView(.vertical) {
-                        Text("Description / Characteristics").foregroundColor(.black)
-                            .autocapitalization(/*@START_MENU_TOKEN@*/.none/*@END_MENU_TOKEN@*/)
-                    }
-                    ScrollView(.vertical) {
-                        Text("Hashtags").foregroundColor(.black)
-                    }
-                }
+                ProfileCardView().scaledToFit()
             }
             Button(action: {
                 self.editProfile.toggle()

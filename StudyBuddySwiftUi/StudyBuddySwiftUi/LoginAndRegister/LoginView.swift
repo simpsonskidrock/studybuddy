@@ -47,11 +47,10 @@ struct LoginView: View {
             VStack(spacing: 16) {
                 Spacer()
                 Image("fountainicon")
-                Text("StudyBuddy").font(.largeTitle).foregroundColor(Color.white)
-                
+                Text("StudyBuddy").font(.largeTitle)
+                    .foregroundColor(Color.white)
                 Spacer()
                 Text("Enter email and password").foregroundColor(Color.white)
-                
                 TextField("Email", text: $email)
                     .textFieldStyle(StudyTextFieldStyle())
                     .padding(.horizontal, 50)
@@ -62,7 +61,8 @@ struct LoginView: View {
                     Spacer()
                     NavigationLink(destination: GeneralTabView()) {
                         Text("Log In")
-                    }.buttonStyle(StudyButtonStyle()).simultaneousGesture(TapGesture().onEnded{self.signIn()})
+                    }.buttonStyle(StudyButtonStyle())
+                        .simultaneousGesture(TapGesture().onEnded{self.signIn()})
                     Text("or").foregroundColor(Color.white)
                     NavigationLink(destination: RegisterView()) {
                         Text("Register")
@@ -77,7 +77,8 @@ struct LoginView: View {
                 Spacer()
             }
             .onAppear(perform: getUser)
-            .padding(.horizontal, 20.0).background(Color.lmuGreen.edgesIgnoringSafeArea(.vertical))
+            .padding(.horizontal, 20.0)
+            .background(Color.lmuGreen.edgesIgnoringSafeArea(.vertical))
             .padding(.bottom, keyboard.currentHeight)
             .edgesIgnoringSafeArea(.bottom)
             .animation(.easeOut(duration: 0.16))

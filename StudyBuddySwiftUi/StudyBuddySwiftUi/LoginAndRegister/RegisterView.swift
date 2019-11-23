@@ -10,7 +10,6 @@ import SwiftUI
 import Firebase
 
 struct RegisterView: View {
-    
     @Environment(\.presentationMode) var mode
     @EnvironmentObject var session: SessionStore
     @ObservedObject private var keyboard = KeyboardResponder()
@@ -55,9 +54,11 @@ struct RegisterView: View {
     var body: some View {
         ZStack {
             VStack {
-                Text("SignUp").font(.largeTitle).foregroundColor(.lmuLightGrey)
+                Text("SignUp").font(.largeTitle)
+                    .foregroundColor(.lmuLightGrey)
                 Spacer()
-                Text("StudyBuddy").font(.largeTitle).foregroundColor(Color.white)
+                Text("StudyBuddy").font(.largeTitle)
+                    .foregroundColor(Color.white)
                 Image(systemName: "person.badge.plus")
                     .resizable()
                     .frame(width: 100, height: 100.0)
@@ -99,7 +100,8 @@ struct RegisterView: View {
             .alert(isPresented: $error) {
                 self.tempAlert.unsafelyUnwrapped
             }
-        }.navigationBarHidden(true).navigationBarBackButtonHidden(true)
+        }.navigationBarHidden(true)
+            .navigationBarBackButtonHidden(true)
     }
 }
 
