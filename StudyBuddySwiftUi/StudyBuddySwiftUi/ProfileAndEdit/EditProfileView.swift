@@ -44,7 +44,6 @@ struct EditProfileView: View {
                         .stroke(Color.white, lineWidth: 5)
                         .frame(width: 150, height: 150))
                     .padding(.vertical, 35)
-                Spacer()
                 HStack{
                     Text("Name:")
                         .foregroundColor(.black)
@@ -67,8 +66,16 @@ struct EditProfileView: View {
                     
                     Text("Hashtags").foregroundColor(.black)
                     TextField("#", text: $hashtags).lineLimit(nil)
+                        .fixedSize(horizontal: false, vertical: true)
+                        .lineLimit(5)
+                        .multilineTextAlignment(.leading)
                 }
             }
+            
+            
+            Spacer()
+            
+            
             Button(action: {
                 // todo saving
                 self.mode.wrappedValue.dismiss()
@@ -76,6 +83,7 @@ struct EditProfileView: View {
                 Text("Save").fontWeight(.semibold).font(.system(size: 20))
             }.padding().foregroundColor(.lmuLightGrey)
             Spacer()
+            
         } .padding(.horizontal) .background(Color.lmuGreen.edgesIgnoringSafeArea(.vertical))
             .navigationBarTitle("Profil")
     }
