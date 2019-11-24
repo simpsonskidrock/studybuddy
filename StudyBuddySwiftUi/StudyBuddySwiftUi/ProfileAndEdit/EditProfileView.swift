@@ -10,7 +10,7 @@ import SwiftUI
 
 struct EditProfileView: View {
     @Environment(\.presentationMode) var mode
-    @State var name = ""
+    @State var displayName = ""
     @State var fieldOfStudy = ""
     @State var description = ""
     @State var hashtags = ""
@@ -49,7 +49,7 @@ struct EditProfileView: View {
                     Text("Name:")
                         .foregroundColor(.black)
                         .fontWeight(.semibold)
-                    TextField("Enter your name", text:  $name)
+                    TextField("Enter your name", text:  $displayName)
                 }
                 HStack{
                     Text("Field Of Study")

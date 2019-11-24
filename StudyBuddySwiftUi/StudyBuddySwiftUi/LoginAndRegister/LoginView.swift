@@ -14,13 +14,10 @@ struct LoginView: View {
     
     @State var email: String = ""
     @State var password: String = ""
+    
     @State var loading = false
     @State var error = false
     @State var tempAlert: Alert = nil
-    
-    func getUser () {
-        session.listen()
-    }
     
     func signIn () {
         self.loading = true
@@ -40,6 +37,10 @@ struct LoginView: View {
                 }
             }
         }
+    }
+    
+    func getSession() {
+        session.listen()
     }
     
     var body: some View {
@@ -76,7 +77,7 @@ struct LoginView: View {
                 }
                 Spacer()
             }
-            .onAppear(perform: getUser)
+            .onAppear(perform: getSession)
             .padding(.horizontal, 20.0)
             .background(Color.lmuGreen.edgesIgnoringSafeArea(.vertical))
             .padding(.bottom, keyboard.currentHeight)

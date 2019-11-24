@@ -10,11 +10,11 @@ import Foundation
 import SwiftUI
 
 struct ProfileTabView: View {
-    @EnvironmentObject var session: SessionStore
     @Environment(\.presentationMode) var mode
+    @EnvironmentObject var session: SessionStore
     @State var editProfile = false
-   
-    func getUser () {
+    
+    func getSession() {
         session.listen()
     }
     
@@ -64,7 +64,8 @@ struct ProfileTabView: View {
                 Spacer()
             }
             .foregroundColor(.lmuLightGrey)
-        } .padding(.horizontal) .background(Color.lmuGreen.edgesIgnoringSafeArea(.vertical)) .navigationBarHidden(true).navigationBarBackButtonHidden(true)
+        }.onAppear(perform: getSession)
+        .padding(.horizontal) .background(Color.lmuGreen.edgesIgnoringSafeArea(.vertical)) .navigationBarHidden(true).navigationBarBackButtonHidden(true)
     }
 }
 

@@ -14,7 +14,6 @@ struct RegisterView: View {
     @EnvironmentObject var session: SessionStore
     @ObservedObject private var keyboard = KeyboardResponder()
     
-    @State var registered = false
     @State var loading = false
     @State var error = false
     @State var tempAlert: Alert = nil

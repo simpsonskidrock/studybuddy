@@ -15,10 +15,9 @@ struct User {
     @State var description: String?
     @State var hashtags: String?
 
-    init(uid: String, displayName: String?, email: String?) {
+    init(uid: String, email: String?) {
         self.uid = uid
         self.email = email
-        self.displayName = displayName
     }
     
     func updateDetails(displayName: String?, fieldOfStudy: String?, description: String?, hashtags: String?) {
