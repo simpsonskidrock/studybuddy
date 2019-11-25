@@ -43,7 +43,6 @@ struct RegisterView: View {
                     self.tempAlert = Alert.alertIncorrectData
                 }
                     
-                    // this what i added but still not working
                     if let authData = result {
                         print(authData.user.email!)
                                        let dict: Dictionary<String, Any> = [
