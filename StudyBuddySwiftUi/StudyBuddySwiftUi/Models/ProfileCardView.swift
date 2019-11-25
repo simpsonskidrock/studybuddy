@@ -15,12 +15,12 @@ struct ProfileCardView: View {
     var description: String = "Description / Characteristics"
     var hashtags: String = "Hashes"
     
-  /*  init(person: User?) {
-        self.name = person?.displayName.unsafelyUnwrapped ?? "Your Name"
-        self.fieldOfStudy = person?.fieldOfStudy.unsafelyUnwrapped ?? "Field of Study"
-        self.description = person?.description.unsafelyUnwrapped ?? "Description / Characteristics"
-        self.hashtags = person?.hashtags.unsafelyUnwrapped ?? "Hashtags"
-    }*/
+    init(person: User) {
+        if (person.displayName != nil) { self.name = person.displayName.unsafelyUnwrapped }
+        if (person.fieldOfStudy != nil) { self.fieldOfStudy = person.fieldOfStudy.unsafelyUnwrapped }
+        if (person.description != nil) { self.description = person.description.unsafelyUnwrapped }
+        if (person.hashtags != nil) { self.hashtags = person.hashtags.unsafelyUnwrapped }
+    }
     
     var body: some View {
         VStack{

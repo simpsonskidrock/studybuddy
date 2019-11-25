@@ -14,6 +14,10 @@ struct ProfileTabView: View {
     @EnvironmentObject var session: SessionStore
     @State var editProfile = false
     
+    func getProfile() -> User {
+        return session.sessionUser.unsafelyUnwrapped
+    }
+    
     func getSession() {
         session.listen()
     }
@@ -46,7 +50,7 @@ struct ProfileTabView: View {
                 .padding(.leading, 10)
             VStack{
                 Text("StudyBuddy").font(.largeTitle).foregroundColor(Color.white)
-                ProfileCardView().scaledToFit()
+                ProfileCardView(person: self.getProfile()).scaledToFit()
             }
             Button(action: {
                 self.editProfile.toggle()
