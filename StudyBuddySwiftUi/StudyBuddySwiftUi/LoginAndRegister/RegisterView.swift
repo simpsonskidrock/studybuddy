@@ -21,6 +21,11 @@ struct RegisterView: View {
     @State var email: String = ""
     @State var password: String = ""
     @State private var repeatPassword: String = ""
+    @State var isShowingImagePicker = false
+    
+    @State var image = UIImage()
+    
+    
     
     func signUP (){
         self.loading = true
@@ -58,14 +63,30 @@ struct RegisterView: View {
                 Spacer()
                 Text("StudyBuddy").font(.largeTitle)
                     .foregroundColor(Color.white)
-                Image(systemName: "person.badge.plus")
+                Image(uiImage: image)
                     .resizable()
-                    .frame(width: 100, height: 100.0)
-                    .colorInvert()
-                    .overlay(Circle().stroke(Color.white, lineWidth: 5).frame(width: 150, height: 150))
-                    .padding(.vertical, 35)
+                    .scaledToFit()
+                    .clipShape(Circle())
+                    .frame(width: 150, height: 150)
+                    .overlay(Circle().stroke(Color.white, lineWidth: 5)
+                        .frame(width: 150, height: 150))
+                
+                
+                Button(action: {
+                    self.isShowingImagePicker.toggle()
+                    
+                }, label: {
+                    Text("Select Image")
+                        .font(.system(size: 15)).foregroundColor(.white)
+                }) .sheet(isPresented: $isShowingImagePicker, content: {
+                    ImagePickerViewController(isPresented: self.$isShowingImagePicker, selectedImage: self.$image)
+                    // Text("this is the image picker")
+                    
+                }).padding()
+                
+                
                 VStack {
-                    Text("Create a new Account").foregroundColor(Color.white)
+                    Text("Create a new Account").foregroundColor(Color.white).font(.title)
                     TextField("E-mail", text: $email)
                         .textFieldStyle(StudyTextFieldStyle())
                         .padding(.horizontal, 50)
@@ -103,9 +124,15 @@ struct RegisterView: View {
     }
 }
 
+
+
+
 struct RegisterView_Previews: PreviewProvider {
     static var previews: some View {
         RegisterView()
     }
 }
+
+
+
 
