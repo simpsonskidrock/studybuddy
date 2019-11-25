@@ -38,10 +38,30 @@ struct RegisterView: View {
         else {
             session.signUp(email: email, password: password) {(result, error_FieldIsEmpty) in self.loading = false
                 if error_FieldIsEmpty != nil {
-                    print("Error")
+                    print(error_FieldIsEmpty!.localizedDescription)
                     self.error = true
                     self.tempAlert = Alert.alertIncorrectData
                 }
+                    
+                    // this what i added but still not working
+                   /* if let authData = result {
+                        print(authData.user.email!)
+                                       let dict: Dictionary<String, Any> = [
+                                           "uid": authData.user.uid,
+                                           "email": authData.user.email!,
+                                           "profileImageUrl": "",
+                                           "Status": ""
+                                       ]
+                                       Database.database().reference().child("Users")
+                                           .child(authData.user.uid).updateChildValues(dict, withCompletionBlock: {
+                                               (error, ref)in
+                                               if error == nil {
+                                                   print ("Done")
+                                               }
+                                           } )
+                                       
+                                   }*/
+                    
                 else {
                     self.email = ""
                     self.password = ""
