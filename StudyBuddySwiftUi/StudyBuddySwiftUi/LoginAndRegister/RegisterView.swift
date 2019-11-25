@@ -41,29 +41,10 @@ struct RegisterView: View {
                     print(error_FieldIsEmpty!.localizedDescription)
                     self.error = true
                     self.tempAlert = Alert.alertIncorrectData
-                }
-                    
-                    if let authData = result {
-                        print(authData.user.email!)
-                                       let dict: Dictionary<String, Any> = [
-                                           "uid": authData.user.uid,
-                                           "email": authData.user.email!,
-                                           "profileImageUrl": "",
-                                           "Status": ""
-                                       ]
-                                       Database.database().reference().child("Users")
-                                           .child(authData.user.uid).updateChildValues(dict, withCompletionBlock: {
-                                               (error, ref)in
-                                               if error == nil {
-                                                   print ("Done")
-                                               }
-                                           } )
-                                       
-                                   }
-                    
-                else {
+                } else {
                     self.email = ""
                     self.password = ""
+                    self.session.addProfile(result: result)
                 }
             }
         }
@@ -109,9 +90,8 @@ struct RegisterView: View {
                 }
                 Spacer()
                 Spacer()
-            }
-            .padding(.horizontal)
-            .background(Color.lmuGreen.edgesIgnoringSafeArea(.vertical))
+            }.padding(.horizontal)
+                .background(Color.lmuGreen.edgesIgnoringSafeArea(.vertical))
             .padding(.bottom, keyboard.currentHeight)
             .edgesIgnoringSafeArea(.bottom)
             .animation(.easeOut(duration: 0.16))

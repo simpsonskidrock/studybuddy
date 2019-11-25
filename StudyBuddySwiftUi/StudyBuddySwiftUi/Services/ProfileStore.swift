@@ -15,16 +15,23 @@ class ProfileStore : ObservableObject {
     var session: User? { didSet { self.didChange.send(self) }}
     var handle: AuthStateDidChangeListenerHandle?
     
-    init(session: User) {
-        self.session = session
-    }
-    
-    func listen () {
-        
-    }
-    
-    func addProfile() {
-        // add new profile to database
+    func addProfile(result: AuthDataResult?) {
+        if let authData = result {
+            print(authData.user.email!)
+            let dict: Dictionary<String, Any> = [
+                "uid": authData.user.uid,
+                "email": authData.user.email!,
+                "profileImageUrl": "",
+                "Status": ""
+            ]
+            Database.database().reference().child("Users")
+                .child(authData.user.uid).updateChildValues(dict, withCompletionBlock: {
+                    (error, ref)in
+                    if error == nil {
+                        print ("Done")
+                    }
+                } )
+        }
     }
     
     func updateProfile (displayName: String?, fieldOfStudy: String?, description: String?, hashtags: String?) {

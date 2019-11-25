@@ -31,7 +31,15 @@ class SessionStore : ObservableObject {
             }
         }
     }
+    
+    func unbind () {
+        if let handle = handle {
+            Auth.auth().removeStateDidChangeListener(handle)
+        }
+    }
 
+    // Authentification //
+    
     func signUp(
         email: String,
         password: String,
@@ -58,9 +66,32 @@ class SessionStore : ObservableObject {
         }
     }
     
-    func unbind () {
-        if let handle = handle {
-            Auth.auth().removeStateDidChangeListener(handle)
+    // Profile Changes
+    
+    func addProfile(result: AuthDataResult?) {
+        if let authData = result {
+            print(authData.user.email!)
+            let dict: Dictionary<String, Any> = [
+                "uid": authData.user.uid,
+                "email": authData.user.email!,
+                "profileImageUrl": "",
+                "Status": ""
+            ]
+            Database.database().reference().child("Users")
+                .child(authData.user.uid).updateChildValues(dict, withCompletionBlock: {
+                    (error, ref)in
+                    if error == nil {
+                        print ("Done")
+                    }
+                } )
         }
+    }
+    
+    func updateProfile (displayName: String?, fieldOfStudy: String?, description: String?, hashtags: String?) {
+        self.sessionUser?.displayName = displayName
+        self.sessionUser?.fieldOfStudy = fieldOfStudy
+        self.sessionUser?.description = description
+        self.sessionUser?.hashtags = hashtags
+        // send update to database
     }
 }
