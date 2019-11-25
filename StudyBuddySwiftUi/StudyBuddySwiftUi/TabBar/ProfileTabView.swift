@@ -20,6 +20,10 @@ struct ProfileTabView: View {
     
     @State private var editProfile = false
     
+    @State var isShowingImagePicker = false
+    
+    @State var image = UIImage()
+    
     func getProfile() -> User {
         return session.sessionUser.unsafelyUnwrapped
     }
@@ -56,14 +60,26 @@ struct ProfileTabView: View {
                 Text("StudyBuddy")
                     .font(.largeTitle)
                     .foregroundColor(Color.white)
-                Image(systemName: "person.badge.plus")
+                Image(uiImage: image)
                     .resizable()
-                    .frame(width: 90, height: 90)
-                    .colorInvert()
+                    .scaledToFit()
+                    .clipShape(Circle())
+                    .frame(width: 150, height: 150)
                     .overlay(Circle()
                         .stroke(Color.white, lineWidth: 5)
                         .frame(width: 150, height: 150))
-                    .padding(.vertical, 35)
+                
+                Button(action: {
+                    self.isShowingImagePicker.toggle()
+                    
+                }, label: {
+                    Text("edit Image")
+                        .font(.system(size: 15)).foregroundColor(.white)
+                }) .sheet(isPresented: $isShowingImagePicker, content: {
+                    ImagePickerViewController(isPresented: self.$isShowingImagePicker, selectedImage: self.$image)
+                    
+                }).padding()
+                
                 HStack{
                     Text("Name:")
                         .foregroundColor(.black)
