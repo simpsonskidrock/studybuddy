@@ -9,11 +9,10 @@
 import SwiftUI
 
 struct ProfileCardView: View {
-    
-    var name: String = "Your Name"
-    var fieldOfStudy: String = "Field of Study"
-    var description: String = "Description / Characteristics"
-    var hashtags: String = "Hashes"
+    @State var name: String = ""
+    @State var fieldOfStudy: String = ""
+    @State var description: String = ""
+    @State var hashtags: String = ""
     
     init(person: User) {
         if (person.displayName != nil) { self.name = person.displayName.unsafelyUnwrapped }

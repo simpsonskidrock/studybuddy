@@ -12,7 +12,13 @@ import SwiftUI
 struct ProfileTabView: View {
     @Environment(\.presentationMode) var mode
     @EnvironmentObject var session: SessionStore
-    @State var editProfile = false
+    
+    @State var displayName = ""
+    @State var fieldOfStudy = ""
+    @State var description = ""
+    @State var hashtags = ""
+    
+    @State private var editProfile = false
     
     func getProfile() -> User {
         return session.sessionUser.unsafelyUnwrapped
@@ -25,14 +31,12 @@ struct ProfileTabView: View {
     var body: some View {
         VStack{
             HStack{
-                
                 Text("Profile")
                     .foregroundColor(.lmuLightGrey)
                     .font(.system(size: 20))
                     .fontWeight(.semibold)
                     .padding(.leading, 10)
                     .padding(.top, 5)
-                
                 Spacer()
                 Button(action: {
                     self.session.signOut()
@@ -50,26 +54,79 @@ struct ProfileTabView: View {
                 .padding(.leading, 10)
             VStack{
                 Text("StudyBuddy").font(.largeTitle).foregroundColor(Color.white)
-                ProfileCardView(person: self.getProfile()).scaledToFit()
-            }
-            Button(action: {
-                self.editProfile.toggle()
-            }) {
-                HStack {
-                    Image(systemName: "pencil")
-                        .font(.system(size: 20))
-                    Text("Edit Profile")
+                Image(systemName: "person.badge.plus")
+                    .resizable()
+                    .frame(width: 90, height: 90)
+                    .colorInvert()
+                    .overlay(Circle()
+                        .stroke(Color.white, lineWidth: 5)
+                        .frame(width: 150, height: 150))
+                    .padding(.vertical, 35)
+                HStack{
+                    Text("Name:")
+                        .foregroundColor(.black)
                         .fontWeight(.semibold)
-                        .font(.system(size: 20))
+                    TextField("Enter your name", text:  $displayName)
+                        .disableAutocorrection(true)
+                        .disabled(!self.editProfile)
+                        .foregroundColor(.lmuLightGrey)
+                }
+                HStack{
+                    Text("Field Of Study:")
+                        .foregroundColor(.black)
+                        .fontWeight(.semibold)
+                    TextField("ex: Informatik", text:  $fieldOfStudy).disabled(!self.editProfile)
+                        .foregroundColor(.lmuLightGrey)
+                }
+                VStack{
+                    Text("Description")
+                        .foregroundColor(.black)
+                    TextField("Describe your self", text: $description)
+                        .fixedSize(horizontal: false, vertical: true)
+                        .lineLimit(5)
+                        .disabled(!self.editProfile)
+                        .multilineTextAlignment(.leading)
+                        .foregroundColor(.lmuLightGrey)
+                    
+                    Text("Hashtags").foregroundColor(.black)
+                    TextField("#", text: $hashtags).lineLimit(nil)
+                        .fixedSize(horizontal: false, vertical: true)
+                        .lineLimit(5)
+                        .multilineTextAlignment(.leading)
+                        .disabled(!self.editProfile)
+                        .foregroundColor(.lmuLightGrey)
                 }
             }
-            .sheet(isPresented: $editProfile) {
-                EditProfileView()
+            Spacer()
+            HStack{
                 Spacer()
+                Button(action: {
+                    self.editProfile.toggle()
+                }) {
+                    HStack {
+                        Image(systemName: "pencil")
+                            .font(.system(size: 20))
+                        Text("Edit")
+                            .fontWeight(.semibold)
+                            .font(.system(size: 20))
+                    }
+                }.disabled(self.editProfile)
+                    .foregroundColor(.lmuLightGrey)
+                Spacer()
+                Button(action: {
+                    // todo saving
+                    self.editProfile.toggle()
+                }) {
+                    HStack {
+                        Text("Save").fontWeight(.semibold).font(.system(size: 20))
+                    }
+                }.padding().foregroundColor(.lmuLightGrey)
+                    .disabled(!self.editProfile)
+                Spacer()
+                
             }
-            .foregroundColor(.lmuLightGrey)
         }.onAppear(perform: getSession)
-        .padding(.horizontal) .background(Color.lmuGreen.edgesIgnoringSafeArea(.vertical)) .navigationBarHidden(true).navigationBarBackButtonHidden(true)
+            .padding(.horizontal) .background(Color.lmuGreen.edgesIgnoringSafeArea(.vertical)) .navigationBarHidden(true).navigationBarBackButtonHidden(true)
     }
 }
 
