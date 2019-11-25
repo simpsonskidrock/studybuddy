@@ -18,9 +18,13 @@ class ProfileStore : ObservableObject {
     init(session: User) {
         self.session = session
     }
-
+    
     func listen () {
         
+    }
+    
+    func addProfile() {
+        // add new profile to database
     }
     
     func updateProfile (displayName: String?, fieldOfStudy: String?, description: String?, hashtags: String?) {
@@ -28,7 +32,6 @@ class ProfileStore : ObservableObject {
         self.session?.fieldOfStudy = fieldOfStudy
         self.session?.description = description
         self.session?.hashtags = hashtags
-        // TODO: send to firebase database
+        // send update to database
     }
 }
-
