@@ -12,6 +12,7 @@ import SwiftUI
 struct ProfileTabView: View {
     @Environment(\.presentationMode) var mode
     @EnvironmentObject var session: SessionStore
+    @EnvironmentObject var profile: ProfileStore
     
     @State var displayName = ""
     @State var fieldOfStudy = ""
@@ -115,6 +116,7 @@ struct ProfileTabView: View {
                 Spacer()
                 Button(action: {
                     // todo saving
+                    self.profile.updateProfile(displayName: self.displayName, fieldOfStudy: self.fieldOfStudy, description: self.description, hashtags: self.hashtags)
                     self.editProfile.toggle()
                 }) {
                     HStack {
