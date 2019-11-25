@@ -14,7 +14,7 @@ class SessionStore : ObservableObject {
     var didChange = PassthroughSubject<SessionStore, Never>()
     var sessionUser: User? { didSet { self.didChange.send(self) }}
     var handle: AuthStateDidChangeListenerHandle?
-
+    
     func listen () {
         // monitor authentication changes using firebase
         handle = Auth.auth().addStateDidChangeListener { (auth, user) in
@@ -37,32 +37,32 @@ class SessionStore : ObservableObject {
             Auth.auth().removeStateDidChangeListener(handle)
         }
     }
-
+    
     // Authentification //
     
     func signUp(
         email: String,
         password: String,
         handler: @escaping AuthDataResultCallback
-        ) {
+    ) {
         Auth.auth().createUser(withEmail: email, password: password, completion: handler)
     }
-
+    
     func signIn(
         email: String,
         password: String,
         handler: @escaping AuthDataResultCallback
-        ) {
+    ) {
         Auth.auth().signIn(withEmail: email, password: password, completion: handler)
     }
-
+    
     func signOut () {
         do {
             try Auth.auth().signOut()
             self.sessionUser = nil
             print("successfully logged out")
         } catch let signOutError as NSError {
-             print ("Error signing out: %@", signOutError)
+            print ("Error signing out: %@", signOutError)
         }
     }
     
@@ -74,12 +74,14 @@ class SessionStore : ObservableObject {
             let dict: Dictionary<String, Any> = [
                 "uid": authData.user.uid,
                 "email": authData.user.email!,
-                "profileImageUrl": "",
-                "Status": ""
+                "displayName": "",
+                "fieldOfStudy": "",
+                "description": "",
+                "hashtags": ""
             ]
             Database.database().reference().child("Users")
                 .child(authData.user.uid).updateChildValues(dict, withCompletionBlock: {
-                    (error, ref)in
+                    (error, ref) in
                     if error == nil {
                         print ("Done")
                     }
@@ -88,10 +90,22 @@ class SessionStore : ObservableObject {
     }
     
     func updateProfile (displayName: String?, fieldOfStudy: String?, description: String?, hashtags: String?) {
-        self.sessionUser?.displayName = displayName
-        self.sessionUser?.fieldOfStudy = fieldOfStudy
-        self.sessionUser?.description = description
-        self.sessionUser?.hashtags = hashtags
+        self.sessionUser?.updateDetails(displayName: displayName, fieldOfStudy: fieldOfStudy, description: description, hashtags: hashtags)
         // send update to database
+        let dict: Dictionary<String, Any> = [
+            "uid": sessionUser?.uid,
+            "email": sessionUser?.email!,
+            "displayName": sessionUser?.displayName,
+            "fieldOfStudy": sessionUser?.fieldOfStudy,
+            "description": sessionUser?.description,
+            "hashtags": sessionUser?.hashtags
+        ]
+        /*Database.database().reference().child("Users")
+            .child(sessionUser?.uid).updateChildValues(dict, withCompletionBlock: {
+                (error, ref)in
+                if error == nil {
+                    print ("Done")
+                }
+            } )*/
     }
 }

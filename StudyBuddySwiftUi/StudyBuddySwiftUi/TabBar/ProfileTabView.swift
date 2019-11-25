@@ -53,7 +53,9 @@ struct ProfileTabView: View {
             }.frame(height: 50)
                 .padding(.leading, 10)
             VStack{
-                Text("StudyBuddy").font(.largeTitle).foregroundColor(Color.white)
+                Text("StudyBuddy")
+                    .font(.largeTitle)
+                    .foregroundColor(Color.white)
                 Image(systemName: "person.badge.plus")
                     .resizable()
                     .frame(width: 90, height: 90)
@@ -75,7 +77,8 @@ struct ProfileTabView: View {
                     Text("Field Of Study:")
                         .foregroundColor(.black)
                         .fontWeight(.semibold)
-                    TextField("ex: Informatik", text:  $fieldOfStudy).disabled(!self.editProfile)
+                    TextField("ex: Informatik", text:  $fieldOfStudy)
+                        .disabled(!self.editProfile)
                         .foregroundColor(.lmuLightGrey)
                 }
                 VStack{
@@ -87,7 +90,6 @@ struct ProfileTabView: View {
                         .disabled(!self.editProfile)
                         .multilineTextAlignment(.leading)
                         .foregroundColor(.lmuLightGrey)
-                    
                     Text("Hashtags").foregroundColor(.black)
                     TextField("#", text: $hashtags).lineLimit(nil)
                         .fixedSize(horizontal: false, vertical: true)
@@ -114,12 +116,12 @@ struct ProfileTabView: View {
                     .foregroundColor(.lmuLightGrey)
                 Spacer()
                 Button(action: {
-                    // todo saving
                     self.session.updateProfile(displayName: self.displayName, fieldOfStudy: self.fieldOfStudy, description: self.description, hashtags: self.hashtags)
                     self.editProfile.toggle()
                 }) {
                     HStack {
-                        Text("Save").fontWeight(.semibold).font(.system(size: 20))
+                        Text("Save").fontWeight(.semibold)
+                            .font(.system(size: 20))
                     }
                 }.padding().foregroundColor(.lmuLightGrey)
                     .disabled(!self.editProfile)
@@ -127,7 +129,10 @@ struct ProfileTabView: View {
                 
             }
         }.onAppear(perform: getSession)
-            .padding(.horizontal) .background(Color.lmuGreen.edgesIgnoringSafeArea(.vertical)) .navigationBarHidden(true).navigationBarBackButtonHidden(true)
+            .padding(.horizontal)
+            .background(Color.lmuGreen.edgesIgnoringSafeArea(.vertical))
+            .navigationBarHidden(true)
+            .navigationBarBackButtonHidden(true)
     }
 }
 

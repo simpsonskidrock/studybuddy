@@ -14,6 +14,7 @@ struct User {
     @State var fieldOfStudy: String?
     @State var description: String?
     @State var hashtags: String?
+    @State var image: String?
 
     init(uid: String, email: String?) {
         self.uid = uid
@@ -25,5 +26,9 @@ struct User {
         self.fieldOfStudy = fieldOfStudy
         self.description = description
         self.hashtags = hashtags
+    }
+    
+    func updatePicture(image: String?) {
+        self.image = image
     }
 }

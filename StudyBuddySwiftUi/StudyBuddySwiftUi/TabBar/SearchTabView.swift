@@ -10,10 +10,10 @@ import Foundation
 import SwiftUI
 
 struct SearchTabView: View {
-  
+    
     var body: some View {
-       Text("Hallo")
-}
+        Text("Hallo")
+    }
 }
 
 struct SearchTabView_Previews: PreviewProvider {

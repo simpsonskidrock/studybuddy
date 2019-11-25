@@ -92,11 +92,11 @@ struct RegisterView: View {
                 Spacer()
             }.padding(.horizontal)
                 .background(Color.lmuGreen.edgesIgnoringSafeArea(.vertical))
-            .padding(.bottom, keyboard.currentHeight)
-            .edgesIgnoringSafeArea(.bottom)
-            .animation(.easeOut(duration: 0.16))
-            .alert(isPresented: $error) {
-                self.tempAlert.unsafelyUnwrapped
+                .padding(.bottom, keyboard.currentHeight)
+                .edgesIgnoringSafeArea(.bottom)
+                .animation(.easeOut(duration: 0.16))
+                .alert(isPresented: $error) {
+                    self.tempAlert.unsafelyUnwrapped
             }
         }.navigationBarHidden(true)
             .navigationBarBackButtonHidden(true)

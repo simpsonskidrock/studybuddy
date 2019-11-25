@@ -23,7 +23,9 @@ struct GeneralTabView: View {
             ContactsTabView()
                 .tabItem {
                     Image(systemName: "person.3")
-            } }.navigationBarHidden(true).navigationBarBackButtonHidden(true)
+            }
+        }.navigationBarHidden(true)
+            .navigationBarBackButtonHidden(true)
             .background(Color.lmuGreen.edgesIgnoringSafeArea(.vertical))
     }
 }
