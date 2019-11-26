@@ -12,7 +12,10 @@ import SwiftUI
 struct SearchTabView: View {
     
     var body: some View {
-        Text("Hallo")
+        VStack {
+            Text("Hallo")
+        }.padding(.horizontal)
+            .background(Color.lmuGreen.edgesIgnoringSafeArea(.vertical))
     }
 }
 

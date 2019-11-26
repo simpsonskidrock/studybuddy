@@ -68,7 +68,7 @@ struct ContactsTabView: View {
                             .font(.system(size: 20))
                             .foregroundColor(.lmuLightGrey)
                     }
-                } .navigationBarTitle(Text("Chats"))
+                }.navigationBarTitle(Text("Chats"))
                     .resignKeyboardOnDragGesture()
             }
         }
