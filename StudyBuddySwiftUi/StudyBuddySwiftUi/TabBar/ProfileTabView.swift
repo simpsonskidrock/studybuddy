@@ -68,17 +68,15 @@ struct ProfileTabView: View {
                     .overlay(Circle()
                         .stroke(Color.white, lineWidth: 5)
                         .frame(width: 150, height: 150))
-                
-                Button(action: {
+                Button(action:{
                     self.isShowingImagePicker.toggle()
-                    
-                }, label: {
-                    Text("edit Image")
-                        .font(.system(size: 15)).foregroundColor(.white)
-                }) .sheet(isPresented: $isShowingImagePicker, content: {
-                    ImagePickerViewController(isPresented: self.$isShowingImagePicker, selectedImage: self.$image)
-                    
-                }).padding()
+                }) {
+                    Image(systemName: "person.badge.plus")
+                    .foregroundColor(.lmuLightGrey)
+                }.disabled(!self.editProfile)
+                    .sheet(isPresented: $isShowingImagePicker, content: {
+                        ImagePickerViewController(isPresented: self.$isShowingImagePicker, selectedImage: self.$image)
+                    }).padding()
                 
                 HStack{
                     Text("Name:")

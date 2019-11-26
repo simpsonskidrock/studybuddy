@@ -92,20 +92,35 @@ class SessionStore : ObservableObject {
     func updateProfile (displayName: String?, fieldOfStudy: String?, description: String?, hashtags: String?) {
         self.sessionUser?.updateDetails(displayName: displayName, fieldOfStudy: fieldOfStudy, description: description, hashtags: hashtags)
         // send update to database
-        let dict: Dictionary<String, Any> = [
+     /*   let dict: Dictionary<String, Any> = [
             "uid": sessionUser?.uid,
-            "email": sessionUser?.email!,
+            "email": sessionUser?.email,
             "displayName": sessionUser?.displayName,
             "fieldOfStudy": sessionUser?.fieldOfStudy,
             "description": sessionUser?.description,
             "hashtags": sessionUser?.hashtags
         ]
-        /*Database.database().reference().child("Users")
+        Database.database().reference().child("Users")
             .child(sessionUser?.uid).updateChildValues(dict, withCompletionBlock: {
                 (error, ref)in
                 if error == nil {
                     print ("Done")
                 }
             } )*/
+    }
+    
+    // uploading Images
+    
+    func uploadImage (imageName: String) {
+        let data = Data()
+    /*    let riversRef = storageRef.child("images/" + imageName + ".jpg")
+        let uploadTask = riversRef.putData(data, metadata: nil) { (metadata, error) in
+          if let error = error {
+            return
+          }
+          reference.downloadURL(completion: { (url, error) in
+            if let error = error { return }
+          })
+        } */
     }
 }
