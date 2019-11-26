@@ -10,10 +10,12 @@ import SwiftUI
 import Firebase
 import Combine
 
+
 class SessionStore : ObservableObject {
     var didChange = PassthroughSubject<SessionStore, Never>()
     var sessionUser: User? { didSet { self.didChange.send(self) }}
     var handle: AuthStateDidChangeListenerHandle?
+    var image: UIImage? = nil
     
     func listen () {
         // monitor authentication changes using firebase
@@ -69,6 +71,16 @@ class SessionStore : ObservableObject {
     // Profile Changes
     
     func addProfile(result: AuthDataResult?) {
+        
+       /* guard let imageSelected = self.image else{
+            print("Avatar is nil")
+            return
+        }
+        guard let imageData = imageSelected.jpegData(compressionQuality: 0.4)else{
+            return
+        }
+ */
+        
         if let authData = result {
             print(authData.user.email!)
             let dict: Dictionary<String, Any> = [
@@ -79,6 +91,7 @@ class SessionStore : ObservableObject {
                 "description": "",
                 "hashtags": ""
             ]
+          
             Database.database().reference().child("Users")
                 .child(authData.user.uid).updateChildValues(dict, withCompletionBlock: {
                     (error, ref) in
