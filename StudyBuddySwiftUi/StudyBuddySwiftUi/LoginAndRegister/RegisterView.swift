@@ -22,14 +22,9 @@ struct RegisterView: View {
     @State var password: String = ""
     @State private var repeatPassword: String = ""
     @State var isShowingImagePicker = false
-    
     @State var image = UIImage()
     
-    
-    
-    func signUP (){
-        self.loading = true
-        self.error = false
+    func logInDataCheck() {
         if (self.email == "" || self.password == "" || self.repeatPassword == "") {
             self.error = true
             self.tempAlert = Alert.alertEmptyField
@@ -40,7 +35,13 @@ struct RegisterView: View {
             self.error = true
             self.tempAlert = Alert.alertUnequalPassword
         }
-        else {
+    }
+    
+    func signUP () {
+        self.loading = true
+        self.error = false
+        self.logInDataCheck()
+        if error == false {
             session.signUp(email: email, password: password) {(result, error_FieldIsEmpty) in self.loading = false
                 if error_FieldIsEmpty != nil {
                     print(error_FieldIsEmpty!.localizedDescription)
@@ -49,7 +50,7 @@ struct RegisterView: View {
                 } else {
                     self.email = ""
                     self.password = ""
-                    self.session.addProfile(result: result, image: self.image)
+                    // self.session.addProfile(result: result, image: self.image)
                 }
             }
         }
@@ -70,21 +71,15 @@ struct RegisterView: View {
                     .frame(width: 100, height: 100)
                     .overlay(Circle().stroke(Color.white, lineWidth: 5))
 //                        .frame(width: 100, height: 100))
-                
-                
                 Button(action: {
                     self.isShowingImagePicker.toggle()
-                    
                 }, label: {
                     Text("Select Image")
                         .font(.system(size: 15)).foregroundColor(.white)
                 }) .sheet(isPresented: $isShowingImagePicker, content: {
                     ImagePickerViewController(isPresented: self.$isShowingImagePicker, selectedImage: self.$image)
                     // Text("this is the image picker")
-                    
                 }).padding()
-                
-                
                 VStack {
                     Text("Create a new Account").foregroundColor(Color.white).font(.title)
                     TextField("E-mail", text: $email)
@@ -126,15 +121,8 @@ struct RegisterView: View {
     }
 }
 
-
-
-
 struct RegisterView_Previews: PreviewProvider {
     static var previews: some View {
         RegisterView()
     }
 }
-
-
-
-

@@ -25,8 +25,9 @@ class SessionStore : ObservableObject {
                 print("Got user: \(user)")
                 self.sessionUser = User(
                     uid: user.uid,
-                    email: nil
+                    email: user.email
                 )
+                self.getProfile(uid: user.uid)
             } else {
                 // if we don't have a user, set our session to nil
                 self.sessionUser = nil
@@ -68,57 +69,37 @@ class SessionStore : ObservableObject {
         }
     }
     
-    // Profile Changes //
+    // Profile //
     
-    
- 
-    func getProfile (uid: String?) -> User? {
-        let rootRef = Database.database().reference(withPath: "Users").child(uid.unsafelyUnwrapped).observe(.value, with: { snapshot in
-          // This is the snapshot of the data at the moment in the Firebase database
-          // To get value from the snapshot, we user snapshot.value
-            print(snapshot.value.unsafelyUnwrapped as Any)
-        })
-        
-        let displayNameRef: String = self.getRef(uid: uid, text: "displayName")
-        let emailRef: String = self.getRef(uid: uid, text: "email")
-        let fieldOfStudyRef: String = self.getRef(uid: uid, text: "fieldOfStudy")
-        let descriptionRef: String = self.getRef(uid: uid, text: "desciption")
-        let hashtagsRef: String = self.getRef(uid: uid, text: "hashtags")
-        let user = User(uid: uid.unsafelyUnwrapped, email: emailRef)
-        user.updateDetails(displayName: displayNameRef, fieldOfStudy: fieldOfStudyRef, description: descriptionRef, hashtags: hashtagsRef)
-        return user
+    func getProfile (uid: String?) {
+        let rootRef = Database.database().reference(withPath: "Users").child(uid.unsafelyUnwrapped)
+        rootRef.observeSingleEvent(of: .value, with: { (snapshot) in
+            let value = snapshot.value as? NSDictionary
+            print("value", value)
+            let displayName = value?["displayName"] as? String ?? ""
+            let fieldOfStudy = value?["fieldOfStudy"] as? String ?? ""
+            let description = value?["description"] as? String ?? ""
+            let hashtags = value?["hashtags"] as? String ?? ""
+            self.sessionUser?.updateDetails(displayName: displayName, fieldOfStudy: fieldOfStudy, description: description, hashtags: hashtags)
+        }) { (error) in
+            print(error.localizedDescription)
+        }
     }
     
-   func getRef(uid: String?, text: String) -> String {
-        
-        let rootRef = Database.database().reference(withPath: "Users").child(uid.unsafelyUnwrapped).child(text).observe(.value, with: { snapshot in
-            print(snapshot.value.unsafelyUnwrapped as Any)
-        })
-        print("#", rootRef)
-        return ""
-    }
-    
-   func addProfile(result: AuthDataResult?, image: UIImage?){
-    guard let imageSelected = image else{
-              print("Image is nil")
-              return
-          }
-          
-          guard let imageData = imageSelected.jpegData(compressionQuality: 0.4)else{
-              return
-          }
-
+    func addProfile (result: AuthDataResult?, image: UIImage?) {
+        guard let imageSelected = image else {
+            print("Image is nil")
+            return
+        }
+        guard let imageData = imageSelected.jpegData(compressionQuality: 0.4) else {
+            return
+        }
         if let authData = result {
             print(authData.user.email!)
             var dict: Dictionary<String, Any> = [
                 "uid": authData.user.uid,
-                "email": authData.user.email!,
-                "profileImageUrl": "",
-                "fieldOfStudy": "",
-                "description": "",
-                "hashtags": ""
+                "email": authData.user.email!
             ]
-            
             let storageRef = Storage.storage().reference(forURL: "gs://studybuddy-82a88.appspot.com/")
             let storageProfileRef = storageRef.child("Profile").child(authData.user.uid)
             let metaData = StorageMetadata()
@@ -133,27 +114,20 @@ class SessionStore : ObservableObject {
                         print (metaImageUrl)
                         dict["profileImageUrl"] = metaImageUrl
                         Database.database().reference().child("Users")
-                                     .child(authData.user.uid).updateChildValues(dict, withCompletionBlock: {
-                                         (error, ref) in
-                                         if error == nil {
-                                             print ("Done")
-                                         }
-                                     } )
+                            .child(authData.user.uid).updateChildValues(dict, withCompletionBlock: {
+                                (error, ref) in
+                                if error == nil {
+                                    print ("Done")
+                                }
+                            } )
                     }
+                } )
             } )
-                 } )
-            
-
-         
         }
     }
     
     func updateProfile (displayName: String?, fieldOfStudy: String?, description: String?, hashtags: String?) {
-        
-       
-        
         self.sessionUser?.updateDetails(displayName: displayName, fieldOfStudy: fieldOfStudy, description: description, hashtags: hashtags)
-        // send update to database
         let tempUid: String = String((self.sessionUser?.uid)!)
         let dict: Dictionary<String, Any> = [
             "displayName": displayName ?? "",
@@ -184,11 +158,34 @@ class SessionStore : ObservableObject {
           })
         } */
     }
-    
-    // get all other Users
-    
-    func getAllOtherUsers() {
         
+    // Other Users
+        
+    func getAllOtherUsers(uid: String?) -> [User] {
+        let rootRef = Database.database().reference(withPath: "Users")
+        rootRef.observe(.value, with: { (snapshot) in
+            let value = snapshot.value as? NSDictionary
+            print(value)
+        }) { (error) in
+            print(error.localizedDescription)
+        }
+        return []
+    }
+    
+    func getOtherUser(uid: String) {
+        let rootRef = Database.database().reference(withPath: "Users").child(uid)
+        rootRef.observeSingleEvent(of: .value, with: { (snapshot) in
+            let value = snapshot.value as? NSDictionary
+            let email = value?["email"] as? String ?? ""
+            let displayName = value?["displayName"] as? String ?? ""
+            let fieldOfStudy = value?["fieldOfStudy"] as? String ?? ""
+            let description = value?["description"] as? String ?? ""
+            let hashtags = value?["hashtags"] as? String ?? ""
+            let otherUser = User(uid: uid, email: email)
+            otherUser.updateDetails(displayName: displayName, fieldOfStudy: fieldOfStudy, description: description, hashtags: hashtags)
+        }) { (error) in
+            print(error.localizedDescription)
+        }
     }
 }
 

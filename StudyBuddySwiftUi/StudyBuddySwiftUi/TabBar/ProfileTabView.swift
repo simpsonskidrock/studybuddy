@@ -13,23 +13,21 @@ struct ProfileTabView: View {
     @Environment(\.presentationMode) var mode
     @EnvironmentObject var session: SessionStore
     
-    @State var displayName = ""
-    @State var fieldOfStudy = ""
-    @State var description = ""
-    @State var hashtags = ""
+    @State var displayName: String = ""
+    @State var fieldOfStudy: String = ""
+    @State var description: String = ""
+    @State var hashtags: String = ""
     
     @State private var editProfile = false
     
     @State var isShowingImagePicker = false
-    
     @State var image = UIImage()
     
-    func getProfile() -> User {
-        return session.sessionUser.unsafelyUnwrapped
-    }
-    
-    func getSession() {
-        session.listen()
+    func initialize() {
+        self.displayName = session.sessionUser?.displayName ?? ""
+        self.fieldOfStudy = session.sessionUser?.fieldOfStudy ?? ""
+        self.description = session.sessionUser?.description ?? ""
+        self.hashtags = session.sessionUser?.hashtags ?? ""
     }
     
     var body: some View {
@@ -131,7 +129,7 @@ struct ProfileTabView: View {
             }.padding()
                 .foregroundColor(.lmuLightGrey)
             }
-        }.onAppear(perform: getSession)
+        }.onAppear(perform: initialize)
             .padding(.horizontal)
             .background(Color.lmuGreen.edgesIgnoringSafeArea(.vertical))
     }
