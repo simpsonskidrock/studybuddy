@@ -24,6 +24,7 @@
          @objc func keyBoardWillShow(notification: Notification) {
              if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
                  currentHeight = keyboardSize.height
+                
              }
          }
 

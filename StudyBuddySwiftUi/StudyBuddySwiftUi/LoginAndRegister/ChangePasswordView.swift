@@ -88,8 +88,10 @@ struct ChangePasswordView: View {
             .alert(isPresented: $error) {
                 self.tempAlert.unsafelyUnwrapped
             }
-        }.navigationBarHidden(true)
-            .navigationBarBackButtonHidden(true)
+            .navigationBarTitle("")
+}.navigationBarBackButtonHidden(true)
+        .navigationBarHidden(true)
+            
     }
 }
 

@@ -49,7 +49,7 @@ struct RegisterView: View {
                 } else {
                     self.email = ""
                     self.password = ""
-                    self.session.addProfile(result: result)
+                    self.session.addProfile(result: result, image: self.image)
                 }
             }
         }
@@ -67,9 +67,9 @@ struct RegisterView: View {
                     .resizable()
                     .scaledToFit()
                     .clipShape(Circle())
-                    .frame(width: 150, height: 150)
-                    .overlay(Circle().stroke(Color.white, lineWidth: 5)
-                        .frame(width: 150, height: 150))
+                    .frame(width: 100, height: 100)
+                    .overlay(Circle().stroke(Color.white, lineWidth: 5))
+//                        .frame(width: 100, height: 100))
                 
                 
                 Button(action: {
@@ -119,8 +119,10 @@ struct RegisterView: View {
                 .alert(isPresented: $error) {
                     self.tempAlert.unsafelyUnwrapped
             }
-        }.navigationBarHidden(true)
-            .navigationBarBackButtonHidden(true)
+        }
+        .navigationBarTitle("Sign Up")
+        .navigationBarBackButtonHidden(true)
+        .navigationBarHidden(true)
     }
 }
 

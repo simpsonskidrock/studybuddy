@@ -15,7 +15,7 @@ class SessionStore : ObservableObject {
     var didChange = PassthroughSubject<SessionStore, Never>()
     var sessionUser: User? { didSet { self.didChange.send(self) }}
     var handle: AuthStateDidChangeListenerHandle?
-    var image: UIImage? = nil
+    
     
     func listen () {
         // monitor authentication changes using firebase
@@ -70,35 +70,54 @@ class SessionStore : ObservableObject {
     
     // Profile Changes
     
-    func addProfile(result: AuthDataResult?) {
+    func addProfile(result: AuthDataResult?, image: UIImage?) {
         
-       /* guard let imageSelected = self.image else{
-            print("Avatar is nil")
+        guard let imageSelected = image else{
+            print("Image is nil")
             return
         }
+        
         guard let imageData = imageSelected.jpegData(compressionQuality: 0.4)else{
             return
         }
- */
+ 
         
         if let authData = result {
             print(authData.user.email!)
-            let dict: Dictionary<String, Any> = [
+            var dict: Dictionary<String, Any> = [
                 "uid": authData.user.uid,
                 "email": authData.user.email!,
-                "displayName": "",
+                "profileImageUrl": "",
                 "fieldOfStudy": "",
                 "description": "",
                 "hashtags": ""
             ]
-          
-            Database.database().reference().child("Users")
-                .child(authData.user.uid).updateChildValues(dict, withCompletionBlock: {
-                    (error, ref) in
-                    if error == nil {
-                        print ("Done")
+            
+            let storageRef = Storage.storage().reference(forURL: "gs://studybuddy-82a88.appspot.com/")
+            let storageProfileRef = storageRef.child("Profile").child(authData.user.uid)
+            let metaData = StorageMetadata()
+            metaData.contentType = "image/jpg"
+            storageProfileRef.putData(imageData, metadata: metaData, completion: {(StorageMetadata, error) in
+                if error != nil {
+                    print (error?.localizedDescription)
+                    return
+                }
+                storageProfileRef.downloadURL(completion: {(url, error)in
+                    if let metaImageUrl = url?.absoluteString {
+                        print (metaImageUrl)
+                        dict["profileImageUrl"] = metaImageUrl
+                        Database.database().reference().child("Users")
+                                     .child(authData.user.uid).updateChildValues(dict, withCompletionBlock: {
+                                         (error, ref) in
+                                         if error == nil {
+                                             print ("Done")
+                                         }
+                                     } )
                     }
-                } )
+                })
+            })
+          
+         
         }
     }
     

@@ -19,6 +19,8 @@ struct LoginView: View {
     @State var error = false
     @State var tempAlert: Alert = nil
     
+    
+    
     func signIn () {
         self.loading = true
         self.error = false
@@ -54,8 +56,11 @@ struct LoginView: View {
                 TextField("Email", text: $email)
                     .textFieldStyle(StudyTextFieldStyle())
                     .padding(.horizontal, 50)
+                    .foregroundColor(.black)
                 SecureField("Password", text: $password)
                     .textFieldStyle(StudyTextFieldStyle())
+                    .foregroundColor(.black)
+
                     .padding(.horizontal, 50)
                 HStack {
                     Spacer()
@@ -84,6 +89,7 @@ struct LoginView: View {
             .animation(.easeOut(duration: 0.16))
             .alert(isPresented: $error) {
                 self.tempAlert.unsafelyUnwrapped
+                
             }
         }
     }
@@ -92,8 +98,13 @@ struct LoginView: View {
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
         LoginView()
+        
+        
     }
     struct GeometryGetter: View {
+        
+       // test()
+        
         @Binding var rect: CGRect
         var body: some View {
             GeometryReader { geometry in
@@ -108,3 +119,15 @@ struct LoginView_Previews: PreviewProvider {
     }
 }
 
+
+extension UIViewController  {
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+}
