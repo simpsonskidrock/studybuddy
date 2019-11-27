@@ -674,11 +674,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-<<<<<<< HEAD
 				PRODUCT_BUNDLE_IDENTIFIER = Liliane;
-=======
-				PRODUCT_BUNDLE_IDENTIFIER = annika.jung;
->>>>>>> ee61b1d83f8f15966558bf109339104d6dd59902
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -699,11 +695,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-<<<<<<< HEAD
 				PRODUCT_BUNDLE_IDENTIFIER = Liliane;
-=======
-				PRODUCT_BUNDLE_IDENTIFIER = annika.jung;
->>>>>>> ee61b1d83f8f15966558bf109339104d6dd59902
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
