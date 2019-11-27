@@ -129,7 +129,10 @@ struct ProfileTabView: View {
             }.padding()
                 .foregroundColor(.lmuLightGrey)
             }
-        }.onAppear(perform: initialize)
+        }.navigationBarTitle("")
+        .navigationBarBackButtonHidden(true)
+        .navigationBarHidden(true)
+        .onAppear(perform: initialize)
             .padding(.horizontal)
             .background(Color.lmuGreen.edgesIgnoringSafeArea(.vertical))
     }

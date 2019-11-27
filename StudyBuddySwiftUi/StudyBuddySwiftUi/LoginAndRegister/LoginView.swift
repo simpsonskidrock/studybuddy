@@ -56,11 +56,13 @@ struct LoginView: View {
                     .textFieldStyle(StudyTextFieldStyle())
                     .padding(.horizontal, 50)
                     .foregroundColor(.black)
+
                 SecureField("Password", text: $password)
                     .textFieldStyle(StudyTextFieldStyle())
                     .foregroundColor(.black)
 
                     .padding(.horizontal, 50)
+               
                 HStack {
                     Spacer()
                     NavigationLink(destination: GeneralTabView()) {
@@ -79,7 +81,11 @@ struct LoginView: View {
                     }
                 }
                 Spacer()
-            }
+
+            }.navigationBarTitle("")
+            .navigationBarBackButtonHidden(true)
+            .navigationBarHidden(true)
+            
             .onAppear(perform: getSession)
             .padding(.horizontal, 20.0)
             .background(Color.lmuGreen.edgesIgnoringSafeArea(.vertical))
@@ -90,20 +96,17 @@ struct LoginView: View {
                 self.tempAlert.unsafelyUnwrapped
                 
             }
+            
         }
     }
+    
 }
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
         LoginView()
-        
-        
     }
     struct GeometryGetter: View {
-        
-       // test()
-        
         @Binding var rect: CGRect
         var body: some View {
             GeometryReader { geometry in
@@ -119,14 +122,4 @@ struct LoginView_Previews: PreviewProvider {
 }
 
 
-extension UIViewController  {
-    func hideKeyboardWhenTappedAround() {
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
-        tap.cancelsTouchesInView = false
-        view.addGestureRecognizer(tap)
-    }
 
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
-    }
-}

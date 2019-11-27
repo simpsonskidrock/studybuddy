@@ -50,7 +50,7 @@ struct RegisterView: View {
                 } else {
                     self.email = ""
                     self.password = ""
-                    // self.session.addProfile(result: result, image: self.image)
+                    self.session.addProfile(result: result, image: self.image)
                 }
             }
         }
