@@ -70,7 +70,6 @@ class SessionStore : ObservableObject {
     
     // Profile Changes //
     
-<<<<<<< HEAD
     func addProfile(result: AuthDataResult?, image: UIImage?) {
         
         guard let imageSelected = image else{
@@ -82,14 +81,12 @@ class SessionStore : ObservableObject {
             return
         }
  
-=======
     func getProfile (uid: String?) -> User? {
         let rootRef = Database.database().reference(withPath: "Users").child(uid.unsafelyUnwrapped).observe(.value, with: { snapshot in
           // This is the snapshot of the data at the moment in the Firebase database
           // To get value from the snapshot, we user snapshot.value
             print(snapshot.value.unsafelyUnwrapped as Any)
         })
->>>>>>> ee61b1d83f8f15966558bf109339104d6dd59902
         
         let displayNameRef: String = self.getRef(uid: uid, text: "displayName")
         let emailRef: String = self.getRef(uid: uid, text: "email")
@@ -102,6 +99,7 @@ class SessionStore : ObservableObject {
     }
     
     private func getRef(uid: String?, text: String) -> String {
+        
         let rootRef = Database.database().reference(withPath: "Users").child(uid.unsafelyUnwrapped).child(text).observe(.value, with: { snapshot in
             print(snapshot.value.unsafelyUnwrapped as Any)
         })
@@ -109,12 +107,20 @@ class SessionStore : ObservableObject {
         return ""
     }
     
-    func addProfile(result: AuthDataResult?) {
+   func addProfile(result: AuthDataResult?, image: UIImage?){
+    guard let imageSelected = image else{
+              print("Image is nil")
+              return
+          }
+          
+          guard let imageData = imageSelected.jpegData(compressionQuality: 0.4)else{
+              return
+          }
+
         if let authData = result {
             print(authData.user.email!)
             var dict: Dictionary<String, Any> = [
                 "uid": authData.user.uid,
-<<<<<<< HEAD
                 "email": authData.user.email!,
                 "profileImageUrl": "",
                 "fieldOfStudy": "",
@@ -142,33 +148,18 @@ class SessionStore : ObservableObject {
                                              print ("Done")
                                          }
                                      } )
-=======
-                "email": authData.user.email!
-            ]
-            Database.database().reference().child("Users")
-                .child(authData.user.uid).updateChildValues(dict, withCompletionBlock: {
-                    (error, ref) in
-                    if error == nil {
-                        print ("Done")
->>>>>>> ee61b1d83f8f15966558bf109339104d6dd59902
                     }
-                })
-            })
-          
+            } )
+                 } )
+            
+
          
         }
     }
     
     func updateProfile (displayName: String?, fieldOfStudy: String?, description: String?, hashtags: String?) {
         
-        /* guard let imageSelected = self.image else{
-         print("Avatar is nil")
-         return
-         }
-         guard let imageData = imageSelected.jpegData(compressionQuality: 0.4)else{
-         return
-         }
-         */
+       
         
         self.sessionUser?.updateDetails(displayName: displayName, fieldOfStudy: fieldOfStudy, description: description, hashtags: hashtags)
         // send update to database
@@ -208,4 +199,5 @@ class SessionStore : ObservableObject {
     func getAllOtherUsers() {
         
     }
+}
 }
