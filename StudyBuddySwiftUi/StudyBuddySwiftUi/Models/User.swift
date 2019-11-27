@@ -10,25 +10,25 @@ import SwiftUI
 struct User {
     var uid: String
     var email: String?
-    @State var displayName: String?
-    @State var fieldOfStudy: String?
-    @State var description: String?
-    @State var hashtags: String?
-    @State var image: String?
+    var displayName: String?
+    var fieldOfStudy: String?
+    var description: String?
+    var hashtags: String?
+    var image: String?
 
     init(uid: String, email: String?) {
         self.uid = uid
         self.email = email
     }
     
-    func updateDetails(displayName: String?, fieldOfStudy: String?, description: String?, hashtags: String?) {
+    mutating func updateDetails(displayName: String?, fieldOfStudy: String?, description: String?, hashtags: String?) {
         self.displayName = displayName
         self.fieldOfStudy = fieldOfStudy
         self.description = description
         self.hashtags = hashtags
     }
     
-    func updatePicture(image: String?) {
+    mutating func updatePicture(image: String?) {
         self.image = image
     }
 }

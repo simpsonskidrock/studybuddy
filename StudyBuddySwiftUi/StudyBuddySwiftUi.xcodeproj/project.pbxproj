@@ -16,6 +16,7 @@
 		4E5B7ECC2382A871002C72B2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4E5B7ECB2382A871002C72B2 /* GoogleService-Info.plist */; };
 		5F6706AD580144BD7E148704 /* Pods_StudyBuddySwiftUi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E880CE267D995F2D844EA96D /* Pods_StudyBuddySwiftUi.framework */; };
 		73321153238586C100B7660A /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73321152238586C100B7660A /* ChatView.swift */; };
+		734FC387238F094B00350F82 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734FC386238F094B00350F82 /* Strings.swift */; };
 		73587A1B2389359D009E799F /* ProfileCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73587A1A2389359D009E799F /* ProfileCardView.swift */; };
 		7367D1F6237D6670002EE928 /* ProfileTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7367D1F5237D6670002EE928 /* ProfileTabView.swift */; };
 		7367D1F8237D7255002EE928 /* SearchTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7367D1F7237D7255002EE928 /* SearchTabView.swift */; };
@@ -66,6 +67,7 @@
 		598C953324D99E410D1B9A0F /* Pods-StudyBuddySwiftUi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StudyBuddySwiftUi.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StudyBuddySwiftUi/Pods-StudyBuddySwiftUi.debug.xcconfig"; sourceTree = "<group>"; };
 		63A1D570831FA0B30FC24AE1 /* Pods-StudyBuddySwiftUiUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StudyBuddySwiftUiUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-StudyBuddySwiftUiUITests/Pods-StudyBuddySwiftUiUITests.release.xcconfig"; sourceTree = "<group>"; };
 		73321152238586C100B7660A /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
+		734FC386238F094B00350F82 /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		73587A1A2389359D009E799F /* ProfileCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCardView.swift; sourceTree = "<group>"; };
 		7367D1F5237D6670002EE928 /* ProfileTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTabView.swift; sourceTree = "<group>"; };
 		7367D1F7237D7255002EE928 /* SearchTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTabView.swift; sourceTree = "<group>"; };
@@ -169,6 +171,7 @@
 				3391BDFD238557FB00643581 /* User.swift */,
 				73A69B4823869D2700ECEAC2 /* ListedAlerts.swift */,
 				73587A1A2389359D009E799F /* ProfileCardView.swift */,
+				734FC386238F094B00350F82 /* Strings.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -487,6 +490,7 @@
 				7367D1FA237D7279002EE928 /* ContactsTabView.swift in Sources */,
 				7367D1FF237D8496002EE928 /* GeneralTabView.swift in Sources */,
 				73587A1B2389359D009E799F /* ProfileCardView.swift in Sources */,
+				734FC387238F094B00350F82 /* Strings.swift in Sources */,
 				29FB9AA8238C77D5005914CC /* ImageController.swift in Sources */,
 				73321153238586C100B7660A /* ChatView.swift in Sources */,
 				7367D1F8237D7255002EE928 /* SearchTabView.swift in Sources */,

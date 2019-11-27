@@ -19,8 +19,6 @@ struct LoginView: View {
     @State var error = false
     @State var tempAlert: Alert = nil
     
-    
-    
     func signIn () {
         self.loading = true
         self.error = false
@@ -36,8 +34,6 @@ struct LoginView: View {
                 } else {
                     self.email = ""
                     self.password = ""
-                    // self.session.sessionUser = self.session.getProfile(uid: self.session.sessionUser?.uid)
-                    let temp = self.session.getProfile(uid: self.session.sessionUser?.uid)
                 }
             }
         }
@@ -52,7 +48,8 @@ struct LoginView: View {
             VStack(spacing: 16) {
                 Spacer()
                 Image("fountainicon")
-                Text("StudyBuddy").font(.largeTitle)                    .foregroundColor(Color.white)
+                Text("StudyBuddy").font(.largeTitle)
+                    .foregroundColor(Color.white)
                 Spacer()
                 Text("Enter email and password").foregroundColor(Color.white)
                 TextField("Email", text: $email)

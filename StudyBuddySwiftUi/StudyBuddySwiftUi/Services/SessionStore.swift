@@ -75,7 +75,6 @@ class SessionStore : ObservableObject {
         let rootRef = Database.database().reference(withPath: "Users").child(uid.unsafelyUnwrapped)
         rootRef.observeSingleEvent(of: .value, with: { (snapshot) in
             let value = snapshot.value as? NSDictionary
-            print("value", value)
             let displayName = value?["displayName"] as? String ?? ""
             let fieldOfStudy = value?["fieldOfStudy"] as? String ?? ""
             let description = value?["description"] as? String ?? ""
@@ -114,7 +113,8 @@ class SessionStore : ObservableObject {
                         print (metaImageUrl)
                         dict["profileImageUrl"] = metaImageUrl
                         Database.database().reference().child("Users")
-                            .child(authData.user.uid).updateChildValues(dict, withCompletionBlock: {
+                            .child(authData.user.uid)
+                            .updateChildValues(dict, withCompletionBlock: {
                                 (error, ref) in
                                 if error == nil {
                                     print ("Done")
@@ -127,7 +127,6 @@ class SessionStore : ObservableObject {
     }
     
     func updateProfile (displayName: String?, fieldOfStudy: String?, description: String?, hashtags: String?) {
-        self.sessionUser?.updateDetails(displayName: displayName, fieldOfStudy: fieldOfStudy, description: description, hashtags: hashtags)
         let tempUid: String = String((self.sessionUser?.uid)!)
         let dict: Dictionary<String, Any> = [
             "displayName": displayName ?? "",
@@ -139,53 +138,9 @@ class SessionStore : ObservableObject {
             .child(tempUid).updateChildValues(dict, withCompletionBlock: {
                 (error, ref) in
                 if error == nil {
+                    self.sessionUser?.updateDetails(displayName: displayName!, fieldOfStudy: fieldOfStudy!, description: description!, hashtags: hashtags!)
                     print ("Done")
                 }
             } )
     }
-    
-    // uploading Images //
-    
-    func uploadImage (imageName: String) {
-     /*   let data = Data()
-        let riversRef = storageRef.child("images/" + imageName + ".jpg")
-        let uploadTask = riversRef.putData(data, metadata: nil) { (metadata, error) in
-          if let error = error {
-            return
-          }
-          reference.downloadURL(completion: { (url, error) in
-            if let error = error { return }
-          })
-        } */
-    }
-        
-    // Other Users
-        
-    func getAllOtherUsers(uid: String?) -> [User] {
-        let rootRef = Database.database().reference(withPath: "Users")
-        rootRef.observe(.value, with: { (snapshot) in
-            let value = snapshot.value as? NSDictionary
-            print(value)
-        }) { (error) in
-            print(error.localizedDescription)
-        }
-        return []
-    }
-    
-    func getOtherUser(uid: String) {
-        let rootRef = Database.database().reference(withPath: "Users").child(uid)
-        rootRef.observeSingleEvent(of: .value, with: { (snapshot) in
-            let value = snapshot.value as? NSDictionary
-            let email = value?["email"] as? String ?? ""
-            let displayName = value?["displayName"] as? String ?? ""
-            let fieldOfStudy = value?["fieldOfStudy"] as? String ?? ""
-            let description = value?["description"] as? String ?? ""
-            let hashtags = value?["hashtags"] as? String ?? ""
-            let otherUser = User(uid: uid, email: email)
-            otherUser.updateDetails(displayName: displayName, fieldOfStudy: fieldOfStudy, description: description, hashtags: hashtags)
-        }) { (error) in
-            print(error.localizedDescription)
-        }
-    }
 }
-
