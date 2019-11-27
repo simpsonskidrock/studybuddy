@@ -70,16 +70,7 @@ class SessionStore : ObservableObject {
     
     // Profile Changes //
     
-    func addProfile(result: AuthDataResult?, image: UIImage?) {
-        
-        guard let imageSelected = image else{
-            print("Image is nil")
-            return
-        }
-        
-        guard let imageData = imageSelected.jpegData(compressionQuality: 0.4)else{
-            return
-        }
+    
  
     func getProfile (uid: String?) -> User? {
         let rootRef = Database.database().reference(withPath: "Users").child(uid.unsafelyUnwrapped).observe(.value, with: { snapshot in
@@ -98,7 +89,7 @@ class SessionStore : ObservableObject {
         return user
     }
     
-    private func getRef(uid: String?, text: String) -> String {
+   func getRef(uid: String?, text: String) -> String {
         
         let rootRef = Database.database().reference(withPath: "Users").child(uid.unsafelyUnwrapped).child(text).observe(.value, with: { snapshot in
             print(snapshot.value.unsafelyUnwrapped as Any)
@@ -200,4 +191,4 @@ class SessionStore : ObservableObject {
         
     }
 }
-}
+
