@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -667,14 +667,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"StudyBuddySwiftUi/Preview Content\"";
-				DEVELOPMENT_TEAM = 6T8T8284X7;
+				DEVELOPMENT_TEAM = 9PV32G6D3K;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = StudyBuddySwiftUi/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = piose5.StudyBuddySwiftUi;
+				PRODUCT_BUNDLE_IDENTIFIER = annika.jung;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -688,14 +688,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"StudyBuddySwiftUi/Preview Content\"";
-				DEVELOPMENT_TEAM = 6T8T8284X7;
+				DEVELOPMENT_TEAM = 9PV32G6D3K;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = StudyBuddySwiftUi/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = piose5.StudyBuddySwiftUi;
+				PRODUCT_BUNDLE_IDENTIFIER = annika.jung;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

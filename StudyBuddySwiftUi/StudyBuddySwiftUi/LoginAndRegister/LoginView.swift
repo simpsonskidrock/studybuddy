@@ -34,6 +34,8 @@ struct LoginView: View {
                 } else {
                     self.email = ""
                     self.password = ""
+                    // self.session.sessionUser = self.session.getProfile(uid: self.session.sessionUser?.uid)
+                    let temp = self.session.getProfile(uid: self.session.sessionUser?.uid)
                 }
             }
         }
