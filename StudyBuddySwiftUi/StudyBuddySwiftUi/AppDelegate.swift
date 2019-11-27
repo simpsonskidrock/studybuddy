@@ -8,14 +8,18 @@
 
 import UIKit
 import Firebase
+import FirebaseStorage
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Firebase
         FirebaseApp.configure()
-       // let storage = Storage.storage() (we need the firebaseStorage to store the uploaded images)
+       let storage = Storage.storage() //(we need the firebaseStorage to store the uploaded images)
 
 
         return true
