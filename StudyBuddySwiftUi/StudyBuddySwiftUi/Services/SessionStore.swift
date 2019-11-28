@@ -194,21 +194,32 @@ class SessionStore : ObservableObject {
     func getOtherUsers () -> [User] {
         var users: [User] = []
         let rootRef = Database.database().reference(withPath: "Users")
-        print(rootRef)
-        rootRef.observeSingleEvent(of: .value, with: { (snapshot) in
-            
-       /*     let value = snapshot.value as? NSDictionary
+        rootRef.observe(.value, with: { (snapshot) in
+            for uid in (snapshot.value as? NSDictionary)!.allKeys as! [String] {
+                users.append(self.getOtherUsersProfile(uid: uid))
+            }
+        }) { (error) in
+            print(error.localizedDescription)
+        }
+        return users
+    }
+    
+    func getOtherUsersProfile (uid: String?) -> User {
+        var user: User = User(uid: uid!, email: "")
+        let rootRef = Database.database().reference(withPath: "Users").child(uid.unsafelyUnwrapped)
+        rootRef.observe(.value, with: { (snapshot) in
+            let value = snapshot.value as? NSDictionary
             let displayName = value?["displayName"] as? String ?? ""
             let fieldOfStudy = value?["fieldOfStudy"] as? String ?? ""
             let description = value?["description"] as? String ?? ""
             let hashtags = value?["hashtags"] as? String ?? ""
-            let profileImageUrl = value?["profileImageUrl"] as? String ?? "" */
-            
+            let profileImageUrl = value?["profileImageUrl"] as? String ?? ""
+            user.updateDetails(displayName: displayName, fieldOfStudy: fieldOfStudy, description: description, hashtags: hashtags)
+            user.updatePicture(profileImageUrl: profileImageUrl)
+            print("user: ", user)
         }) { (error) in
             print(error.localizedDescription)
         }
-        
-        
-        return users
+        return user
     }
 }
