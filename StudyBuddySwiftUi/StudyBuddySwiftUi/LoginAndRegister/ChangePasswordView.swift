@@ -58,12 +58,15 @@ struct ChangePasswordView: View {
                 VStack {
                     Text("Enter new password").foregroundColor(Color.white)
                     TextField("E-mail", text: $email)
+                        .foregroundColor(.black)
                         .textFieldStyle(StudyTextFieldStyle())
                         .padding(.horizontal, 50)
                     SecureField("New Password", text: $newPassword)
+                        .foregroundColor(.black)
                         .textFieldStyle(StudyTextFieldStyle())
                         .padding(.horizontal, 50)
                     SecureField("Confirm New Password", text: $repeatNewPassword)
+                        .foregroundColor(.black)
                         .textFieldStyle(StudyTextFieldStyle())
                         .padding(.horizontal, 50)
                 }
@@ -99,17 +102,5 @@ struct ChangePasswordView_Previews: PreviewProvider {
     static var previews: some View {
         ChangePasswordView()
     }
-    struct GeometryGetter: View {
-        @Binding var rect: CGRect
-        var body: some View {
-            GeometryReader { geometry in
-                Group { () -> AnyView in
-                    DispatchQueue.main.async {
-                        self.rect = geometry.frame(in: .global)
-                    }
-                    return AnyView(Color.clear)
-                }
-            }
-        }
-    }
+    
 }
