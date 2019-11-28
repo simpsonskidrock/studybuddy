@@ -14,7 +14,10 @@ struct SearchTabView: View {
     var body: some View {
         VStack {
             Text("Hallo")
-        }.padding(.horizontal)
+        }.navigationBarTitle("")
+        .navigationBarBackButtonHidden(true)
+        .navigationBarHidden(true)
+        .padding(.horizontal)
             .background(Color.lmuGreen.edgesIgnoringSafeArea(.vertical))
     }
 }

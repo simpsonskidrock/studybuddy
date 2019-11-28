@@ -71,7 +71,9 @@ struct ContactsTabView: View {
                 }.navigationBarTitle(Text("Chats"))
                     .resignKeyboardOnDragGesture()
             }
-        }
+        }.navigationBarTitle("")
+        .navigationBarBackButtonHidden(true)
+        .navigationBarHidden(true)
     }
 }
 
