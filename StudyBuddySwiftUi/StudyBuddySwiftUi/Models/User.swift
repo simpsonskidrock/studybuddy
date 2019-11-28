@@ -14,7 +14,7 @@ struct User {
     var fieldOfStudy: String?
     var description: String?
     var hashtags: String?
-    var image: String?
+    var profileImageUrl: String?
 
     init(uid: String, email: String?) {
         self.uid = uid
@@ -28,7 +28,7 @@ struct User {
         self.hashtags = hashtags
     }
     
-    mutating func updatePicture(image: String?) {
-        self.image = image
+    mutating func updatePicture(profileImageUrl: String?) {
+        self.profileImageUrl = profileImageUrl
     }
 }

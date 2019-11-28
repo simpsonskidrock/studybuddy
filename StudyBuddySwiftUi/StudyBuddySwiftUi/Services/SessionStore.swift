@@ -79,7 +79,9 @@ class SessionStore : ObservableObject {
             let fieldOfStudy = value?["fieldOfStudy"] as? String ?? ""
             let description = value?["description"] as? String ?? ""
             let hashtags = value?["hashtags"] as? String ?? ""
+            let profileImageUrl = value?["profileImageUrl"] as? String ?? ""
             self.sessionUser?.updateDetails(displayName: displayName, fieldOfStudy: fieldOfStudy, description: description, hashtags: hashtags)
+            self.sessionUser?.updatePicture(profileImageUrl: profileImageUrl)
         }) { (error) in
             print(error.localizedDescription)
         }
@@ -117,6 +119,7 @@ class SessionStore : ObservableObject {
                             .updateChildValues(dict, withCompletionBlock: {
                                 (error, ref) in
                                 if error == nil {
+                                    self.sessionUser?.updatePicture(profileImageUrl: metaImageUrl)
                                     print ("Done")
                                 }
                             } )
@@ -126,21 +129,46 @@ class SessionStore : ObservableObject {
         }
     }
     
-    func updateProfile (displayName: String?, fieldOfStudy: String?, description: String?, hashtags: String?) {
+    func updateProfile (displayName: String?, fieldOfStudy: String?, description: String?, hashtags: String?, image: UIImage?) {
+        guard let imageSelected = image else {
+            print("Image is nil")
+            return
+        }
+        guard let imageData = imageSelected.jpegData(compressionQuality: 0.4) else {
+            return
+        }
         let tempUid: String = String((self.sessionUser?.uid)!)
-        let dict: Dictionary<String, Any> = [
+        var dict: Dictionary<String, Any> = [
             "displayName": displayName ?? "",
             "fieldOfStudy": fieldOfStudy ?? "",
             "description": description ?? "",
             "hashtags": hashtags ?? ""
         ]
-        Database.database().reference().child("Users")
-            .child(tempUid).updateChildValues(dict, withCompletionBlock: {
-                (error, ref) in
-                if error == nil {
-                    self.sessionUser?.updateDetails(displayName: displayName!, fieldOfStudy: fieldOfStudy!, description: description!, hashtags: hashtags!)
-                    print ("Done")
+        let storageRef = Storage.storage().reference(forURL: "gs://studybuddy-82a88.appspot.com/")
+        let storageProfileRef = storageRef.child("Profile").child(tempUid)
+        let metaData = StorageMetadata()
+        metaData.contentType = "image/jpg"
+        storageProfileRef.putData(imageData, metadata: metaData, completion: {(StorageMetadata, error) in
+            if error != nil {
+                print (error?.localizedDescription)
+                return
+            }
+            storageProfileRef.downloadURL(completion: {(url, error)in
+                if let metaImageUrl = url?.absoluteString {
+                    print (metaImageUrl)
+                    dict["profileImageUrl"] = metaImageUrl
+                    Database.database().reference().child("Users")
+                        .child(tempUid)
+                        .updateChildValues(dict, withCompletionBlock: {
+                            (error, ref) in
+                            if error == nil {
+                                self.sessionUser?.updateDetails(displayName: displayName!, fieldOfStudy: fieldOfStudy!, description: description!, hashtags: hashtags!)
+                                self.sessionUser?.updatePicture(profileImageUrl: metaImageUrl)
+                                print ("Done")
+                            }
+                        } )
                 }
             } )
+        } )
     }
 }

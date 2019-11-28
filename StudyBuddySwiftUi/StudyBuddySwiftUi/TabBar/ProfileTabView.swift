@@ -17,6 +17,7 @@ struct ProfileTabView: View {
     @State var fieldOfStudy: String = ""
     @State var description: String = ""
     @State var hashtags: String = ""
+    @State var profileImageUrl: String = ""
     
     @State private var editProfile = false
     
@@ -28,6 +29,7 @@ struct ProfileTabView: View {
         self.fieldOfStudy = session.sessionUser?.fieldOfStudy ?? ""
         self.description = session.sessionUser?.description ?? ""
         self.hashtags = session.sessionUser?.hashtags ?? ""
+        self.profileImageUrl = session.sessionUser?.profileImageUrl ?? ""
     }
     
     var body: some View {
@@ -122,7 +124,7 @@ struct ProfileTabView: View {
                     .foregroundColor(.lmuLightGrey)
                 }
                 if self.editProfile { Button(action: {
-                    self.session.updateProfile(displayName: self.displayName, fieldOfStudy: self.fieldOfStudy, description: self.description, hashtags: self.hashtags)
+                    self.session.updateProfile(displayName: self.displayName, fieldOfStudy: self.fieldOfStudy, description: self.description, hashtags: self.hashtags, image: self.image)
                     self.editProfile.toggle()
                 }) {
                     Text("Save").fontWeight(.semibold)
