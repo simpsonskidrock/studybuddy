@@ -14,15 +14,16 @@ struct RegisterView: View {
     @EnvironmentObject var session: SessionStore
     @ObservedObject private var keyboard = KeyboardResponder()
     
-    @State var loading = false
-    @State var error = false
+    @State var loading: Bool = false
+    @State var error: Bool = false
     @State var tempAlert: Alert = nil
     
     @State var email: String = ""
     @State var password: String = ""
     @State private var repeatPassword: String = ""
-    @State var isShowingImagePicker = false
-    @State var image = UIImage()
+    
+    @State var isShowingImagePicker: Bool = false
+    @State var image: UIImage = UIImage()
     
     func logInDataCheck() {
         if (self.email == "" || self.password == "" || self.repeatPassword == "") {

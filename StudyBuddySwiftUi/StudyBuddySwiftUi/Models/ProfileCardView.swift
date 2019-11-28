@@ -13,17 +13,19 @@ struct ProfileCardView: View {
     var fieldOfStudy: String = ""
     var description: String = ""
     var hashtags: String = ""
+    var profileImage: UIImage = UIImage()
     
-    init(person: User) {
-        if (person.displayName != nil) { self.name = person.displayName.unsafelyUnwrapped }
-        if (person.fieldOfStudy != nil) { self.fieldOfStudy = person.fieldOfStudy.unsafelyUnwrapped }
-        if (person.description != nil) { self.description = person.description.unsafelyUnwrapped }
-        if (person.hashtags != nil) { self.hashtags = person.hashtags.unsafelyUnwrapped }
+    init(person: User, profileImage: UIImage) {
+        if (person.displayName != nil) { self.name = person.displayName! }
+        if (person.fieldOfStudy != nil) { self.fieldOfStudy = person.fieldOfStudy! }
+        if (person.description != nil) { self.description = person.description! }
+        if (person.hashtags != nil) { self.hashtags = person.hashtags! }
+        self.profileImage = profileImage
     }
     
     var body: some View {
-        VStack{
-            Image(systemName: "person.badge.plus")
+        VStack {
+            Image(uiImage: self.profileImage)
                 .resizable()
                 .frame(width: 90, height: 90)
                 .colorInvert()

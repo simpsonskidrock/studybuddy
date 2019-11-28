@@ -19,10 +19,10 @@ struct ProfileTabView: View {
     @State var hashtags: String = ""
     @State var profileImageUrl: String = ""
     
-    @State private var editProfile = false
+    @State private var editProfile: Bool = false
     
-    @State var isShowingImagePicker = false
-    @State var image = UIImage()
+    @State var isShowingImagePicker: Bool = false
+    @State var image: UIImage = UIImage()
     
     func initialize() {
         self.displayName = session.sessionUser?.displayName ?? ""
@@ -30,6 +30,7 @@ struct ProfileTabView: View {
         self.description = session.sessionUser?.description ?? ""
         self.hashtags = session.sessionUser?.hashtags ?? ""
         self.profileImageUrl = session.sessionUser?.profileImageUrl ?? ""
+        self.image = session.getProfileImage(profileImageUrl: self.profileImageUrl) ?? UIImage()
     }
     
     var body: some View {
@@ -56,7 +57,7 @@ struct ProfileTabView: View {
                         }.padding()
                     }.frame(height: 50)
                         .padding(.leading, 10)
-                    Image(uiImage: image)
+                    Image(uiImage: self.image)
                         .resizable()
                         .scaledToFit()
                         .clipShape(Circle())
