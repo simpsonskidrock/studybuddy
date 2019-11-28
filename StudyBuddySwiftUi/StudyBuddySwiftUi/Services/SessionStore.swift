@@ -41,7 +41,7 @@ class SessionStore : ObservableObject {
         }
     }
     
-    // Authentification //
+    // ---------------- Authentification ---------------- //
     
     func signUp (
         email: String,
@@ -69,7 +69,7 @@ class SessionStore : ObservableObject {
         }
     }
     
-    // Profile //
+    // ---------------- Profile ---------------- //
     
     func getProfile (uid: String?) {
         let rootRef = Database.database().reference(withPath: "Users").child(uid.unsafelyUnwrapped)
@@ -97,39 +97,42 @@ class SessionStore : ObservableObject {
         }
         if let authData = result {
             print(authData.user.email!)
-            var dict: Dictionary<String, Any> = [
+            let dict: Dictionary<String, Any> = [
                 "uid": authData.user.uid,
                 "email": authData.user.email!
             ]
-            let storageRef = Storage.storage().reference(forURL: "gs://studybuddy-82a88.appspot.com/")
-            let storageProfileRef = storageRef.child("Profile").child(authData.user.uid)
-            let metaData = StorageMetadata()
-            metaData.contentType = "image/jpg"
-            storageProfileRef.putData(imageData, metadata: metaData, completion: {(StorageMetadata, error) in
-                if error != nil {
-                    print (error?.localizedDescription)
-                    return
-                }
-                storageProfileRef.downloadURL(completion: {(url, error)in
-                    if let metaImageUrl = url?.absoluteString {
-                        print (metaImageUrl)
-                        dict["profileImageUrl"] = metaImageUrl
-                        Database.database().reference().child("Users")
-                            .child(authData.user.uid)
-                            .updateChildValues(dict, withCompletionBlock: {
-                                (error, ref) in
-                                if error == nil {
-                                    self.sessionUser?.updatePicture(profileImageUrl: metaImageUrl)
-                                    print ("Done")
-                                }
-                            } )
+            self.updateProfileImage(uid: authData.user.uid, image: image)
+            Database.database().reference().child("Users")
+                .child(authData.user.uid)
+                .updateChildValues(dict, withCompletionBlock: {
+                    (error, ref) in
+                    if error == nil {
+                        print ("Added Profile: Done")
                     }
                 } )
-            } )
         }
     }
     
     func updateProfile (displayName: String?, fieldOfStudy: String?, description: String?, hashtags: String?, image: UIImage?) {
+        let tempUid: String = String((self.sessionUser?.uid)!)
+        self.updateProfileImage(uid: tempUid, image: image)
+        let dict: Dictionary<String, Any> = [
+            "displayName": displayName ?? "",
+            "fieldOfStudy": fieldOfStudy ?? "",
+            "description": description ?? "",
+            "hashtags": hashtags ?? ""
+        ]
+        Database.database().reference().child("Users").child(tempUid).updateChildValues(dict, withCompletionBlock: {(error, ref) in
+            if error == nil {
+                self.sessionUser?.updateDetails(displayName: displayName!, fieldOfStudy: fieldOfStudy!, description: description!, hashtags: hashtags!)
+                print ("Update ProfileDetails: Done")
+            }
+        } )
+    }
+    
+    // ---------------- Image ---------------- //
+    
+    func updateProfileImage(uid: String, image: UIImage?) {
         guard let imageSelected = image else {
             print("Image is nil")
             return
@@ -137,47 +140,35 @@ class SessionStore : ObservableObject {
         guard let imageData = imageSelected.jpegData(compressionQuality: 0.4) else {
             return
         }
-        let tempUid: String = String((self.sessionUser?.uid)!)
-        var dict: Dictionary<String, Any> = [
-            "displayName": displayName ?? "",
-            "fieldOfStudy": fieldOfStudy ?? "",
-            "description": description ?? "",
-            "hashtags": hashtags ?? ""
-        ]
         let storageRef = Storage.storage().reference(forURL: "gs://studybuddy-82a88.appspot.com/")
-        let storageProfileRef = storageRef.child("Profile").child(tempUid)
+        let storageProfileRef = storageRef.child("Profile").child(uid)
         let metaData = StorageMetadata()
         metaData.contentType = "image/jpg"
         storageProfileRef.putData(imageData, metadata: metaData, completion: {(StorageMetadata, error) in
             if error != nil {
-                print (error?.localizedDescription)
+                print (error?.localizedDescription ?? "")
                 return
             }
             storageProfileRef.downloadURL(completion: {(url, error)in
                 if let metaImageUrl = url?.absoluteString {
-                    print (metaImageUrl)
-                    dict["profileImageUrl"] = metaImageUrl
-                    Database.database().reference().child("Users")
-                        .child(tempUid)
-                        .updateChildValues(dict, withCompletionBlock: {
-                            (error, ref) in
-                            if error == nil {
-                                self.sessionUser?.updateDetails(displayName: displayName!, fieldOfStudy: fieldOfStudy!, description: description!, hashtags: hashtags!)
-                                self.sessionUser?.updatePicture(profileImageUrl: metaImageUrl)
-                                print ("Done")
-                            }
-                        } )
+                    let dict: Dictionary<String, Any> = [
+                        "profileImageUrl": metaImageUrl
+                    ]
+                    Database.database().reference().child("Users").child(uid).updateChildValues(dict, withCompletionBlock: {(error, ref) in
+                        if error == nil {
+                            self.sessionUser?.updatePicture(profileImageUrl: metaImageUrl)
+                            print ("Update ProfileImage: Done")
+                        }
+                    } )
                 }
             } )
-        } )
+        })
     }
     
-    // Image //
-    
     func getProfileImage(profileImageUrl: String) -> UIImage? { // Still not working
-        let storageRef = Storage.storage().reference(forURL: profileImageUrl)
-        var image: UIImage? = UIImage()
-    /*    storageRef.getData(maxSize: 1 * 1024 * 1024) { data, error in
+        let image: UIImage? = UIImage()
+    /*    let storageRef = Storage.storage().reference(forURL: profileImageUrl)
+        storageRef.getData(maxSize: 1 * 1024 * 1024) { data, error in
           if let error = error {
             print("loading profile image: error")
           } else {
@@ -189,14 +180,14 @@ class SessionStore : ObservableObject {
         return image
     }
     
-    // Other User //
+    // ---------------- Other User|s ---------------- //
     
     func getOtherUsers () -> [User] {
         var users: [User] = []
         let rootRef = Database.database().reference(withPath: "Users")
         rootRef.observe(.value, with: { (snapshot) in
             for uid in (snapshot.value as? NSDictionary)!.allKeys as! [String] {
-                users.append(self.getOtherUsersProfile(uid: uid))
+                users.append(self.getOtherUser(uid: uid))
             }
         }) { (error) in
             print(error.localizedDescription)
@@ -204,7 +195,7 @@ class SessionStore : ObservableObject {
         return users
     }
     
-    func getOtherUsersProfile (uid: String?) -> User {
+    func getOtherUser (uid: String?) -> User {
         var user: User = User(uid: uid!, email: "")
         let rootRef = Database.database().reference(withPath: "Users").child(uid.unsafelyUnwrapped)
         rootRef.observe(.value, with: { (snapshot) in
@@ -216,7 +207,6 @@ class SessionStore : ObservableObject {
             let profileImageUrl = value?["profileImageUrl"] as? String ?? ""
             user.updateDetails(displayName: displayName, fieldOfStudy: fieldOfStudy, description: description, hashtags: hashtags)
             user.updatePicture(profileImageUrl: profileImageUrl)
-            print("user: ", user)
         }) { (error) in
             print(error.localizedDescription)
         }
