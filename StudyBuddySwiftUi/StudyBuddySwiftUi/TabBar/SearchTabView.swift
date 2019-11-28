@@ -10,6 +10,11 @@ import Foundation
 import SwiftUI
 
 struct SearchTabView: View {
+    @EnvironmentObject var session: SessionStore
+    
+    func initialize() {
+        session.getOtherUsers()
+    }
     
     var body: some View {
         VStack {
@@ -19,6 +24,7 @@ struct SearchTabView: View {
         .navigationBarHidden(true)
         .padding(.horizontal)
             .background(Color.lmuGreen.edgesIgnoringSafeArea(.vertical))
+        .onAppear(perform: initialize)
     }
 }
 

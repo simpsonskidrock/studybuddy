@@ -188,4 +188,27 @@ class SessionStore : ObservableObject {
         print("given profile image:", image)
         return image
     }
+    
+    // Other User //
+    
+    func getOtherUsers () -> [User] {
+        var users: [User] = []
+        let rootRef = Database.database().reference(withPath: "Users")
+        print(rootRef)
+        rootRef.observeSingleEvent(of: .value, with: { (snapshot) in
+            
+       /*     let value = snapshot.value as? NSDictionary
+            let displayName = value?["displayName"] as? String ?? ""
+            let fieldOfStudy = value?["fieldOfStudy"] as? String ?? ""
+            let description = value?["description"] as? String ?? ""
+            let hashtags = value?["hashtags"] as? String ?? ""
+            let profileImageUrl = value?["profileImageUrl"] as? String ?? "" */
+            
+        }) { (error) in
+            print(error.localizedDescription)
+        }
+        
+        
+        return users
+    }
 }
