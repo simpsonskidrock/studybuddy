@@ -85,7 +85,6 @@ struct LoginView: View {
             }.navigationBarTitle("")
             .navigationBarBackButtonHidden(true)
             .navigationBarHidden(true)
-            
             .onAppear(perform: getSession)
             .padding(.horizontal, 20.0)
             .background(Color.lmuGreen.edgesIgnoringSafeArea(.vertical))
@@ -94,12 +93,9 @@ struct LoginView: View {
             .animation(.easeOut(duration: 0.16))
             .alert(isPresented: $error) {
                 self.tempAlert.unsafelyUnwrapped
-                
             }
-            
         }
     }
-    
 }
 
 struct LoginView_Previews: PreviewProvider {
