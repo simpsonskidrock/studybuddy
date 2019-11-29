@@ -89,13 +89,6 @@ class SessionStore : ObservableObject {
     }
     
     func addProfile (result: AuthDataResult?, image: UIImage?) {
-        guard let imageSelected = image else {
-            print("Image is nil")
-            return
-        }
-        guard let imageData = imageSelected.jpegData(compressionQuality: 0.4) else {
-            return
-        }
         if let authData = result {
             print(authData.user.email!)
             let dict: Dictionary<String, Any> = [
