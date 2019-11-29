@@ -90,7 +90,6 @@ class SessionStore : ObservableObject {
     
     func addProfile (result: AuthDataResult?, image: UIImage?) {
         if let authData = result {
-            print(authData.user.email!)
             let dict: Dictionary<String, Any> = [
                 Strings().uid: authData.user.uid,
                 Strings().email: authData.user.email!

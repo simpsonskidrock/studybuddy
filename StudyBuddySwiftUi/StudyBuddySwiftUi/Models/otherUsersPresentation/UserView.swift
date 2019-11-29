@@ -12,7 +12,6 @@ struct UserView: View {
     let userModel: User
     
     func getImage() -> UIImage {
-        print(self.userModel.uid)
         return UIImage()
     }
     
