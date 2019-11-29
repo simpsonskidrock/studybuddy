@@ -31,6 +31,7 @@ struct ProfileTabView: View {
         self.hashtags = session.sessionUser?.hashtags ?? ""
         self.profileImageUrl = session.sessionUser?.profileImageUrl ?? ""
         // self.image = session.getProfileImage(profileImageUrl: self.profileImageUrl) ?? UIImage()
+        session.getOtherUsers()
     }
     
     var body: some View {

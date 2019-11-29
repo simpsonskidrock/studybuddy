@@ -18,12 +18,13 @@ struct SearchTabView: View {
     
     var body: some View {
         VStack {
-            Text("Hallo")
+            SwipeView(users: session.otherUsers)
         }.navigationBarTitle("")
         .navigationBarBackButtonHidden(true)
         .navigationBarHidden(true)
         .padding(.horizontal)
-            .background(Color.lmuGreen.edgesIgnoringSafeArea(.vertical))
+            .padding(.bottom)
+        .background(Color.lmuGreen.edgesIgnoringSafeArea(.vertical))
         .onAppear(perform: initialize)
     }
 }

@@ -15,12 +15,12 @@ struct ProfileCardView: View {
     var hashtags: String = ""
     var profileImage: UIImage = UIImage()
     
-    init(user: User, profileImage: UIImage) {
+    init(user: User) { //, profileImage: UIImage) {
         if (user.displayName != nil) { self.name = user.displayName! }
         if (user.fieldOfStudy != nil) { self.fieldOfStudy = user.fieldOfStudy! }
         if (user.description != nil) { self.description = user.description! }
         if (user.hashtags != nil) { self.hashtags = user.hashtags! }
-        self.profileImage = profileImage
+        //self.profileImage = profileImage
     }
     
     var body: some View {
@@ -48,6 +48,7 @@ struct ProfileCardView: View {
                     Text(self.hashtags).foregroundColor(.black)
                 }
             }
-        }
+        }.shadow(radius: 12.0)
+        .cornerRadius(12.0)
     }
 }
