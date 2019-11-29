@@ -73,14 +73,14 @@ class SessionStore : ObservableObject {
     // ---------------- Profile ---------------- //
     
     func getProfile (uid: String?) {
-        let rootRef = Database.database().reference(withPath: "Users").child(uid.unsafelyUnwrapped)
+        let rootRef = Database.database().reference(withPath: Strings().urlIdentifierUser).child(uid.unsafelyUnwrapped)
         rootRef.observeSingleEvent(of: .value, with: { (snapshot) in
             let value = snapshot.value as? NSDictionary
-            let displayName = value?["displayName"] as? String ?? ""
-            let fieldOfStudy = value?["fieldOfStudy"] as? String ?? ""
-            let description = value?["description"] as? String ?? ""
-            let hashtags = value?["hashtags"] as? String ?? ""
-            let profileImageUrl = value?["profileImageUrl"] as? String ?? ""
+            let displayName = value?[Strings().displayName] as? String ?? ""
+            let fieldOfStudy = value?[Strings().fieldOfStudy] as? String ?? ""
+            let description = value?[Strings().description] as? String ?? ""
+            let hashtags = value?[Strings().hashtags] as? String ?? ""
+            let profileImageUrl = value?[Strings().profileImageUrl] as? String ?? ""
             self.sessionUser?.updateDetails(displayName: displayName, fieldOfStudy: fieldOfStudy, description: description, hashtags: hashtags)
             self.sessionUser?.updatePicture(profileImageUrl: profileImageUrl)
         }) { (error) in
@@ -99,11 +99,11 @@ class SessionStore : ObservableObject {
         if let authData = result {
             print(authData.user.email!)
             let dict: Dictionary<String, Any> = [
-                "uid": authData.user.uid,
-                "email": authData.user.email!
+                Strings().uid: authData.user.uid,
+                Strings().email: authData.user.email!
             ]
             self.updateProfileImage(uid: authData.user.uid, image: image)
-            Database.database().reference().child("Users")
+            Database.database().reference().child(Strings().urlIdentifierUser)
                 .child(authData.user.uid)
                 .updateChildValues(dict, withCompletionBlock: {
                     (error, ref) in
@@ -118,12 +118,12 @@ class SessionStore : ObservableObject {
         let tempUid: String = String((self.sessionUser?.uid)!)
         self.updateProfileImage(uid: tempUid, image: image)
         let dict: Dictionary<String, Any> = [
-            "displayName": displayName ?? "",
-            "fieldOfStudy": fieldOfStudy ?? "",
-            "description": description ?? "",
-            "hashtags": hashtags ?? ""
+            Strings().displayName: displayName ?? "",
+            Strings().fieldOfStudy: fieldOfStudy ?? "",
+            Strings().description: description ?? "",
+            Strings().hashtags: hashtags ?? ""
         ]
-        Database.database().reference().child("Users").child(tempUid).updateChildValues(dict, withCompletionBlock: {(error, ref) in
+        Database.database().reference().child(Strings().urlIdentifierUser).child(tempUid).updateChildValues(dict, withCompletionBlock: {(error, ref) in
             if error == nil {
                 self.sessionUser?.updateDetails(displayName: displayName!, fieldOfStudy: fieldOfStudy!, description: description!, hashtags: hashtags!)
                 print ("Update ProfileDetails: Done")
@@ -141,8 +141,8 @@ class SessionStore : ObservableObject {
         guard let imageData = imageSelected.jpegData(compressionQuality: 0.4) else {
             return
         }
-        let storageRef = Storage.storage().reference(forURL: "gs://studybuddy-82a88.appspot.com/")
-        let storageProfileRef = storageRef.child("Profile").child(uid)
+        let storageRef = Storage.storage().reference(forURL: Strings().storageRef)
+        let storageProfileRef = storageRef.child(Strings().urlIdentifierProfile).child(uid)
         let metaData = StorageMetadata()
         metaData.contentType = "image/jpg"
         storageProfileRef.putData(imageData, metadata: metaData, completion: {(StorageMetadata, error) in
@@ -153,9 +153,9 @@ class SessionStore : ObservableObject {
             storageProfileRef.downloadURL(completion: {(url, error)in
                 if let metaImageUrl = url?.absoluteString {
                     let dict: Dictionary<String, Any> = [
-                        "profileImageUrl": metaImageUrl
+                        Strings().profileImageUrl: metaImageUrl
                     ]
-                    Database.database().reference().child("Users").child(uid).updateChildValues(dict, withCompletionBlock: {(error, ref) in
+                    Database.database().reference().child(Strings().urlIdentifierUser).child(uid).updateChildValues(dict, withCompletionBlock: {(error, ref) in
                         if error == nil {
                             self.sessionUser?.updatePicture(profileImageUrl: metaImageUrl)
                             print ("Update ProfileImage: Done")
@@ -185,7 +185,7 @@ class SessionStore : ObservableObject {
     
     func getOtherUsers () {
         self.otherUsers = []
-        let rootRef = Database.database().reference(withPath: "Users")
+        let rootRef = Database.database().reference(withPath: Strings().urlIdentifierUser)
         rootRef.observe(.value, with: { (snapshot) in
             for uid in (snapshot.value as? NSDictionary)!.allKeys as! [String] {
                 if (uid != self.sessionUser?.uid) {
@@ -199,14 +199,14 @@ class SessionStore : ObservableObject {
     
     func getOtherUser (uid: String?) {
         var user: User = User(uid: uid!, email: "")
-        let rootRef = Database.database().reference(withPath: "Users").child(uid.unsafelyUnwrapped)
+        let rootRef = Database.database().reference(withPath: Strings().urlIdentifierUser).child(uid.unsafelyUnwrapped)
         rootRef.observe(.value, with: { (snapshot) in
             let value = snapshot.value as? NSDictionary
-            let displayName = value?["displayName"] as? String ?? ""
-            let fieldOfStudy = value?["fieldOfStudy"] as? String ?? ""
-            let description = value?["description"] as? String ?? ""
-            let hashtags = value?["hashtags"] as? String ?? ""
-            let profileImageUrl = value?["profileImageUrl"] as? String ?? ""
+            let displayName = value?[Strings().displayName] as? String ?? ""
+            let fieldOfStudy = value?[Strings().fieldOfStudy] as? String ?? ""
+            let description = value?[Strings().description] as? String ?? ""
+            let hashtags = value?[Strings().hashtags] as? String ?? ""
+            let profileImageUrl = value?[Strings().profileImageUrl] as? String ?? ""
             user.updateDetails(displayName: displayName, fieldOfStudy: fieldOfStudy, description: description, hashtags: hashtags)
             user.updatePicture(profileImageUrl: profileImageUrl)
             self.otherUsers.append(user)

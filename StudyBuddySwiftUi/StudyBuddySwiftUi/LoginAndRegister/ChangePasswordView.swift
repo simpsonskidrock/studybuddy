@@ -53,7 +53,7 @@ struct ChangePasswordView: View {
             VStack {
                 Text("Change Password").font(.largeTitle).foregroundColor(.lmuLightGrey)
                 Spacer()
-                Text("StudyBuddy").font(.largeTitle).foregroundColor(Color.white)
+                Text(Strings().appName).font(.largeTitle).foregroundColor(Color.white)
                 Spacer()
                 VStack {
                     Text("Enter new password").foregroundColor(Color.white)

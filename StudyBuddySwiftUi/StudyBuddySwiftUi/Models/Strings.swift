@@ -17,5 +17,9 @@ struct Strings {
     let uid: String = "uid"
     
     let appName: String = "StudyBuddy"
+    let urlIdentifierUser: String = "Users"
+    let urlIdentifierProfile: String = "Profile"
+    
+    let storageRef: String = "gs://studybuddy-82a88.appspot.com/"
     
 }

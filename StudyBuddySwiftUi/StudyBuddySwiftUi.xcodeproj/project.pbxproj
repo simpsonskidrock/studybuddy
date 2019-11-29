@@ -272,9 +272,9 @@
 			isa = PBXGroup;
 			children = (
 				73CDE43C2390F9230078654C /* SwipeView.swift */,
-				73CDE4412390FB380078654C /* NameView.swift */,
-				73CDE4432390FB570078654C /* AvatarView.swift */,
 				73CDE4452390FB710078654C /* UserView.swift */,
+				73CDE4432390FB570078654C /* AvatarView.swift */,
+				73CDE4412390FB380078654C /* NameView.swift */,
 			);
 			path = otherUsersPresentation;
 			sourceTree = "<group>";

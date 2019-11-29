@@ -12,12 +12,8 @@ struct SwipeView: View {
     @State private var offset: CGFloat = 0
     @State private var index = 0
     
-    var users: [User] = []
+    let users: [User]
     let spacing: CGFloat = 10
-    
-    init(users: [User]) {
-        self.users = users
-    }
 
     var body: some View {
         GeometryReader { geometry in
