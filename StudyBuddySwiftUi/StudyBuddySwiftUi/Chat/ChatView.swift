@@ -19,13 +19,15 @@ struct ChatMessage : Hashable {
 }
 
 struct ChatView : View {
-    
     @State var composedMessage: String = ""
     @EnvironmentObject var chatController: ChatController
     
+    func sendMessage() {
+        chatController.sendMessage(ChatMessage(message: composedMessage, avatar: "B", color: .lmuLightGrey, isMe: true))
+        composedMessage = ""
+    }
+    
     var body: some View {
-        
-        
         VStack {
             Text("Chat").bold()
             List {
@@ -33,30 +35,18 @@ struct ChatView : View {
                     ChatRow(chatMessage: msg)
                 }
             }
-            
-            
             HStack {
-                
                 TextField("Message...", text: $composedMessage).frame(minHeight: CGFloat(30))
                     .textFieldStyle(StudyTextFieldStyle())
-                
-                Button(action: sendMessage) {
+                Button(action: self.sendMessage) {
                     Text("Send")
                         .foregroundColor(.black)
                 }
             }.frame(minHeight: CGFloat(50)).padding()
                 .background(Color.lmuGreen)
-            
-            
         }.navigationBarTitle(Text("Chats"))
-        
-    }
-    func sendMessage() {
-        chatController.sendMessage(ChatMessage(message: composedMessage, avatar: "B", color: .lmuLightGrey, isMe: true))
-        composedMessage = ""
     }
 }
-
 
 struct ChatRow : View {
     var chatMessage: ChatMessage

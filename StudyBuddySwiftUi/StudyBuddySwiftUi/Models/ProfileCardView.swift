@@ -15,11 +15,11 @@ struct ProfileCardView: View {
     var hashtags: String = ""
     var profileImage: UIImage = UIImage()
     
-    init(person: User, profileImage: UIImage) {
-        if (person.displayName != nil) { self.name = person.displayName! }
-        if (person.fieldOfStudy != nil) { self.fieldOfStudy = person.fieldOfStudy! }
-        if (person.description != nil) { self.description = person.description! }
-        if (person.hashtags != nil) { self.hashtags = person.hashtags! }
+    init(user: User, profileImage: UIImage) {
+        if (user.displayName != nil) { self.name = user.displayName! }
+        if (user.fieldOfStudy != nil) { self.fieldOfStudy = user.fieldOfStudy! }
+        if (user.description != nil) { self.description = user.description! }
+        if (user.hashtags != nil) { self.hashtags = user.hashtags! }
         self.profileImage = profileImage
     }
     

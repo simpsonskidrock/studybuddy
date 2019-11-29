@@ -84,18 +84,11 @@ struct RegisterView: View {
                 VStack {
                     Text("Create a new Account").foregroundColor(Color.white).font(.title)
                     TextField("E-mail", text: $email)
-                        .foregroundColor(.black)
                         .textFieldStyle(StudyTextFieldStyle())
-                        .padding(.horizontal, 50)
                     SecureField("Password", text: $password)
-                        .foregroundColor(.black)
                         .textFieldStyle(StudyTextFieldStyle())
-                        .padding(.horizontal, 50)
                     SecureField("Confirm Password", text: $repeatPassword)
-                        .foregroundColor(.black)
-
                         .textFieldStyle(StudyTextFieldStyle())
-                        .padding(.horizontal, 50)
                 }
                 NavigationLink(destination: GeneralTabView()) {
                     Text("Register")

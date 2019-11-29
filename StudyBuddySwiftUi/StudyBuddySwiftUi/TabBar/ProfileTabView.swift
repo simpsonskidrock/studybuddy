@@ -124,14 +124,15 @@ struct ProfileTabView: View {
                 }.padding()
                     .foregroundColor(.lmuLightGrey)
                 }
-                if self.editProfile { Button(action: {
-                    self.session.updateProfile(displayName: self.displayName, fieldOfStudy: self.fieldOfStudy, description: self.description, hashtags: self.hashtags, image: self.image)
-                    self.editProfile.toggle()
-                }) {
-                    Text("Save").fontWeight(.semibold)
-                        .font(.system(size: 15))
-                }.padding()
-                    .foregroundColor(.lmuLightGrey)
+                if self.editProfile {
+                    Button(action: {
+                        self.session.updateProfile(displayName: self.displayName, fieldOfStudy: self.fieldOfStudy, description: self.description, hashtags: self.hashtags, image: self.image)
+                        self.editProfile.toggle()
+                    }) {
+                        Text("Save").fontWeight(.semibold)
+                            .font(.system(size: 15))
+                    }.padding()
+                        .foregroundColor(.lmuLightGrey)
                 }
             }
         }.navigationBarTitle("")

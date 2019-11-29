@@ -58,17 +58,11 @@ struct ChangePasswordView: View {
                 VStack {
                     Text("Enter new password").foregroundColor(Color.white)
                     TextField("E-mail", text: $email)
-                        .foregroundColor(.black)
                         .textFieldStyle(StudyTextFieldStyle())
-                        .padding(.horizontal, 50)
                     SecureField("New Password", text: $newPassword)
-                        .foregroundColor(.black)
                         .textFieldStyle(StudyTextFieldStyle())
-                        .padding(.horizontal, 50)
                     SecureField("Confirm New Password", text: $repeatNewPassword)
-                        .foregroundColor(.black)
                         .textFieldStyle(StudyTextFieldStyle())
-                        .padding(.horizontal, 50)
                 }
                 NavigationLink(destination: GeneralTabView()) {
                     Text("Change Password").font(.system(size: 20))

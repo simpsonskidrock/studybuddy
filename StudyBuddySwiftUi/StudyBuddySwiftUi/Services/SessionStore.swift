@@ -15,6 +15,7 @@ class SessionStore : ObservableObject {
     var didChange = PassthroughSubject<SessionStore, Never>()
     var sessionUser: User? { didSet { self.didChange.send(self) }}
     var handle: AuthStateDidChangeListenerHandle?
+    var otherUsers: [User] = []
     
     
     func listen () {
@@ -182,20 +183,21 @@ class SessionStore : ObservableObject {
     
     // ---------------- Other User|s ---------------- //
     
-    func getOtherUsers () -> [User] {
-        var users: [User] = []
+    func getOtherUsers () {
+        self.otherUsers = []
         let rootRef = Database.database().reference(withPath: "Users")
         rootRef.observe(.value, with: { (snapshot) in
             for uid in (snapshot.value as? NSDictionary)!.allKeys as! [String] {
-                users.append(self.getOtherUser(uid: uid))
+                if (uid != self.sessionUser?.uid) {
+                    self.getOtherUser(uid: uid)
+                }
             }
         }) { (error) in
             print(error.localizedDescription)
         }
-        return users
     }
     
-    func getOtherUser (uid: String?) -> User {
+    func getOtherUser (uid: String?) {
         var user: User = User(uid: uid!, email: "")
         let rootRef = Database.database().reference(withPath: "Users").child(uid.unsafelyUnwrapped)
         rootRef.observe(.value, with: { (snapshot) in
@@ -207,9 +209,9 @@ class SessionStore : ObservableObject {
             let profileImageUrl = value?["profileImageUrl"] as? String ?? ""
             user.updateDetails(displayName: displayName, fieldOfStudy: fieldOfStudy, description: description, hashtags: hashtags)
             user.updatePicture(profileImageUrl: profileImageUrl)
+            self.otherUsers.append(user)
         }) { (error) in
             print(error.localizedDescription)
         }
-        return user
     }
 }

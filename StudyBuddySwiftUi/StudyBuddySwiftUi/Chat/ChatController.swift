@@ -10,19 +10,14 @@ import SwiftUI
 import Foundation
 
 class ChatController : ObservableObject {
-  
     var didChange = PassthroughSubject<Void, Never>()
-    
     
     @Published var messages = [
         ChatMessage(message: "Hello world", avatar: "A", color: .lmuDarkGrey),
     ]
     
-  
     func sendMessage(_ chatMessage: ChatMessage) {
         messages.append(chatMessage)
-        
         didChange.send(())
     }
-    
 }

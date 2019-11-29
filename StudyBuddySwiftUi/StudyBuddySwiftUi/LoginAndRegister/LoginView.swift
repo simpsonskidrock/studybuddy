@@ -54,15 +54,9 @@ struct LoginView: View {
                 Text("Enter email and password").foregroundColor(Color.white)
                 TextField("Email", text: $email)
                     .textFieldStyle(StudyTextFieldStyle())
-                    .padding(.horizontal, 50)
-                    .foregroundColor(.black)
 
                 SecureField("Password", text: $password)
                     .textFieldStyle(StudyTextFieldStyle())
-                    .foregroundColor(.black)
-
-                    .padding(.horizontal, 50)
-               
                 HStack {
                     Spacer()
                     NavigationLink(destination: GeneralTabView()) {

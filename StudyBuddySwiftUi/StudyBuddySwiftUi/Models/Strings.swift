@@ -13,7 +13,7 @@ struct Strings {
     let email: String = "email"
     let fieldOfStudy = "fieldOfStudy"
     let hashtags = "hashtags"
-    let profileImageUrl: String = "profileImageUrlh"
+    let profileImageUrl: String = "profileImageUrl"
     let uid: String = "uid"
     
     let appName: String = "StudyBuddy"

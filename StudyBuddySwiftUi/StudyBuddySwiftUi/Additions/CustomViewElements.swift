@@ -20,6 +20,8 @@ public struct StudyTextFieldStyle : TextFieldStyle {
             .padding()
             .background(Color.white)
             .cornerRadius(10)
+            .foregroundColor(.black)
+            .padding(.horizontal, 50)
     }
 }
 
