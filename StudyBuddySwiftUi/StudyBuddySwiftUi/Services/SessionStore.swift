@@ -166,7 +166,8 @@ class SessionStore : ObservableObject {
             print(error.localizedDescription)
           } else {
             image = UIImage(data: data!)
-            print("loaded profile image:", image)
+            print("loaded profile image:", image as
+                Any)
           }
         }
         
@@ -205,5 +206,17 @@ class SessionStore : ObservableObject {
         }) { (error) in
             print(error.localizedDescription)
         }
+    }
+    
+    func resetPassword(email: String, onSuccess: @escaping() -> Void, onError: @escaping( _ _errorMessage: String) -> Void){
+        Auth.auth().sendPasswordReset(withEmail: email){ error in
+            if error == nil{
+                onSuccess()
+            }else{
+                (error?.localizedDescription)
+            }
+            
+        }
+        
     }
 }

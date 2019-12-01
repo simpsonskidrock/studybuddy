@@ -70,7 +70,7 @@ struct LoginView: View {
                 }
                 HStack {
                     Text("Forgot your password?").foregroundColor(Color.lmuLightGrey)
-                    NavigationLink(destination: ChangePasswordView()) {
+                    NavigationLink(destination: ResetPasswordView()) {
                         Text("Click here").foregroundColor(.white)
                     }
                 }

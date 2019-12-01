@@ -64,7 +64,7 @@ struct ChangePasswordView: View {
                     SecureField("Confirm New Password", text: $repeatNewPassword)
                         .textFieldStyle(StudyTextFieldStyle())
                 }
-                NavigationLink(destination: GeneralTabView()) {
+                NavigationLink(destination: ProfileTabView()) {
                     Text("Change Password").font(.system(size: 20))
                         .fontWeight(.heavy)
                 }.buttonStyle(StudyButtonStyle()).simultaneousGesture(TapGesture().onEnded{self.changePassword()})
