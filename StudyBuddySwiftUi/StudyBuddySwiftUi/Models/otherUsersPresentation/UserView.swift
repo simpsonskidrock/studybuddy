@@ -16,6 +16,8 @@ struct UserView: View {
         var tempImage: UIImage = UIImage()
         if (self.userModel.profileImageUrl != nil && self.userModel.profileImageUrl != "") {
             tempImage = self.session.getProfileImage(profileImageUrl: self.userModel.profileImageUrl!)
+        } else {
+            tempImage = UIImage(systemName: "person")!
         }
         return tempImage
     }
