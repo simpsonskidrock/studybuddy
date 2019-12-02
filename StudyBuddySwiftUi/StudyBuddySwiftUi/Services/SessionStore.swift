@@ -192,7 +192,6 @@ class SessionStore : ObservableObject {
         let rootRef = Database.database().reference(withPath: Strings().urlIdentifierUser)
         rootRef.observe(.value, with: { (snapshot) in
             for uid in (snapshot.value as? NSDictionary)!.allKeys as! [String] {
-                print("sessionUser", self.sessionUser)
                 if (uid != self.sessionUser?.uid && !(self.sessionUser?.contacts.contains(uid))! && !(self.sessionUser?.likedUsers.contains(uid))!) {
                     self.getOtherUser(uid: uid)
                 }

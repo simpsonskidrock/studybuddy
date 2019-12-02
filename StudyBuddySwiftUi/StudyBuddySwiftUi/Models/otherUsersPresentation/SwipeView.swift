@@ -23,6 +23,9 @@ struct SwipeView: View {
                         UserView(userModel: user)
                             .frame(width: geometry.size.width)
                     }
+                    if (self.users.isEmpty) {
+                        Text("no other users yet").background(Color.lmuLightGrey.edgesIgnoringSafeArea(.vertical))
+                    }
                 }
             }
             .content.offset(x: self.offset)
