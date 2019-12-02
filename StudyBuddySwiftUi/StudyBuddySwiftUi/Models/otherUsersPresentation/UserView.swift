@@ -23,7 +23,7 @@ struct UserView: View {
         }
         .shadow(radius: 12.0)
         .cornerRadius(12.0)
-        .onLongPressGesture {
+        .onTapGesture(count: 2) {
             self.session.addLikedUser(uid: self.userModel.uid)
         }
     }
