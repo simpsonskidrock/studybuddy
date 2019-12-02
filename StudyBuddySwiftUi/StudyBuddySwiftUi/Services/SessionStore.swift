@@ -229,7 +229,52 @@ class SessionStore : ObservableObject {
         Database.database().reference().child(Strings().urlIdentifierUser).child(tempUid).updateChildValues(dict, withCompletionBlock: {(error, ref) in
             if error == nil {
                 print ("Added likedUser")
+                self.checkIfLikedUserLikedYou(otherUserUid: uid)
                 self.getOtherUsers()
+            }
+        } )
+    }
+    
+    private func checkIfLikedUserLikedYou(otherUserUid: String) {
+        let rootRef = Database.database().reference(withPath: Strings().urlIdentifierUser).child(otherUserUid)
+        rootRef.observe(.value, with: { (snapshot) in
+            let value = snapshot.value as? NSDictionary
+            let otherUserLikedUsers = value?[Strings().likedUsers] as? [String] ?? []
+            var otherUserContacts = value?[Strings().contacts] as? [String] ?? []
+            if (otherUserLikedUsers.contains(otherUserUid)) {
+                // changes for sessionUser
+                self.sessionUser?.contacts.append(otherUserUid)
+                var tempSessionUserLikedUsers: [String] = []
+                for likedUser in self.sessionUser!.likedUsers {
+                    if(likedUser != otherUserUid) {
+                        tempSessionUserLikedUsers.append(otherUserUid)
+                    }
+                }
+                self.sessionUser?.likedUsers = tempSessionUserLikedUsers
+                self.shareMatch(uid: self.sessionUser!.uid, likedUsers: self.sessionUser?.likedUsers ?? [], contacts: self.sessionUser?.contacts ?? [])
+                // changes for liked user
+                otherUserContacts.append(self.sessionUser!.uid)
+                var tempOtherUserLikedUsers: [String] = []
+                for likedUser in otherUserLikedUsers {
+                    if(likedUser != self.sessionUser?.uid) {
+                        tempOtherUserLikedUsers.append(otherUserUid)
+                    }
+                }
+                self.shareMatch(uid: otherUserUid, likedUsers: otherUserLikedUsers, contacts: otherUserContacts)
+            }
+        }) { (error) in
+            print(error.localizedDescription)
+        }
+    }
+    
+    private func shareMatch(uid: String, likedUsers: [String], contacts: [String]) {
+        let dict: Dictionary<String, Any> = [
+            Strings().likedUsers: likedUsers,
+            Strings().contacts: contacts
+        ]
+        Database.database().reference().child(Strings().urlIdentifierUser).child(uid).updateChildValues(dict, withCompletionBlock: {(error, ref) in
+            if error == nil {
+                print ("Matching...")
             }
         } )
     }

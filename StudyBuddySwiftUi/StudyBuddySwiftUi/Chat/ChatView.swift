@@ -9,15 +9,6 @@
 import SwiftUI
 import Foundation
 
-
-struct ChatMessage : Hashable {
-    var message: String
-    var avatar: String
-    var color: Color
-    // isMe will be true if We sent the message
-    var isMe: Bool = false
-}
-
 struct ChatView : View {
     @EnvironmentObject var chatController: ChatController
     
@@ -82,4 +73,12 @@ struct ChatRow : View {
         }
         
     }
+}
+
+struct ChatMessage : Hashable {
+    var message: String
+    var avatar: String
+    var color: Color
+    // isMe will be true if We sent the message
+    var isMe: Bool = false
 }
