@@ -18,7 +18,7 @@ class SessionStore : ObservableObject {
     var otherUsers: [User] = []
     
     
-    func listen () {
+    func listen() {
         // monitor authentication changes using firebase
         handle = Auth.auth().addStateDidChangeListener { (auth, user) in
             if let user = user {
@@ -36,7 +36,7 @@ class SessionStore : ObservableObject {
         }
     }
     
-    func unbind () {
+    func unbind() {
         if let handle = handle {
             Auth.auth().removeStateDidChangeListener(handle)
         }
@@ -44,7 +44,7 @@ class SessionStore : ObservableObject {
     
     // ---------------- Authentification ---------------- //
     
-    func signUp (
+    func signUp(
         email: String,
         password: String,
         handler: @escaping AuthDataResultCallback
@@ -52,7 +52,7 @@ class SessionStore : ObservableObject {
         Auth.auth().createUser(withEmail: email, password: password, completion: handler)
     }
     
-    func signIn (
+    func signIn(
         email: String,
         password: String,
         handler: @escaping AuthDataResultCallback
@@ -60,7 +60,7 @@ class SessionStore : ObservableObject {
         Auth.auth().signIn(withEmail: email, password: password, completion: handler)
     }
     
-    func signOut () {
+    func signOut() {
         do {
             try Auth.auth().signOut()
             self.sessionUser = nil
@@ -82,7 +82,7 @@ class SessionStore : ObservableObject {
     
     // ---------------- Profile ---------------- //
     
-    func getProfile (uid: String?) {
+    func getProfile(uid: String?) {
         let rootRef = Database.database().reference(withPath: Strings().urlIdentifierUser).child(uid.unsafelyUnwrapped)
         rootRef.observeSingleEvent(of: .value, with: { (snapshot) in
             let value = snapshot.value as? NSDictionary
@@ -91,14 +91,15 @@ class SessionStore : ObservableObject {
             let description = value?[Strings().description] as? String ?? ""
             let hashtags = value?[Strings().hashtags] as? String ?? ""
             let profileImageUrl = value?[Strings().profileImageUrl] as? String ?? ""
-            self.sessionUser?.updateDetails(displayName: displayName, fieldOfStudy: fieldOfStudy, description: description, hashtags: hashtags)
-            self.sessionUser?.updatePicture(profileImageUrl: profileImageUrl)
+            let likedUsers = value?[Strings().likedUsers] as? [String] ?? []
+            let contacts = value?[Strings().contacts] as? [String] ?? []
+            self.sessionUser?.updateCompleteProfile(displayName: displayName, fieldOfStudy: fieldOfStudy, description: description, hashtags: hashtags, profileImageUrl: profileImageUrl, likedUsers: likedUsers, contacts: contacts)
         }) { (error) in
             print(error.localizedDescription)
         }
     }
     
-    func addProfile (result: AuthDataResult?, image: UIImage?) {
+    func addProfile(result: AuthDataResult?, image: UIImage?) {
         if let authData = result {
             let dict: Dictionary<String, Any> = [
                 Strings().uid: authData.user.uid,
@@ -116,7 +117,7 @@ class SessionStore : ObservableObject {
         }
     }
     
-    func updateProfile (displayName: String?, fieldOfStudy: String?, description: String?, hashtags: String?, image: UIImage?) {
+    func updateProfile(displayName: String?, fieldOfStudy: String?, description: String?, hashtags: String?, image: UIImage?) {
         let tempUid: String = String((self.sessionUser?.uid)!)
         self.updateProfileImage(uid: tempUid, image: image)
         let dict: Dictionary<String, Any> = [
@@ -186,12 +187,13 @@ class SessionStore : ObservableObject {
     
     // ---------------- Other User|s ---------------- //
     
-    func getOtherUsers () {
+    func getOtherUsers() {
         self.otherUsers = []
         let rootRef = Database.database().reference(withPath: Strings().urlIdentifierUser)
         rootRef.observe(.value, with: { (snapshot) in
             for uid in (snapshot.value as? NSDictionary)!.allKeys as! [String] {
-                if (uid != self.sessionUser?.uid) {
+                print("sessionUser", self.sessionUser)
+                if (uid != self.sessionUser?.uid && !(self.sessionUser?.contacts.contains(uid))! && !(self.sessionUser?.likedUsers.contains(uid))!) {
                     self.getOtherUser(uid: uid)
                 }
             }
@@ -200,7 +202,7 @@ class SessionStore : ObservableObject {
         }
     }
     
-    func getOtherUser (uid: String?) {
+    func getOtherUser(uid: String?) {
         var user: User = User(uid: uid!, email: "")
         let rootRef = Database.database().reference(withPath: Strings().urlIdentifierUser).child(uid.unsafelyUnwrapped)
         rootRef.observe(.value, with: { (snapshot) in
@@ -229,6 +231,7 @@ class SessionStore : ObservableObject {
         Database.database().reference().child(Strings().urlIdentifierUser).child(tempUid).updateChildValues(dict, withCompletionBlock: {(error, ref) in
             if error == nil {
                 print ("Added likedUser")
+                self.getOtherUsers()
             }
         } )
     }
