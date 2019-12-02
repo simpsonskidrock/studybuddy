@@ -9,6 +9,7 @@
 import SwiftUI
 
 struct UserView: View {
+    @EnvironmentObject var session: SessionStore
     let userModel: User
     
     func getImage() -> UIImage {
@@ -22,5 +23,8 @@ struct UserView: View {
         }
         .shadow(radius: 12.0)
         .cornerRadius(12.0)
+        .onLongPressGesture {
+            self.session.addLikedUser(uid: self.userModel.uid)
+        }
     }
 }

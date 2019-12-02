@@ -70,6 +70,16 @@ class SessionStore : ObservableObject {
         }
     }
     
+    func resetPassword(email: String, onSuccess: @escaping() -> Void, onError: @escaping( _ _errorMessage: String) -> Void) {
+        Auth.auth().sendPasswordReset(withEmail: email){ error in
+            if error == nil {
+                onSuccess()
+            } else {
+                (error?.localizedDescription)
+            }
+        }
+    }
+    
     // ---------------- Profile ---------------- //
     
     func getProfile (uid: String?) {
@@ -207,16 +217,19 @@ class SessionStore : ObservableObject {
             print(error.localizedDescription)
         }
     }
+
+    // Like and Match //
     
-    func resetPassword(email: String, onSuccess: @escaping() -> Void, onError: @escaping( _ _errorMessage: String) -> Void){
-        Auth.auth().sendPasswordReset(withEmail: email){ error in
-            if error == nil{
-                onSuccess()
-            }else{
-                (error?.localizedDescription)
+    func addLikedUser(uid: String) {
+        let tempUid: String = String((self.sessionUser?.uid)!)
+        self.sessionUser?.likedUsers.append(uid)
+        let dict: Dictionary<String, Any> = [
+            Strings().likedUsers: self.sessionUser?.likedUsers ?? ""
+        ]
+        Database.database().reference().child(Strings().urlIdentifierUser).child(tempUid).updateChildValues(dict, withCompletionBlock: {(error, ref) in
+            if error == nil {
+                print ("Added likedUser")
             }
-            
-        }
-        
+        } )
     }
 }
