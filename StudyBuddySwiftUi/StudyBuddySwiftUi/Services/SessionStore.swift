@@ -169,9 +169,9 @@ class SessionStore : ObservableObject {
         })
     }
     
-    func getProfileImage(profileImageUrl: String) -> UIImage? { // Still not working
+    func getProfileImage(profileImageUrl: String) -> UIImage { // Still not working
         var image: UIImage! = UIImage()
-       let storageRef = Storage.storage().reference(forURL: profileImageUrl)
+        let storageRef = Storage.storage().reference(forURL: profileImageUrl)
         storageRef.getData(maxSize: 1 * 1024 * 1024) { data, error in
           if let error = error {
             print(error.localizedDescription)
@@ -181,7 +181,6 @@ class SessionStore : ObservableObject {
                 Any)
           }
         }
-        
         return image
     }
     

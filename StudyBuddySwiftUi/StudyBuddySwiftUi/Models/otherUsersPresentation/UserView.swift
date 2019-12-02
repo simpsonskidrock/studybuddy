@@ -13,7 +13,11 @@ struct UserView: View {
     let userModel: User
     
     func getImage() -> UIImage {
-        return UIImage()
+        var tempImage: UIImage = UIImage()
+        if (self.userModel.profileImageUrl != nil && self.userModel.profileImageUrl != "") {
+            tempImage = self.session.getProfileImage(profileImageUrl: self.userModel.profileImageUrl!)
+        }
+        return tempImage
     }
     
     var body: some View {
