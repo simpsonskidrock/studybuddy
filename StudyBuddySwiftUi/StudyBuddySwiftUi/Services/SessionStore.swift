@@ -14,7 +14,7 @@ import Combine
 class SessionStore : ObservableObject {
     var didChange = PassthroughSubject<SessionStore, Never>()
     var sessionUser: User? { didSet { self.didChange.send(self) }}
-    var handle: AuthStateDidChangeListenerHandle?
+    private var handle: AuthStateDidChangeListenerHandle?
     var otherUsers: [User] = []
     
     
@@ -136,7 +136,7 @@ class SessionStore : ObservableObject {
     
     // ---------------- Image ---------------- //
     
-    func updateProfileImage(uid: String, image: UIImage?) {
+    private func updateProfileImage(uid: String, image: UIImage?) {
         guard let imageSelected = image else {
             print("Image is nil")
             return
@@ -200,7 +200,7 @@ class SessionStore : ObservableObject {
         }
     }
     
-    func getOtherUser(uid: String?) {
+    private func getOtherUser(uid: String?) {
         var user: User = User(uid: uid!, email: "")
         let rootRef = Database.database().reference(withPath: Strings().urlIdentifierUser).child(uid.unsafelyUnwrapped)
         rootRef.observe(.value, with: { (snapshot) in

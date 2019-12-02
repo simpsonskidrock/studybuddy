@@ -19,10 +19,11 @@ struct ChatMessage : Hashable {
 }
 
 struct ChatView : View {
-    @State var composedMessage: String = ""
     @EnvironmentObject var chatController: ChatController
     
-    func sendMessage() {
+    @State private var composedMessage: String = ""
+    
+    private func sendMessage() {
         chatController.sendMessage(ChatMessage(message: composedMessage, avatar: "B", color: .lmuLightGrey, isMe: true))
         composedMessage = ""
     }
@@ -80,11 +81,5 @@ struct ChatRow : View {
             }
         }
         
-    }
-}
-
-struct ChatView_Previews : PreviewProvider {
-    static var previews: some View {
-        ChatView().environmentObject(ChatController())
     }
 }

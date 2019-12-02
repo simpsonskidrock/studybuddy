@@ -13,18 +13,18 @@ struct ProfileTabView: View {
     @Environment(\.presentationMode) var mode
     @EnvironmentObject var session: SessionStore
     
-    @State var displayName: String = ""
-    @State var fieldOfStudy: String = ""
-    @State var description: String = ""
-    @State var hashtags: String = ""
-    @State var profileImageUrl: String = ""
+    @State private var displayName: String = ""
+    @State private var fieldOfStudy: String = ""
+    @State private var description: String = ""
+    @State private var hashtags: String = ""
+    @State private var profileImageUrl: String = ""
     
     @State private var editProfile: Bool = false
     
-    @State var isShowingImagePicker: Bool = false
-    @State var image: UIImage = UIImage()
+    @State private var isShowingImagePicker: Bool = false
+    @State private var image: UIImage = UIImage()
     
-    func initialize() {
+    private func initialize() {
         self.displayName = session.sessionUser?.displayName ?? ""
         self.fieldOfStudy = session.sessionUser?.fieldOfStudy ?? ""
         self.description = session.sessionUser?.description ?? ""
@@ -142,11 +142,5 @@ struct ProfileTabView: View {
             .onAppear(perform: initialize)
             .padding(.horizontal)
             .background(Color.lmuGreen.edgesIgnoringSafeArea(.vertical))
-    }
-}
-
-struct ProfileTabView_Previews: PreviewProvider {
-    static var previews: some View {
-        ProfileTabView()
     }
 }

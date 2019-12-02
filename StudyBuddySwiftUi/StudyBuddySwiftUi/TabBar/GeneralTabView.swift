@@ -28,10 +28,3 @@ struct GeneralTabView: View {
         .navigationBarBackButtonHidden(true)
     }
 }
-
-struct GeneralTabView_Previews: PreviewProvider {
-    static var previews: some View {
-        GeneralTabView()
-    }
-}
-

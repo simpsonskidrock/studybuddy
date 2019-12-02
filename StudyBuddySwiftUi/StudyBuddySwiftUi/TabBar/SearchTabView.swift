@@ -12,7 +12,7 @@ import SwiftUI
 struct SearchTabView: View {
     @EnvironmentObject var session: SessionStore
     
-    func initialize() {
+    private func initialize() {
         session.getOtherUsers()
     }
     
@@ -28,15 +28,3 @@ struct SearchTabView: View {
         .onAppear(perform: initialize)
     }
 }
-
-struct SearchTabView_Previews: PreviewProvider {
-    static var previews: some View {
-        Group {
-            SearchTabView()
-                .environment(\.colorScheme, .light)
-            SearchTabView()
-                .environment(\.colorScheme, .dark)
-        }
-    }
-}
-

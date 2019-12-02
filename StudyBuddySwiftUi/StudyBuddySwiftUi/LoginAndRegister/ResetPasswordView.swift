@@ -13,11 +13,11 @@ struct ResetPasswordView: View {
     @EnvironmentObject var session: SessionStore
     
     @State private var email: String = ""
-    @State var loading: Bool = false
-    @State var error: Bool = false
-    @State var tempAlert: Alert = nil
+    @State private var loading: Bool = false
+    @State private var error: Bool = false
+    @State private var tempAlert: Alert = nil
     
-    func ResetPassword() {
+    private func ResetPassword() {
         self.error = false
         if (self.email == "" ) {
             self.error = true

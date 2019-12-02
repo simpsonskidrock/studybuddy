@@ -10,6 +10,8 @@ import Foundation
 import SwiftUI
 
 struct ContactsTabView: View {
+    @EnvironmentObject var session: SessionStore
+    
     @State private var searchText = ""
     @State private var showCancelButton: Bool = false
     
@@ -74,12 +76,6 @@ struct ContactsTabView: View {
         }.navigationBarTitle("")
         .navigationBarBackButtonHidden(true)
         .navigationBarHidden(true)
-    }
-}
-
-struct ContactsTabView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContactsTabView()
     }
 }
 

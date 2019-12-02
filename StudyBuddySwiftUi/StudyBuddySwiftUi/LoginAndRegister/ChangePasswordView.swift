@@ -13,15 +13,15 @@ struct ChangePasswordView: View {
     @EnvironmentObject var session: SessionStore
     @ObservedObject private var keyboard = KeyboardResponder()
     
-    @State var loading = false
-    @State var error = false
-    @State var tempAlert: Alert = nil
+    @State private var loading = false
+    @State private var error = false
+    @State private var tempAlert: Alert = nil
     
     @State private var email: String = ""
     @State private var newPassword: String = ""
     @State private var repeatNewPassword: String = ""
     
-    func changePassword() {
+    private func changePassword() {
         self.loading = true
         self.error = false
         if (self.email == "" || self.newPassword == "" || self.repeatNewPassword == "") {
@@ -86,9 +86,8 @@ struct ChangePasswordView: View {
                 self.tempAlert.unsafelyUnwrapped
             }
             .navigationBarTitle("")
-}.navigationBarBackButtonHidden(true)
-        .navigationBarHidden(true)
-            
+        }.navigationBarBackButtonHidden(true)
+            .navigationBarHidden(true)
     }
 }
 

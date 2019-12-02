@@ -12,12 +12,12 @@ struct LoginView: View {
     @EnvironmentObject var session: SessionStore
     @ObservedObject private var keyboard = KeyboardResponder()
     
-    @State var email: String = ""
-    @State var password: String = ""
+    @State private var email: String = ""
+    @State private var password: String = ""
     
-    @State var loading = false
-    @State var error = false
-    @State var tempAlert: Alert = nil
+    @State private var loading: Bool = false
+    @State private var error: Bool = false
+    @State private var tempAlert: Alert = nil
     
     func signIn () {
         self.loading = true
@@ -39,7 +39,7 @@ struct LoginView: View {
         }
     }
     
-    func getSession() {
+    private func getSession() {
         session.listen()
     }
     
