@@ -19,4 +19,5 @@ extension Alert {
     
     static let alertSuccessResetPassword: Alert = Alert(title: Text("Reset Password"), message: Text("we have just sent you a password reset email. Please check your inbox and follow the instructions.."), dismissButton: .default(Text("OK")))
     
+    static let alertMatch: Alert = Alert(title: Text("Match!"), message: Text("You have a match."), dismissButton: .default(Text("OK")))
 }

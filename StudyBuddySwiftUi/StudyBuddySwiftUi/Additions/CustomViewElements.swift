@@ -36,6 +36,4 @@ public struct StudyButtonStyle: ButtonStyle {
             .padding(10)
             .scaleEffect(configuration.isPressed ? 0.9 : 1.0)
     }
-    
-    
 }

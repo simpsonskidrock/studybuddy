@@ -16,6 +16,7 @@ class SessionStore : ObservableObject {
     var sessionUser: User? { didSet { self.didChange.send(self) }}
     private var handle: AuthStateDidChangeListenerHandle?
     var otherUsers: [User] = []
+    var presentMatchAlert: Bool = false
     
     
     func listen() {
@@ -218,7 +219,7 @@ class SessionStore : ObservableObject {
         }
     }
 
-    // Like and Match //
+    // ---------------- Like and Match ---------------- //
     
     func addLikedUser(uid: String) {
         let tempUid: String = String((self.sessionUser?.uid)!)
@@ -241,26 +242,26 @@ class SessionStore : ObservableObject {
             let value = snapshot.value as? NSDictionary
             let otherUserLikedUsers = value?[Strings().likedUsers] as? [String] ?? []
             var otherUserContacts = value?[Strings().contacts] as? [String] ?? []
-            if (otherUserLikedUsers.contains(otherUserUid)) {
-                // changes for sessionUser
+            if (otherUserLikedUsers.contains(self.sessionUser!.uid)) {
                 self.sessionUser?.contacts.append(otherUserUid)
-                var tempSessionUserLikedUsers: [String] = []
-                for likedUser in self.sessionUser!.likedUsers {
-                    if(likedUser != otherUserUid) {
-                        tempSessionUserLikedUsers.append(otherUserUid)
-                    }
-                }
-                self.sessionUser?.likedUsers = tempSessionUserLikedUsers
-                self.shareMatch(uid: self.sessionUser!.uid, likedUsers: self.sessionUser?.likedUsers ?? [], contacts: self.sessionUser?.contacts ?? [])
-                // changes for liked user
                 otherUserContacts.append(self.sessionUser!.uid)
-                var tempOtherUserLikedUsers: [String] = []
-                for likedUser in otherUserLikedUsers {
-                    if(likedUser != self.sessionUser?.uid) {
-                        tempOtherUserLikedUsers.append(otherUserUid)
+                let tempLikes1: [String] = self.sessionUser!.likedUsers
+                self.sessionUser?.likedUsers = []
+                for likedUser in tempLikes1 {
+                    if(likedUser != otherUserUid) {
+                        self.sessionUser?.likedUsers.append(otherUserUid)
                     }
                 }
+                let tempLikes2: [String] = otherUserLikedUsers
+                var otherUserLikedUsers: [String] = []
+                for likedUser in tempLikes2 {
+                    if(likedUser != self.sessionUser?.uid) {
+                        otherUserLikedUsers.append(likedUser)
+                    }
+                }
+                self.shareMatch(uid: self.sessionUser!.uid, likedUsers: self.sessionUser?.likedUsers ?? [], contacts: self.sessionUser?.contacts ?? [])
                 self.shareMatch(uid: otherUserUid, likedUsers: otherUserLikedUsers, contacts: otherUserContacts)
+                self.presentMatchAlert = true
             }
         }) { (error) in
             print(error.localizedDescription)
@@ -274,7 +275,28 @@ class SessionStore : ObservableObject {
         ]
         Database.database().reference().child(Strings().urlIdentifierUser).child(uid).updateChildValues(dict, withCompletionBlock: {(error, ref) in
             if error == nil {
-                print ("Matching...")
+                print ("Match!")
+            }
+        } )
+    }
+    
+    
+    // ---------------- only development ---------------- //
+    func deleteData(uid: String, deleteLikes: Bool) {
+        var dict: Dictionary<String, Any>
+        if deleteLikes {
+            dict = [
+                 Strings().likedUsers: [],
+                 Strings().contacts: []
+             ]
+        } else {
+            dict = [
+                 Strings().contacts: []
+             ]
+        }
+        Database.database().reference().child(Strings().urlIdentifierUser).child(uid).updateChildValues(dict, withCompletionBlock: {(error, ref) in
+            if error == nil {
+                print ("Deleted!")
             }
         } )
     }
