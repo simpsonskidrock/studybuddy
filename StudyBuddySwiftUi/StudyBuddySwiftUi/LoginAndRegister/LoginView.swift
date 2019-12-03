@@ -87,6 +87,7 @@ struct LoginView: View {
             .animation(.easeOut(duration: 0.16))
             .alert(isPresented: $error) {
                 self.tempAlert.unsafelyUnwrapped
+            
             }
         }
     }
