@@ -10,6 +10,9 @@ import Foundation
 import SwiftUI
 
 struct ProfileTabView: View {
+    
+    @ObservedObject var locationManager = LocationManager()
+
     @Environment(\.presentationMode) var mode
     @EnvironmentObject var session: SessionStore
     
@@ -30,7 +33,12 @@ struct ProfileTabView: View {
         self.description = session.sessionUser?.description ?? ""
         self.hashtags = session.sessionUser?.hashtags ?? ""
         self.profileImageUrl = session.sessionUser?.profileImageUrl ?? ""
-       // self.image = session.getProfileImage(profileImageUrl: self.profileImageUrl) ?? UIImage()
+        print("Profile Image:",profileImageUrl)
+       // session.getProfileImage(profileImageUrl: profileImageUrl) { (image) in
+         //   DispatchQueue.main.async {
+          //      self.image = image
+         //   }
+        }
         session.getOtherUsers()
     }
     
