@@ -8,19 +8,19 @@
 
 struct Strings {
     
-    let description: String = "description"
-    let displayName: String = "displayName"
-    let email: String = "email"
-    let fieldOfStudy = "fieldOfStudy"
-    let hashtags = "hashtags"
-    let profileImageUrl: String = "profileImageUrl"
-    let uid: String = "uid"
-    let likedUsers: String = "likedUsers"
-    let contacts: String = "contacts"
+    static let description: String = "description"
+    static let displayName: String = "displayName"
+    static let email: String = "email"
+    static let fieldOfStudy = "fieldOfStudy"
+    static let hashtags = "hashtags"
+    static let profileImageUrl: String = "profileImageUrl"
+    static let uid: String = "uid"
+    static let likedUsers: String = "likedUsers"
+    static let contacts: String = "contacts"
     
-    let appName: String = "StudyBuddy"
-    let urlIdentifierUser: String = "Users"
-    let urlIdentifierProfile: String = "Profile"
+    static let appName: String = "StudyBuddy"
+    static let urlIdentifierUser: String = "Users"
+    static let urlIdentifierProfile: String = "Profile"
     
-    let storageRef: String = "gs://studybuddy-82a88.appspot.com/"
+    static let storageRef: String = "gs://studybuddy-82a88.appspot.com/"
 }

@@ -48,7 +48,7 @@ struct LoginView: View {
             VStack(spacing: 16) {
                 Spacer()
                 Image("fountainicon")
-                Text(Strings().appName).font(.largeTitle)
+                Text(Strings.appName).font(.largeTitle)
                     .foregroundColor(Color.white)
                 Spacer()
                 Text("Enter email and password").foregroundColor(Color.white)

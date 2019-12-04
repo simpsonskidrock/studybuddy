@@ -14,8 +14,11 @@ struct RegisterView: View {
     @EnvironmentObject var session: SessionStore
     @ObservedObject private var keyboard = KeyboardResponder()
     
-    @State private var loading: Bool = false
-    @State private var error: Bool = false
+    // for the registerButton TODO rename
+    @State private var isActive: Bool = false
+    
+    
+    @State private var errorDialogVisible: Bool = false
     @State private var tempAlert: Alert = nil
     
     @State private var email: String = ""
@@ -25,62 +28,63 @@ struct RegisterView: View {
     @State private var isShowingImagePicker: Bool = false
     @State private var image: UIImage = UIImage()
     
-    func logInDataCheck() {
+    func isDataValid() -> Bool {
         if (self.email == "" || self.password == "" || self.repeatPassword == "") {
-            self.error = true
             self.tempAlert = Alert.alertEmptyField
+            return false
         } else if (self.password.count < 6 || self.repeatPassword.count < 6) {
-            self.error = true
             self.tempAlert = Alert.alertTooShortPassword
+            return false
         } else if (self.password != self.repeatPassword) {
-            self.error = true
             self.tempAlert = Alert.alertUnequalPassword
+            return false
         }
+        return errorDialogVisible
     }
     
-    func signUP () {
-        self.loading = true
-        self.error = false
-        self.logInDataCheck()
-        if error == false {
-            session.signUp(email: email, password: password) {(result, error_FieldIsEmpty) in self.loading = false
-                if error_FieldIsEmpty != nil {
-                    print(error_FieldIsEmpty!.localizedDescription)
-                    self.error = true
+    func signUp () {
+        if (!self.isDataValid()) {
+            session.signUp(email: email, password: password) {(error) in
+                if error != nil {
+                    print(error!.localizedDescription)
                     self.tempAlert = Alert.alertIncorrectData
                 } else {
-                    self.email = ""
-                    self.password = ""
-                    self.session.addProfile(result: result, image: self.image)
+                    // TODO Switch to Generel Tab View
+                    self.isActive.toggle()
                 }
             }
+        } else {
+            // show error dialog
+            errorDialogVisible = true
         }
     }
     
     var body: some View {
         ZStack {
             VStack {
-                Text("SignUp").font(.largeTitle)
-                    .foregroundColor(.lmuLightGrey)
-                Spacer()
-                Text(Strings().appName).font(.largeTitle)
-                    .foregroundColor(Color.white)
-                Image(uiImage: image)
-                    .resizable()
-                    .scaledToFit()
-                    .clipShape(Circle())
-                    .frame(width: 100, height: 100)
-                    .overlay(Circle().stroke(Color.white, lineWidth: 5))
-//                        .frame(width: 100, height: 100))
-                Button(action: {
-                    self.isShowingImagePicker.toggle()
-                }, label: {
-                    Text("Select Image")
-                        .font(.system(size: 15)).foregroundColor(.white)
-                }) .sheet(isPresented: $isShowingImagePicker, content: {
-                    ImagePickerViewController(isPresented: self.$isShowingImagePicker, selectedImage: self.$image)
-                    // Text("this is the image picker")
-                }).padding()
+                Group {
+                    Text("SignUp").font(.largeTitle)
+                        .foregroundColor(.lmuLightGrey)
+                    Spacer()
+                    Text(Strings.appName).font(.largeTitle)
+                        .foregroundColor(Color.white)
+                    Image(uiImage: image)
+                        .resizable()
+                        .scaledToFit()
+                        .clipShape(Circle())
+                        .frame(width: 100, height: 100)
+                        .overlay(Circle().stroke(Color.white, lineWidth: 5))
+                    //                        .frame(width: 100, height: 100))
+                    Button(action: {
+                        self.isShowingImagePicker.toggle()
+                    }, label: {
+                        Text("Select Image")
+                            .font(.system(size: 15)).foregroundColor(.white)
+                    }) .sheet(isPresented: $isShowingImagePicker, content: {
+                        ImagePickerViewController(isPresented: self.$isShowingImagePicker, selectedImage: self.$image)
+                        // Text("this is the image picker")
+                    }).padding()
+                }
                 VStack {
                     Text("Create a new Account").foregroundColor(Color.white).font(.title)
                     TextField("E-mail", text: $email)
@@ -90,10 +94,34 @@ struct RegisterView: View {
                     SecureField("Confirm Password", text: $repeatPassword)
                         .textFieldStyle(StudyTextFieldStyle())
                 }
-                NavigationLink(destination: GeneralTabView()) {
-                    Text("Register")
-                }.buttonStyle(StudyButtonStyle())
-                    .simultaneousGesture(TapGesture().onEnded{self.signUP()})
+                Group {
+                    Spacer()
+                    
+                    Button(action: {
+                        self.signUp()
+                    }) {
+                        Text("Register")
+                    }.buttonStyle(StudyButtonStyle())
+                    
+                    // Phantom navigation link:
+                    NavigationLink("", destination: GeneralTabView(), isActive: self.$isActive)
+                    
+                }
+//                NavigationLink(destination: {
+//                    VStack {
+//                        if loginSuccess {
+//                            GeneralTabView()
+//                        } else {
+//                            // Not going to GeneralTabView
+//                            RegisterView()
+//                        }
+//                    }
+//                }()) {
+//                    Text("Register")
+//                }.buttonStyle(StudyButtonStyle())
+//                    .simultaneousGesture(TapGesture().onEnded{self.signUp()})
+//
+                
                 HStack {
                     Text("Already have an account?").foregroundColor(Color.lmuLightGrey)
                     Button(action: {
@@ -102,14 +130,16 @@ struct RegisterView: View {
                         Text("Sign In").foregroundColor(.white)
                     }
                 }
+                Group {
                 Spacer()
                 Spacer()
+                }
             }.padding(.horizontal)
                 .background(Color.lmuGreen.edgesIgnoringSafeArea(.vertical))
                 .padding(.bottom, keyboard.currentHeight)
                 .edgesIgnoringSafeArea(.bottom)
                 .animation(.easeOut(duration: 0.16))
-                .alert(isPresented: $error) {
+                .alert(isPresented: $errorDialogVisible) {
                     self.tempAlert.unsafelyUnwrapped
             }
         }

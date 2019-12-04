@@ -40,7 +40,7 @@ struct ResetPasswordView: View {
             VStack {
                 Text("Reset Password").font(.largeTitle).foregroundColor(.lmuLightGrey)
                 Spacer()
-                Text(Strings().appName).font(.largeTitle).foregroundColor(Color.white)
+                Text(Strings.appName).font(.largeTitle).foregroundColor(Color.white)
                 Spacer()
                 VStack {
                     Text("Enter Your Email Address").foregroundColor(Color.white)
