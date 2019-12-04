@@ -17,6 +17,8 @@ class SessionStore : ObservableObject {
     private var handle: AuthStateDidChangeListenerHandle?
     var otherUsers: [User] = []
     var presentMatchAlert: Bool = false
+    @Published var data: Data?
+
     
     
     func listen() {
@@ -190,19 +192,23 @@ class SessionStore : ObservableObject {
         })
     }
     
-    func getProfileImage(profileImageUrl: String) -> UIImage { // Still not working
-        var image: UIImage! = UIImage()
+    func getProfileImage(profileImageUrl: String, handler: @escaping ((UIImage)->())) { // Still not working
         let storageRef = Storage.storage().reference(forURL: profileImageUrl)
         storageRef.getData(maxSize: 1 * 1024 * 1024) { data, error in
           if let error = error {
             print(error.localizedDescription)
-          } else {
-            image = UIImage(data: data!)
-            print("loaded profile image:", image as
-                Any)
           }
+            let image = UIImage(data: data!) ?? UIImage()
+            print("get data")
+                 DispatchQueue.main.async {
+                     self.data = data
+                     print(self.data!)
+                     print("loaded profile image:", image as
+                         Any)
+                    
+            handler(image)
+            }
         }
-        return image
     }
     
     // ---------------- Other User|s ---------------- //

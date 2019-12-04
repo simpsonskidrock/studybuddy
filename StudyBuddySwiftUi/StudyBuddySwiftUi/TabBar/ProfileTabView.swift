@@ -10,6 +10,9 @@ import Foundation
 import SwiftUI
 
 struct ProfileTabView: View {
+    
+    @ObservedObject var locationManager = LocationManager()
+
     @Environment(\.presentationMode) var mode
     @EnvironmentObject var session: SessionStore
     
@@ -30,7 +33,16 @@ struct ProfileTabView: View {
         self.description = session.sessionUser?.description ?? ""
         self.hashtags = session.sessionUser?.hashtags ?? ""
         self.profileImageUrl = session.sessionUser?.profileImageUrl ?? ""
-       // self.image = session.getProfileImage(profileImageUrl: self.profileImageUrl) ?? UIImage()
+
+        print("Profile Image:",profileImageUrl)
+       // session.getProfileImage(profileImageUrl: profileImageUrl) { (image) in
+         //   DispatchQueue.main.async {
+          //      self.image = image
+         //   }
+        
+
+        // self.image = session.getProfileImage(profileImageUrl: self.profileImageUrl) ?? UIImage()
+
         session.getOtherUsers()
     }
     
@@ -50,12 +62,10 @@ struct ProfileTabView: View {
                         }){
                             HStack {
                                 Image(systemName: "arrow.uturn.left")
-                                    .font(.system(size: 15))
                                 Text("Logout")
                                     .fontWeight(.semibold)
-                                    .font(.system(size: 12))
-                            }.foregroundColor(.lmuLightGrey)
-                        }.padding()
+                            }
+                        }.buttonStyle(StudyButtonLightStyle())
                     }.frame(height: 50)
                         .padding(.leading, 10)
                     Image(uiImage: self.image)
@@ -70,7 +80,7 @@ struct ProfileTabView: View {
                         self.isShowingImagePicker.toggle()
                     }) {
                         Image(systemName: "camera.on.rectangle")
-                            .foregroundColor(.lmuLightGrey)
+                            .foregroundColor(.white)
                     }.padding()
                         .sheet(isPresented: $isShowingImagePicker, content: {
                             ImagePickerViewController(isPresented: self.$isShowingImagePicker, selectedImage: self.$image)
@@ -84,7 +94,7 @@ struct ProfileTabView: View {
                             TextField("Enter your name", text:  $displayName)
                                 .disableAutocorrection(true)
                                 .disabled(!self.editProfile)
-                                .foregroundColor(.lmuLightGrey)
+                                .textFieldStyle(StudyTextFieldLightStyle())
                         }
                         HStack {
                             Text("Field Of Study:")
@@ -92,7 +102,7 @@ struct ProfileTabView: View {
                                 .fontWeight(.semibold)
                             TextField("ex: Informatik", text:  $fieldOfStudy)
                                 .disabled(!self.editProfile)
-                                .foregroundColor(.lmuLightGrey)
+                                .textFieldStyle(StudyTextFieldLightStyle())
                         }
                         Text("Description")
                             .foregroundColor(.black)
@@ -108,7 +118,7 @@ struct ProfileTabView: View {
                             .lineLimit(5)
                             .multilineTextAlignment(.leading)
                             .disabled(!self.editProfile)
-                            .foregroundColor(.lmuLightGrey)
+                            .textFieldStyle(StudyTextFieldLightStyle())
                     }.padding()
                 }
                 Spacer()
@@ -118,12 +128,9 @@ struct ProfileTabView: View {
                     HStack {
                         Image(systemName: "pencil")
                             .font(.system(size: 15))
-                        Text("Edit")
-                            .fontWeight(.semibold)
-                            .font(.system(size: 15))
+                        Text("Edit").fontWeight(.semibold)
                     }
-                }.padding()
-                    .foregroundColor(.lmuLightGrey)
+                }.buttonStyle(StudyButtonLightStyle())
                 }
                 if self.editProfile {
                     Button(action: {
@@ -131,9 +138,7 @@ struct ProfileTabView: View {
                         self.editProfile.toggle()
                     }) {
                         Text("Save").fontWeight(.semibold)
-                            .font(.system(size: 15))
-                    }.padding()
-                        .foregroundColor(.lmuLightGrey)
+                    }.buttonStyle(StudyButtonLightStyle())
                 }
             }
         }.navigationBarTitle("")

@@ -43,19 +43,23 @@ struct ResetPasswordView: View {
                 Text(Strings.appName).font(.largeTitle).foregroundColor(Color.white)
                 Spacer()
                 VStack {
-                    Text("Enter Your Email Address").foregroundColor(Color.white)
-                    TextField("E-mail", text: $email).textFieldStyle(StudyTextFieldStyle())
+                    Text("Enter your email address").foregroundColor(Color.white)
+                    TextField("Email", text: $email).textFieldStyle(StudyTextFieldStyle())
                 }
                 NavigationLink(destination: LoginView()) {
-                    Text("Reset Password").font(.system(size: 20))
-                        .fontWeight(.heavy)
-                }.buttonStyle(StudyButtonStyle()).simultaneousGesture(TapGesture().onEnded{self.ResetPassword()})
+                    Text("Reset Password")
+                }.buttonStyle(StudyButtonStyle())
+                    .simultaneousGesture(TapGesture()
+                    .onEnded{
+                        self.ResetPassword()
+                        
+                })
                 HStack {
-                    Text("Don't want to Reset your password?").foregroundColor(Color.lmuLightGrey)
+                    Text("Don't want to reset your password?").foregroundColor(Color.lmuLightGrey)
                     Button(action: {
                         self.mode.wrappedValue.dismiss()
                     }) {
-                        Text("Cancel") .foregroundColor(.white)
+                        Text("Cancel").foregroundColor(.white)
                     }
                 }
                 Spacer()

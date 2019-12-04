@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftUI
+import Firebase
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -18,15 +19,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
 
-        // Create the SwiftUI view that provides the window contents.
-        let contentView = LoginView()
-
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
-            window.rootViewController = UIHostingController(
-                rootView: LoginView().environmentObject(SessionStore())
-            )
+            
+            if Auth.auth().currentUser != nil {
+                window.rootViewController = UIHostingController(
+                    rootView: GeneralTabView().environmentObject(SessionStore())
+                )
+            } else {
+                window.rootViewController = UIHostingController(
+                    rootView: LoginView().environmentObject(SessionStore())
+                )
+            }
             self.window = window
             window.makeKeyAndVisible()
         }
