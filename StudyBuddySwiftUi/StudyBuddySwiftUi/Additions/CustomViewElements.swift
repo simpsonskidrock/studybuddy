@@ -25,6 +25,13 @@ public struct StudyTextFieldStyle : TextFieldStyle {
     }
 }
 
+public struct StudyTextFieldLightStyle : TextFieldStyle {
+    public func _body(configuration: TextField<Self._Label>) -> some View {
+        configuration
+            .foregroundColor(.lmuLightGrey)
+    }
+}
+
 public struct StudyButtonStyle: ButtonStyle {
     public func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label
@@ -35,5 +42,14 @@ public struct StudyButtonStyle: ButtonStyle {
             .cornerRadius(25)
             .padding(10)
             .scaleEffect(configuration.isPressed ? 0.9 : 1.0)
+    }
+}
+
+public struct StudyButtonLightStyle: ButtonStyle {
+    public func makeBody(configuration: Self.Configuration) -> some View {
+        configuration.label
+        .padding()
+        .font(.system(size: 15))
+        .foregroundColor(.white)
     }
 }
