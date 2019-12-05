@@ -19,8 +19,6 @@ class SessionStore : ObservableObject {
     var presentMatchAlert: Bool = false
     @Published var data: Data?
 
-    
-    
     func listen() {
         // monitor authentication changes using firebase
         handle = Auth.auth().addStateDidChangeListener { (auth, user) in
@@ -31,7 +29,9 @@ class SessionStore : ObservableObject {
                     uid: user.uid,
                     email: user.email
                 )
-                self.getProfile(uid: user.uid)
+                self.getProfile(uid: user.uid, handler: { (user) in
+                    self.sessionUser?.updateCompleteProfile(displayName: user.displayName, fieldOfStudy: user.fieldOfStudy, description: user.description, hashtags: user.hashtags, profileImageUrl: user.profileImageUrl, likedUsers: user.likedUsers, contacts: user.contacts)
+                })
             } else {
                 // if we don't have a user, set our session to nil
                 self.sessionUser = nil
@@ -87,7 +87,7 @@ class SessionStore : ObservableObject {
     }
     
     func resetPassword(email: String, onSuccess: @escaping() -> Void, onError: @escaping( _ _errorMessage: String) -> Void) {
-        Auth.auth().sendPasswordReset(withEmail: email){ error in
+        Auth.auth().sendPasswordReset(withEmail: email) { error in
             if error == nil {
                 onSuccess()
             } else {
@@ -98,10 +98,12 @@ class SessionStore : ObservableObject {
     
     // ---------------- Profile ---------------- //
     
-    func getProfile(uid: String?) {
-        let rootRef = Database.database().reference(withPath: Strings.urlIdentifierUser).child(uid.unsafelyUnwrapped)
+    func getProfile(uid: String?, handler: @escaping((User)->())) {
+        let rootRef = Database.database().reference(withPath: Strings.urlIdentifierUser).child(uid!)
         rootRef.observeSingleEvent(of: .value, with: { (snapshot) in
             let value = snapshot.value as? NSDictionary
+            let uid = value?[Strings.uid] as? String ?? ""
+            let email = value?[Strings.email] as? String ?? ""
             let displayName = value?[Strings.displayName] as? String ?? ""
             let fieldOfStudy = value?[Strings.fieldOfStudy] as? String ?? ""
             let description = value?[Strings.description] as? String ?? ""
@@ -109,7 +111,9 @@ class SessionStore : ObservableObject {
             let profileImageUrl = value?[Strings.profileImageUrl] as? String ?? ""
             let likedUsers = value?[Strings.likedUsers] as? [String] ?? []
             let contacts = value?[Strings.contacts] as? [String] ?? []
-            self.sessionUser?.updateCompleteProfile(displayName: displayName, fieldOfStudy: fieldOfStudy, description: description, hashtags: hashtags, profileImageUrl: profileImageUrl, likedUsers: likedUsers, contacts: contacts)
+            var tempUser: User = User(uid: uid, email: email)
+            tempUser.updateCompleteProfile(displayName: displayName, fieldOfStudy: fieldOfStudy, description: description, hashtags: hashtags, profileImageUrl: profileImageUrl, likedUsers: likedUsers, contacts: contacts)
+            handler(tempUser)
         }) { (error) in
             print(error.localizedDescription)
         }
@@ -135,7 +139,7 @@ class SessionStore : ObservableObject {
             if (success) {
                 print ("Added Profile: Done")
             } else {
-                throw RegisterError.unknown(message: "Hmm")
+              //  throw RegisterError.unknown(message: "Hmm")
             }
         }
     }
