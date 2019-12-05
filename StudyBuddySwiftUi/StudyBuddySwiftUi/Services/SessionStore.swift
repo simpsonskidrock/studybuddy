@@ -19,7 +19,7 @@ class SessionStore : ObservableObject {
     var presentMatchAlert: Bool = false
     @Published var data: Data?
 
-    func listen() {
+    func listen(handler: @escaping((User)->())) {
         // monitor authentication changes using firebase
         handle = Auth.auth().addStateDidChangeListener { (auth, user) in
             if let user = user {
@@ -30,7 +30,7 @@ class SessionStore : ObservableObject {
                     email: user.email
                 )
                 self.getProfile(uid: user.uid, handler: { (user) in
-                    self.sessionUser?.updateCompleteProfile(displayName: user.displayName, fieldOfStudy: user.fieldOfStudy, description: user.description, hashtags: user.hashtags, profileImageUrl: user.profileImageUrl, likedUsers: user.likedUsers, contacts: user.contacts)
+                    handler(user)
                 })
             } else {
                 // if we don't have a user, set our session to nil

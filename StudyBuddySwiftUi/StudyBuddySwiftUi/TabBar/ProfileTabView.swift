@@ -28,18 +28,18 @@ struct ProfileTabView: View {
     @State private var image: UIImage = UIImage()
     
     private func initialize() {
-        self.session.listen()
-        
-        self.displayName = session.sessionUser?.displayName ?? ""
-        self.fieldOfStudy = session.sessionUser?.fieldOfStudy ?? ""
-        self.description = session.sessionUser?.description ?? ""
-        self.hashtags = session.sessionUser?.hashtags ?? ""
-        self.profileImageUrl = session.sessionUser?.profileImageUrl ?? ""
-        /*self.session.getProfileImage(profileImageUrl: profileImageUrl, handler: { (image) in
-            print("pic", image)
-        })*/
-
-        session.getOtherUsers()
+        self.session.listen(handler: { user in
+            self.session.sessionUser = user
+            self.displayName = user.displayName ?? ""
+            self.fieldOfStudy = user.fieldOfStudy ?? ""
+            self.description = user.description ?? ""
+            self.hashtags = user.hashtags ?? ""
+            self.profileImageUrl = user.profileImageUrl ?? ""
+            self.session.getProfileImage(profileImageUrl: self.profileImageUrl, handler: { (image) in
+                print("pic", image)
+            })
+            self.session.getOtherUsers()
+        })
     }
     
     var body: some View {

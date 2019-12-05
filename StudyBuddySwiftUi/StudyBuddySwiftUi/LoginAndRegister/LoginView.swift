@@ -40,7 +40,9 @@ struct LoginView: View {
     }
     
     private func getSession() {
-        session.listen()
+        session.listen(handler: { user in
+            self.session.sessionUser = user
+        })
     }
     
     var body: some View {
