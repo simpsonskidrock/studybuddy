@@ -13,7 +13,6 @@ struct ResetPasswordView: View {
     @EnvironmentObject var session: SessionStore
     
     @State private var email: String = ""
-    @State private var loading: Bool = false
     @State private var error: Bool = false
     @State private var tempAlert: Alert = nil
     
@@ -38,14 +37,17 @@ struct ResetPasswordView: View {
     var body: some View {
         ZStack {
             VStack {
-                Text("Reset Password").font(.largeTitle).foregroundColor(.lmuLightGrey)
-                Spacer()
+                Group{
                 Text(Strings.appName).font(.largeTitle).foregroundColor(Color.white)
+                Spacer()
+                Text("Reset Password").font(.largeTitle).foregroundColor(.lmuLightGrey)
                 Spacer()
                 VStack {
                     Text("Enter your email address").foregroundColor(Color.white)
                     TextField("Email", text: $email).textFieldStyle(StudyTextFieldStyle())
                 }
+                }
+                Group{
                 NavigationLink(destination: LoginView()) {
                     Text("Reset Password")
                 }.buttonStyle(StudyButtonStyle())
@@ -54,12 +56,15 @@ struct ResetPasswordView: View {
                         self.ResetPassword()
                         
                 })
+                }
                 HStack {
+                    Group{
                     Text("Don't want to reset your password?").foregroundColor(Color.lmuLightGrey)
                     Button(action: {
                         self.mode.wrappedValue.dismiss()
                     }) {
                         Text("Cancel").foregroundColor(.white)
+                    }
                     }
                 }
                 Spacer()

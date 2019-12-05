@@ -90,7 +90,7 @@ class SessionStore : ObservableObject {
             if error == nil {
                 onSuccess()
             } else {
-                (error?.localizedDescription)
+                print(error!.localizedDescription)
             }
         }
     }
