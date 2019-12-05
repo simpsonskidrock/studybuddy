@@ -17,7 +17,7 @@ class SessionStore : ObservableObject {
     private var handle: AuthStateDidChangeListenerHandle?
     var otherUsers: [User] = []
     var presentMatchAlert: Bool = false
-    @Published var data: Data?
+    var sessionUserImage: UIImage? = UIImage()
 
     func listen(handler: @escaping((User)->())) {
         // monitor authentication changes using firebase
@@ -196,22 +196,14 @@ class SessionStore : ObservableObject {
         })
     }
     
-    func getProfileImage(profileImageUrl: String, handler: @escaping ((UIImage)->())) { // Still not working
+    func getProfileImage(profileImageUrl: String, handler: @escaping ((UIImage)->())) {
         let storageRef = Storage.storage().reference(forURL: profileImageUrl)
         storageRef.getData(maxSize: 1 * 1024 * 1024) { data, error in
-          if let error = error {
-            print(error.localizedDescription)
-          }
-            let image = UIImage(data: data!) ?? UIImage()
-            print("get data")
-                 DispatchQueue.main.async {
-                     self.data = data
-                     print(self.data!)
-                     print("loaded profile image:", image as
-                         Any)
-                    
-            handler(image)
+            if let error = error {
+                print(error.localizedDescription)
             }
+            let image = UIImage(data: data!) ?? UIImage()
+            handler(image)
         }
     }
     
@@ -223,27 +215,11 @@ class SessionStore : ObservableObject {
         rootRef.observe(.value, with: { (snapshot) in
             for uid in (snapshot.value as? NSDictionary)!.allKeys as! [String] {
                 if (uid != self.sessionUser?.uid && !(self.sessionUser?.contacts.contains(uid))! && !(self.sessionUser?.likedUsers.contains(uid))!) {
-                    self.getOtherUser(uid: uid)
+                    self.getProfile(uid: uid, handler: { user in
+                        self.otherUsers.append(user)
+                    })
                 }
             }
-        }) { (error) in
-            print(error.localizedDescription)
-        }
-    }
-    
-    private func getOtherUser(uid: String?) {
-        var user: User = User(uid: uid!, email: "")
-        let rootRef = Database.database().reference(withPath: Strings.urlIdentifierUser).child(uid.unsafelyUnwrapped)
-        rootRef.observe(.value, with: { (snapshot) in
-            let value = snapshot.value as? NSDictionary
-            let displayName = value?[Strings.displayName] as? String ?? ""
-            let fieldOfStudy = value?[Strings.fieldOfStudy] as? String ?? ""
-            let description = value?[Strings.description] as? String ?? ""
-            let hashtags = value?[Strings.hashtags] as? String ?? ""
-            let profileImageUrl = value?[Strings.profileImageUrl] as? String ?? ""
-            user.updateDetails(displayName: displayName, fieldOfStudy: fieldOfStudy, description: description, hashtags: hashtags)
-            user.updatePicture(profileImageUrl: profileImageUrl)
-            self.otherUsers.append(user)
         }) { (error) in
             print(error.localizedDescription)
         }
@@ -312,6 +288,7 @@ class SessionStore : ObservableObject {
     
     
     // ---------------- only development ---------------- //
+    
     func deleteData(uid: String, deleteLikes: Bool) {
         var dict: Dictionary<String, Any>
         if deleteLikes {

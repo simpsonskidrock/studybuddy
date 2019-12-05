@@ -36,7 +36,7 @@ struct ProfileTabView: View {
             self.hashtags = user.hashtags ?? ""
             self.profileImageUrl = user.profileImageUrl ?? ""
             self.session.getProfileImage(profileImageUrl: self.profileImageUrl, handler: { (image) in
-                print("pic", image)
+                self.image = image
             })
             self.session.getOtherUsers()
         })
