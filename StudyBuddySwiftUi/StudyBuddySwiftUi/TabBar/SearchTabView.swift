@@ -26,8 +26,5 @@ struct SearchTabView: View {
             .padding(.bottom)
         .background(Color.lmuGreen.edgesIgnoringSafeArea(.vertical))
         .onAppear(perform: initialize)
-        .alert(isPresented: $session.presentMatchAlert) {
-            Alert.alertMatch
-        }
     }
 }
