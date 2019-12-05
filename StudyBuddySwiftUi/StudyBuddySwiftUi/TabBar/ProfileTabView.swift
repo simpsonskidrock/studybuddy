@@ -68,10 +68,9 @@ struct ProfileTabView: View {
                         .resizable()
                         .scaledToFit()
                         .clipShape(Circle())
-                        .frame(width: 150, height: 150)
                         .overlay(Circle()
                             .stroke(Color.white, lineWidth: 5)
-                            .frame(width: 150, height: 150))
+                            )
                     if self.editProfile {
                         Button(action: {
                             self.isShowingImagePicker.toggle()
