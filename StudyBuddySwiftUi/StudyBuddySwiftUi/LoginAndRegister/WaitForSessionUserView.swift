@@ -17,12 +17,17 @@ struct WaitForSessionUserView: View {
     
     @State var correctLoginData: Bool = false
     
+    @State private var animationAmount = 0.0
+    
     private func signIn () {
         session.signIn(email: self.email, password: self.password) { (result, error_FieldIsEmpty) in
             if error_FieldIsEmpty != nil {
                 self.mode.wrappedValue.dismiss()
             } else {
-                self.correctLoginData.toggle()
+                self.session.listen(handler: { user in
+                    self.session.sessionUser = user
+                    self.correctLoginData.toggle()
+                })
             }
         }
     }
@@ -37,7 +42,8 @@ struct WaitForSessionUserView: View {
                 .overlay(
                 VStack {
                     Spacer()
-                    Image("fountainicon")
+                    Image("fountainicon").foregroundColor(Color.white)
+                        .animation(.interpolatingSpring(stiffness: 20, damping: 0.5))
                     Spacer()
                 })
             }

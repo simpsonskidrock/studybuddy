@@ -25,6 +25,7 @@ struct SwipeView: View {
                     }
                     if (self.users.isEmpty) {
                         Text("no other users yet").background(Color.lmuLightGrey.edgesIgnoringSafeArea(.vertical))
+                            .foregroundColor(.orange)
                     }
                 }
             }
