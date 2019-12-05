@@ -39,12 +39,6 @@ struct LoginView: View {
         }
     }
     
-    private func getSession() {
-        session.listen(handler: { user in
-            self.session.sessionUser = user
-        })
-    }
-    
     var body: some View {
         NavigationView {
             VStack(spacing: 16) {
@@ -81,7 +75,6 @@ struct LoginView: View {
             }.navigationBarTitle("")
             .navigationBarBackButtonHidden(true)
             .navigationBarHidden(true)
-            .onAppear(perform: getSession)
             .padding(.horizontal, 20.0)
             .background(Color.lmuGreen.edgesIgnoringSafeArea(.vertical))
             .padding(.bottom, keyboard.currentHeight)

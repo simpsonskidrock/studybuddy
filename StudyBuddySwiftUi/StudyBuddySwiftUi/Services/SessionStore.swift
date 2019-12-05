@@ -17,7 +17,6 @@ class SessionStore : ObservableObject {
     private var handle: AuthStateDidChangeListenerHandle?
     var otherUsers: [User] = []
     var presentMatchAlert: Bool = false
-    var sessionUserImage: UIImage? = UIImage()
 
     func listen(handler: @escaping((User)->())) {
         // monitor authentication changes using firebase
@@ -201,9 +200,10 @@ class SessionStore : ObservableObject {
         storageRef.getData(maxSize: 1 * 1024 * 1024) { data, error in
             if let error = error {
                 print(error.localizedDescription)
+            } else {
+                let image = UIImage(data: data!) ?? UIImage()
+                handler(image)
             }
-            let image = UIImage(data: data!) ?? UIImage()
-            handler(image)
         }
     }
     
