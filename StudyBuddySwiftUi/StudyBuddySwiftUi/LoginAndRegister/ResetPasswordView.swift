@@ -11,6 +11,8 @@ import SwiftUI
 struct ResetPasswordView: View {
     @Environment(\.presentationMode) var mode
     @EnvironmentObject var session: SessionStore
+    @ObservedObject private var keyboard = KeyboardResponder()
+
     
     @State private var email: String = ""
     @State private var error: Bool = false
@@ -71,6 +73,7 @@ struct ResetPasswordView: View {
             }.padding(.horizontal)
                 .background(Color.lmuGreen.edgesIgnoringSafeArea(.vertical))
                 .edgesIgnoringSafeArea(.bottom)
+                .offset(x: 0, y: -keyboard.currentHeight)
                 .animation(.easeOut(duration: 0.16))
                 .alert(isPresented: $error) {
                     self.tempAlert.unsafelyUnwrapped

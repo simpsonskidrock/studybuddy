@@ -13,7 +13,7 @@ struct RegisterView: View {
     @Environment(\.presentationMode) var mode
     @EnvironmentObject var session: SessionStore
     @ObservedObject private var keyboard = KeyboardResponder()
-    
+
     // for the registerButton TODO rename
     @State private var isActive: Bool = false
     
@@ -136,7 +136,7 @@ struct RegisterView: View {
                 }
             }.padding(.horizontal)
                 .background(Color.lmuGreen.edgesIgnoringSafeArea(.vertical))
-                .padding(.bottom, keyboard.currentHeight)
+                .offset(x: 0, y: -keyboard.currentHeight)
                 .edgesIgnoringSafeArea(.bottom)
                 .animation(.easeOut(duration: 0.16))
                 .alert(isPresented: $errorDialogVisible) {

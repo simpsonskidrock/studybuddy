@@ -11,6 +11,7 @@ import SwiftUI
 struct LoginView: View {
     @EnvironmentObject var session: SessionStore
     @ObservedObject private var keyboard = KeyboardResponder()
+
     
     @State private var email: String = ""
     @State private var password: String = ""
@@ -72,7 +73,7 @@ struct LoginView: View {
                 .navigationBarHidden(true)
                 .padding(.horizontal, 20.0)
                 .background(Color.lmuGreen.edgesIgnoringSafeArea(.vertical))
-                .padding(.bottom, keyboard.currentHeight)
+                .offset(x: 0, y: -keyboard.currentHeight)
                 .edgesIgnoringSafeArea(.bottom)
                 .animation(.easeOut(duration: 0.16))
         }
