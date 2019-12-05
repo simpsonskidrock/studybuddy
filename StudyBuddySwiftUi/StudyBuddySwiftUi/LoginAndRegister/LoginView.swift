@@ -15,30 +15,6 @@ struct LoginView: View {
     @State private var email: String = ""
     @State private var password: String = ""
     
-    @State private var loading: Bool = false
-    @State private var error: Bool = false
-    @State private var tempAlert: Alert = nil
-    
-    func signIn () {
-        self.loading = true
-        self.error = false
-        if (self.email == "" || self.password == "") {
-            self.error = true
-            self.tempAlert = Alert.alertEmptyField
-        } else {
-            session.signIn(email: email, password: password) { (result, error_FieldIsEmpty) in
-                self.loading = false
-                if error_FieldIsEmpty != nil {
-                    self.error = true
-                    self.tempAlert = Alert.alertIncorrectData
-                } else {
-                    self.email = ""
-                    self.password = ""
-                }
-            }
-        }
-    }
-    
     var body: some View {
         NavigationView {
             VStack(spacing: 16) {
@@ -55,10 +31,9 @@ struct LoginView: View {
                     .textFieldStyle(StudyTextFieldStyle())
                 HStack {
                     Spacer()
-                    NavigationLink(destination: GeneralTabView()) {
+                    NavigationLink(destination: WaitForSessionUserView(email: self.email, password: self.password)) {
                         Text("Log In")
                     }.buttonStyle(StudyButtonStyle())
-                        .simultaneousGesture(TapGesture().onEnded{self.signIn()})
                     Text("or").foregroundColor(Color.white)
                     NavigationLink(destination: RegisterView()) {
                         Text("Register")
@@ -71,7 +46,6 @@ struct LoginView: View {
                     }
                 }
                 Spacer()
-
             }.navigationBarTitle("")
             .navigationBarBackButtonHidden(true)
             .navigationBarHidden(true)
@@ -80,10 +54,6 @@ struct LoginView: View {
             .padding(.bottom, keyboard.currentHeight)
             .edgesIgnoringSafeArea(.bottom)
             .animation(.easeOut(duration: 0.16))
-            .alert(isPresented: $error) {
-                self.tempAlert.unsafelyUnwrapped
-            
-            }
         }
     }
 }

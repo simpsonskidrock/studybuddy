@@ -17,6 +17,7 @@
 		3391BDFE238557FC00643581 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3391BDFD238557FB00643581 /* User.swift */; };
 		4E5B7ECC2382A871002C72B2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4E5B7ECB2382A871002C72B2 /* GoogleService-Info.plist */; };
 		5F6706AD580144BD7E148704 /* Pods_StudyBuddySwiftUi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E880CE267D995F2D844EA96D /* Pods_StudyBuddySwiftUi.framework */; };
+		732023D6239921C90031F120 /* WaitForSessionUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732023D5239921C90031F120 /* WaitForSessionUserView.swift */; };
 		73321153238586C100B7660A /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73321152238586C100B7660A /* ChatView.swift */; };
 		734FC387238F094B00350F82 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734FC386238F094B00350F82 /* Strings.swift */; };
 		7367D1F6237D6670002EE928 /* ProfileTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7367D1F5237D6670002EE928 /* ProfileTabView.swift */; };
@@ -73,6 +74,7 @@
 		5229308A2865911F0E6F797C /* Pods-StudyBuddySwiftUiTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StudyBuddySwiftUiTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-StudyBuddySwiftUiTests/Pods-StudyBuddySwiftUiTests.release.xcconfig"; sourceTree = "<group>"; };
 		598C953324D99E410D1B9A0F /* Pods-StudyBuddySwiftUi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StudyBuddySwiftUi.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StudyBuddySwiftUi/Pods-StudyBuddySwiftUi.debug.xcconfig"; sourceTree = "<group>"; };
 		63A1D570831FA0B30FC24AE1 /* Pods-StudyBuddySwiftUiUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StudyBuddySwiftUiUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-StudyBuddySwiftUiUITests/Pods-StudyBuddySwiftUiUITests.release.xcconfig"; sourceTree = "<group>"; };
+		732023D5239921C90031F120 /* WaitForSessionUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitForSessionUserView.swift; sourceTree = "<group>"; };
 		73321152238586C100B7660A /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		734FC386238F094B00350F82 /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		7367D1F5237D6670002EE928 /* ProfileTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTabView.swift; sourceTree = "<group>"; };
@@ -172,6 +174,7 @@
 				292EF2F92381F5760062FBB5 /* ChangePasswordView.swift */,
 				7367D201237D85F5002EE928 /* RegisterView.swift */,
 				290A21972393E08700E0BC81 /* ResetPasswordView.swift */,
+				732023D5239921C90031F120 /* WaitForSessionUserView.swift */,
 			);
 			path = LoginAndRegister;
 			sourceTree = "<group>";
@@ -532,6 +535,7 @@
 				290A21982393E08700E0BC81 /* ResetPasswordView.swift in Sources */,
 				73B9D154237C2484000E268E /* LoginView.swift in Sources */,
 				293AA0732384947A00436E02 /* KeyboardSettings.swift in Sources */,
+				732023D6239921C90031F120 /* WaitForSessionUserView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

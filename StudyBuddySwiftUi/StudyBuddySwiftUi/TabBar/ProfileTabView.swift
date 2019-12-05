@@ -72,11 +72,12 @@ struct ProfileTabView: View {
                         .overlay(Circle()
                             .stroke(Color.white, lineWidth: 5)
                             .frame(width: 150, height: 150))
-                    if self.editProfile { Button(action:{
-                        self.isShowingImagePicker.toggle()
-                    }) {
-                        Image(systemName: "camera.on.rectangle")
-                            .foregroundColor(.white)
+                    if self.editProfile {
+                        Button(action: {
+                            self.isShowingImagePicker.toggle()
+                        }) {
+                            Image(systemName: "camera.on.rectangle")
+                                .foregroundColor(.white)
                     }.padding()
                         .sheet(isPresented: $isShowingImagePicker, content: {
                             ImagePickerViewController(isPresented: self.$isShowingImagePicker, selectedImage: self.$image)

@@ -59,7 +59,7 @@ class SessionStore : ObservableObject {
                 return
             }
             do {
-                try self.addProfile(result: res)
+                try self.addSessionUserProfile(result: res)
                 handler(nil)
             } catch {
                 print("ADD PROFILE FAILED")
@@ -118,7 +118,7 @@ class SessionStore : ObservableObject {
         }
     }
     
-    func addProfile(result: AuthDataResult?) throws {
+    func addSessionUserProfile(result: AuthDataResult?) throws {
         if let authData = result {
             let dict: Dictionary<String, Any> = [
                 Strings.uid: authData.user.uid,
