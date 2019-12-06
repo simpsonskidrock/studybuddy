@@ -83,7 +83,7 @@
 		7367D1FE237D8496002EE928 /* GeneralTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralTabView.swift; sourceTree = "<group>"; };
 		7367D201237D85F5002EE928 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		73A69B4823869D2700ECEAC2 /* ListedAlerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListedAlerts.swift; sourceTree = "<group>"; };
-		73B9D14C237C2484000E268E /* StudyBuddySwiftUi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StudyBuddySwiftUi.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		73B9D14C237C2484000E268E /* StudyBuddy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StudyBuddy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73B9D14F237C2484000E268E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		73B9D151237C2484000E268E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		73B9D153237C2484000E268E /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -224,7 +224,7 @@
 		73B9D14D237C2484000E268E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				73B9D14C237C2484000E268E /* StudyBuddySwiftUi.app */,
+				73B9D14C237C2484000E268E /* StudyBuddy.app */,
 				73B9D162237C2485000E268E /* StudyBuddySwiftUiTests.xctest */,
 				73B9D16D237C2485000E268E /* StudyBuddySwiftUiUITests.xctest */,
 			);
@@ -320,7 +320,7 @@
 			);
 			name = StudyBuddySwiftUi;
 			productName = StudyBuddySwiftUi;
-			productReference = 73B9D14C237C2484000E268E /* StudyBuddySwiftUi.app */;
+			productReference = 73B9D14C237C2484000E268E /* StudyBuddy.app */;
 			productType = "com.apple.product-type.application";
 		};
 		73B9D161237C2485000E268E /* StudyBuddySwiftUiTests */ = {
@@ -703,7 +703,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"StudyBuddySwiftUi/Preview Content\"";
-				DEVELOPMENT_TEAM = 6T8T8284X7;
+				DEVELOPMENT_TEAM = A6B8BRDPAC;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = StudyBuddySwiftUi/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -711,7 +711,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = LilianeKabboura;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = StudyBuddy;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -724,7 +724,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"StudyBuddySwiftUi/Preview Content\"";
-				DEVELOPMENT_TEAM = 6T8T8284X7;
+				DEVELOPMENT_TEAM = A6B8BRDPAC;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = StudyBuddySwiftUi/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -732,7 +732,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = LilianeKabboura;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = StudyBuddy;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

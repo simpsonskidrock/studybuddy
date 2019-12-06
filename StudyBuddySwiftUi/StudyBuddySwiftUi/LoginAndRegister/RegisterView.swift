@@ -9,13 +9,20 @@
 import SwiftUI
 import Firebase
 
+extension String {
+    func matches(_ regex: String) -> Bool {
+        return self.range(of: regex, options: .regularExpression, range: nil, locale: nil) != nil
+    }
+}
+
 struct RegisterView: View {
     @Environment(\.presentationMode) var mode
     @EnvironmentObject var session: SessionStore
     @ObservedObject private var keyboard = KeyboardResponder()
-
+    
     // for the registerButton TODO rename
-    @State private var isActive: Bool = false
+    @State private var signUpSuccessFlagForView: Bool = false
+    @State private var errorText: String = ""
     
     
     @State private var errorDialogVisible: Bool = false
@@ -28,39 +35,59 @@ struct RegisterView: View {
     @State private var isShowingImagePicker: Bool = false
     @State private var image: UIImage = UIImage()
     
-    func isDataValid() -> Bool {
-        if (self.email == "" || self.password == "" || self.repeatPassword == "") {
-            self.tempAlert = Alert.alertEmptyField
-            return false
-        } else if (self.password.count < 6 || self.repeatPassword.count < 6) {
-            self.tempAlert = Alert.alertTooShortPassword
-            return false
-        } else if (self.password != self.repeatPassword) {
-            self.tempAlert = Alert.alertUnequalPassword
-            return false
-        }
-        return errorDialogVisible
+    enum RegisterDataValidity: String {
+        case invalidEmail = "Invalid Email"
+        case shortPassword = "Password too short"
+        case unequalPasswords = "Passwords don't match"
+        case valid = ""
     }
     
-    func signUp () {
-        if (!self.isDataValid()) {
+    
+    
+    func isDataValid() -> RegisterDataValidity {
+
+        if (self.email == "" || self.password == "" || self.repeatPassword == "") {
+            return RegisterDataValidity.invalidEmail
+        } else if (!email.matches("[^@]+@[^\\.]+\\..+")) {
+            return RegisterDataValidity.invalidEmail
+        } else if (self.password.count < 6 || self.repeatPassword.count < 6) {
+            return RegisterDataValidity.shortPassword
+        } else if (self.password != self.repeatPassword) {
+            return RegisterDataValidity.unequalPasswords
+        }
+        return RegisterDataValidity.valid
+    }
+    
+    /**
+     checks Data and handles correct Alert in case
+     */
+    func signUp() -> Bool {
+        var success = false
+        if (self.isDataValid() == RegisterDataValidity.valid) {
             session.signUp(email: email, password: password) {(error) in
                 if error != nil {
                     print(error!.localizedDescription)
-                    self.tempAlert = Alert.alertIncorrectData
+                    success = false
                 } else {
-                    // TODO Switch to Generel Tab View
-                    self.isActive.toggle()
+                    success = true
                 }
             }
         } else {
-            // show error dialog
-            errorDialogVisible = true
+            success = false
         }
+        return success
     }
     
     var body: some View {
-        ZStack {
+        
+        let repeatPasswordBinding = Binding<String>(get: {
+            self.repeatPassword
+        }, set: {
+            self.repeatPassword = $0
+            self.errorText = self.isDataValid().rawValue
+        })
+        
+        return ZStack {
             VStack {
                 Group {
                     Text("SignUp").font(.largeTitle)
@@ -90,36 +117,38 @@ struct RegisterView: View {
                         .textFieldStyle(StudyTextFieldStyle())
                     SecureField("Password", text: $password)
                         .textFieldStyle(StudyTextFieldStyle())
-                    SecureField("Confirm Password", text: $repeatPassword)
+                    SecureField("Confirm Password", text: repeatPasswordBinding)
                         .textFieldStyle(StudyTextFieldStyle())
                 }
                 Group {
                     Spacer()
+                    Text(errorText).foregroundColor(Color.red)
+                    Spacer()
                     
                     Button(action: {
-                        self.signUp()
+                        self.signUpSuccessFlagForView = self.signUp()
                     }) {
                         Text("Register")
                     }.buttonStyle(StudyButtonStyle())
                     
                     // Phantom navigation link:
-                    NavigationLink("", destination: GeneralTabView(), isActive: self.$isActive)
+                    NavigationLink("", destination: GeneralTabView(), isActive: self.$signUpSuccessFlagForView)
                     
                 }
-//                NavigationLink(destination: {
-//                    VStack {
-//                        if loginSuccess {
-//                            GeneralTabView()
-//                        } else {
-//                            // Not going to GeneralTabView
-//                            RegisterView()
-//                        }
-//                    }
-//                }()) {
-//                    Text("Register")
-//                }.buttonStyle(StudyButtonStyle())
-//                    .simultaneousGesture(TapGesture().onEnded{self.signUp()})
-//
+                //                NavigationLink(destination: {
+                //                    VStack {
+                //                        if loginSuccess {
+                //                            GeneralTabView()
+                //                        } else {
+                //                            // Not going to GeneralTabView
+                //                            RegisterView()
+                //                        }
+                //                    }
+                //                }()) {
+                //                    Text("Register")
+                //                }.buttonStyle(StudyButtonStyle())
+                //                    .simultaneousGesture(TapGesture().onEnded{self.signUp()})
+                //
                 
                 HStack {
                     Text("Already have an account?").foregroundColor(Color.lmuLightGrey)
@@ -130,8 +159,8 @@ struct RegisterView: View {
                     }
                 }
                 Group {
-                Spacer()
-                Spacer()
+                    Spacer()
+                    Spacer()
                 }
             }.padding(.horizontal)
                 .background(Color.lmuGreen.edgesIgnoringSafeArea(.vertical))
