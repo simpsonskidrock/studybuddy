@@ -26,13 +26,13 @@ struct ChangePasswordView: View {
         self.error = false
         if (self.email == "" || self.newPassword == "" || self.repeatNewPassword == "") {
             self.error = true
-            self.tempAlert = Alert.alertEmptyField
+            self.tempAlert = Alert.emptyField
         } else if (self.newPassword.count < 6 || self.repeatNewPassword.count < 6) {
             self.error = true
-            self.tempAlert = Alert.alertTooShortPassword
+            self.tempAlert = Alert.tooShortPassword
         } else if (self.newPassword != self.repeatNewPassword) {
             self.error = true
-            self.tempAlert = Alert.alertUnequalPassword
+            self.tempAlert = Alert.unequalPassword
         } else {
             //todo password change and not creating a new user
             /* session.signUp(email: email, password: newPassword) {(result, error_FieldIsEmpty) in self.loading = false

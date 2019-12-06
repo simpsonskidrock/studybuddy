@@ -22,12 +22,12 @@ struct ResetPasswordView: View {
         self.error = false
         if (self.email == "" ) {
             self.error = true
-            self.tempAlert = Alert.alertEmptyField
+            self.tempAlert = Alert.emptyField
         }
         else {
             self.session.resetPassword(email: email, onSuccess: {
                 self.error = true
-                self.tempAlert = Alert.alertSuccessResetPassword
+                self.tempAlert = Alert.successResetPassword
                 
             }){
                 (errorMessage) in
