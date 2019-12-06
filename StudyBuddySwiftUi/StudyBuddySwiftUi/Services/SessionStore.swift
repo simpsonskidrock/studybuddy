@@ -17,6 +17,7 @@ class SessionStore : ObservableObject {
     private var handle: AuthStateDidChangeListenerHandle?
     var otherUsers: [User] = []
     var presentMatchAlert: Bool = false
+    var searchWithGPS: Bool = false
 
     func listen(handler: @escaping((User)->())) {
         // monitor authentication changes using firebase

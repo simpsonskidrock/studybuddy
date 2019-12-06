@@ -52,16 +52,33 @@ struct ProfileTabView: View {
                             .foregroundColor(Color.white)
                             .fontWeight(.semibold)
                         Spacer()
-                        Button(action: {
-                            self.session.signOut()
-                            self.mode.wrappedValue.dismiss()
-                        }){
-                            HStack {
-                                Image(systemName: "arrow.uturn.left")
-                                Text("Logout")
-                                    .fontWeight(.semibold)
-                            }
-                        }.buttonStyle(StudyButtonLightStyle())
+                        HStack {
+                            Image(systemName: "gear").contextMenu {
+                                Button(action: {
+                                    self.session.searchWithGPS.toggle()
+                                }) {
+                                    Text("Search with Location")
+                                    if self.session.searchWithGPS {
+                                        Image(systemName: "location")
+                                    } else {
+                                        Image(systemName: "location.slash")
+                                    }
+                                }
+                                Button(action: {
+                                    self.session.signOut()
+                                    self.mode.wrappedValue.dismiss()
+                                }){
+                                    HStack {
+                                        Image(systemName: "arrow.uturn.left")
+                                        Text("Logout")
+                                            .fontWeight(.semibold)
+                                    }
+                                }
+                            }.padding()
+                                .font(.system(size: 17))
+                                .foregroundColor(.white)
+                        }
+                        
                     }.frame(height: 50)
                         .padding(.leading, 10)
                     Image(uiImage: self.image)
