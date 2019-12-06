@@ -21,7 +21,7 @@ struct RegisterView: View {
     @ObservedObject private var keyboard = KeyboardResponder()
     
     // for the registerButton TODO rename
-    @State private var signUpSuccessFlagForView: Bool = false
+    @State private var signUpSuccess: Bool = false
     @State private var errorText: String = ""
     
     
@@ -42,15 +42,12 @@ struct RegisterView: View {
         case valid = ""
     }
     
-    
-    
     func isDataValid() -> RegisterDataValidity {
-
         if (self.email == "" || self.password == "" || self.repeatPassword == "") {
             return RegisterDataValidity.invalidEmail
         } else if (!email.matches("[^@]+@[^\\.]+\\..+")) {
             return RegisterDataValidity.invalidEmail
-        } else if (self.password.count < 6 || self.repeatPassword.count < 6) {
+        } else if (self.password.count < 6) {
             return RegisterDataValidity.shortPassword
         } else if (self.password != self.repeatPassword) {
             return RegisterDataValidity.unequalPasswords
@@ -59,27 +56,27 @@ struct RegisterView: View {
     }
     
     /**
-     checks Data and handles correct Alert in case
+     checks Data registers
      */
     func signUp() -> Bool {
         var success = false
         if (self.isDataValid() == RegisterDataValidity.valid) {
             session.signUp(email: email, password: password) {(error) in
                 if error != nil {
-                    print(error!.localizedDescription)
+                    print("ERROR in SignUp() \(error!.localizedDescription)")
                     success = false
                 } else {
+                    // No error / error = nil
                     success = true
                 }
             }
-        } else {
-            success = false
         }
         return success
     }
     
     var body: some View {
         
+        // Add Listener to second pass field. calls isDataValid on every Input
         let repeatPasswordBinding = Binding<String>(get: {
             self.repeatPassword
         }, set: {
@@ -101,15 +98,7 @@ struct RegisterView: View {
                         .clipShape(Circle())
                         .overlay(Circle().stroke(Color.white, lineWidth: 5))
                     //                        .frame(width: 100, height: 100))
-                    Button(action: {
-                        self.isShowingImagePicker.toggle()
-                    }, label: {
-                        Text("Select Image")
-                            .font(.system(size: 15)).foregroundColor(.white)
-                    }) .sheet(isPresented: $isShowingImagePicker, content: {
-                        ImagePickerViewController(isPresented: self.$isShowingImagePicker, selectedImage: self.$image)
-                        // Text("this is the image picker")
-                    }).padding()
+
                 }
                 VStack {
                     Text("Create a new Account").foregroundColor(Color.white).font(.title)
@@ -126,13 +115,14 @@ struct RegisterView: View {
                     Spacer()
                     
                     Button(action: {
-                        self.signUpSuccessFlagForView = self.signUp()
+                        self.signUpSuccess = self.signUp()
+                        print("SignUpSuccess: \(self.signUpSuccess)")
                     }) {
                         Text("Register")
                     }.buttonStyle(StudyButtonStyle())
                     
                     // Phantom navigation link:
-                    NavigationLink("", destination: GeneralTabView(), isActive: self.$signUpSuccessFlagForView)
+                    NavigationLink("", destination: GeneralTabView(), isActive: $signUpSuccess)
                     
                 }
                 //                NavigationLink(destination: {
