@@ -9,7 +9,6 @@
 import SwiftUI
 
 extension Alert {
-    //TODO refactor and remove alert from name. it's already in the Alert extension no need to have Alert twice
     
     static let wrongLogin: Alert = Alert(title: Text("Invalid Data"), message: Text("Email and/or password are incorrect."))
     

@@ -40,7 +40,7 @@ struct ResetPasswordView: View {
         ZStack {
             VStack {
                 Group{
-                Text(Strings.appName).font(.largeTitle).foregroundColor(Color.white)
+                Text(FixedStringValues.appName).font(.largeTitle).foregroundColor(Color.white)
                 Spacer()
                 Text("Reset Password").font(.largeTitle).foregroundColor(.lmuLightGrey)
                 Spacer()

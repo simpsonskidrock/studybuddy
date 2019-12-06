@@ -6,7 +6,7 @@
 //  Copyright © 2019 Annika Jung. All rights reserved.
 //
 
-struct Strings {
+struct FixedStringValues {
     
     static let description: String = "description"
     static let displayName: String = "displayName"

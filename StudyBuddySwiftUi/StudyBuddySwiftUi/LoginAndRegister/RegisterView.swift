@@ -93,7 +93,7 @@ struct RegisterView: View {
                     Text("SignUp").font(.largeTitle)
                         .foregroundColor(.lmuLightGrey)
                     Spacer()
-                    Text(Strings.appName).font(.largeTitle)
+                    Text(FixedStringValues.appName).font(.largeTitle)
                         .foregroundColor(Color.white)
                     Image(uiImage: image)
                         .resizable()
