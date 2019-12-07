@@ -197,15 +197,24 @@ class SessionStore : ObservableObject {
     }
     
     func getProfileImage(profileImageUrl: String, handler: @escaping ((UIImage)->())) {
+        if(profileImageUrl.isEmpty){
+            print("no profile image")
+           
+        }else {
         let storageRef = Storage.storage().reference(forURL: profileImageUrl)
         storageRef.getData(maxSize: 1 * 1024 * 1024) { data, error in
             if let error = error {
                 print(error.localizedDescription)
-            } else {
-                let image = UIImage(data: data!) ?? UIImage()
+            }
+            else {
+                if let image = UIImage(data: data!){
                 handler(image)
             }
+            }
+            
+            }
         }
+        
     }
     
     // ---------------- Other User|s ---------------- //

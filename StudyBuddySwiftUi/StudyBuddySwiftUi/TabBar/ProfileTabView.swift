@@ -36,8 +36,12 @@ struct ProfileTabView: View {
             self.hashtags = user.hashtags ?? ""
             self.profileImageUrl = user.profileImageUrl ?? ""
             self.session.getProfileImage(profileImageUrl: self.profileImageUrl, handler: { (image) in
+                DispatchQueue.main.async{
                 self.image = image
+                }
+               
             })
+            
             self.session.getOtherUsers()
         })
     }
