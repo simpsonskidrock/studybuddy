@@ -32,8 +32,6 @@ struct RegisterView: View {
     @State private var password: String = ""
     @State private var repeatPassword: String = ""
     
-    @State private var isShowingImagePicker: Bool = false
-    @State private var image: UIImage = UIImage()
     
     enum RegisterDataValidity: String {
         case invalidEmail = "Invalid Email"
@@ -87,17 +85,13 @@ struct RegisterView: View {
         return ZStack {
             VStack {
                 Group {
+                    Text(FixedStringValues.appName).font(.largeTitle)
+                                           .foregroundColor(Color.white)
+                    Spacer()
                     Text("SignUp").font(.largeTitle)
                         .foregroundColor(.lmuLightGrey)
                     Spacer()
-                    Text(FixedStringValues.appName).font(.largeTitle)
-                        .foregroundColor(Color.white)
-                    Image(uiImage: image)
-                        .resizable()
-                        .scaledToFit()
-                        .clipShape(Circle())
-                        .overlay(Circle().stroke(Color.white, lineWidth: 5))
-                    //                        .frame(width: 100, height: 100))
+                   
 
                 }
                 VStack {
@@ -112,7 +106,7 @@ struct RegisterView: View {
                 Group {
                     Spacer()
                     Text(errorText).foregroundColor(Color.red)
-                    Spacer()
+                   
                     
                     Button(action: {
                         self.signUpSuccess = self.signUp()
