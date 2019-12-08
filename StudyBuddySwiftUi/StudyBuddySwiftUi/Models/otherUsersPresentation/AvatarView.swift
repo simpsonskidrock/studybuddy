@@ -14,6 +14,8 @@ struct AvatarView: View {
     var body: some View {
         Image(uiImage: image)
             .resizable()
+            .frame(width: 300, height: 400)
+        .scaledToFit()
             .overlay(
                 Rectangle()
                     .fill(LinearGradient(gradient: Gradient(colors: [.clear, .black]),

@@ -14,12 +14,15 @@ struct UserView: View {
     
     func getImage() -> UIImage {
         var tempImage: UIImage = UIImage()
-        if (self.userModel.profileImageUrl != nil && self.userModel.profileImageUrl != "") {
-            self.session.getProfileImage(profileImageUrl: self.userModel.profileImageUrl!, handler: { image in
-                tempImage = image
-            })
-        } else {
+        if(self.userModel.profileImageUrl!.isEmpty){
             tempImage = UIImage(systemName: "person")!
+        }
+        else {
+            self.session.getProfileImage(profileImageUrl: self.userModel.profileImageUrl!, handler: { (image) in
+                DispatchQueue.main.async{
+                tempImage = image
+                }
+            })
         }
         return tempImage
     }

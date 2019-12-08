@@ -35,12 +35,16 @@ struct ProfileTabView: View {
             self.description = user.description ?? ""
             self.hashtags = user.hashtags ?? ""
             self.profileImageUrl = user.profileImageUrl ?? ""
+            if (self.profileImageUrl.isEmpty){
+                self.image = UIImage(systemName: "person.circle.fill")!
+            }else{
             self.session.getProfileImage(profileImageUrl: self.profileImageUrl, handler: { (image) in
                 DispatchQueue.main.async{
                 self.image = image
                 }
-               
+                
             })
+            }
             
             self.session.getOtherUsers()
         })
