@@ -46,26 +46,32 @@ class SessionStore : ObservableObject {
     }
     
     // ---------------- Authentification ---------------- //
-    
-    func signUp(
+
+
+
+    func signUp (
         email: String,
         password: String,
         handler: @escaping (Error?)->()
-    ) {
+    ) -> SignUpReturnCode {
         //Auth.auth().createUser(withEmail: email, password: password, completion: handler)
-        
+        var returnCode = SignUpReturnCode.UNKNOWN
         Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
             guard let res = result else {
                 handler(error)
+                returnCode = SignUpReturnCode.ERROR(message: error?.localizedDescription ?? "error or errorMessage is null")
                 return
             }
             do {
                 try self.addSessionUserProfile(result: res)
+                returnCode = SignUpReturnCode.SUCCESS
                 handler(nil)
             } catch {
-                print("ADD PROFILE FAILED")
+                returnCode = SignUpReturnCode.ERROR(message: "addSessionUserProfile(res) failed")
             }
         }
+        print("singUpSuccess in SessionStore: \(returnCode)")
+        return returnCode
     }
     
     func signIn(
