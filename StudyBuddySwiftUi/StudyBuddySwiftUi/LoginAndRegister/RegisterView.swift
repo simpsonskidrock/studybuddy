@@ -34,8 +34,6 @@ struct RegisterView: View {
     @State private var repeatPassword: String = ""
 
 
-
-
     func isDataValid() -> RegisterDataValidity {
         if (self.email == "" || self.password == "" || self.repeatPassword == "") {
             return RegisterDataValidity.invalidEmail
@@ -55,20 +53,14 @@ struct RegisterView: View {
     func signUp() -> SignUpReturnCode {
         var returnCode: SignUpReturnCode = SignUpReturnCode.UNKNOWN
         if (self.isDataValid() == RegisterDataValidity.valid) {
-            if (SignUpReturnCode.SUCCESS == session.signUp(email: email, password: password) { (error) in
+            returnCode = session.signUp(email: email, password: password) { (error) in
                 if error != nil {
                     returnCode = SignUpReturnCode.ERROR(message: error!.localizedDescription)
                 } else {
                     // No error / error = nil
                     returnCode = SignUpReturnCode.SUCCESS
                 }
-            }) {
-                //SUCCESS
-                
-
             }
-
-
         } else {
             return SignUpReturnCode.INVALID_DATA
         }
