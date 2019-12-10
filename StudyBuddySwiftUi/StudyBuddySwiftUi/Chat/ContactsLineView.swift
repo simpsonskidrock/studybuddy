@@ -23,7 +23,7 @@ struct ContactsLineView: View {
                 self.image = image
             })
         } else {
-            self.image = UIImage()
+            self.image = UIImage(systemName: "person")!
         }
     }
     
