@@ -47,10 +47,10 @@ struct ContactsTabView: View {
                 }.padding(.horizontal)
                     .navigationBarHidden(showCancelButton)
                 List() {
-                    ForEach(self.session.sessionUser!.contacts, id: \.self) { contact in
+                    ForEach(self.session.sessionUser!.contacts.filter{$0.hasPrefix(searchText) || searchText == ""}, id: \.self) { contact in
                         ContactsLineView(uid: contact, chatAllowed: true)
                     }
-                    ForEach(self.session.sessionUser!.likedUsers, id: \.self) { contact in
+                    ForEach(self.session.sessionUser!.likedUsers.filter{$0.hasPrefix(searchText) || searchText == ""}, id: \.self) { contact in
                         ContactsLineView(uid: contact, chatAllowed: false)
                     }
                 }.navigationBarTitle(Text("Chats"))
