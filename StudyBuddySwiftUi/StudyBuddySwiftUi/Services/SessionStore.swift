@@ -11,15 +11,19 @@ import Firebase
 import Combine
 
 
-class SessionStore : ObservableObject {
+class SessionStore: ObservableObject {
     var didChange = PassthroughSubject<SessionStore, Never>()
-    var sessionUser: User? { didSet { self.didChange.send(self) }}
+    var sessionUser: User? {
+        didSet {
+            self.didChange.send(self)
+        }
+    }
     private var handle: AuthStateDidChangeListenerHandle?
     var otherUsers: [User] = []
     var presentMatchAlert: Bool = false
     var searchWithGPS: Bool = false
 
-    func listen(handler: @escaping((User)->())) {
+    func listen(handler: @escaping ((User) -> ())) {
         // monitor authentication changes using firebase
         handle = Auth.auth().addStateDidChangeListener { (auth, user) in
             if let user = user {
@@ -38,42 +42,43 @@ class SessionStore : ObservableObject {
             }
         }
     }
-    
+
     func unbind() {
         if let handle = handle {
             Auth.auth().removeStateDidChangeListener(handle)
         }
     }
-    
+
     // ---------------- Authentification ---------------- //
 
 
-
-    func signUp (
+    func signUp(
         email: String,
         password: String,
-        handler: @escaping (Error?)->()
-    ) -> SignUpReturnCode {
+        handler: @escaping (AuthDataResult?, Error?) -> ()
+    ) {
         //Auth.auth().createUser(withEmail: email, password: password, completion: handler)
-        var returnCode = SignUpReturnCode.UNKNOWN
         Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
             guard let res = result else {
-                handler(error)
-                returnCode = SignUpReturnCode.ERROR(message: error?.localizedDescription ?? "error or errorMessage is null")
+                handler(nil, error)
                 return
             }
             do {
                 try self.addSessionUserProfile(result: res)
-                returnCode = SignUpReturnCode.SUCCESS
-                handler(nil)
+                handler(res, nil)
             } catch {
-                returnCode = SignUpReturnCode.ERROR(message: "addSessionUserProfile(res) failed")
+                class MyError: Error {
+                    var message: String
+                    init(message: String) {
+                        self.message = message
+                    }
+                }
+                let error = MyError(message: "Failed to add Session User Profile")
+                handler(nil, error)
             }
         }
-        print("singUpSuccess in SessionStore: \(returnCode)")
-        return returnCode
     }
-    
+
     func signIn(
         email: String,
         password: String,
@@ -81,18 +86,18 @@ class SessionStore : ObservableObject {
     ) {
         Auth.auth().signIn(withEmail: email, password: password, completion: handler)
     }
-    
+
     func signOut() {
         do {
             try Auth.auth().signOut()
             self.sessionUser = nil
             print("successfully logged out")
         } catch let signOutError as NSError {
-            print ("Error signing out: %@", signOutError)
+            print("Error signing out: %@", signOutError)
         }
     }
-    
-    func resetPassword(email: String, onSuccess: @escaping() -> Void, onError: @escaping( _ _errorMessage: String) -> Void) {
+
+    func resetPassword(email: String, onSuccess: @escaping () -> Void, onError: @escaping (_ _errorMessage: String) -> Void) {
         Auth.auth().sendPasswordReset(withEmail: email) { error in
             if error == nil {
                 onSuccess()
@@ -101,10 +106,10 @@ class SessionStore : ObservableObject {
             }
         }
     }
-    
+
     // ---------------- Profile ---------------- //
-    
-    func getProfile(uid: String?, handler: @escaping((User)->())) {
+
+    func getProfile(uid: String?, handler: @escaping ((User) -> ())) {
         let rootRef = Database.database().reference(withPath: FixedStringValues.urlIdentifierUser).child(uid!)
         rootRef.observeSingleEvent(of: .value, with: { (snapshot) in
             let value = snapshot.value as? NSDictionary
@@ -124,7 +129,7 @@ class SessionStore : ObservableObject {
             print(error.localizedDescription)
         }
     }
-    
+
     func addSessionUserProfile(result: AuthDataResult?) throws {
         if let authData = result {
             let dict: Dictionary<String, Any> = [
@@ -132,7 +137,7 @@ class SessionStore : ObservableObject {
                 FixedStringValues.email: authData.user.email!
             ]
             //self.updateProfileImage(uid: authData.user.uid, image: image)
-            
+
             var success = false
             Database.database().reference().child(FixedStringValues.urlIdentifierUser)
                 .child(authData.user.uid)
@@ -141,15 +146,15 @@ class SessionStore : ObservableObject {
                     if error == nil {
                         success = true
                     }
-                } )
+                })
             if (success) {
-                print ("Added Profile: Done")
+                print("Added Profile: Done")
             } else {
-              //  throw RegisterError.unknown(message: "Hmm")
+                //  throw RegisterError.unknown(message: "Hmm")
             }
         }
     }
-    
+
     func updateProfile(displayName: String?, fieldOfStudy: String?, description: String?, hashtags: String?, image: UIImage?) {
         let tempUid: String = String((self.sessionUser?.uid)!)
         self.updateProfileImage(uid: tempUid, image: image)
@@ -159,16 +164,16 @@ class SessionStore : ObservableObject {
             FixedStringValues.description: description ?? "",
             FixedStringValues.hashtags: hashtags ?? ""
         ]
-        Database.database().reference().child(FixedStringValues.urlIdentifierUser).child(tempUid).updateChildValues(dict, withCompletionBlock: {(error, ref) in
+        Database.database().reference().child(FixedStringValues.urlIdentifierUser).child(tempUid).updateChildValues(dict, withCompletionBlock: { (error, ref) in
             if error == nil {
                 self.sessionUser?.updateDetails(displayName: displayName!, fieldOfStudy: fieldOfStudy!, description: description!, hashtags: hashtags!)
-                print ("Update ProfileDetails: Done")
+                print("Update ProfileDetails: Done")
             }
-        } )
+        })
     }
-    
+
     // ---------------- Image ---------------- //
-    
+
     private func updateProfileImage(uid: String, image: UIImage?) {
         guard let imageSelected = image else {
             print("Image is nil")
@@ -181,50 +186,49 @@ class SessionStore : ObservableObject {
         let storageProfileRef = storageRef.child(FixedStringValues.urlIdentifierProfile).child(uid)
         let metaData = StorageMetadata()
         metaData.contentType = "image/jpg"
-        storageProfileRef.putData(imageData, metadata: metaData, completion: {(StorageMetadata, error) in
+        storageProfileRef.putData(imageData, metadata: metaData, completion: { (StorageMetadata, error) in
             if error != nil {
-                print (error?.localizedDescription ?? "")
+                print(error?.localizedDescription ?? "")
                 return
             }
-            storageProfileRef.downloadURL(completion: {(url, error)in
+            storageProfileRef.downloadURL(completion: { (url, error) in
                 if let metaImageUrl = url?.absoluteString {
                     let dict: Dictionary<String, Any> = [
                         FixedStringValues.profileImageUrl: metaImageUrl
                     ]
-                    Database.database().reference().child(FixedStringValues.urlIdentifierUser).child(uid).updateChildValues(dict, withCompletionBlock: {(error, ref) in
+                    Database.database().reference().child(FixedStringValues.urlIdentifierUser).child(uid).updateChildValues(dict, withCompletionBlock: { (error, ref) in
                         if error == nil {
                             self.sessionUser?.updatePicture(profileImageUrl: metaImageUrl)
-                            print ("Update ProfileImage: Done")
+                            print("Update ProfileImage: Done")
                         }
-                    } )
+                    })
                 }
-            } )
+            })
         })
     }
-    
-    func getProfileImage(profileImageUrl: String, handler: @escaping ((UIImage)->())) {
-        if(profileImageUrl.isEmpty){
+
+    func getProfileImage(profileImageUrl: String, handler: @escaping ((UIImage) -> ())) {
+        if (profileImageUrl.isEmpty) {
             print("no profile image")
-           
-        }else {
-        let storageRef = Storage.storage().reference(forURL: profileImageUrl)
-        storageRef.getData(maxSize: 1 * 1024 * 1024) { data, error in
-            if let error = error {
-                print(error.localizedDescription)
-            }
-            else {
-                if let image = UIImage(data: data!){
-                handler(image)
-            }
-            }
-            
+
+        } else {
+            let storageRef = Storage.storage().reference(forURL: profileImageUrl)
+            storageRef.getData(maxSize: 1 * 1024 * 1024) { data, error in
+                if let error = error {
+                    print(error.localizedDescription)
+                } else {
+                    if let image = UIImage(data: data!) {
+                        handler(image)
+                    }
+                }
+
             }
         }
-        
+
     }
-    
+
     // ---------------- Other User|s ---------------- //
-    
+
     func getOtherUsers() {
         self.otherUsers = []
         let rootRef = Database.database().reference(withPath: FixedStringValues.urlIdentifierUser)
@@ -242,22 +246,22 @@ class SessionStore : ObservableObject {
     }
 
     // ---------------- Like and Match ---------------- //
-    
+
     func addLikedUser(uid: String) {
         let tempUid: String = String((self.sessionUser?.uid)!)
         self.sessionUser?.likedUsers.append(uid)
         let dict: Dictionary<String, Any> = [
             FixedStringValues.likedUsers: self.sessionUser?.likedUsers ?? ""
         ]
-        Database.database().reference().child(FixedStringValues.urlIdentifierUser).child(tempUid).updateChildValues(dict, withCompletionBlock: {(error, ref) in
+        Database.database().reference().child(FixedStringValues.urlIdentifierUser).child(tempUid).updateChildValues(dict, withCompletionBlock: { (error, ref) in
             if error == nil {
-                print ("Added likedUser")
+                print("Added likedUser")
                 self.checkIfLikedUserLikedYou(otherUserUid: uid)
                 self.getOtherUsers()
             }
-        } )
+        })
     }
-    
+
     private func checkIfLikedUserLikedYou(otherUserUid: String) {
         let rootRef = Database.database().reference(withPath: FixedStringValues.urlIdentifierUser).child(otherUserUid)
         rootRef.observe(.value, with: { (snapshot) in
@@ -270,14 +274,14 @@ class SessionStore : ObservableObject {
                 let tempLikes1: [String] = self.sessionUser!.likedUsers
                 self.sessionUser?.likedUsers = []
                 for likedUser in tempLikes1 {
-                    if(likedUser != otherUserUid) {
+                    if (likedUser != otherUserUid) {
                         self.sessionUser?.likedUsers.append(otherUserUid)
                     }
                 }
                 let tempLikes2: [String] = otherUserLikedUsers
                 var otherUserLikedUsers: [String] = []
                 for likedUser in tempLikes2 {
-                    if(likedUser != self.sessionUser?.uid) {
+                    if (likedUser != self.sessionUser?.uid) {
                         otherUserLikedUsers.append(likedUser)
                     }
                 }
@@ -289,38 +293,38 @@ class SessionStore : ObservableObject {
             print(error.localizedDescription)
         }
     }
-    
+
     private func shareMatch(uid: String, likedUsers: [String], contacts: [String]) {
         let dict: Dictionary<String, Any> = [
             FixedStringValues.likedUsers: likedUsers,
             FixedStringValues.contacts: contacts
         ]
-        Database.database().reference().child(FixedStringValues.urlIdentifierUser).child(uid).updateChildValues(dict, withCompletionBlock: {(error, ref) in
+        Database.database().reference().child(FixedStringValues.urlIdentifierUser).child(uid).updateChildValues(dict, withCompletionBlock: { (error, ref) in
             if error == nil {
-                print ("Match!")
+                print("Match!")
             }
-        } )
+        })
     }
-    
-    
+
+
     // ---------------- only development ---------------- //
-    
+
     func deleteData(uid: String, deleteLikes: Bool) {
         var dict: Dictionary<String, Any>
         if deleteLikes {
             dict = [
-                 FixedStringValues.likedUsers: [],
-                 FixedStringValues.contacts: []
-             ]
+                FixedStringValues.likedUsers: [],
+                FixedStringValues.contacts: []
+            ]
         } else {
             dict = [
-                 FixedStringValues.contacts: []
-             ]
+                FixedStringValues.contacts: []
+            ]
         }
-        Database.database().reference().child(FixedStringValues.urlIdentifierUser).child(uid).updateChildValues(dict, withCompletionBlock: {(error, ref) in
+        Database.database().reference().child(FixedStringValues.urlIdentifierUser).child(uid).updateChildValues(dict, withCompletionBlock: { (error, ref) in
             if error == nil {
-                print ("Deleted!")
+                print("Deleted!")
             }
-        } )
+        })
     }
 }

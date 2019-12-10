@@ -48,23 +48,25 @@ struct RegisterView: View {
     }
 
     /**
-     checks Data registers
-     */
-    func signUp() -> SignUpReturnCode {
-        var returnCode: SignUpReturnCode = SignUpReturnCode.UNKNOWN
+        Starts the register process if the data is valid.
+    */
+    func signUpAction() {
         if (self.isDataValid() == RegisterDataValidity.valid) {
-            returnCode = session.signUp(email: email, password: password) { (error) in
+            // Loading...
+            self.errorText = "Please Wait"
+            session.signUp(email: email, password: password) { (res, error) in
                 if error != nil {
-                    returnCode = SignUpReturnCode.ERROR(message: error!.localizedDescription)
+                    self.errorText = "Can't register: \(error!.localizedDescription)"
                 } else {
-                    // No error / error = nil
-                    returnCode = SignUpReturnCode.SUCCESS
+                    // res has result
+                    print("Sign Up successful :)")
+                    self.errorText = "Sign Up successfull"
+                    self.signUpSuccessFlagForNavigation = true
                 }
             }
         } else {
-            return SignUpReturnCode.INVALID_DATA
+            self.errorText = "Can't register: \(self.isDataValid().rawValue)"
         }
-        return returnCode
     }
 
     var body: some View {
@@ -102,23 +104,7 @@ struct RegisterView: View {
                     Spacer()
                     Text(errorText).foregroundColor(Color.red)
                     Button(action: {
-                        let SignUpReturnCode = self.signUp()
-                        var longMessage = ""
-                        switch (SignUpReturnCode) {
-
-                        case .SUCCESS:
-                            longMessage = "Register successful"
-                            self.signUpSuccessFlagForNavigation = true
-                        case .ERROR(let message):
-                            longMessage = "Error during SignUp: \(message)"
-                            self.errorText = longMessage
-                        case .UNKNOWN:
-                            longMessage = "Unknown Return code from SignUp()"
-                        case .INVALID_DATA:
-                            longMessage = "Invalid Data, please reenter email and passwords."
-                        }
-                        print(longMessage)
-
+                        self.signUpAction()
                     }) {
                         Text("Register")
                     }.buttonStyle(StudyButtonStyle())
