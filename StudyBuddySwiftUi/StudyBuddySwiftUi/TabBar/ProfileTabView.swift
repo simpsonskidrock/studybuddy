@@ -36,7 +36,7 @@ struct ProfileTabView: View {
             self.profileImageUrl = user.profileImageUrl ?? ""
             if (self.profileImageUrl.isEmpty){
                 self.image = UIImage(systemName: "person.circle.fill")!
-            }else{
+            } else {
                 self.session.getProfileImage(profileImageUrl: self.profileImageUrl, handler: { (image) in
                     DispatchQueue.main.async{
                         self.image = image
