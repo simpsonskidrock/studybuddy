@@ -36,6 +36,8 @@ struct UserView: View {
         .cornerRadius(12.0)
         .onTapGesture(count: 2) {
             self.session.addLikedUser(uid: self.userModel.uid)
+            print("user liked")
+            
         }
     }
 }
