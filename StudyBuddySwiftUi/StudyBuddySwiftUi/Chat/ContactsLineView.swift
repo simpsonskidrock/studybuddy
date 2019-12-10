@@ -79,6 +79,5 @@ struct UserNameView: View {
     var body: some View {
         Text("\(name)")
             .fontWeight(.regular)
-            .foregroundColor(.black)
     }
 }
