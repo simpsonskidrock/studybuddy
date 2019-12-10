@@ -15,8 +15,6 @@ struct ContactsTabView: View {
     @State private var searchText = ""
     @State private var showCancelButton: Bool = false
     
-    
-    
     var body: some View {
         NavigationView {
             VStack {

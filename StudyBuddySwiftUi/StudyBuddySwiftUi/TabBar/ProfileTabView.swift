@@ -48,6 +48,10 @@ struct ProfileTabView: View {
         })
     }
     
+    private func leaveView() {
+        self.editProfile = false
+    }
+    
     var body: some View {
         VStack {
             VStack {
@@ -167,5 +171,6 @@ struct ProfileTabView: View {
             .onAppear(perform: initialize)
             .padding(.horizontal)
             .background(Color.lmuGreen.edgesIgnoringSafeArea(.vertical))
+            .onDisappear(perform: leaveView)
     }
 }
