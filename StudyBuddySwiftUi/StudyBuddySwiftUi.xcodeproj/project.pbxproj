@@ -192,19 +192,19 @@
 				3391BDFD238557FB00643581 /* User.swift */,
 				73A69B4823869D2700ECEAC2 /* ListedAlerts.swift */,
 				734FC386238F094B00350F82 /* FixedStringValues.swift */,
+				84B3AD5D237D973800CB2160 /* CustomViewElements.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
 		};
-		739A5322238697FE00A46746 /* Additions */ = {
+		739A5322238697FE00A46746 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				84B3AD5D237D973800CB2160 /* CustomViewElements.swift */,
 				293AA0722384947A00436E02 /* KeyboardSettings.swift */,
 				29FB9AA7238C77D5005914CC /* ImageController.swift */,
 				29F7660C2396FE5800A7209C /* LocationManager.swift */,
 			);
-			path = Additions;
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		739A53232386984200A46746 /* Services */ = {
@@ -240,7 +240,7 @@
 		73B9D14E237C2484000E268E /* StudyBuddySwiftUi */ = {
 			isa = PBXGroup;
 			children = (
-				739A5322238697FE00A46746 /* Additions */,
+				739A5322238697FE00A46746 /* Controllers */,
 				739A531E2386942A00A46746 /* Models */,
 				7367D200237D8550002EE928 /* LoginAndRegister */,
 				7367D1FD237D841F002EE928 /* TabBar */,
