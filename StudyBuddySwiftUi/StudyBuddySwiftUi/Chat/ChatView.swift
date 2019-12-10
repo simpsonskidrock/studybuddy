@@ -71,7 +71,6 @@ struct ChatRow : View {
                 }
             }
         }
-        
     }
 }
 

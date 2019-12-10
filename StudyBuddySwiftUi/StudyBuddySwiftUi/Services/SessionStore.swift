@@ -10,8 +10,8 @@ import SwiftUI
 import Firebase
 import Combine
 
-
 class SessionStore: ObservableObject {
+
     var didChange = PassthroughSubject<SessionStore, Never>()
     var sessionUser: User? {
         didSet {
@@ -24,6 +24,7 @@ class SessionStore: ObservableObject {
     var searchWithGPS: Bool = false
 
     func listen(handler: @escaping ((User) -> ())) {
+
         // monitor authentication changes using firebase
         handle = Auth.auth().addStateDidChangeListener { (auth, user) in
             if let user = user {
@@ -50,9 +51,8 @@ class SessionStore: ObservableObject {
     }
 
     // ---------------- Authentification ---------------- //
-
-
     func signUp(
+
         email: String,
         password: String,
         handler: @escaping (AuthDataResult?, Error?) -> ()
@@ -136,7 +136,6 @@ class SessionStore: ObservableObject {
                 FixedStringValues.uid: authData.user.uid,
                 FixedStringValues.email: authData.user.email!
             ]
-            //self.updateProfileImage(uid: authData.user.uid, image: image)
 
             var success = false
             Database.database().reference().child(FixedStringValues.urlIdentifierUser)
@@ -210,7 +209,6 @@ class SessionStore: ObservableObject {
     func getProfileImage(profileImageUrl: String, handler: @escaping ((UIImage) -> ())) {
         if (profileImageUrl.isEmpty) {
             print("no profile image")
-
         } else {
             let storageRef = Storage.storage().reference(forURL: profileImageUrl)
             storageRef.getData(maxSize: 1 * 1024 * 1024) { data, error in
@@ -224,7 +222,6 @@ class SessionStore: ObservableObject {
 
             }
         }
-
     }
 
     // ---------------- Other User|s ---------------- //
@@ -244,7 +241,7 @@ class SessionStore: ObservableObject {
             print(error.localizedDescription)
         }
     }
-
+    
     // ---------------- Like and Match ---------------- //
 
     func addLikedUser(uid: String) {

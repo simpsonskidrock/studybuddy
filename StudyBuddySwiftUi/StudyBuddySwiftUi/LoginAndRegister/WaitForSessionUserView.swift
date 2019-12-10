@@ -38,14 +38,14 @@ struct WaitForSessionUserView: View {
                 GeneralTabView()
             } else {
                 Color.lmuGreen
-                .edgesIgnoringSafeArea(.vertical)
-                .overlay(
-                VStack {
-                    Spacer()
-                    Image("fountainicon").foregroundColor(Color.white)
-                        .animation(.interpolatingSpring(stiffness: 20, damping: 0.5))
-                    Spacer()
-                })
+                    .edgesIgnoringSafeArea(.vertical)
+                    .overlay(
+                        VStack {
+                            Spacer()
+                            Image("fountainicon").foregroundColor(Color.white)
+                                .animation(.interpolatingSpring(stiffness: 20, damping: 0.5))
+                            Spacer()
+                    })
             }
         }.navigationBarTitle("")
             .navigationBarBackButtonHidden(true)

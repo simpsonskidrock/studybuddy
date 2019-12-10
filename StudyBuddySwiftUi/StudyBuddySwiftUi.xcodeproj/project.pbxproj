@@ -39,6 +39,9 @@
 		73CDE4422390FB380078654C /* NameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CDE4412390FB380078654C /* NameView.swift */; };
 		73CDE4442390FB570078654C /* AvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CDE4432390FB570078654C /* AvatarView.swift */; };
 		73CDE4462390FB710078654C /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CDE4452390FB710078654C /* UserView.swift */; };
+		73FD807B239F970E00A9EDFA /* RegisterError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FD807A239F970E00A9EDFA /* RegisterError.swift */; };
+		73FD807D239F971700A9EDFA /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FD807C239F971700A9EDFA /* Enums.swift */; };
+		73FD807F239F9C0600A9EDFA /* ContactsLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FD807E239F9C0600A9EDFA /* ContactsLineView.swift */; };
 		84B3AD5E237D973800CB2160 /* CustomViewElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B3AD5D237D973800CB2160 /* CustomViewElements.swift */; };
 		CF854863D7027E9469E19F2D /* Pods_StudyBuddySwiftUiTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76516A7E48373BF7697BBA75 /* Pods_StudyBuddySwiftUiTests.framework */; };
 		E87DA23D6B154FEDD64065D7 /* Pods_StudyBuddySwiftUiUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82F6226B31D87D2778C9E4BA /* Pods_StudyBuddySwiftUiUITests.framework */; };
@@ -103,6 +106,9 @@
 		73CDE4412390FB380078654C /* NameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameView.swift; sourceTree = "<group>"; };
 		73CDE4432390FB570078654C /* AvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarView.swift; sourceTree = "<group>"; };
 		73CDE4452390FB710078654C /* UserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserView.swift; sourceTree = "<group>"; };
+		73FD807A239F970E00A9EDFA /* RegisterError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterError.swift; sourceTree = "<group>"; };
+		73FD807C239F971700A9EDFA /* Enums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
+		73FD807E239F9C0600A9EDFA /* ContactsLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsLineView.swift; sourceTree = "<group>"; };
 		76516A7E48373BF7697BBA75 /* Pods_StudyBuddySwiftUiTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StudyBuddySwiftUiTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		82F6226B31D87D2778C9E4BA /* Pods_StudyBuddySwiftUiUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StudyBuddySwiftUiUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		84B3AD5D237D973800CB2160 /* CustomViewElements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomViewElements.swift; sourceTree = "<group>"; };
@@ -154,6 +160,7 @@
 			children = (
 				73321152238586C100B7660A /* ChatView.swift */,
 				2937ACC12389819F00E07611 /* ChatController.swift */,
+				73FD807E239F9C0600A9EDFA /* ContactsLineView.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -172,9 +179,11 @@
 		7367D200237D8550002EE928 /* LoginAndRegister */ = {
 			isa = PBXGroup;
 			children = (
+				73FD807C239F971700A9EDFA /* Enums.swift */,
 				73B9D153237C2484000E268E /* LoginView.swift */,
 				292EF2F92381F5760062FBB5 /* ChangePasswordView.swift */,
 				7367D201237D85F5002EE928 /* RegisterView.swift */,
+				73FD807A239F970E00A9EDFA /* RegisterError.swift */,
 				290A21972393E08700E0BC81 /* ResetPasswordView.swift */,
 				732023D5239921C90031F120 /* WaitForSessionUserView.swift */,
 				58603FB17900E93AA0882E63 /* Enums.swift */,
@@ -189,19 +198,19 @@
 				3391BDFD238557FB00643581 /* User.swift */,
 				73A69B4823869D2700ECEAC2 /* ListedAlerts.swift */,
 				734FC386238F094B00350F82 /* FixedStringValues.swift */,
+				84B3AD5D237D973800CB2160 /* CustomViewElements.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
 		};
-		739A5322238697FE00A46746 /* Additions */ = {
+		739A5322238697FE00A46746 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				84B3AD5D237D973800CB2160 /* CustomViewElements.swift */,
 				293AA0722384947A00436E02 /* KeyboardSettings.swift */,
 				29FB9AA7238C77D5005914CC /* ImageController.swift */,
 				29F7660C2396FE5800A7209C /* LocationManager.swift */,
 			);
-			path = Additions;
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		739A53232386984200A46746 /* Services */ = {
@@ -237,7 +246,7 @@
 		73B9D14E237C2484000E268E /* StudyBuddySwiftUi */ = {
 			isa = PBXGroup;
 			children = (
-				739A5322238697FE00A46746 /* Additions */,
+				739A5322238697FE00A46746 /* Controllers */,
 				739A531E2386942A00A46746 /* Models */,
 				7367D200237D8550002EE928 /* LoginAndRegister */,
 				7367D1FD237D841F002EE928 /* TabBar */,
@@ -517,6 +526,7 @@
 				3391BDFC238557B600643581 /* SessionStore.swift in Sources */,
 				73B9D150237C2484000E268E /* AppDelegate.swift in Sources */,
 				73CDE4422390FB380078654C /* NameView.swift in Sources */,
+				73FD807F239F9C0600A9EDFA /* ContactsLineView.swift in Sources */,
 				7367D1FA237D7279002EE928 /* ContactsTabView.swift in Sources */,
 				73CDE4462390FB710078654C /* UserView.swift in Sources */,
 				7367D1FF237D8496002EE928 /* GeneralTabView.swift in Sources */,
@@ -530,7 +540,9 @@
 				7367D1F6237D6670002EE928 /* ProfileTabView.swift in Sources */,
 				73CDE43D2390F9230078654C /* SwipeView.swift in Sources */,
 				73CDE4442390FB570078654C /* AvatarView.swift in Sources */,
+				73FD807D239F971700A9EDFA /* Enums.swift in Sources */,
 				2937ACC22389819F00E07611 /* ChatController.swift in Sources */,
+				73FD807B239F970E00A9EDFA /* RegisterError.swift in Sources */,
 				292EF2FA2381F5760062FBB5 /* ChangePasswordView.swift in Sources */,
 				84B3AD5E237D973800CB2160 /* CustomViewElements.swift in Sources */,
 				73A69B4923869D2700ECEAC2 /* ListedAlerts.swift in Sources */,
@@ -707,7 +719,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"StudyBuddySwiftUi/Preview Content\"";
-				DEVELOPMENT_TEAM = A6B8BRDPAC;
+				DEVELOPMENT_TEAM = 6T8T8284X7;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = StudyBuddySwiftUi/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -728,7 +740,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"StudyBuddySwiftUi/Preview Content\"";
-				DEVELOPMENT_TEAM = A6B8BRDPAC;
+				DEVELOPMENT_TEAM = 6T8T8284X7;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = StudyBuddySwiftUi/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

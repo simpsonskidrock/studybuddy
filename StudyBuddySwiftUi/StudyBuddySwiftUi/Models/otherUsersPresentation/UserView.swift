@@ -12,15 +12,16 @@ struct UserView: View {
     @EnvironmentObject var session: SessionStore
     let userModel: User
     
+    @State var tempImage: UIImage = UIImage()
     func getImage() -> UIImage {
-        var tempImage: UIImage = UIImage()
+       
         if(self.userModel.profileImageUrl!.isEmpty){
             tempImage = UIImage(systemName: "person")!
         }
         else {
             self.session.getProfileImage(profileImageUrl: self.userModel.profileImageUrl!, handler: { (image) in
                 DispatchQueue.main.async{
-                tempImage = image
+                    self.tempImage = image
                 }
             })
         }
@@ -36,6 +37,8 @@ struct UserView: View {
         .cornerRadius(12.0)
         .onTapGesture(count: 2) {
             self.session.addLikedUser(uid: self.userModel.uid)
+            print("user liked")
+            
         }
     }
 }

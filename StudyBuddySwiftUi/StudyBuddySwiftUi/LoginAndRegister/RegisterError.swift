@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 enum RegisterError: Error {
     case unknown(message: String)
     case passwordRequirementsNotMet

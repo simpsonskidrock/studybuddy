@@ -25,6 +25,6 @@ struct GeneralTabView: View {
                     Image(systemName: "person.3")
             }
         }.background(Color.lmuGreen.edgesIgnoringSafeArea(.vertical))
-        .navigationBarBackButtonHidden(true)
+            .navigationBarBackButtonHidden(true)
     }
 }

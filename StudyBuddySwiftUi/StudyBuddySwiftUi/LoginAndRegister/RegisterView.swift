@@ -20,20 +20,17 @@ struct RegisterView: View {
     var mode
     @EnvironmentObject var session: SessionStore
     @ObservedObject private var keyboard = KeyboardResponder()
-
-    // for the registerButton TODO rename
+    
     @State private var signUpSuccessFlagForNavigation: Bool = false
     @State private var errorText: String = ""
-
-
+    
     @State private var errorDialogVisible: Bool = false
     @State private var tempAlert: Alert = nil
-
+    
     @State private var email: String = ""
     @State private var password: String = ""
     @State private var repeatPassword: String = ""
-
-
+    
     func isDataValid() -> RegisterDataValidity {
         if (self.email == "" || self.password == "" || self.repeatPassword == "") {
             return RegisterDataValidity.invalidEmail
@@ -68,9 +65,8 @@ struct RegisterView: View {
             self.errorText = "Can't register: \(self.isDataValid().rawValue)"
         }
     }
-
+    
     var body: some View {
-
         // Add Listener to second pass field. calls isDataValid on every Input
         let repeatPasswordBinding = Binding<String>(get: {
             self.repeatPassword
@@ -78,7 +74,6 @@ struct RegisterView: View {
             self.repeatPassword = $0
             self.errorText = self.isDataValid().rawValue
         })
-
         return ZStack {
             VStack {
                 Group {
@@ -88,8 +83,6 @@ struct RegisterView: View {
                     Text("SignUp").font(.largeTitle)
                         .foregroundColor(.lmuLightGrey)
                     Spacer()
-
-
                 }
                 VStack {
                     Text("Create a new Account").foregroundColor(Color.white).font(.title)
@@ -108,10 +101,9 @@ struct RegisterView: View {
                     }) {
                         Text("Register")
                     }.buttonStyle(StudyButtonStyle())
-
+                    
                     // Phantom navigation link:
                     NavigationLink("", destination: GeneralTabView(), isActive: $signUpSuccessFlagForNavigation)
-
                 }
                 //                NavigationLink(destination: {
                 //                    VStack {
@@ -127,7 +119,7 @@ struct RegisterView: View {
                 //                }.buttonStyle(StudyButtonStyle())
                 //                    .simultaneousGesture(TapGesture().onEnded{self.signUp()})
                 //
-
+                
                 HStack {
                     Text("Already have an account?").foregroundColor(Color.lmuLightGrey)
                     Button(action: {
@@ -147,11 +139,11 @@ struct RegisterView: View {
                 .animation(.easeOut(duration: 0.16))
                 .alert(isPresented: $errorDialogVisible) {
                     self.tempAlert.unsafelyUnwrapped
-                }
+            }
         }
-            .navigationBarTitle("Sign Up")
-            .navigationBarBackButtonHidden(true)
-            .navigationBarHidden(true)
+        .navigationBarTitle("Sign Up")
+        .navigationBarBackButtonHidden(true)
+        .navigationBarHidden(true)
     }
 }
 
