@@ -15,7 +15,7 @@ struct ContactsTabView: View {
     @State private var searchText = ""
     @State private var showCancelButton: Bool = false
     
-  
+    
     
     var body: some View {
         NavigationView {
@@ -52,6 +52,9 @@ struct ContactsTabView: View {
                     }
                     ForEach(self.session.sessionUser!.likedUsers.filter{$0.hasPrefix(searchText) || searchText == ""}, id: \.self) { contact in
                         ContactsLineView(uid: contact, chatAllowed: false)
+                    }.onDelete { (indexSet) in
+                        self.session.sessionUser!.likedUsers.remove(atOffsets: indexSet)
+                        self.session.updateLikedUser()
                     }
                 }.navigationBarTitle(Text("Chats"))
                     .resignKeyboardOnDragGesture()
