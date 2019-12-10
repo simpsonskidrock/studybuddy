@@ -10,9 +10,8 @@ import Foundation
 import SwiftUI
 
 struct ProfileTabView: View {
-    
     @ObservedObject var locationManager = LocationManager()
-
+    
     @Environment(\.presentationMode) var mode
     @EnvironmentObject var session: SessionStore
     
@@ -37,15 +36,14 @@ struct ProfileTabView: View {
             self.profileImageUrl = user.profileImageUrl ?? ""
             if (self.profileImageUrl.isEmpty){
                 self.image = UIImage(systemName: "person.circle.fill")!
-            }else{
-            self.session.getProfileImage(profileImageUrl: self.profileImageUrl, handler: { (image) in
-                DispatchQueue.main.async{
-                self.image = image
-                }
-                
-            })
+            } else {
+                self.session.getProfileImage(profileImageUrl: self.profileImageUrl, handler: { (image) in
+                    DispatchQueue.main.async{
+                        self.image = image
+                    }
+                    
+                })
             }
-            
             self.session.getOtherUsers()
         })
     }
@@ -95,17 +93,17 @@ struct ProfileTabView: View {
                         .clipShape(Circle())
                         .overlay(Circle()
                             .stroke(Color.white, lineWidth: 5)
-                            )
+                    )
                     if self.editProfile {
                         Button(action: {
                             self.isShowingImagePicker.toggle()
                         }) {
                             Image(systemName: "camera.on.rectangle")
                                 .foregroundColor(.white)
-                    }.padding()
-                        .sheet(isPresented: $isShowingImagePicker, content: {
-                            ImagePickerViewController(isPresented: self.$isShowingImagePicker, selectedImage: self.$image)
-                        })
+                        }.padding()
+                            .sheet(isPresented: $isShowingImagePicker, content: {
+                                ImagePickerViewController(isPresented: self.$isShowingImagePicker, selectedImage: self.$image)
+                            })
                     }
                     VStack {
                         HStack {
@@ -143,15 +141,16 @@ struct ProfileTabView: View {
                     }.padding()
                 }
                 Spacer()
-                if !self.editProfile { Button(action: {
-                    self.editProfile.toggle()
-                }) {
-                    HStack {
-                        Image(systemName: "pencil")
-                            .font(.system(size: 15))
-                        Text("Edit").fontWeight(.semibold)
-                    }
-                }.buttonStyle(StudyButtonLightStyle())
+                if !self.editProfile {
+                    Button(action: {
+                        self.editProfile.toggle()
+                    }) {
+                        HStack {
+                            Image(systemName: "pencil")
+                                .font(.system(size: 15))
+                            Text("Edit").fontWeight(.semibold)
+                        }
+                    }.buttonStyle(StudyButtonLightStyle())
                 }
                 if self.editProfile {
                     Button(action: {

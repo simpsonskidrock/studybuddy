@@ -12,7 +12,6 @@ struct ResetPasswordView: View {
     @Environment(\.presentationMode) var mode
     @EnvironmentObject var session: SessionStore
     @ObservedObject private var keyboard = KeyboardResponder()
-
     
     @State private var email: String = ""
     @State private var error: Bool = false
@@ -28,7 +27,6 @@ struct ResetPasswordView: View {
             self.session.resetPassword(email: email, onSuccess: {
                 self.error = true
                 self.tempAlert = Alert.successResetPassword
-                
             }){
                 (errorMessage) in
                 print(self.error)
@@ -40,33 +38,35 @@ struct ResetPasswordView: View {
         ZStack {
             VStack {
                 Group{
-                Text(FixedStringValues.appName).font(.largeTitle).foregroundColor(Color.white)
-                Spacer()
-                Text("Reset Password").font(.largeTitle).foregroundColor(.lmuLightGrey)
-                Spacer()
-                VStack {
-                    Text("Enter your email address").foregroundColor(Color.white)
-                    TextField("Email", text: $email).textFieldStyle(StudyTextFieldStyle())
-                }
+                    Text(FixedStringValues.appName).font(.largeTitle)
+                        .foregroundColor(Color.white)
+                    Spacer()
+                    Text("Reset Password").font(.largeTitle)
+                        .foregroundColor(.lmuLightGrey)
+                    Spacer()
+                    VStack {
+                        Text("Enter your email address").foregroundColor(Color.white)
+                        TextField("Email", text: $email).textFieldStyle(StudyTextFieldStyle())
+                    }
                 }
                 Group{
-                NavigationLink(destination: LoginView()) {
-                    Text("Reset Password")
-                }.buttonStyle(StudyButtonStyle())
-                    .simultaneousGesture(TapGesture()
-                    .onEnded{
-                        self.ResetPassword()
-                        
-                })
+                    NavigationLink(destination: LoginView()) {
+                        Text("Reset Password")
+                    }.buttonStyle(StudyButtonStyle())
+                        .simultaneousGesture(TapGesture()
+                            .onEnded{
+                                self.ResetPassword()
+                                
+                        })
                 }
                 HStack {
                     Group{
-                    Text("Don't want to reset your password?").foregroundColor(Color.lmuLightGrey)
-                    Button(action: {
-                        self.mode.wrappedValue.dismiss()
-                    }) {
-                        Text("Cancel").foregroundColor(.white)
-                    }
+                        Text("Don't want to reset your password?").foregroundColor(Color.lmuLightGrey)
+                        Button(action: {
+                            self.mode.wrappedValue.dismiss()
+                        }) {
+                            Text("Cancel").foregroundColor(.white)
+                        }
                     }
                 }
                 Spacer()

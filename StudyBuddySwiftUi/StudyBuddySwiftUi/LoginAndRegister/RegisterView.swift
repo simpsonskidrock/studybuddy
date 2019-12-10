@@ -16,14 +16,13 @@ extension String {
 }
 
 struct RegisterView: View {
-    @Environment(\.presentationMode) var mode
+    @Environment(\.presentationMode)
+    var mode
     @EnvironmentObject var session: SessionStore
     @ObservedObject private var keyboard = KeyboardResponder()
     
-    // for the registerButton TODO rename
-    @State private var signUpSuccess: Bool = false
+    @State private var signUpSuccessFlagForNavigation: Bool = false
     @State private var errorText: String = ""
-    
     
     @State private var errorDialogVisible: Bool = false
     @State private var tempAlert: Alert = nil
@@ -31,14 +30,6 @@ struct RegisterView: View {
     @State private var email: String = ""
     @State private var password: String = ""
     @State private var repeatPassword: String = ""
-    
-    
-    enum RegisterDataValidity: String {
-        case invalidEmail = "Invalid Email"
-        case shortPassword = "Password too short"
-        case unequalPasswords = "Passwords don't match"
-        case valid = ""
-    }
     
     func isDataValid() -> RegisterDataValidity {
         if (self.email == "" || self.password == "" || self.repeatPassword == "") {
@@ -53,27 +44,27 @@ struct RegisterView: View {
         return RegisterDataValidity.valid
     }
     
-    /**
+    /*
      checks Data registers
      */
-    func signUp() -> Bool {
-        var success = false
+    func signUp() -> SignUpReturnCode {
+        var returnCode: SignUpReturnCode = SignUpReturnCode.UNKNOWN
         if (self.isDataValid() == RegisterDataValidity.valid) {
-            session.signUp(email: email, password: password) {(error) in
+            returnCode = session.signUp(email: email, password: password) { (error) in
                 if error != nil {
-                    print("ERROR in SignUp() \(error!.localizedDescription)")
-                    success = false
+                    returnCode = SignUpReturnCode.ERROR(message: error!.localizedDescription)
                 } else {
                     // No error / error = nil
-                    success = true
+                    returnCode = SignUpReturnCode.SUCCESS
                 }
             }
+        } else {
+            return SignUpReturnCode.INVALID_DATA
         }
-        return success
+        return returnCode
     }
     
     var body: some View {
-        
         // Add Listener to second pass field. calls isDataValid on every Input
         let repeatPasswordBinding = Binding<String>(get: {
             self.repeatPassword
@@ -81,18 +72,15 @@ struct RegisterView: View {
             self.repeatPassword = $0
             self.errorText = self.isDataValid().rawValue
         })
-        
         return ZStack {
             VStack {
                 Group {
                     Text(FixedStringValues.appName).font(.largeTitle)
-                                           .foregroundColor(Color.white)
+                        .foregroundColor(Color.white)
                     Spacer()
                     Text("SignUp").font(.largeTitle)
                         .foregroundColor(.lmuLightGrey)
                     Spacer()
-                   
-
                 }
                 VStack {
                     Text("Create a new Account").foregroundColor(Color.white).font(.title)
@@ -106,18 +94,29 @@ struct RegisterView: View {
                 Group {
                     Spacer()
                     Text(errorText).foregroundColor(Color.red)
-                   
-                    
                     Button(action: {
-                        self.signUpSuccess = self.signUp()
-                        print("SignUpSuccess: \(self.signUpSuccess)")
+                        let SignUpReturnCode = self.signUp()
+                        var longMessage = ""
+                        switch (SignUpReturnCode) {
+                        case .SUCCESS:
+                            longMessage = "Register successful"
+                            self.signUpSuccessFlagForNavigation = true
+                        case .ERROR(let message):
+                            longMessage = "Error during SignUp: \(message)"
+                            self.errorText = longMessage
+                        case .UNKNOWN:
+                            longMessage = "Unknown Return code from SignUp()"
+                        case .INVALID_DATA:
+                            longMessage = "Invalid Data, please reenter email and passwords."
+                        }
+                        print(longMessage)
+                        
                     }) {
                         Text("Register")
                     }.buttonStyle(StudyButtonStyle())
                     
                     // Phantom navigation link:
-                    NavigationLink("", destination: GeneralTabView(), isActive: $signUpSuccess)
-                    
+                    NavigationLink("", destination: GeneralTabView(), isActive: $signUpSuccessFlagForNavigation)
                 }
                 //                NavigationLink(destination: {
                 //                    VStack {

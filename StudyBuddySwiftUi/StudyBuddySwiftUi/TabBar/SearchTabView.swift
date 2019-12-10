@@ -20,11 +20,11 @@ struct SearchTabView: View {
         VStack {
             SwipeView(users: session.otherUsers)
         }.navigationBarTitle("")
-        .navigationBarBackButtonHidden(true)
-        .navigationBarHidden(true)
-        .padding(.horizontal)
+            .navigationBarBackButtonHidden(true)
+            .navigationBarHidden(true)
+            .padding(.horizontal)
             .padding(.bottom)
-        .background(Color.lmuGreen.edgesIgnoringSafeArea(.vertical))
-        .onAppear(perform: initialize)
+            .background(Color.lmuGreen.edgesIgnoringSafeArea(.vertical))
+            .onAppear(perform: initialize)
     }
 }
