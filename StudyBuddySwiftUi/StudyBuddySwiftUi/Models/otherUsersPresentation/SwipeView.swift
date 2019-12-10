@@ -14,7 +14,7 @@ struct SwipeView: View {
     
     let users: [User]
     let spacing: CGFloat = 10
-
+    
     var body: some View {
         GeometryReader { geometry in
             return ScrollView(.horizontal, showsIndicators: true) {

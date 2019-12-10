@@ -14,34 +14,31 @@ class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObject {
     private let locationManager = CLLocationManager()
     
     let objectWillChange = PassthroughSubject<Void, Never>()
-
     
     override init() {
-           super.init()
-           self.locationManager.delegate = self
-           self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
-           self.locationManager.requestWhenInUseAuthorization()
-           self.locationManager.requestAlwaysAuthorization()
-           self.locationManager.startUpdatingLocation()
-        
-       }
+        super.init()
+        self.locationManager.delegate = self
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        self.locationManager.requestWhenInUseAuthorization()
+        self.locationManager.requestAlwaysAuthorization()
+        self.locationManager.startUpdatingLocation()
+    }
     
     @Published var lastLocation: CLLocation? {
-           willSet {
-               objectWillChange.send()
-           }
-       }
+        willSet {
+            objectWillChange.send()
+        }
+    }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-    if status == .authorizedWhenInUse {
-        manager.startUpdatingLocation()
-    }
+        if status == .authorizedWhenInUse {
+            manager.startUpdatingLocation()
+        }
         
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-           guard let location = locations.last else { return }
-           self.lastLocation = location
-           print(#function, location)
-       }
-  
+        func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+            guard let location = locations.last else { return }
+            self.lastLocation = location
+            print(#function, location)
+        }
     }
 }

@@ -36,15 +36,15 @@ struct ChangePasswordView: View {
         } else {
             //todo password change and not creating a new user
             /* session.signUp(email: email, password: newPassword) {(result, error_FieldIsEmpty) in self.loading = false
-                if error_FieldIsEmpty != nil {
-                    print("Error")
-                    self.error_FieldIsEmpty = true
-                }
-                else { */
-                    self.email = ""
-                    self.newPassword = ""
-               // }
-        //    }
+             if error_FieldIsEmpty != nil {
+             print("Error")
+             self.error_FieldIsEmpty = true
+             }
+             else { */
+            self.email = ""
+            self.newPassword = ""
+            // }
+            //    }
         }
     }
     
@@ -67,7 +67,8 @@ struct ChangePasswordView: View {
                 NavigationLink(destination: ProfileTabView()) {
                     Text("Change Password").font(.system(size: 20))
                         .fontWeight(.heavy)
-                }.buttonStyle(StudyButtonStyle()).simultaneousGesture(TapGesture().onEnded{self.changePassword()})
+                }.buttonStyle(StudyButtonStyle())
+                    .simultaneousGesture(TapGesture().onEnded{self.changePassword()})
                 HStack {
                     Text("Don't want to change your password?").foregroundColor(Color.lmuLightGrey)
                     Button(action: {
@@ -95,5 +96,4 @@ struct ChangePasswordView_Previews: PreviewProvider {
     static var previews: some View {
         ChangePasswordView()
     }
-    
 }

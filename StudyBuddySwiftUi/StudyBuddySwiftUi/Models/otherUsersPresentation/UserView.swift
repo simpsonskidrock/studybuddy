@@ -20,7 +20,7 @@ struct UserView: View {
         else {
             self.session.getProfileImage(profileImageUrl: self.userModel.profileImageUrl!, handler: { (image) in
                 DispatchQueue.main.async{
-                tempImage = image
+                    tempImage = image
                 }
             })
         }

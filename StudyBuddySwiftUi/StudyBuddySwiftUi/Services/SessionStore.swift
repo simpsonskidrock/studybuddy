@@ -10,7 +10,6 @@ import SwiftUI
 import Firebase
 import Combine
 
-
 class SessionStore : ObservableObject {
     var didChange = PassthroughSubject<SessionStore, Never>()
     var sessionUser: User? { didSet { self.didChange.send(self) }}
@@ -18,7 +17,7 @@ class SessionStore : ObservableObject {
     var otherUsers: [User] = []
     var presentMatchAlert: Bool = false
     var searchWithGPS: Bool = false
-
+    
     func listen(handler: @escaping((User)->())) {
         // monitor authentication changes using firebase
         handle = Auth.auth().addStateDidChangeListener { (auth, user) in
@@ -46,9 +45,7 @@ class SessionStore : ObservableObject {
     }
     
     // ---------------- Authentification ---------------- //
-
-
-
+    
     func signUp (
         email: String,
         password: String,
@@ -131,8 +128,6 @@ class SessionStore : ObservableObject {
                 FixedStringValues.uid: authData.user.uid,
                 FixedStringValues.email: authData.user.email!
             ]
-            //self.updateProfileImage(uid: authData.user.uid, image: image)
-            
             var success = false
             Database.database().reference().child(FixedStringValues.urlIdentifierUser)
                 .child(authData.user.uid)
@@ -145,7 +140,7 @@ class SessionStore : ObservableObject {
             if (success) {
                 print ("Added Profile: Done")
             } else {
-              //  throw RegisterError.unknown(message: "Hmm")
+                //  throw RegisterError.unknown(message: "Hmm")
             }
         }
     }
@@ -205,22 +200,19 @@ class SessionStore : ObservableObject {
     func getProfileImage(profileImageUrl: String, handler: @escaping ((UIImage)->())) {
         if(profileImageUrl.isEmpty){
             print("no profile image")
-           
-        }else {
-        let storageRef = Storage.storage().reference(forURL: profileImageUrl)
-        storageRef.getData(maxSize: 1 * 1024 * 1024) { data, error in
-            if let error = error {
-                print(error.localizedDescription)
-            }
-            else {
-                if let image = UIImage(data: data!){
-                handler(image)
-            }
-            }
-            
+        } else {
+            let storageRef = Storage.storage().reference(forURL: profileImageUrl)
+            storageRef.getData(maxSize: 1 * 1024 * 1024) { data, error in
+                if let error = error {
+                    print(error.localizedDescription)
+                }
+                else {
+                    if let image = UIImage(data: data!){
+                        handler(image)
+                    }
+                }
             }
         }
-        
     }
     
     // ---------------- Other User|s ---------------- //
@@ -240,7 +232,7 @@ class SessionStore : ObservableObject {
             print(error.localizedDescription)
         }
     }
-
+    
     // ---------------- Like and Match ---------------- //
     
     func addLikedUser(uid: String) {
@@ -309,13 +301,13 @@ class SessionStore : ObservableObject {
         var dict: Dictionary<String, Any>
         if deleteLikes {
             dict = [
-                 FixedStringValues.likedUsers: [],
-                 FixedStringValues.contacts: []
-             ]
+                FixedStringValues.likedUsers: [],
+                FixedStringValues.contacts: []
+            ]
         } else {
             dict = [
-                 FixedStringValues.contacts: []
-             ]
+                FixedStringValues.contacts: []
+            ]
         }
         Database.database().reference().child(FixedStringValues.urlIdentifierUser).child(uid).updateChildValues(dict, withCompletionBlock: {(error, ref) in
             if error == nil {

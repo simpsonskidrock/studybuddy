@@ -55,8 +55,8 @@ struct ContactsTabView: View {
                     .resignKeyboardOnDragGesture()
             }
         }.navigationBarTitle("")
-        .navigationBarBackButtonHidden(true)
-        .navigationBarHidden(true)
+            .navigationBarBackButtonHidden(true)
+            .navigationBarHidden(true)
     }
 }
 

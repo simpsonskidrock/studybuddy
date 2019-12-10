@@ -48,8 +48,8 @@ public struct StudyButtonStyle: ButtonStyle {
 public struct StudyButtonLightStyle: ButtonStyle {
     public func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label
-        .padding()
-        .font(.system(size: 15))
-        .foregroundColor(.white)
+            .padding()
+            .font(.system(size: 15))
+            .foregroundColor(.white)
     }
 }
