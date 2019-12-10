@@ -23,7 +23,7 @@ struct ContactsLineView: View {
                 self.image = image
             })
         } else {
-            self.image = UIImage(systemName: "person")!
+            self.image = UIImage()
         }
     }
     
@@ -38,16 +38,19 @@ struct ContactsLineView: View {
         HStack {
             if chatAllowed {
                 ImageView(image: image)
-                UserNameView(name: uid)
                 Spacer()
+                UserNameView(name: name)
+               
                 NavigationLink(destination: ChatView()){
-                    Text("Match")
+                    Spacer()
+                    Text("Match").foregroundColor(.red).font(.system(size: 12))
+
                 }
             } else {
                 ImageView(image: image)
-                UserNameView(name: uid)
+                UserNameView(name: name)
                 Spacer()
-                Text("Like")
+                Text("Liked").font(.system(size: 12))
             }
         }.onAppear(perform: initialize)
     }
@@ -61,9 +64,11 @@ struct ImageView: View {
         Image(uiImage: image)
             .resizable()
             .scaledToFit()
+            .clipShape(Circle())
+            .frame(width: 80, height: 80)
             .overlay(
-                Circle()
-                    .clipped()
+                Circle().stroke(Color.white,lineWidth: 1)
+                    
         )
     }
 }
@@ -73,8 +78,7 @@ struct UserNameView: View {
     
     var body: some View {
         Text("\(name)")
-            .font(.title)
-            .fontWeight(.semibold)
-            .foregroundColor(.white)
+            .fontWeight(.regular)
+            .foregroundColor(.black)
     }
 }
