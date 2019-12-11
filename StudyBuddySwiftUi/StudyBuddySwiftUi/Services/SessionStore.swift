@@ -58,23 +58,17 @@ class SessionStore: ObservableObject {
         handler: @escaping (AuthDataResult?, Error?) -> ()
     ) {
         //Auth.auth().createUser(withEmail: email, password: password, completion: handler)
-        Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
+        Auth.auth().createUser(withEmail: email, password: password) { (result, returnError) in
             guard let res = result else {
-                handler(nil, error)
+                handler(nil, returnError)
                 return
             }
-            do {
-                try self.addSessionUserProfile(result: res)
-                handler(res, nil)
-            } catch {
-                class MyError: Error {
-                    var message: String
-                    init(message: String) {
-                        self.message = message
-                    }
+            self.addSessionUserProfile(result: res) { (error) in
+                if (error == nil) {
+                    handler(nil, error)
+                } else {
+                    handler(res, nil)
                 }
-                let error = MyError(message: "Failed to add Session User Profile")
-                handler(nil, error)
             }
         }
     }
@@ -130,27 +124,25 @@ class SessionStore: ObservableObject {
         }
     }
 
-    func addSessionUserProfile(result: AuthDataResult?) throws {
+    func addSessionUserProfile(result: AuthDataResult?,  handler: @escaping (Error?) -> () ) {
         if let authData = result {
             let dict: Dictionary<String, Any> = [
                 FixedStringValues.uid: authData.user.uid,
                 FixedStringValues.email: authData.user.email!
             ]
-            
-            var success = false
+
             Database.database().reference().child(FixedStringValues.urlIdentifierUser)
                 .child(authData.user.uid)
                 .updateChildValues(dict, withCompletionBlock: {
                     (error, ref) in
                     if error == nil {
-                        success = true
+                        print("Added Profile: Done")
+                        handler(nil)
+                    } else {
+                        print("Failed to add profile")
+                        handler(error)
                     }
                 })
-            if (success) {
-                print("Added Profile: Done")
-            } else {
-                throw RegisterError.unknown(message: "Hmm")
-            }
         }
     }
 
@@ -271,6 +263,34 @@ class SessionStore: ObservableObject {
         } )
     }
     
+    func updateContacts(otherUserUid: String) {
+        let tempUid: String = String((self.sessionUser?.uid)!)
+        let dict: Dictionary<String, Any> = [
+            FixedStringValues.contacts: self.sessionUser?.contacts ?? ""
+        ]
+        Database.database().reference().child(FixedStringValues.urlIdentifierUser).child(tempUid).updateChildValues(dict, withCompletionBlock: {(error, ref) in
+            if error == nil {
+                print ("Deleted likedUser")
+                self.getOtherUsers()
+                self.getProfile(uid: otherUserUid, handler: { user in
+                    var updatedOtherUsersContacts: [String] = []
+                    for contact in user.contacts {
+                        if contact != tempUid {
+                            updatedOtherUsersContacts.append(contact)
+                        }
+                    }
+                    let dictOtherUser: Dictionary<String, Any> = [
+                        FixedStringValues.contacts: updatedOtherUsersContacts ?? ""
+                    ]
+                    Database.database().reference().child(FixedStringValues.urlIdentifierUser).child(otherUserUid).updateChildValues(dictOtherUser, withCompletionBlock: {(error, ref) in
+                        if error == nil {
+                            print ("Deleted your uid in other users contacts list")
+                        }
+                    } )
+                })
+            }
+        } )
+    }
 
     private func checkIfLikedUserLikedYou(otherUserUid: String) {
         let rootRef = Database.database().reference(withPath: FixedStringValues.urlIdentifierUser).child(otherUserUid)

@@ -50,6 +50,11 @@ struct ProfileTabView: View {
     
     private func leaveView() {
         self.editProfile = false
+       /* self.displayName = self.session.sessionUser!.displayName ?? ""
+        self.fieldOfStudy = self.session.sessionUser!.fieldOfStudy ?? ""
+        self.description = self.session.sessionUser!.description ?? ""
+        self.hashtags = self.session.sessionUser!.hashtags ?? ""
+        self.profileImageUrl = self.session.sessionUser!.profileImageUrl ?? "" */
     }
     
     var body: some View {

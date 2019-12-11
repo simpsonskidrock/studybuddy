@@ -25,7 +25,7 @@ struct RegisterView: View {
     @State private var errorText: String = ""
     
     @State private var errorDialogVisible: Bool = false
-    @State private var tempAlert: Alert = nil
+    @State private var tempAlert: Alert? = nil
     
     @State private var email: String = ""
     @State private var password: String = ""
@@ -57,12 +57,12 @@ struct RegisterView: View {
                 } else {
                     // res has result
                     print("Sign Up successful :)")
-                    self.errorText = "Sign Up successfull"
+                    self.errorText = "Sign Up successful"
                     self.signUpSuccessFlagForNavigation = true
                 }
             }
         } else {
-            self.errorText = "Can't register: \(self.isDataValid().rawValue)"
+            self.errorText = "Can't register, invalid Input:  \(self.isDataValid().rawValue)"
         }
     }
     
@@ -107,20 +107,6 @@ struct RegisterView: View {
                     // Phantom navigation link:
                     NavigationLink("", destination: GeneralTabView(), isActive: $signUpSuccessFlagForNavigation)
                 }
-                //                NavigationLink(destination: {
-                //                    VStack {
-                //                        if loginSuccess {
-                //                            GeneralTabView()
-                //                        } else {
-                //                            // Not going to GeneralTabView
-                //                            RegisterView()
-                //                        }
-                //                    }
-                //                }()) {
-                //                    Text("Register")
-                //                }.buttonStyle(StudyButtonStyle())
-                //                    .simultaneousGesture(TapGesture().onEnded{self.signUp()})
-                //
                 
                 HStack {
                     Text("Already have an account?").foregroundColor(Color.lmuLightGrey)

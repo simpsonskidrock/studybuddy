@@ -15,7 +15,7 @@ struct ChangePasswordView: View {
     
     @State private var loading = false
     @State private var error = false
-    @State private var tempAlert: Alert = nil
+    @State private var tempAlert: Alert? = nil
     
     @State private var email: String = ""
     @State private var newPassword: String = ""
