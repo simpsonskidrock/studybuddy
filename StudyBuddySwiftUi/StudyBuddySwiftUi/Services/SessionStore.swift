@@ -181,7 +181,7 @@ class SessionStore: ObservableObject {
         guard let imageData = imageSelected.jpegData(compressionQuality: 0.1) else {
             return
         }
-     /*   let storageRef = Storage.storage().reference(forURL: FixedStringValues.storageRef)
+        let storageRef = Storage.storage().reference(forURL: FixedStringValues.storageRef)
         let storageProfileRef = storageRef.child(FixedStringValues.urlIdentifierProfile).child(uid)
         let metaData = StorageMetadata()
         metaData.contentType = "image/jpg"
@@ -203,14 +203,14 @@ class SessionStore: ObservableObject {
                     })
                 }
             })
-        }) */
+        })
     }
 
     func getProfileImage(profileImageUrl: String, handler: @escaping ((UIImage) -> ())) {
         if (profileImageUrl.isEmpty) {
             print("no profile image")
         } else {
-         /*   let storageRef = Storage.storage().reference(forURL: profileImageUrl)
+            let storageRef = Storage.storage().reference(forURL: profileImageUrl)
             storageRef.getData(maxSize: 1 * 1024 * 1024) { data, error in
                 if let error = error {
                     print(error.localizedDescription)
@@ -219,8 +219,7 @@ class SessionStore: ObservableObject {
                         handler(image)
                     }
                 }
-
-            }*/
+            }
         }
     }
 
