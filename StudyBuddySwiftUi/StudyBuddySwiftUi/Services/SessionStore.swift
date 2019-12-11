@@ -170,7 +170,7 @@ class SessionStore: ObservableObject {
             print("Image is nil")
             return
         }
-        guard let imageData = imageSelected.jpegData(compressionQuality: 0.4) else {
+        guard let imageData = imageSelected.jpegData(compressionQuality: 0.1) else {
             return
         }
         let storageRef = Storage.storage().reference(forURL: FixedStringValues.storageRef)
@@ -211,7 +211,6 @@ class SessionStore: ObservableObject {
                         handler(image)
                     }
                 }
-
             }
         }
     }

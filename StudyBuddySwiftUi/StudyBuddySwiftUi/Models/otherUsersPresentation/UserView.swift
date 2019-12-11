@@ -10,35 +10,19 @@ import SwiftUI
 
 struct UserView: View {
     @EnvironmentObject var session: SessionStore
-    let userModel: User
     
-    @State var tempImage: UIImage = UIImage()
-    func getImage() -> UIImage {
-       
-        if(self.userModel.profileImageUrl!.isEmpty){
-            tempImage = UIImage(systemName: "person")!
-        }
-        else {
-            self.session.getProfileImage(profileImageUrl: self.userModel.profileImageUrl!, handler: { (image) in
-                DispatchQueue.main.async{
-                    self.tempImage = image
-                }
-            })
-        }
-        return tempImage
-    }
+    let userModel: User
+    let image: UIImage
     
     var body: some View {
         ZStack(alignment: .leading) {
-            AvatarView(image: self.getImage())
+            AvatarView(image: image)
             NameView(name: userModel.displayName!, fieldOfStudy: userModel.fieldOfStudy!, description: userModel.description!, hashtags: userModel.hashtags!)
         }
         .shadow(radius: 12.0)
         .cornerRadius(12.0)
         .onTapGesture(count: 2) {
             self.session.addLikedUser(uid: self.userModel.uid)
-            print("user liked")
-            
         }
     }
 }
