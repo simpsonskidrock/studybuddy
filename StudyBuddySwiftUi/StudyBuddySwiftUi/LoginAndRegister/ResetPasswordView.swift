@@ -15,7 +15,7 @@ struct ResetPasswordView: View {
     
     @State private var email: String = ""
     @State private var error: Bool = false
-    @State private var tempAlert: Alert = nil
+    @State private var tempAlert: Alert? = nil
     
     private func ResetPassword() {
         self.error = false
