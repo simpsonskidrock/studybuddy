@@ -263,6 +263,34 @@ class SessionStore: ObservableObject {
         } )
     }
     
+    func updateContacts(otherUserUid: String) {
+        let tempUid: String = String((self.sessionUser?.uid)!)
+        let dict: Dictionary<String, Any> = [
+            FixedStringValues.contacts: self.sessionUser?.contacts ?? ""
+        ]
+        Database.database().reference().child(FixedStringValues.urlIdentifierUser).child(tempUid).updateChildValues(dict, withCompletionBlock: {(error, ref) in
+            if error == nil {
+                print ("Deleted likedUser")
+                self.getOtherUsers()
+            }
+        } )
+        self.getProfile(uid: otherUserUid, handler: { user in
+            var updatedOtherUsersContacts: [String] = []
+            for contact in user.contacts {
+                if contact != tempUid {
+                    updatedOtherUsersContacts.append(contact)
+                }
+            }
+            let dictOtherUser: Dictionary<String, Any> = [
+                FixedStringValues.contacts: updatedOtherUsersContacts ?? ""
+            ]
+            Database.database().reference().child(FixedStringValues.urlIdentifierUser).child(otherUserUid).updateChildValues(dictOtherUser, withCompletionBlock: {(error, ref) in
+                if error == nil {
+                    print ("Deleted your uid in other users contacts list")
+                }
+            } )
+        })
+    }
 
     private func checkIfLikedUserLikedYou(otherUserUid: String) {
         let rootRef = Database.database().reference(withPath: FixedStringValues.urlIdentifierUser).child(otherUserUid)

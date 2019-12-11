@@ -47,6 +47,15 @@ struct ContactsTabView: View {
                 List() {
                     ForEach(self.session.sessionUser!.contacts.filter{$0.hasPrefix(searchText) || searchText == ""}, id: \.self) { contact in
                         ContactsLineView(uid: contact, chatAllowed: true)
+                    }.onDelete { (indexSet) in
+                        let tempContactsBefore: [String] = self.session.sessionUser!.contacts
+                        self.session.sessionUser!.contacts.remove(atOffsets: indexSet)
+                        let tempContactsAfter: [String] = self.session.sessionUser!.contacts
+                        for element in tempContactsBefore {
+                            if !tempContactsAfter.contains(element) {
+                                self.session.updateContacts(otherUserUid: element)
+                            }
+                        }
                     }
                     ForEach(self.session.sessionUser!.likedUsers.filter{$0.hasPrefix(searchText) || searchText == ""}, id: \.self) { contact in
                         ContactsLineView(uid: contact, chatAllowed: false)
