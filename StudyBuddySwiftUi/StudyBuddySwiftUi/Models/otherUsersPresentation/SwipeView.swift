@@ -20,7 +20,7 @@ struct SwipeView: View {
             return ScrollView(.horizontal, showsIndicators: true) {
                 HStack(spacing: self.spacing) {
                     ForEach(self.users, id: \.uid) { user in
-                        UserView(userModel: user)
+                        UserView(userModel: user, image: UIImage(systemName: "person")!)
                             .frame(width: geometry.size.width)
                     }
                     if (self.users.isEmpty) {
