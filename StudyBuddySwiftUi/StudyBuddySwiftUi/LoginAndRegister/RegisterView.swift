@@ -74,6 +74,8 @@ struct RegisterView: View {
             self.repeatPassword = $0
             self.errorText = self.isDataValid().rawValue
         })
+        
+        
         return ZStack {
             VStack {
                 Group {

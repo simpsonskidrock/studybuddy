@@ -9,6 +9,7 @@
 import SwiftUI
 
 struct ResetPasswordView: View {
+    
     @Environment(\.presentationMode) var mode
     @EnvironmentObject var session: SessionStore
     @ObservedObject private var keyboard = KeyboardResponder()
@@ -16,12 +17,22 @@ struct ResetPasswordView: View {
     @State private var email: String = ""
     @State private var error: Bool = false
     @State private var tempAlert: Alert = nil
+    @State private var errorText: String = ""
     
-    private func ResetPassword() {
-        self.error = false
+    func isDataValid() -> RegisterDataValidity {
         if (self.email == "" ) {
-            self.error = true
-            self.tempAlert = Alert.emptyField
+            return RegisterDataValidity.invalidEmail
+        } else if (!email.matches("[^@]+@[^\\.]+\\..+")) {
+            return RegisterDataValidity.invalidEmail
+        }
+        return RegisterDataValidity.valid
+        
+    }
+    
+    func ResetPassword() {
+        self.error = false
+        if (self.isDataValid() != RegisterDataValidity.valid ) {
+            self.errorText = "please enter a valid Email"
         }
         else {
             self.session.resetPassword(email: email, onSuccess: {
@@ -35,7 +46,13 @@ struct ResetPasswordView: View {
     }
     
     var body: some View {
-        ZStack {
+        let emailBinding = Binding<String>(get: {
+            self.email
+        }, set: {
+            self.email = $0
+            self.errorText = self.isDataValid().rawValue
+        })
+        return ZStack {
             VStack {
                 Group{
                     Text(FixedStringValues.appName).font(.largeTitle)
@@ -44,20 +61,21 @@ struct ResetPasswordView: View {
                     Text("Reset Password").font(.largeTitle)
                         .foregroundColor(.lmuLightGrey)
                     Spacer()
-                    VStack {
-                        Text("Enter your email address").foregroundColor(Color.white)
-                        TextField("Email", text: $email).textFieldStyle(StudyTextFieldStyle())
-                    }
                 }
+                VStack {
+                    Text("Enter your email address").foregroundColor(Color.white)
+                    TextField("Email", text: emailBinding).textFieldStyle(StudyTextFieldStyle())
+                }
+                
                 Group{
-                    NavigationLink(destination: LoginView()) {
+                    Text(errorText).foregroundColor(.orange)
+                    Button(action: {
+                        self.ResetPassword()
+                    }) {
                         Text("Reset Password")
                     }.buttonStyle(StudyButtonStyle())
-                        .simultaneousGesture(TapGesture()
-                            .onEnded{
-                                self.ResetPassword()
-                                
-                        })
+                    // Phantom navigation link:
+                    NavigationLink("", destination: LoginView())
                 }
                 HStack {
                     Group{
@@ -68,19 +86,23 @@ struct ResetPasswordView: View {
                             Text("Cancel").foregroundColor(.white)
                         }
                     }
+                    
                 }
                 Spacer()
-            }.padding(.horizontal)
-                .background(Color.lmuGreen.edgesIgnoringSafeArea(.vertical))
-                .edgesIgnoringSafeArea(.bottom)
-                .offset(x: 0, y: -keyboard.currentHeight)
-                .animation(.easeOut(duration: 0.16))
-                .alert(isPresented: $error) {
-                    self.tempAlert.unsafelyUnwrapped
             }
+        }.padding(.horizontal)
+            .background(Color.lmuGreen.edgesIgnoringSafeArea(.vertical))
+            .edgesIgnoringSafeArea(.bottom)
+            .offset(x: 0, y: -keyboard.currentHeight)
+            .animation(.easeOut(duration: 0.16))
+            .alert(isPresented: $error) {
+                self.tempAlert.unsafelyUnwrapped
         }
+        
+        
     }
 }
+
 
 struct ResetPasswordView_Previews: PreviewProvider {
     static var previews: some View {
