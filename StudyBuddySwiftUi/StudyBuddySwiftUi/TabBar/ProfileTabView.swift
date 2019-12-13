@@ -24,7 +24,31 @@ struct ProfileTabView: View {
     @State private var editProfile: Bool = false
     
     @State private var isShowingImagePicker: Bool = false
+    @State var showAction: Bool = false
+
     @State private var image: UIImage = UIImage()
+    
+    
+    var sheet: ActionSheet {
+        ActionSheet(
+            title: Text("Change profile image"),
+            message: Text(""),
+            buttons: [
+                .default(Text("Change image"), action: {
+                    self.showAction = false
+                    self.isShowingImagePicker = true
+                }),
+                .cancel(Text("Close"), action: {
+                    self.showAction = false
+                }),
+                .destructive(Text("Remove image"), action: {
+                    self.showAction = false
+                    self.image = UIImage(systemName: "person.circle.fill")!
+                })
+            ])
+
+    }
+    
     
     private func initialize() {
         self.session.listen(handler: { user in
@@ -56,6 +80,8 @@ struct ProfileTabView: View {
         self.hashtags = self.session.sessionUser!.hashtags ?? ""
         self.profileImageUrl = self.session.sessionUser!.profileImageUrl ?? "" */
     }
+    
+    
     
     var body: some View {
         VStack {
@@ -105,7 +131,12 @@ struct ProfileTabView: View {
                     )
                     if self.editProfile {
                         Button(action: {
+                            if (self.image == UIImage(systemName: "person.circle.fill")){
                             self.isShowingImagePicker.toggle()
+                            }
+                            else {
+                                self.showAction = true
+                            }
                         }) {
                             Image(systemName: "camera.on.rectangle")
                                 .foregroundColor(.white)
@@ -113,6 +144,9 @@ struct ProfileTabView: View {
                             .sheet(isPresented: $isShowingImagePicker, content: {
                                 ImagePickerViewController(isPresented: self.$isShowingImagePicker, selectedImage: self.$image)
                             })
+                        .actionSheet(isPresented: $showAction) {
+                            sheet
+                        }
                     }
                     VStack {
                         HStack {
