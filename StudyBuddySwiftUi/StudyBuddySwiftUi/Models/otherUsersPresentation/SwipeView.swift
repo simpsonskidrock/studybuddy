@@ -11,10 +11,32 @@ import SwiftUI
 struct SwipeView: View {
     @State private var offset: CGFloat = 0
     @State private var index = 0
-    
-    let users: [User]
+
+    var users: [User]
     let spacing: CGFloat = 10
-    
+
+    init(users: [User]) {
+        self.users = users
+        // debug()
+    }
+
+    // TODO remove this method before production
+    mutating func debug() {
+        print("_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _")
+        users.forEach { user in
+            print(user.toString())
+        }
+        print("- - - - - - - - - - - - - - - - - -")
+        print("removing dups...")
+        let unique = Array(Set(users))
+        users = unique
+        print("_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _")
+        users.forEach { user in
+            print(user.toString())
+        }
+        print("- - - - - - - - - - - - - - - - - -")
+    }
+
     var body: some View {
         GeometryReader { geometry in
             return ScrollView(.horizontal, showsIndicators: true) {
@@ -29,23 +51,25 @@ struct SwipeView: View {
                     }
                 }
             }
-            .content.offset(x: self.offset)
-            .frame(width: geometry.size.width, alignment: .leading)
-            .gesture(
-                DragGesture()
-                    .onChanged({ value in
-                        self.offset = value.translation.width - geometry.size.width * CGFloat(self.index)
-                    })
-                    .onEnded({ value in
-                        if -value.predictedEndTranslation.width > geometry.size.width / 2, self.index < self.users.count - 1 {
-                            self.index += 1
-                        }
-                        if value.predictedEndTranslation.width > geometry.size.width / 2, self.index > 0 {
-                            self.index -= 1
-                        }
-                        withAnimation { self.offset = -(geometry.size.width + self.spacing) * CGFloat(self.index) }
-                    })
-            )
+                .content.offset(x: self.offset)
+                .frame(width: geometry.size.width, alignment: .leading)
+                .gesture(
+                    DragGesture()
+                        .onChanged({ value in
+                            self.offset = value.translation.width - geometry.size.width * CGFloat(self.index)
+                        })
+                        .onEnded({ value in
+                            if -value.predictedEndTranslation.width > geometry.size.width / 2, self.index < self.users.count - 1 {
+                                self.index += 1
+                            }
+                            if value.predictedEndTranslation.width > geometry.size.width / 2, self.index > 0 {
+                                self.index -= 1
+                            }
+                            withAnimation {
+                                self.offset = -(geometry.size.width + self.spacing) * CGFloat(self.index)
+                            }
+                        })
+                )
         }
     }
 }

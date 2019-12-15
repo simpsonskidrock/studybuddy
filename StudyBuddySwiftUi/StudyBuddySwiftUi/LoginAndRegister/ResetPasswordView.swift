@@ -16,7 +16,7 @@ struct ResetPasswordView: View {
     
     @State private var email: String = ""
     @State private var error: Bool = false
-    @State private var tempAlert: Alert = nil
+    @State private var tempAlert: Alert? = nil
     @State private var errorText: String = ""
     
     func isDataValid() -> RegisterDataValidity {

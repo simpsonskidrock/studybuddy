@@ -10,6 +10,7 @@ import SwiftUI
 import Firebase
 import Combine
 
+//TODO rename to Communication
 class SessionStore: ObservableObject {
 
     var didChange = PassthroughSubject<SessionStore, Never>()

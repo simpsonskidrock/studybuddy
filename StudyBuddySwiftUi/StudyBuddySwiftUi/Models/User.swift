@@ -7,7 +7,7 @@
 //
 import SwiftUI
 
-struct User {
+struct User : Hashable {
     var uid: String
     var email: String?
     var displayName: String?
@@ -17,6 +17,11 @@ struct User {
     var profileImageUrl: String?
     var likedUsers: [String] = []
     var contacts: [String] = []
+
+    var hashValue: Int {
+        return uid.hashValue ^ email.hashValue ^ displayName.hashValue
+    }
+
     
     init(uid: String, email: String?) {
         self.uid = uid
@@ -43,5 +48,16 @@ struct User {
     mutating func updateLikeAndMatch(likedUsers: [String]?, contacts: [String]?) {
         self.likedUsers = likedUsers!
         self.contacts = contacts!
+    }
+
+    func toString() -> String {
+        var line = ""
+
+        line += displayName?.padding(toLength: 25, withPad: " ", startingAt: 0) ?? "Name is null"
+        line += fieldOfStudy?.padding(toLength: 30, withPad: " ", startingAt: 0) ?? "Study is null"
+        line += description?.padding(toLength: 40, withPad: " ", startingAt: 0) ?? "Description is null"
+
+
+        return line
     }
 }
