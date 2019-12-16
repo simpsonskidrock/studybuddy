@@ -16,7 +16,6 @@
 		3391BDFC238557B600643581 /* SessionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3391BDFB238557B600643581 /* SessionStore.swift */; };
 		3391BDFE238557FC00643581 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3391BDFD238557FB00643581 /* User.swift */; };
 		4E5B7ECC2382A871002C72B2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4E5B7ECB2382A871002C72B2 /* GoogleService-Info.plist */; };
-		586036F47771B55D93585BB3 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58603FB17900E93AA0882E63 /* Enums.swift */; };
 		5F6706AD580144BD7E148704 /* Pods_StudyBuddySwiftUi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E880CE267D995F2D844EA96D /* Pods_StudyBuddySwiftUi.framework */; };
 		732023D6239921C90031F120 /* WaitForSessionUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732023D5239921C90031F120 /* WaitForSessionUserView.swift */; };
 		73321153238586C100B7660A /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73321152238586C100B7660A /* ChatView.swift */; };
@@ -547,7 +546,6 @@
 				73B9D154237C2484000E268E /* LoginView.swift in Sources */,
 				293AA0732384947A00436E02 /* KeyboardSettings.swift in Sources */,
 				732023D6239921C90031F120 /* WaitForSessionUserView.swift in Sources */,
-				586036F47771B55D93585BB3 /* Enums.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
