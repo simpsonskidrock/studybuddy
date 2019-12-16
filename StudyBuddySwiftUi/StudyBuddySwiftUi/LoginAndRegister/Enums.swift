@@ -5,7 +5,7 @@
 
 import Foundation
 
-enum RegisterDataValidity: String {
+enum AccountDataValidity: String {
     case invalidEmail = "Invalid Email"
     case shortPassword = "Password too short"
     case unequalPasswords = "Passwords don't match"
