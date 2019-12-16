@@ -14,6 +14,9 @@ struct ResetPasswordView: View {
     @EnvironmentObject var session: SessionStore
     @ObservedObject private var keyboard = KeyboardResponder()
     
+    @State private var resetPasswordSuccessFlagForNavigation: Bool = false
+
+    
     @State private var email: String = ""
     @State private var error: Bool = false
     @State private var tempAlert: Alert? = nil
@@ -37,6 +40,8 @@ struct ResetPasswordView: View {
         else {
             self.session.resetPassword(email: email, onSuccess: {
                 self.error = true
+                self.resetPasswordSuccessFlagForNavigation = true
+
                 self.tempAlert = Alert.successResetPassword
             }){
                 (errorMessage) in
@@ -75,7 +80,7 @@ struct ResetPasswordView: View {
                         Text("Reset Password")
                     }.buttonStyle(StudyButtonStyle())
                     // Phantom navigation link:
-                    NavigationLink("", destination: LoginView())
+                    NavigationLink("", destination: LoginView(), isActive: $resetPasswordSuccessFlagForNavigation)
                 }
                 HStack {
                     Group{
