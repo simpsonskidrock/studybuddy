@@ -14,10 +14,7 @@ struct ChatView : View {
     
     @State private var composedMessage: String = ""
     
-    private func sendMessage() {
-        chatController.sendMessage(ChatMessage(message: composedMessage, avatar: "B", color: .lmuLightGrey, isMe: true))
-        composedMessage = ""
-    }
+    
     
     var body: some View {
         VStack {
@@ -38,6 +35,10 @@ struct ChatView : View {
                 .background(Color.lmuGreen)
         }.navigationBarTitle(Text("Chats"))
     }
+   func sendMessage() {
+        chatController.sendMessage(ChatMessage(message: composedMessage, avatar: "B", color: .lmuLightGrey, isMe: true))
+        composedMessage = ""
+    }
 }
 
 struct ChatRow : View {
@@ -55,6 +56,7 @@ struct ChatRow : View {
                             .background(chatMessage.color)
                             .cornerRadius(10)
                     }
+                    
                 }
             } else {
                 HStack {
@@ -72,7 +74,19 @@ struct ChatRow : View {
             }
         }
     }
+    
 }
+
+
+struct ChatView_Previews: PreviewProvider {
+    static var previews: some View {
+        ChatView()
+        .environmentObject(ChatController())
+
+    }
+}
+
+
 
 struct ChatMessage : Hashable {
     var message: String
