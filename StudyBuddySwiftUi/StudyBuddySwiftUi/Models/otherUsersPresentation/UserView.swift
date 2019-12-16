@@ -8,15 +8,19 @@
 
 import SwiftUI
 
+/**
+ShowsInformation on another User in the SwipeView.
+
+
+*/
 struct UserView: View {
     @EnvironmentObject var session: SessionStore
     
     let userModel: User
-    let image: UIImage
     
     var body: some View {
         ZStack(alignment: .leading) {
-            AvatarView(image: image)
+            AvatarView(userModel: userModel)
             NameView(name: userModel.displayName!, fieldOfStudy: userModel.fieldOfStudy!, description: userModel.description!, hashtags: userModel.hashtags!)
         }
         .shadow(radius: 12.0)

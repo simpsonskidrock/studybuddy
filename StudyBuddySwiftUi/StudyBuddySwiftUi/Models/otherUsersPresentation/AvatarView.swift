@@ -9,19 +9,45 @@
 import SwiftUI
 
 struct AvatarView: View {
-    let image: UIImage
-    
+    @EnvironmentObject var session: SessionStore
+    @State var image: UIImage = UIImage()
+    private var userModel: User
+
+    func initialize() {
+        if (userModel.profileImageUrl != nil) {
+            self.session.getProfileImage(profileImageUrl: userModel.profileImageUrl!, handler: { image in
+                self.image = image
+            })
+        }
+    }
+
+    init(userModel: User) {
+        self.userModel = userModel
+    }
+
+    func getImage(path: String) {
+        if (!path.isEmpty) {
+            self.session.getProfileImage(profileImageUrl: path, handler: { image in
+                self.image = image
+            })
+        } else {
+            self.image = UIImage(systemName: "person")!
+        }
+    }
+
     var body: some View {
-        Image(uiImage: image)
-            .resizable()
-            .frame(width: 300, height: 400)
-            .scaledToFit()
-            .overlay(
-                Rectangle()
-                    .fill(LinearGradient(gradient: Gradient(colors: [.clear, .black]),
-                                         startPoint: .center, endPoint: .bottom))
-                    .clipped()
-        )
-            .cornerRadius(12.0)
+        Group {
+            Image(uiImage: image)
+                .resizable()
+                .frame(width: 300, height: 400)
+                .scaledToFit()
+                .overlay(
+                    Rectangle()
+                        .fill(LinearGradient(gradient: Gradient(colors: [.clear, .black]),
+                            startPoint: .center, endPoint: .bottom))
+                        .clipped()
+                )
+                .cornerRadius(12.0)
+        }.onAppear(perform: initialize)
     }
 }

@@ -11,6 +11,8 @@ import SwiftUI
 struct SwipeView: View {
     @State private var offset: CGFloat = 0
     @State private var index = 0
+    @EnvironmentObject var session: SessionStore
+
 
     var users: [User]
     let spacing: CGFloat = 10
@@ -42,8 +44,9 @@ struct SwipeView: View {
             return ScrollView(.horizontal, showsIndicators: true) {
                 HStack(spacing: self.spacing) {
                     ForEach(self.users, id: \.uid) { user in
-                        UserView(userModel: user, image: UIImage(systemName: "person")!)
+                        UserView(userModel: user)
                             .frame(width: geometry.size.width)
+                        //getUserView(user: user) .frame(width: geometry.size.width)
                     }
                     if (self.users.isEmpty) {
                         Text("no other users yet").background(Color.lmuLightGrey.edgesIgnoringSafeArea(.vertical))
