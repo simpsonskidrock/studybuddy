@@ -19,19 +19,19 @@ struct ResetPasswordView: View {
     @State private var tempAlert: Alert? = nil
     @State private var errorText: String = ""
     
-    func isDataValid() -> RegisterDataValidity {
+    func isDataValid() -> AccountDataValidity {
         if (self.email == "" ) {
-            return RegisterDataValidity.invalidEmail
+            return AccountDataValidity.invalidEmail
         } else if (!email.matches("[^@]+@[^\\.]+\\..+")) {
-            return RegisterDataValidity.invalidEmail
+            return AccountDataValidity.invalidEmail
         }
-        return RegisterDataValidity.valid
+        return AccountDataValidity.valid
         
     }
     
     func ResetPassword() {
         self.error = false
-        if (self.isDataValid() != RegisterDataValidity.valid ) {
+        if (self.isDataValid() != AccountDataValidity.valid ) {
             self.errorText = "please enter a valid Email"
         }
         else {

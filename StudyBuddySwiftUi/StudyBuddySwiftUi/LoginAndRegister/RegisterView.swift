@@ -31,24 +31,24 @@ struct RegisterView: View {
     @State private var password: String = ""
     @State private var repeatPassword: String = ""
     
-    func isDataValid() -> RegisterDataValidity {
+    func isDataValid() -> AccountDataValidity {
         if (self.email == "" || self.password == "" || self.repeatPassword == "") {
-            return RegisterDataValidity.invalidEmail
+            return AccountDataValidity.invalidEmail
         } else if (!email.matches("[^@]+@[^\\.]+\\..+")) {
-            return RegisterDataValidity.invalidEmail
+            return AccountDataValidity.invalidEmail
         } else if (self.password.count < 6) {
-            return RegisterDataValidity.shortPassword
+            return AccountDataValidity.shortPassword
         } else if (self.password != self.repeatPassword) {
-            return RegisterDataValidity.unequalPasswords
+            return AccountDataValidity.unequalPasswords
         }
-        return RegisterDataValidity.valid
+        return AccountDataValidity.valid
     }
 
     /**
         Starts the register process if the data is valid.
     */
     func signUpAction() {
-        if (self.isDataValid() == RegisterDataValidity.valid) {
+        if (self.isDataValid() == AccountDataValidity.valid) {
             // Loading...
             self.errorText = "Please Wait"
             session.signUp(email: email, password: password) { (res, error) in
