@@ -297,7 +297,7 @@ class CommunicationStore: ObservableObject {
                         }
                     }
                     let dictOtherUser: Dictionary<String, Any> = [
-                        FixedStringValues.contacts: updatedOtherUsersContacts ?? ""
+                        FixedStringValues.contacts: updatedOtherUsersContacts
                     ]
                     Database.database().reference().child(FixedStringValues.urlIdentifierUser).child(otherUserUid).updateChildValues(dictOtherUser, withCompletionBlock: {(error, ref) in
                         if error == nil {
