@@ -47,11 +47,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             // && false added to avoid auto login
             if Auth.auth().currentUser != nil && true{
                 window.rootViewController = UIHostingController(
-                    rootView: GeneralTabView().environmentObject(SessionStore())
+                    rootView: GeneralTabView().environmentObject(CommunicationStore())
                 )
             } else {
                 window.rootViewController = UIHostingController(
-                    rootView: LoginView().environmentObject(SessionStore())
+                    rootView: LoginView().environmentObject(CommunicationStore())
                 )
             }
             self.window = window

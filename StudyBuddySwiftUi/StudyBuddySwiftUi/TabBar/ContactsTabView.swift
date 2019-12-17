@@ -10,10 +10,14 @@ import Foundation
 import SwiftUI
 
 struct ContactsTabView: View {
-    @EnvironmentObject var session: SessionStore
+    @EnvironmentObject var session: CommunicationStore
     
     @State private var searchText = ""
     @State private var showCancelButton: Bool = false
+    
+    private func initialize() {
+        session.getOtherUsers()
+    }
     
     var body: some View {
         NavigationView {
@@ -69,6 +73,7 @@ struct ContactsTabView: View {
         }.navigationBarTitle("")
             .navigationBarBackButtonHidden(true)
             .navigationBarHidden(true)
+            .onAppear(perform: initialize)
     }
 }
 

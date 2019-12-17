@@ -1,5 +1,5 @@
 //
-//  SessionStore.swift
+//  CommunicationStore.swift
 //  StudyBuddySwiftUi
 //
 //  Created by Manuel Suess on 20.11.19.
@@ -10,10 +10,9 @@ import SwiftUI
 import Firebase
 import Combine
 
-//TODO rename to Communication
-class SessionStore: ObservableObject {
+class CommunicationStore: ObservableObject {
 
-    var didChange = PassthroughSubject<SessionStore, Never>()
+    var didChange = PassthroughSubject<CommunicationStore, Never>()
     var sessionUser: UserModel? {
         didSet {
             self.didChange.send(self)

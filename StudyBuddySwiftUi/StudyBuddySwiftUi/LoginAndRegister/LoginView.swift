@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct LoginView: View {
-    @EnvironmentObject var session: SessionStore
+    @EnvironmentObject var session: CommunicationStore
     @ObservedObject private var keyboard = KeyboardResponder()
     
     @State private var email: String = ""

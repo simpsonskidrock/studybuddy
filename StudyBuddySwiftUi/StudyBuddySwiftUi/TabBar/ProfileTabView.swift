@@ -13,7 +13,7 @@ struct ProfileTabView: View {
     @ObservedObject var locationManager = LocationManager()
     
     @Environment(\.presentationMode) var mode
-    @EnvironmentObject var session: SessionStore
+    @EnvironmentObject var session: CommunicationStore
     
     @State private var displayName: String = ""
     @State private var fieldOfStudy: String = ""

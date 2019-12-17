@@ -10,7 +10,7 @@ import Foundation
 import SwiftUI
 
 struct SwipeTabView: View {
-    @EnvironmentObject var session: SessionStore
+    @EnvironmentObject var session: CommunicationStore
     
     private func initialize() {
         session.getOtherUsers()
