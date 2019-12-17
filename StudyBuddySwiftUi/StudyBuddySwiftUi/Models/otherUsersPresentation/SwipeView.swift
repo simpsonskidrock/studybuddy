@@ -14,10 +14,10 @@ struct SwipeView: View {
     @EnvironmentObject var session: SessionStore
 
 
-    var users: [User]
+    var users: [UserModel]
     let spacing: CGFloat = 10
 
-    init(users: [User]) {
+    init(users: [UserModel]) {
         self.users = users
         // debug()
     }
@@ -44,7 +44,7 @@ struct SwipeView: View {
             return ScrollView(.horizontal, showsIndicators: true) {
                 HStack(spacing: self.spacing) {
                     ForEach(self.users, id: \.uid) { user in
-                        UserView(userModel: user)
+                        OtherUserView(userModel: user)
                             .frame(width: geometry.size.width)
                         //getUserView(user: user) .frame(width: geometry.size.width)
                     }

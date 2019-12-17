@@ -14,24 +14,24 @@ import Combine
 class SessionStore: ObservableObject {
 
     var didChange = PassthroughSubject<SessionStore, Never>()
-    var sessionUser: User? {
+    var sessionUser: UserModel? {
         didSet {
             self.didChange.send(self)
         }
     }
     private var handle: AuthStateDidChangeListenerHandle?
-    var otherUsers: [User] = []
+    var otherUsers: [UserModel] = []
     var presentMatchAlert: Bool = false
     var searchWithGPS: Bool = false
 
-    func listen(handler: @escaping ((User) -> ())) {
+    func listen(handler: @escaping ((UserModel) -> ())) {
 
         // monitor authentication changes using firebase
         handle = Auth.auth().addStateDidChangeListener { (auth, user) in
             if let user = user {
                 // if we have a user, create a new user model
                 print("Got user: \(user)")
-                self.sessionUser = User(
+                self.sessionUser = UserModel(
                     uid: user.uid,
                     email: user.email
                 )
@@ -105,7 +105,7 @@ class SessionStore: ObservableObject {
 
     // ---------------- Profile ---------------- //
 
-    func getProfile(uid: String?, handler: @escaping ((User) -> ())) {
+    func getProfile(uid: String?, handler: @escaping ((UserModel) -> ())) {
         let rootRef = Database.database().reference(withPath: FixedStringValues.urlIdentifierUser).child(uid!)
         rootRef.observeSingleEvent(of: .value, with: { (snapshot) in
             let value = snapshot.value as? NSDictionary
@@ -118,7 +118,7 @@ class SessionStore: ObservableObject {
             let profileImageUrl = value?[FixedStringValues.profileImageUrl] as? String ?? ""
             let likedUsers = value?[FixedStringValues.likedUsers] as? [String] ?? []
             let contacts = value?[FixedStringValues.contacts] as? [String] ?? []
-            var tempUser: User = User(uid: uid, email: email)
+            var tempUser: UserModel = UserModel(uid: uid, email: email)
             tempUser.updateCompleteProfile(displayName: displayName, fieldOfStudy: fieldOfStudy, description: description, hashtags: hashtags, profileImageUrl: profileImageUrl, likedUsers: likedUsers, contacts: contacts)
             handler(tempUser)
         }) { (error) in
