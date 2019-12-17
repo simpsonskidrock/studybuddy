@@ -45,7 +45,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             let window = UIWindow(windowScene: windowScene)
             
             // && false added to avoid auto login
-            if Auth.auth().currentUser != nil && true{
+            if Auth.auth().currentUser != nil && true {
                 window.rootViewController = UIHostingController(
                     rootView: GeneralTabView().environmentObject(CommunicationStore())
                 )

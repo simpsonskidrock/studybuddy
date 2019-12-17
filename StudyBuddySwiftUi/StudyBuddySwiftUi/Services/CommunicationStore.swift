@@ -24,7 +24,6 @@ class CommunicationStore: ObservableObject {
     var searchWithGPS: Bool = false
 
     func listen(handler: @escaping ((UserModel) -> ())) {
-
         // monitor authentication changes using firebase
         handle = Auth.auth().addStateDidChangeListener { (auth, user) in
             if let user = user {
@@ -53,7 +52,6 @@ class CommunicationStore: ObservableObject {
     // ---------------- Authentification ---------------- //
     
     func signUp(
-
         email: String,
         password: String,
         handler: @escaping (AuthDataResult?, Error?) -> ()
@@ -131,7 +129,6 @@ class CommunicationStore: ObservableObject {
                 FixedStringValues.uid: authData.user.uid,
                 FixedStringValues.email: authData.user.email!
             ]
-
             Database.database().reference().child(FixedStringValues.urlIdentifierUser)
                 .child(authData.user.uid)
                 .updateChildValues(dict, withCompletionBlock: {
@@ -200,9 +197,7 @@ class CommunicationStore: ObservableObject {
     }
     
     func deleteProfilePic() {
-        
         guard let userUid = self.sessionUser?.uid else {
-            
             return
         }
         let pictureRef = Storage.storage().reference().child("\(FixedStringValues.urlIdentifierProfile)/\(userUid)/profilePic.jpg")

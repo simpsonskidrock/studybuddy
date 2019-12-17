@@ -12,19 +12,50 @@ import SwiftUI
 struct SwipeTabView: View {
     @EnvironmentObject var session: CommunicationStore
     
-    private func initialize() {
-        session.getOtherUsers()
-    }
+    @State private var offset: CGFloat = 0
+    @State private var index = 0
     
+    let spacing: CGFloat = 10
     var body: some View {
         VStack {
-            SwipeView(users: session.otherUsers)
+            GeometryReader { geometry in
+                return ScrollView(.horizontal, showsIndicators: true) {
+                    HStack(spacing: self.spacing) {
+                        ForEach(self.session.otherUsers, id: \.uid) { user in
+                            OtherUserView(userModel: user)
+                                .frame(width: geometry.size.width)
+                        }
+                        if (self.session.otherUsers.isEmpty) {
+                            Text("no other users yet").background(Color.lmuLightGrey.edgesIgnoringSafeArea(.vertical))
+                                .foregroundColor(.orange)
+                        }
+                    }
+                }
+                .content.offset(x: self.offset)
+                .frame(width: geometry.size.width, alignment: .leading)
+                .gesture(
+                    DragGesture()
+                        .onChanged({ value in
+                            self.offset = value.translation.width - geometry.size.width * CGFloat(self.index)
+                        })
+                        .onEnded({ value in
+                            if -value.predictedEndTranslation.width > geometry.size.width / 2, self.index < self.session.otherUsers.count - 1 {
+                                self.index += 1
+                            }
+                            if value.predictedEndTranslation.width > geometry.size.width / 2, self.index > 0 {
+                                self.index -= 1
+                            }
+                            withAnimation {
+                                self.offset = -(geometry.size.width + self.spacing) * CGFloat(self.index)
+                            }
+                        })
+                )
+            }
         }.navigationBarTitle("")
             .navigationBarBackButtonHidden(true)
             .navigationBarHidden(true)
             .padding(.horizontal)
             .padding(.bottom)
             .background(Color.lmuGreen.edgesIgnoringSafeArea(.vertical))
-            .onAppear(perform: initialize)
     }
 }

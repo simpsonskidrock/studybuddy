@@ -28,7 +28,6 @@ struct ProfileTabView: View {
 
     @State private var image: UIImage = UIImage()
     
-    
     var sheet: ActionSheet {
         ActionSheet(
             title: Text("Change profile image"),
@@ -50,15 +49,33 @@ struct ProfileTabView: View {
 
     }
     
-    
     private func initialize() {
-        self.session.listen(handler: { user in
-            self.session.sessionUser = user
-            self.displayName = user.displayName ?? ""
-            self.fieldOfStudy = user.fieldOfStudy ?? ""
-            self.description = user.description ?? ""
-            self.hashtags = user.hashtags ?? ""
-            self.profileImageUrl = user.profileImageUrl ?? ""
+        if (self.session.sessionUser == nil) {
+            self.session.listen(handler: { user in
+                self.session.sessionUser = user
+                self.displayName = user.displayName ?? ""
+                self.fieldOfStudy = user.fieldOfStudy ?? ""
+                self.description = user.description ?? ""
+                self.hashtags = user.hashtags ?? ""
+                self.profileImageUrl = user.profileImageUrl ?? ""
+                if (self.profileImageUrl.isEmpty){
+                    self.image = UIImage(systemName: "person.circle.fill")!
+                } else {
+                    self.session.getProfileImage(profileImageUrl: self.profileImageUrl, handler: { (image) in
+                        DispatchQueue.main.async{
+                            self.image = image
+                        }
+                        
+                    })
+                }
+            })
+            self.session.getOtherUsers()
+        } else {
+            self.displayName = self.session.sessionUser?.displayName ?? ""
+            self.fieldOfStudy = self.session.sessionUser?.fieldOfStudy ?? ""
+            self.description = self.session.sessionUser?.description ?? ""
+            self.hashtags = self.session.sessionUser?.hashtags ?? ""
+            self.profileImageUrl = self.session.sessionUser?.profileImageUrl ?? ""
             if (self.profileImageUrl.isEmpty){
                 self.image = UIImage(systemName: "person.circle.fill")!
             } else {
@@ -70,7 +87,7 @@ struct ProfileTabView: View {
                 })
             }
             self.session.getOtherUsers()
-        })
+        }
     }
     
     private func leaveView() {
