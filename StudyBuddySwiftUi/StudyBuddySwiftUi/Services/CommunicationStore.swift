@@ -24,7 +24,6 @@ class CommunicationStore: ObservableObject {
     var searchWithGPS: Bool = false
 
     func listen(handler: @escaping ((UserModel) -> ())) {
-
         // monitor authentication changes using firebase
         handle = Auth.auth().addStateDidChangeListener { (auth, user) in
             if let user = user {
