@@ -16,7 +16,7 @@ struct GeneralTabView: View {
                 .tabItem {
                     Image(systemName: "person")
             }
-            SearchTabView()
+            SwipeTabView()
                 .tabItem {
                     Image(systemName: "magnifyingglass")
             }

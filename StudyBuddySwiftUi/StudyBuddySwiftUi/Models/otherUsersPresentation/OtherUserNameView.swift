@@ -1,5 +1,5 @@
 //
-//  NameView.swift
+//  OtherUserNameView.swift
 //  StudyBuddySwiftUi
 //
 //  Created by Annika Jung on 29.11.19.
@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct NameView: View {
+struct OtherUserNameView: View {
     let name: String
     let fieldOfStudy: String
     let description: String

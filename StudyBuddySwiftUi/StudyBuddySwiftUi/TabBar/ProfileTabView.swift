@@ -82,8 +82,6 @@ struct ProfileTabView: View {
         self.profileImageUrl = self.session.sessionUser!.profileImageUrl ?? "" */
     }
     
-    
-    
     var body: some View {
         VStack {
             VStack {

@@ -1,5 +1,5 @@
 //
-//  AvatarView.swift
+//  OtherUserAvatarView.swift
 //  StudyBuddySwiftUi
 //
 //  Created by Annika Jung on 29.11.19.
@@ -8,10 +8,10 @@
 
 import SwiftUI
 
-struct AvatarView: View {
+struct OtherUserAvatarView: View {
     @EnvironmentObject var session: SessionStore
     @State var image: UIImage = UIImage()
-    private var userModel: User
+    private var userModel: UserModel
 
     func initialize() {
         if (userModel.profileImageUrl != nil) {
@@ -21,7 +21,7 @@ struct AvatarView: View {
         }
     }
 
-    init(userModel: User) {
+    init(userModel: UserModel) {
         self.userModel = userModel
     }
 

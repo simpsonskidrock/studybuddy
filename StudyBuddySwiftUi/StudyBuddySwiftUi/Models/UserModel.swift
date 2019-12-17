@@ -1,5 +1,5 @@
 //
-//  User.swift
+//  UserModel.swift
 //  StudyBuddySwiftUi
 //
 //  Created by Manuel Suess on 20.11.19.
@@ -7,7 +7,7 @@
 //
 import SwiftUI
 
-struct User : Hashable {
+struct UserModel : Hashable {
     var uid: String
     var email: String?
     var displayName: String?
@@ -22,7 +22,6 @@ struct User : Hashable {
         return uid.hashValue ^ email.hashValue ^ displayName.hashValue
     }
 
-    
     init(uid: String, email: String?) {
         self.uid = uid
         self.email = email
@@ -52,12 +51,9 @@ struct User : Hashable {
 
     func toString() -> String {
         var line = ""
-
         line += displayName?.padding(toLength: 25, withPad: " ", startingAt: 0) ?? "Name is null"
         line += fieldOfStudy?.padding(toLength: 30, withPad: " ", startingAt: 0) ?? "Study is null"
         line += description?.padding(toLength: 40, withPad: " ", startingAt: 0) ?? "Description is null"
-
-
         return line
     }
 }

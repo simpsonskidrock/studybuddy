@@ -1,5 +1,5 @@
 //
-//  SearchTabView.swift
+//  SwipeTabView.swift
 //  StudyBuddySwiftUi
 //
 //  Created by Annika Jung on 14.11.19.
@@ -9,7 +9,7 @@
 import Foundation
 import SwiftUI
 
-struct SearchTabView: View {
+struct SwipeTabView: View {
     @EnvironmentObject var session: SessionStore
     
     private func initialize() {
