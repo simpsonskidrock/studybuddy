@@ -198,6 +198,22 @@ class SessionStore: ObservableObject {
             })
         })
     }
+    
+    func deleteProfilePic() {
+        
+        guard let userUid = self.sessionUser?.uid else {
+            
+            return
+        }
+        let pictureRef = Storage.storage().reference().child("\(FixedStringValues.urlIdentifierProfile)/\(userUid)/profilePic.jpg")
+        pictureRef.delete { error in
+            if let error = error {
+                print(error.localizedDescription)
+            } else {
+                print("profileimage is deleted")
+            }
+        }
+    }
 
     func getProfileImage(profileImageUrl: String, handler: @escaping ((UIImage) -> ())) {
         if (profileImageUrl.isEmpty) {
