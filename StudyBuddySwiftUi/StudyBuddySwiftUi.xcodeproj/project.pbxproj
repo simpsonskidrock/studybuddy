@@ -34,7 +34,6 @@
 		73B9D15C237C2485000E268E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73B9D15A237C2485000E268E /* LaunchScreen.storyboard */; };
 		73B9D167237C2485000E268E /* StudyBuddySwiftUiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B9D166237C2485000E268E /* StudyBuddySwiftUiTests.swift */; };
 		73B9D172237C2485000E268E /* StudyBuddySwiftUiUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B9D171237C2485000E268E /* StudyBuddySwiftUiUITests.swift */; };
-		73CDE43D2390F9230078654C /* SwipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CDE43C2390F9230078654C /* SwipeView.swift */; };
 		73CDE4422390FB380078654C /* OtherUserNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CDE4412390FB380078654C /* OtherUserNameView.swift */; };
 		73CDE4442390FB570078654C /* OtherUserAvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CDE4432390FB570078654C /* OtherUserAvatarView.swift */; };
 		73CDE4462390FB710078654C /* OtherUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CDE4452390FB710078654C /* OtherUserView.swift */; };
@@ -100,7 +99,6 @@
 		73B9D16D237C2485000E268E /* StudyBuddySwiftUiUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StudyBuddySwiftUiUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		73B9D171237C2485000E268E /* StudyBuddySwiftUiUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyBuddySwiftUiUITests.swift; sourceTree = "<group>"; };
 		73B9D173237C2485000E268E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		73CDE43C2390F9230078654C /* SwipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeView.swift; sourceTree = "<group>"; };
 		73CDE4412390FB380078654C /* OtherUserNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherUserNameView.swift; sourceTree = "<group>"; };
 		73CDE4432390FB570078654C /* OtherUserAvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherUserAvatarView.swift; sourceTree = "<group>"; };
 		73CDE4452390FB710078654C /* OtherUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherUserView.swift; sourceTree = "<group>"; };
@@ -288,7 +286,6 @@
 		73CDE4402390FB120078654C /* otherUsersPresentation */ = {
 			isa = PBXGroup;
 			children = (
-				73CDE43C2390F9230078654C /* SwipeView.swift */,
 				73CDE4452390FB710078654C /* OtherUserView.swift */,
 				73CDE4432390FB570078654C /* OtherUserAvatarView.swift */,
 				73CDE4412390FB380078654C /* OtherUserNameView.swift */,
@@ -534,7 +531,6 @@
 				3391BDFE238557FC00643581 /* UserModel.swift in Sources */,
 				7367D202237D85F5002EE928 /* RegisterView.swift in Sources */,
 				7367D1F6237D6670002EE928 /* ProfileTabView.swift in Sources */,
-				73CDE43D2390F9230078654C /* SwipeView.swift in Sources */,
 				73CDE4442390FB570078654C /* OtherUserAvatarView.swift in Sources */,
 				73FD807D239F971700A9EDFA /* Enums.swift in Sources */,
 				2937ACC22389819F00E07611 /* ChatController.swift in Sources */,
