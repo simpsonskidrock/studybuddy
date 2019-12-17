@@ -21,7 +21,7 @@
 		73321153238586C100B7660A /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73321152238586C100B7660A /* ChatView.swift */; };
 		734FC387238F094B00350F82 /* FixedStringValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734FC386238F094B00350F82 /* FixedStringValues.swift */; };
 		7367D1F6237D6670002EE928 /* ProfileTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7367D1F5237D6670002EE928 /* ProfileTabView.swift */; };
-		7367D1F8237D7255002EE928 /* SearchTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7367D1F7237D7255002EE928 /* SearchTabView.swift */; };
+		7367D1F8237D7255002EE928 /* SwipeTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7367D1F7237D7255002EE928 /* SwipeTabView.swift */; };
 		7367D1FA237D7279002EE928 /* ContactsTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7367D1F9237D7279002EE928 /* ContactsTabView.swift */; };
 		7367D1FF237D8496002EE928 /* GeneralTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7367D1FE237D8496002EE928 /* GeneralTabView.swift */; };
 		7367D202237D85F5002EE928 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7367D201237D85F5002EE928 /* RegisterView.swift */; };
@@ -81,7 +81,7 @@
 		73321152238586C100B7660A /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		734FC386238F094B00350F82 /* FixedStringValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixedStringValues.swift; sourceTree = "<group>"; };
 		7367D1F5237D6670002EE928 /* ProfileTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTabView.swift; sourceTree = "<group>"; };
-		7367D1F7237D7255002EE928 /* SearchTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTabView.swift; sourceTree = "<group>"; };
+		7367D1F7237D7255002EE928 /* SwipeTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeTabView.swift; sourceTree = "<group>"; };
 		7367D1F9237D7279002EE928 /* ContactsTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsTabView.swift; sourceTree = "<group>"; };
 		7367D1FE237D8496002EE928 /* GeneralTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralTabView.swift; sourceTree = "<group>"; };
 		7367D201237D85F5002EE928 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
@@ -167,7 +167,7 @@
 			children = (
 				7367D1FE237D8496002EE928 /* GeneralTabView.swift */,
 				7367D1F5237D6670002EE928 /* ProfileTabView.swift */,
-				7367D1F7237D7255002EE928 /* SearchTabView.swift */,
+				7367D1F7237D7255002EE928 /* SwipeTabView.swift */,
 				7367D1F9237D7279002EE928 /* ContactsTabView.swift */,
 			);
 			path = TabBar;
@@ -529,7 +529,7 @@
 				734FC387238F094B00350F82 /* FixedStringValues.swift in Sources */,
 				29FB9AA8238C77D5005914CC /* ImageController.swift in Sources */,
 				73321153238586C100B7660A /* ChatView.swift in Sources */,
-				7367D1F8237D7255002EE928 /* SearchTabView.swift in Sources */,
+				7367D1F8237D7255002EE928 /* SwipeTabView.swift in Sources */,
 				73B9D152237C2484000E268E /* SceneDelegate.swift in Sources */,
 				3391BDFE238557FC00643581 /* User.swift in Sources */,
 				7367D202237D85F5002EE928 /* RegisterView.swift in Sources */,

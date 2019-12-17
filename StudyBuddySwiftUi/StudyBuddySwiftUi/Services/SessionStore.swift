@@ -52,6 +52,7 @@ class SessionStore: ObservableObject {
     }
 
     // ---------------- Authentification ---------------- //
+    
     func signUp(
 
         email: String,
