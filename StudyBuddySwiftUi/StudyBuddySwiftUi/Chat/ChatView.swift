@@ -1,50 +1,79 @@
 //
-//  ChatView.swift
+//  ChatView1.swift
 //  StudyBuddySwiftUi
 //
-//  Created by Annika Jung on 20.11.19.
+//  Created by Liliane Kabboura on 17.12.19.
 //  Copyright © 2019 Annika Jung. All rights reserved.
 //
 
 import SwiftUI
-import Foundation
 
-struct ChatView : View {
-    @EnvironmentObject var chatController: ChatController
-    
+struct ChatView: View {
+   
     @State private var composedMessage: String = ""
+
+    var message : [Message] = [
+        Message(sender: "A", body: "Hallo"),
+        
+        Message(sender: "B", body: "Hi")
+
+        
+      ]
     
+     var messages = [
+        ChatMessage(message: "Hello world", avatar: "A", color: .lmuDarkGrey),
+    ]
     
     
     var body: some View {
         VStack {
-            Text("Chat").bold()
-            List {
-                ForEach(chatController.messages, id: \.self) { msg in
-                    ChatRow(chatMessage: msg)
+        List {
+            ForEach(messages, id: \.self) { msg in
+                Group {
+                    Text(msg.avatar)
+                    Text(msg.message)
+
                 }
             }
+            
+            }
+
             HStack {
                 TextField("Message...", text: $composedMessage).frame(minHeight: CGFloat(30))
                     .textFieldStyle(StudyTextFieldStyle())
-                Button(action: self.sendMessage) {
+                Button(action: {}) {
                     Text("Send")
                         .foregroundColor(.black)
                 }
             }.frame(minHeight: CGFloat(50)).padding()
                 .background(Color.lmuGreen)
-        }.navigationBarTitle(Text("Chats"))
-    }
-   func sendMessage() {
-        chatController.sendMessage(ChatMessage(message: composedMessage, avatar: "B", color: .lmuLightGrey, isMe: true))
-        composedMessage = ""
+        }.navigationBarTitle(Text(""))
     }
 }
 
+struct ChatView1_Previews: PreviewProvider {
+    static var previews: some View {
+        ChatView()
+    }
+}
+
+
+struct ChatMessage : Hashable {
+       var message: String
+       var avatar: String
+    var color: Color
+    var isMe: Bool = false
+   }
+   
+
+
 struct ChatRow : View {
     var chatMessage: ChatMessage
+    var myMsg = false
+    
     var body: some View {
-        Group {
+        
+     Group {
             if !chatMessage.isMe {
                 HStack {
                     Group {
@@ -73,25 +102,11 @@ struct ChatRow : View {
                 }
             }
         }
-    }
+
+            }
+        }
+
     
-}
-
-
-struct ChatView_Previews: PreviewProvider {
-    static var previews: some View {
-        ChatView()
-        .environmentObject(ChatController())
-
-    }
-}
 
 
 
-struct ChatMessage : Hashable {
-    var message: String
-    var avatar: String
-    var color: Color
-    // isMe will be true if We sent the message
-    var isMe: Bool = false
-}

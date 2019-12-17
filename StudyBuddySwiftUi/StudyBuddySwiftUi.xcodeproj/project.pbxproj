@@ -11,6 +11,8 @@
 		292EF2FA2381F5760062FBB5 /* ChangePasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292EF2F92381F5760062FBB5 /* ChangePasswordView.swift */; };
 		2937ACC22389819F00E07611 /* ChatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2937ACC12389819F00E07611 /* ChatController.swift */; };
 		293AA0732384947A00436E02 /* KeyboardSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 293AA0722384947A00436E02 /* KeyboardSettings.swift */; };
+		29F56C4123A8F249000A676D /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F56C4023A8F249000A676D /* ChatView.swift */; };
+		29F56C4323A8FE5E000A676D /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F56C4223A8FE5E000A676D /* Message.swift */; };
 		29F7660D2396FE5800A7209C /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F7660C2396FE5800A7209C /* LocationManager.swift */; };
 		29FB9AA8238C77D5005914CC /* ImageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FB9AA7238C77D5005914CC /* ImageController.swift */; };
 		3391BDFC238557B600643581 /* CommunicationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3391BDFB238557B600643581 /* CommunicationStore.swift */; };
@@ -18,7 +20,6 @@
 		4E5B7ECC2382A871002C72B2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4E5B7ECB2382A871002C72B2 /* GoogleService-Info.plist */; };
 		5F6706AD580144BD7E148704 /* Pods_StudyBuddySwiftUi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E880CE267D995F2D844EA96D /* Pods_StudyBuddySwiftUi.framework */; };
 		732023D6239921C90031F120 /* WaitForSessionUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732023D5239921C90031F120 /* WaitForSessionUserView.swift */; };
-		73321153238586C100B7660A /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73321152238586C100B7660A /* ChatView.swift */; };
 		734FC387238F094B00350F82 /* FixedStringValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734FC386238F094B00350F82 /* FixedStringValues.swift */; };
 		7367D1F6237D6670002EE928 /* ProfileTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7367D1F5237D6670002EE928 /* ProfileTabView.swift */; };
 		7367D1F8237D7255002EE928 /* SwipeTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7367D1F7237D7255002EE928 /* SwipeTabView.swift */; };
@@ -67,6 +68,8 @@
 		292EF2F92381F5760062FBB5 /* ChangePasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordView.swift; sourceTree = "<group>"; };
 		2937ACC12389819F00E07611 /* ChatController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatController.swift; sourceTree = "<group>"; };
 		293AA0722384947A00436E02 /* KeyboardSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardSettings.swift; sourceTree = "<group>"; };
+		29F56C4023A8F249000A676D /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
+		29F56C4223A8FE5E000A676D /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		29F7660C2396FE5800A7209C /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		29FB9AA7238C77D5005914CC /* ImageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageController.swift; sourceTree = "<group>"; };
 		3391BDFB238557B600643581 /* CommunicationStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunicationStore.swift; sourceTree = "<group>"; };
@@ -77,7 +80,6 @@
 		598C953324D99E410D1B9A0F /* Pods-StudyBuddySwiftUi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StudyBuddySwiftUi.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StudyBuddySwiftUi/Pods-StudyBuddySwiftUi.debug.xcconfig"; sourceTree = "<group>"; };
 		63A1D570831FA0B30FC24AE1 /* Pods-StudyBuddySwiftUiUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StudyBuddySwiftUiUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-StudyBuddySwiftUiUITests/Pods-StudyBuddySwiftUiUITests.release.xcconfig"; sourceTree = "<group>"; };
 		732023D5239921C90031F120 /* WaitForSessionUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitForSessionUserView.swift; sourceTree = "<group>"; };
-		73321152238586C100B7660A /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		734FC386238F094B00350F82 /* FixedStringValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixedStringValues.swift; sourceTree = "<group>"; };
 		7367D1F5237D6670002EE928 /* ProfileTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTabView.swift; sourceTree = "<group>"; };
 		7367D1F7237D7255002EE928 /* SwipeTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeTabView.swift; sourceTree = "<group>"; };
@@ -153,9 +155,10 @@
 		733211512385868800B7660A /* Chat */ = {
 			isa = PBXGroup;
 			children = (
-				73321152238586C100B7660A /* ChatView.swift */,
 				2937ACC12389819F00E07611 /* ChatController.swift */,
 				73FD807E239F9C0600A9EDFA /* ContactsLineView.swift */,
+				29F56C4023A8F249000A676D /* ChatView.swift */,
+				29F56C4223A8FE5E000A676D /* Message.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -525,9 +528,10 @@
 				7367D1FF237D8496002EE928 /* GeneralTabView.swift in Sources */,
 				734FC387238F094B00350F82 /* FixedStringValues.swift in Sources */,
 				29FB9AA8238C77D5005914CC /* ImageController.swift in Sources */,
-				73321153238586C100B7660A /* ChatView.swift in Sources */,
+				29F56C4123A8F249000A676D /* ChatView.swift in Sources */,
 				7367D1F8237D7255002EE928 /* SwipeTabView.swift in Sources */,
 				73B9D152237C2484000E268E /* SceneDelegate.swift in Sources */,
+				29F56C4323A8FE5E000A676D /* Message.swift in Sources */,
 				3391BDFE238557FC00643581 /* UserModel.swift in Sources */,
 				7367D202237D85F5002EE928 /* RegisterView.swift in Sources */,
 				7367D1F6237D6670002EE928 /* ProfileTabView.swift in Sources */,
