@@ -107,7 +107,6 @@ struct RegisterView: View {
                     // Phantom navigation link:
                     NavigationLink("", destination: GeneralTabView(), isActive: $signUpSuccessFlagForNavigation)
                 }
-                
                 HStack {
                     Text("Already have an account?").foregroundColor(Color.lmuLightGrey)
                     Button(action: {

@@ -9,14 +9,12 @@
 import SwiftUI
 
 struct ResetPasswordView: View {
-    
     @Environment(\.presentationMode) var mode
     @EnvironmentObject var session: CommunicationStore
     @ObservedObject private var keyboard = KeyboardResponder()
     
     @State private var resetPasswordSuccessFlagForNavigation: Bool = false
 
-    
     @State private var email: String = ""
     @State private var error: Bool = false
     @State private var tempAlert: Alert? = nil
@@ -41,7 +39,6 @@ struct ResetPasswordView: View {
             self.session.resetPassword(email: email, onSuccess: {
                 self.error = true
                 self.resetPasswordSuccessFlagForNavigation = true
-
                 self.tempAlert = Alert.successResetPassword
             }){
                 (errorMessage) in
@@ -71,7 +68,6 @@ struct ResetPasswordView: View {
                     Text("Enter your email address").foregroundColor(Color.white)
                     TextField("Email", text: emailBinding).textFieldStyle(StudyTextFieldStyle())
                 }
-                
                 Group{
                     Text(errorText).foregroundColor(.orange)
                     Button(action: {
@@ -91,7 +87,6 @@ struct ResetPasswordView: View {
                             Text("Cancel").foregroundColor(.white)
                         }
                     }
-                    
                 }
                 Spacer()
             }
@@ -103,11 +98,8 @@ struct ResetPasswordView: View {
             .alert(isPresented: $error) {
                 self.tempAlert.unsafelyUnwrapped
         }
-        
-        
     }
 }
-
 
 struct ResetPasswordView_Previews: PreviewProvider {
     static var previews: some View {

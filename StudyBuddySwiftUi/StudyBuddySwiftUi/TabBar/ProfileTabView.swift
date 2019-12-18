@@ -46,7 +46,6 @@ struct ProfileTabView: View {
                     self.image = UIImage(systemName: "person.circle.fill")!
                 })
             ])
-
     }
     
     private func initialize() {
@@ -65,7 +64,6 @@ struct ProfileTabView: View {
                         DispatchQueue.main.async{
                             self.image = image
                         }
-                        
                     })
                 }
             })
@@ -83,7 +81,6 @@ struct ProfileTabView: View {
                     DispatchQueue.main.async{
                         self.image = image
                     }
-                    
                 })
             }
             self.session.getOtherUsers()
@@ -92,11 +89,6 @@ struct ProfileTabView: View {
     
     private func leaveView() {
         self.editProfile = false
-       /* self.displayName = self.session.sessionUser!.displayName ?? ""
-        self.fieldOfStudy = self.session.sessionUser!.fieldOfStudy ?? ""
-        self.description = self.session.sessionUser!.description ?? ""
-        self.hashtags = self.session.sessionUser!.hashtags ?? ""
-        self.profileImageUrl = self.session.sessionUser!.profileImageUrl ?? "" */
     }
     
     var body: some View {
@@ -135,7 +127,6 @@ struct ProfileTabView: View {
                                 .font(.system(size: 17))
                                 .foregroundColor(.white)
                         }
-                        
                     }.frame(height: 50)
                         .padding(.leading, 10)
                     Image(uiImage: self.image)
