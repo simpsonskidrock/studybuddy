@@ -67,7 +67,6 @@ struct ProfileTabView: View {
                     })
                 }
             })
-            self.session.getOtherUsers()
         } else {
             self.displayName = self.session.sessionUser?.displayName ?? ""
             self.fieldOfStudy = self.session.sessionUser?.fieldOfStudy ?? ""
@@ -83,7 +82,6 @@ struct ProfileTabView: View {
                     }
                 })
             }
-            self.session.getOtherUsers()
         }
     }
     

@@ -14,8 +14,12 @@ struct SwipeTabView: View {
     
     @State private var offset: CGFloat = 0
     @State private var index = 0
-    
     let spacing: CGFloat = 10
+    
+    private func initialize() {
+        self.session.getOtherUsers()
+    }
+    
     var body: some View {
         VStack {
             GeometryReader { geometry in
@@ -56,5 +60,6 @@ struct SwipeTabView: View {
             .padding(.horizontal)
             .padding(.bottom)
             .background(Color.lmuGreen.edgesIgnoringSafeArea(.vertical))
+            .onAppear(perform: initialize)
     }
 }
