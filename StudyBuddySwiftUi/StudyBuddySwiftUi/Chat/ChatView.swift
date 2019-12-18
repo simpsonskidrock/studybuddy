@@ -7,9 +7,11 @@
 //
 
 import SwiftUI
+import Firebase
 
 struct ChatView: View {
    
+    
     @State private var composedMessage: String = ""
 
     var message : [Message] = [
@@ -17,6 +19,11 @@ struct ChatView: View {
         
         Message(sender: "B", body: "Hi")
       ]
+    
+    func sendMsg(){
+         let messageBody = composedMessage
+        let messageSender = Auth.auth().currentUser?.email
+    }
     
     
     var body: some View {
@@ -46,11 +53,6 @@ struct ChatView1_Previews: PreviewProvider {
         ChatView()
     }
 }
-
-
-
-   
-
 
 struct ChatRow : View {
     var chatMessage: Message
