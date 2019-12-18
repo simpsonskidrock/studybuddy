@@ -20,9 +20,10 @@ struct OtherUserAvatarView: View {
             })
         }
     }
-
+    
     var body: some View {
-        Group {
+        HStack {
+            Spacer()
             Image(uiImage: image)
                 .resizable()
                 .frame(width: 300, height: 400)
@@ -30,10 +31,11 @@ struct OtherUserAvatarView: View {
                 .overlay(
                     Rectangle()
                         .fill(LinearGradient(gradient: Gradient(colors: [.clear, .black]),
-                            startPoint: .center, endPoint: .bottom))
+                                             startPoint: .center, endPoint: .bottom))
                         .clipped()
-                )
+            )
                 .cornerRadius(12.0)
+            Spacer()
         }.onAppear(perform: initialize)
     }
 }

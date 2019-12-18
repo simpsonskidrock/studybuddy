@@ -26,8 +26,7 @@ struct SwipeTabView: View {
                                 .frame(width: geometry.size.width)
                         }
                         if (self.session.otherUsers.isEmpty) {
-                            Text("no other users yet").background(Color.lmuLightGrey.edgesIgnoringSafeArea(.vertical))
-                                .foregroundColor(.orange)
+                            NoOtherUsersView()
                         }
                     }
                 }
