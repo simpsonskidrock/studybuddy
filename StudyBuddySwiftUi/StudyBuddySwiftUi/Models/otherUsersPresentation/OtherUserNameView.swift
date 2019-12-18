@@ -15,21 +15,25 @@ struct OtherUserNameView: View {
     let hashtags: String
     
     var body: some View {
-        VStack(alignment: .leading) {
+        HStack {
             Spacer()
-            Text("\(name), \(fieldOfStudy)")
-                .font(.title)
-                .fontWeight(.semibold)
-                .foregroundColor(.white)
-            Text(description)
-                .font(.system(size: 16))
-                .fontWeight(.regular)
-                .foregroundColor(.white)
-            Text(hashtags)
-                .font(.system(size: 16))
-                .fontWeight(.regular)
-                .foregroundColor(.white)
+            VStack(alignment: .leading) {
+                Spacer()
+                Text("\(name), \(fieldOfStudy)")
+                    .font(.title)
+                    .fontWeight(.semibold)
+                    .foregroundColor(.white)
+                Text(description)
+                    .font(.system(size: 16))
+                    .fontWeight(.regular)
+                    .foregroundColor(.white)
+                Text(hashtags)
+                    .font(.system(size: 16))
+                    .fontWeight(.regular)
+                    .foregroundColor(.white)
+            }
+            .padding()
+            Spacer()
         }
-        .padding()
     }
 }

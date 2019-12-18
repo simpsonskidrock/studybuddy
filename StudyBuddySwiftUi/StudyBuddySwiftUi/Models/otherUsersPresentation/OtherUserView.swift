@@ -18,7 +18,11 @@ struct OtherUserView: View {
             OtherUserAvatarView(userModel: userModel)
             OtherUserNameView(name: userModel.displayName!, fieldOfStudy: userModel.fieldOfStudy!, description: userModel.description!, hashtags: userModel.hashtags!)
             if showText {
-                LikeView()
+                HStack {
+                    Spacer()
+                    LikeView()
+                    Spacer()
+                }
                 Spacer()
             }
         }
@@ -37,7 +41,7 @@ struct OtherUserView: View {
 }
 
 struct LikeView: View {
-    var body: some View{
+    var body: some View {
         let image = Image(systemName: "hand.thumbsup.fill").resizable().foregroundColor(Color.white).frame(width: 300, height: 300, alignment: .center).shadow(radius: 10.0)
         return image
     }

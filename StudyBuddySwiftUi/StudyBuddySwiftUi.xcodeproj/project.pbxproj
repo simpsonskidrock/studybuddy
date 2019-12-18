@@ -28,6 +28,7 @@
 		7367D1FA237D7279002EE928 /* ContactsTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7367D1F9237D7279002EE928 /* ContactsTabView.swift */; };
 		7367D1FF237D8496002EE928 /* GeneralTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7367D1FE237D8496002EE928 /* GeneralTabView.swift */; };
 		7367D202237D85F5002EE928 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7367D201237D85F5002EE928 /* RegisterView.swift */; };
+		73A355EC23AA404B001C3EF0 /* NoOtherUsersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A355EB23AA404B001C3EF0 /* NoOtherUsersView.swift */; };
 		73A69B4923869D2700ECEAC2 /* ListedAlerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A69B4823869D2700ECEAC2 /* ListedAlerts.swift */; };
 		73B9D150237C2484000E268E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B9D14F237C2484000E268E /* AppDelegate.swift */; };
 		73B9D152237C2484000E268E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B9D151237C2484000E268E /* SceneDelegate.swift */; };
@@ -90,6 +91,7 @@
 		7367D1F9237D7279002EE928 /* ContactsTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsTabView.swift; sourceTree = "<group>"; };
 		7367D1FE237D8496002EE928 /* GeneralTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralTabView.swift; sourceTree = "<group>"; };
 		7367D201237D85F5002EE928 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
+		73A355EB23AA404B001C3EF0 /* NoOtherUsersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoOtherUsersView.swift; sourceTree = "<group>"; };
 		73A69B4823869D2700ECEAC2 /* ListedAlerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListedAlerts.swift; sourceTree = "<group>"; };
 		73B9D14C237C2484000E268E /* StudyBuddy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StudyBuddy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73B9D14F237C2484000E268E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -202,6 +204,7 @@
 				73A69B4823869D2700ECEAC2 /* ListedAlerts.swift */,
 				734FC386238F094B00350F82 /* FixedStringValues.swift */,
 				84B3AD5D237D973800CB2160 /* CustomViewElements.swift */,
+				73A355EB23AA404B001C3EF0 /* NoOtherUsersView.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -532,6 +535,7 @@
 				73FD807F239F9C0600A9EDFA /* ContactsLineView.swift in Sources */,
 				7367D1FA237D7279002EE928 /* ContactsTabView.swift in Sources */,
 				73CDE4462390FB710078654C /* OtherUserView.swift in Sources */,
+				73A355EC23AA404B001C3EF0 /* NoOtherUsersView.swift in Sources */,
 				7367D1FF237D8496002EE928 /* GeneralTabView.swift in Sources */,
 				734FC387238F094B00350F82 /* FixedStringValues.swift in Sources */,
 				29FB9AA8238C77D5005914CC /* ImageController.swift in Sources */,
