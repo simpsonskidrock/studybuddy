@@ -19,7 +19,7 @@ class CommunicationStore: ObservableObject {
         }
     }
     private var handle: AuthStateDidChangeListenerHandle?
-    var otherUsers: [UserModel] = []
+    @Published var otherUsers: [UserModel] = []
     var presentMatchAlert: Bool = false
     var searchWithGPS: Bool = false
 
@@ -310,9 +310,14 @@ class CommunicationStore: ObservableObject {
             let value = snapshot.value as? NSDictionary
             let otherUserLikedUsers = value?[FixedStringValues.likedUsers] as? [String] ?? []
             var otherUserContacts = value?[FixedStringValues.contacts] as? [String] ?? []
+            
             if (otherUserLikedUsers.contains(self.sessionUser!.uid)) {
-                self.sessionUser?.contacts.append(otherUserUid)
-                otherUserContacts.append(self.sessionUser!.uid)
+                if !(self.sessionUser?.contacts.contains(otherUserUid) ?? false) {
+                    self.sessionUser?.contacts.append(otherUserUid)
+                }
+                if !(otherUserContacts.contains(self.sessionUser!.uid)) {
+                    otherUserContacts.append(self.sessionUser!.uid)
+                }
                 let tempLikes1: [String] = self.sessionUser!.likedUsers
                 self.sessionUser?.likedUsers = []
                 for likedUser in tempLikes1 {
