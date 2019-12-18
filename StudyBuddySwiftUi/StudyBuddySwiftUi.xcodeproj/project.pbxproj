@@ -184,11 +184,11 @@
 			isa = PBXGroup;
 			children = (
 				73FD807C239F971700A9EDFA /* Enums.swift */,
+				732023D5239921C90031F120 /* WaitForSessionUserView.swift */,
 				73B9D153237C2484000E268E /* LoginView.swift */,
 				292EF2F92381F5760062FBB5 /* ChangePasswordView.swift */,
 				7367D201237D85F5002EE928 /* RegisterView.swift */,
 				290A21972393E08700E0BC81 /* ResetPasswordView.swift */,
-				732023D5239921C90031F120 /* WaitForSessionUserView.swift */,
 				58603FB17900E93AA0882E63 /* Enums.swift */,
 			);
 			path = LoginAndRegister;

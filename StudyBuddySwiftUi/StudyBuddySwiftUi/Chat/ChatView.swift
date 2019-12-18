@@ -16,24 +16,14 @@ struct ChatView: View {
         Message(sender: "A", body: "Hallo"),
         
         Message(sender: "B", body: "Hi")
-
-        
       ]
-    
-     var messages = [
-        ChatMessage(message: "Hello world", avatar: "A", color: .lmuDarkGrey),
-    ]
     
     
     var body: some View {
         VStack {
         List {
-            ForEach(messages, id: \.self) { msg in
-                Group {
-                    Text(msg.avatar)
-                    Text(msg.message)
-
-                }
+            ForEach(message, id: \.self) { msg in
+                ChatRow(chatMessage: msg)
             }
             
             }
@@ -58,18 +48,12 @@ struct ChatView1_Previews: PreviewProvider {
 }
 
 
-struct ChatMessage : Hashable {
-       var message: String
-       var avatar: String
-    var color: Color
-    var isMe: Bool = false
-   }
+
    
 
 
 struct ChatRow : View {
-    var chatMessage: ChatMessage
-    var myMsg = false
+    var chatMessage: Message
     
     var body: some View {
         
@@ -77,12 +61,9 @@ struct ChatRow : View {
             if !chatMessage.isMe {
                 HStack {
                     Group {
-                        Text(chatMessage.avatar)
-                        Text(chatMessage.message)
+                        Text(chatMessage.body)
                             .bold()
                             .padding(10)
-                            .foregroundColor(Color.white)
-                            .background(chatMessage.color)
                             .cornerRadius(10)
                     }
                     
@@ -91,13 +72,11 @@ struct ChatRow : View {
                 HStack {
                     Group {
                         Spacer()
-                        Text(chatMessage.message)
+                        Text(chatMessage.body)
                             .bold()
                             .foregroundColor(Color.white)
                             .padding(10)
-                            .background(chatMessage.color)
                             .cornerRadius(10)
-                        Text(chatMessage.avatar)
                     }
                 }
             }
