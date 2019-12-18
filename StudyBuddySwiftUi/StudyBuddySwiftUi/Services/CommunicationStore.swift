@@ -233,13 +233,19 @@ class CommunicationStore: ObservableObject {
 
     func getOtherUsers() {
         self.otherUsers = []
+        var uids: [String] = []
         let rootRef = Database.database().reference(withPath: FixedStringValues.urlIdentifierUser)
         rootRef.observe(.value, with: { (snapshot) in
             for uid in (snapshot.value as? NSDictionary)!.allKeys as! [String] {
-                if (uid != self.sessionUser?.uid && !(self.sessionUser?.contacts.contains(uid))! && !(self.sessionUser?.likedUsers.contains(uid))!) {
-                    self.getProfile(uid: uid, handler: { user in
-                        self.otherUsers.append(user)
-                    })
+                if !uids.contains(uid) {
+                    uids.append(uid)
+                    if (uid != self.sessionUser?.uid && !(self.sessionUser?.contacts.contains(uid))! && !(self.sessionUser?.likedUsers.contains(uid))!) {
+                        self.getProfile(uid: uid, handler: { user in
+                            if !self.otherUsers.contains(user) {
+                                self.otherUsers.append(user)
+                            }
+                        })
+                    }
                 }
             }
         }) { (error) in
@@ -258,7 +264,6 @@ class CommunicationStore: ObservableObject {
             ]
             Database.database().reference().child(FixedStringValues.urlIdentifierUser).child(tempUid).updateChildValues(dict, withCompletionBlock: { (error, ref) in
                 if error == nil {
-                    print("Added likedUser")
                     self.checkIfLikedUserLikedYou(otherUserUid: uid)
                     self.getOtherUsers()
                 }
