@@ -249,17 +249,19 @@ class CommunicationStore: ObservableObject {
 
     func addLikedUser(uid: String) {
         let tempUid: String = String((self.sessionUser?.uid)!)
-        self.sessionUser?.likedUsers.append(uid)
-        let dict: Dictionary<String, Any> = [
-            FixedStringValues.likedUsers: self.sessionUser?.likedUsers ?? ""
-        ]
-        Database.database().reference().child(FixedStringValues.urlIdentifierUser).child(tempUid).updateChildValues(dict, withCompletionBlock: { (error, ref) in
-            if error == nil {
-                print("Added likedUser")
-                self.checkIfLikedUserLikedYou(otherUserUid: uid)
-                self.getOtherUsers()
-            }
-        })
+        if !(self.sessionUser?.likedUsers.contains(uid) ?? false) {
+            self.sessionUser?.likedUsers.append(uid)
+            let dict: Dictionary<String, Any> = [
+                FixedStringValues.likedUsers: self.sessionUser?.likedUsers ?? ""
+            ]
+            Database.database().reference().child(FixedStringValues.urlIdentifierUser).child(tempUid).updateChildValues(dict, withCompletionBlock: { (error, ref) in
+                if error == nil {
+                    print("Added likedUser")
+                    self.checkIfLikedUserLikedYou(otherUserUid: uid)
+                    self.getOtherUsers()
+                }
+            })
+        }
     }
     
     func updateLikedUser() {
