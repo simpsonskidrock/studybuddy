@@ -50,6 +50,8 @@ public struct StudyButtonLightStyle: ButtonStyle {
         configuration.label
             .padding()
             .font(.system(size: 15))
-            .foregroundColor(.white)
+            .foregroundColor(configuration.isPressed ? .gray : .white)
+            .scaleEffect(configuration.isPressed ? 0.9 : 1.0)
+
     }
 }

@@ -56,7 +56,6 @@ class CommunicationStore: ObservableObject {
         password: String,
         handler: @escaping (AuthDataResult?, Error?) -> ()
     ) {
-        //Auth.auth().createUser(withEmail: email, password: password, completion: handler)
         Auth.auth().createUser(withEmail: email, password: password) { (result, returnError) in
             guard let res = result else {
                 handler(nil, returnError)
@@ -264,20 +263,19 @@ class CommunicationStore: ObservableObject {
         }
     }
     
-    func updateLikedUser() {
+    func removeLikedUser() {
         let tempUid: String = String((self.sessionUser?.uid)!)
         let dict: Dictionary<String, Any> = [
             FixedStringValues.likedUsers: self.sessionUser?.likedUsers ?? ""
         ]
         Database.database().reference().child(FixedStringValues.urlIdentifierUser).child(tempUid).updateChildValues(dict, withCompletionBlock: {(error, ref) in
             if error == nil {
-                print ("Deleted likedUser")
                 self.getOtherUsers()
             }
         } )
     }
     
-    func updateContacts(otherUserUid: String) {
+    func removeContact(otherUserUid: String) {
         let tempUid: String = String((self.sessionUser?.uid)!)
         let dict: Dictionary<String, Any> = [
             FixedStringValues.contacts: self.sessionUser?.contacts ?? ""
@@ -351,28 +349,6 @@ class CommunicationStore: ObservableObject {
         Database.database().reference().child(FixedStringValues.urlIdentifierUser).child(uid).updateChildValues(dict, withCompletionBlock: { (error, ref) in
             if error == nil {
                 print("Match!")
-            }
-        })
-    }
-
-
-    // ---------------- only development ---------------- //
-
-    func deleteData(uid: String, deleteLikes: Bool) {
-        var dict: Dictionary<String, Any>
-        if deleteLikes {
-            dict = [
-                FixedStringValues.likedUsers: [],
-                FixedStringValues.contacts: []
-            ]
-        } else {
-            dict = [
-                FixedStringValues.contacts: []
-            ]
-        }
-        Database.database().reference().child(FixedStringValues.urlIdentifierUser).child(uid).updateChildValues(dict, withCompletionBlock: { (error, ref) in
-            if error == nil {
-                print("Deleted!")
             }
         })
     }

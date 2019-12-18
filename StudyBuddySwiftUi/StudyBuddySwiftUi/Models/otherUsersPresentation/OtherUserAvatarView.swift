@@ -11,27 +11,13 @@ import SwiftUI
 struct OtherUserAvatarView: View {
     @EnvironmentObject var session: CommunicationStore
     @State var image: UIImage = UIImage()
-    private var userModel: UserModel
+    let userModel: UserModel
 
     func initialize() {
         if (userModel.profileImageUrl != nil) {
             self.session.getProfileImage(profileImageUrl: userModel.profileImageUrl!, handler: { image in
                 self.image = image
             })
-        }
-    }
-
-    init(userModel: UserModel) {
-        self.userModel = userModel
-    }
-
-    func getImage(path: String) {
-        if (!path.isEmpty) {
-            self.session.getProfileImage(profileImageUrl: path, handler: { image in
-                self.image = image
-            })
-        } else {
-            self.image = UIImage(systemName: "person")!
         }
     }
 
