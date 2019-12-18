@@ -16,3 +16,10 @@ struct Message: Hashable{
     var isMe: Bool = false
 
 }
+struct FStore {
+    
+    static let collectionName = "messages"
+    static let senderField = "sender"
+    static let bodyField = "body"
+    static let dateField = "date"
+}

@@ -9,6 +9,7 @@
 import SwiftUI
 import Firebase
 import Combine
+import os.log
 
 class CommunicationStore: ObservableObject {
 
@@ -199,7 +200,8 @@ class CommunicationStore: ObservableObject {
         guard let userUid = self.sessionUser?.uid else {
             return
         }
-        let pictureRef = Storage.storage().reference().child("\(FixedStringValues.urlIdentifierProfile)/\(userUid)/profilePic.jpg")
+        
+        let pictureRef = Storage.storage().reference().child("\(FixedStringValues.urlIdentifierProfile)/\(userUid)")
         pictureRef.delete { error in
             if let error = error {
                 print(error.localizedDescription)
@@ -207,6 +209,7 @@ class CommunicationStore: ObservableObject {
                 print("profileimage is deleted")
             }
         }
+        self.sessionUser?.profileImageUrl = ""
     }
 
     func getProfileImage(profileImageUrl: String, handler: @escaping ((UIImage) -> ())) {

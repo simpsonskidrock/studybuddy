@@ -10,7 +10,7 @@ import SwiftUI
 import Firebase
 
 struct ChatView: View {
-   
+    let db = Firestore.firestore()
     
     @State private var composedMessage: String = ""
 
@@ -21,11 +21,20 @@ struct ChatView: View {
       ]
     
     func sendMsg(){
-         let messageBody = composedMessage
-        let messageSender = Auth.auth().currentUser?.email
+        if !composedMessage.isEmpty,
+            let messageSender = Auth.auth().currentUser?.email{
+            db.collection(FStore.collectionName).addDocument(data:[ FStore.senderField: messageSender, FStore.bodyField: composedMessage])
+            { (error) in
+                if let e = error{
+                    print("there was an issue saving data to Firestore,\(e)")
+                }else {
+                    print("Successfully saved Data.")
+                }
+                
+                
+            }
+        }
     }
-    
-    
     var body: some View {
         VStack {
         List {
@@ -38,7 +47,7 @@ struct ChatView: View {
             HStack {
                 TextField("Message...", text: $composedMessage).frame(minHeight: CGFloat(30))
                     .textFieldStyle(StudyTextFieldStyle())
-                Button(action: {}) {
+                Button(action: sendMsg) {
                     Text("Send")
                         .foregroundColor(.black)
                 }
@@ -48,7 +57,7 @@ struct ChatView: View {
     }
 }
 
-struct ChatView1_Previews: PreviewProvider {
+struct ChatView_Previews: PreviewProvider {
     static var previews: some View {
         ChatView()
     }
