@@ -37,14 +37,9 @@ struct OtherUserView: View {
 }
 
 struct LikeView: View {
-    /*
-     var body: some View{
-     Text("Like").background(Color.lmuGreen).cornerRadius(10.0).foregroundColor(Color.white).font(.largeTitle)
-     }
-     */
     var body: some View{
         
-        let image = Image(systemName: "hand.thumbsup.fill").foregroundColor(Color.white)
+        let image = Image(systemName: "hand.thumbsup.fill").resizable().foregroundColor(Color.white).frame(width: 300, height: 300, alignment: .center).shadow(radius: 10.0)
         return image
     }
 }
