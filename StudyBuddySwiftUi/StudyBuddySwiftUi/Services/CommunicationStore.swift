@@ -291,7 +291,9 @@ class CommunicationStore: ObservableObject {
         Database.database().reference().child(FixedStringValues.urlIdentifierUser).child(tempUid).updateChildValues(dict, withCompletionBlock: {(error, ref) in
             if error == nil {
                 print ("Deleted likedUser")
-                self.getOtherUsers()
+                self.getProfile(uid: otherUserUid, handler: { profile in
+                    self.otherUsers.append(profile)
+                })
                 self.getProfile(uid: otherUserUid, handler: { user in
                     var updatedOtherUsersContacts: [String] = []
                     for contact in user.contacts {
