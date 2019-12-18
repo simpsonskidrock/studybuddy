@@ -53,7 +53,7 @@ struct ContactsTabView: View {
                         let tempContactsAfter: [String] = self.session.sessionUser!.contacts
                         for element in tempContactsBefore {
                             if !tempContactsAfter.contains(element) {
-                                self.session.updateContacts(otherUserUid: element)
+                                self.session.removeContact(otherUserUid: element)
                             }
                         }
                     }
@@ -61,7 +61,7 @@ struct ContactsTabView: View {
                         ContactsLineView(uid: contact, chatAllowed: false)
                     }.onDelete { (indexSet) in
                         self.session.sessionUser!.likedUsers.remove(atOffsets: indexSet)
-                        self.session.updateLikedUser()
+                        self.session.removeLikedUser()
                     }
                 }.navigationBarTitle(Text("Chats"))
                     .resignKeyboardOnDragGesture()
