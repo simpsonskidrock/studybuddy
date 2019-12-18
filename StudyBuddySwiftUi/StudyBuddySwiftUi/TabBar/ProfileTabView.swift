@@ -42,7 +42,7 @@ struct ProfileTabView: View {
                 }),
                 .destructive(Text("Remove image"), action: {
                     self.showAction = false
-                    //self.session.deleteProfilePic()
+                   // self.session.deleteProfilePic()
                     self.image = UIImage(systemName: "person.circle.fill")!
                 })
             ])
