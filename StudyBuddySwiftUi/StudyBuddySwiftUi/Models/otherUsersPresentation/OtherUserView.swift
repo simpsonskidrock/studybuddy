@@ -13,26 +13,28 @@ struct OtherUserView: View {
     @State private var showText = false
     let userModel: UserModel
     
-   
+    
     
     var body: some View {
         
-        VStack{
-            
-            if showText {
-          
-            LikeView()
-            Spacer()
-                
-                    }
+        
+        
+        
         
         ZStack(alignment: .leading) {
-           
+            
+            
+            
             OtherUserAvatarView(userModel: userModel)
             OtherUserNameView(name: userModel.displayName!, fieldOfStudy: userModel.fieldOfStudy!, description: userModel.description!, hashtags: userModel.hashtags!)
-        
-        
-        
+           if showText {
+                
+                LikeView()
+                Spacer()
+                
+            }
+            
+            
         }
         .shadow(radius: 12.0)
         .cornerRadius(12.0)
@@ -40,14 +42,17 @@ struct OtherUserView: View {
             self.session.addLikedUser(uid: self.userModel.uid)
             
             withAnimation(.easeInOut(duration: 1.0)){
-            self.showText.toggle()
-            
+                self.showText.toggle()
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+            withAnimation(.easeInOut(duration: 2.0)){self.showText.toggle()}
+                }
+                
             }
             
-            }
         }
     }
 }
+
 struct LikeView: View {
     var body: some View{
         Text("Like").background(Color.lmuGreen).cornerRadius(10.0).foregroundColor(Color.white).font(.largeTitle)
@@ -57,11 +62,11 @@ struct LikeView: View {
 }
 
 func fadeViewInThenOut(view : UIView, delay: TimeInterval) {
-
+    
     let animationDuration = 1.5
-
+    
     UIView.animate(withDuration: animationDuration, delay: delay, options: [UIView.AnimationOptions.autoreverse, UIView.AnimationOptions.repeat], animations: {
         view.alpha = 0
     }, completion: nil)
-
+    
 }
