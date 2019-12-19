@@ -25,7 +25,7 @@ struct ProfileTabView: View {
     
     @State private var isShowingImagePicker: Bool = false
     @State var showAction: Bool = false
-    
+
     @State private var image: UIImage = UIImage()
     
     var sheet: ActionSheet {
@@ -45,7 +45,7 @@ struct ProfileTabView: View {
                     self.session.deleteProfilePic()
                     self.image = UIImage()
                 })
-        ])
+            ])
     }
     
     private func initialize() {
@@ -137,7 +137,7 @@ struct ProfileTabView: View {
                     if self.editProfile {
                         Button(action: {
                             if (self.image == UIImage(systemName: "person.circle.fill")){
-                                self.isShowingImagePicker.toggle()
+                            self.isShowingImagePicker.toggle()
                             }
                             else {
                                 self.showAction = true
@@ -149,18 +149,16 @@ struct ProfileTabView: View {
                             .sheet(isPresented: $isShowingImagePicker, content: {
                                 ImagePickerViewController(isPresented: self.$isShowingImagePicker, selectedImage: self.$image)
                             })
-                            .actionSheet(isPresented: $showAction) {
-                                sheet
+                        .actionSheet(isPresented: $showAction) {
+                            sheet
                         }
                     }
                     VStack {
                         HStack {
-                            if self.editProfile {
-                                Text("Name:")
-                                    .foregroundColor(.black)
-                                    .fontWeight(.semibold)
-                            }
-                            TextField("Your name", text:  $displayName)
+                            Text("Name:")
+                                .foregroundColor(.black)
+                                .fontWeight(.semibold)
+                            TextField("Enter your name", text:  $displayName)
                                 .disableAutocorrection(true)
                                 .disabled(!self.editProfile)
                                 .textFieldStyle(StudyTextFieldLightStyle())
