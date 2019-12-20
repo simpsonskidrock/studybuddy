@@ -5,10 +5,10 @@ const functions = require('firebase-functions');
 const admin = require('firebase-admin');
 admin.initializeApp();
 
-exports.newLike = functions.database.ref('/Users/{userId}/likedUsers')
+/*exports.newLike = functions.database.ref('/Users/{userId}/likedUsers')
     .onWrite((change: any, context: any) => {
         const original = change.after.val()
         console.log("LowerCasing", context.params.userId, original)
         const lowercase = original.toLowerCase()
         return change.afer.ref.parent.child('lowercase').set(lowercase)
-    })
+    })*/
