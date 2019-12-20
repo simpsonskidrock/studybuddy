@@ -12,12 +12,10 @@ import Foundation
 struct Message: Hashable{
     let sender : String
     let body: String
-    
     var isMe: Bool = false
 
 }
 struct FStore {
-    
     static let collectionName = "messages"
     static let senderField = "sender"
     static let bodyField = "body"
