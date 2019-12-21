@@ -9,6 +9,9 @@
 import SwiftUI
 
 struct LoginView: View {
+
+
+    @Binding var isShown: Bool
     @EnvironmentObject var session: CommunicationStore
     @ObservedObject private var keyboard = KeyboardResponder()
     
@@ -20,10 +23,21 @@ struct LoginView: View {
     private var validated: Bool {
         !self.email.isEmpty && !self.password.isEmpty
     }
-    
+
+    @State private var loggedInFlagForNavigation: Bool = false
+
+    func navIfAlreadyLoggedIn() {
+        if session.isLoggedIn() { // User already logged in
+            print("User already logged in, navigating to GeneralTabView")
+            loggedInFlagForNavigation = true
+        }
+    }
+
     var body: some View {
         NavigationView {
             VStack(spacing: 16) {
+                // Phantom navigation link:
+                NavigationLink("", destination: GeneralTabView(isShown: $isShown), isActive: $loggedInFlagForNavigation)
                 Spacer()
                 Group {
                     Image("fountainicon")
@@ -67,6 +81,7 @@ struct LoginView: View {
                     }
                 }
                 Spacer()
+
             }.navigationBarTitle("")
                 .navigationBarBackButtonHidden(true)
                 .navigationBarHidden(true)
@@ -81,7 +96,7 @@ struct LoginView: View {
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginView()
+        LoginView(isShown: .constant(false))
     }
     struct GeometryGetter: View {
         @Binding var rect: CGRect

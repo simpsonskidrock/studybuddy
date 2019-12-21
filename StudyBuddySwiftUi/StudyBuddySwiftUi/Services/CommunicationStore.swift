@@ -23,6 +23,11 @@ class CommunicationStore: ObservableObject {
     var presentMatchAlert: Bool = false
     var searchWithGPS: Bool = false
 
+    func isLoggedIn() -> Bool {
+        return (Auth.auth().currentUser != nil)
+    }
+
+
     func listen(handler: @escaping ((UserModel) -> ())) {
         // monitor authentication changes using firebase
         handle = Auth.auth().addStateDidChangeListener { (auth, user) in

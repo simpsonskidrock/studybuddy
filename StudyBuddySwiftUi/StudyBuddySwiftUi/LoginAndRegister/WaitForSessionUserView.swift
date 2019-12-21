@@ -33,7 +33,7 @@ struct WaitForSessionUserView: View {
     }
     
     var body: some View {
-        VStack {
+        Group {
             if self.correctLoginData {
                 GeneralTabView()
             } else {

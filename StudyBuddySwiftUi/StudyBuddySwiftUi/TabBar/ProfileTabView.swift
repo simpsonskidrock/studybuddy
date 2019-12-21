@@ -10,6 +10,8 @@ import Foundation
 import SwiftUI
 
 struct ProfileTabView: View {
+
+    @Binding var isShown: Bool
     @ObservedObject var locationManager = LocationManager()
     
     @Environment(\.presentationMode) var mode
@@ -123,7 +125,8 @@ struct ProfileTabView: View {
                                 }
                                 Button(action: {
                                     self.session.signOut()
-                                    self.mode.wrappedValue.dismiss()
+                                    self.isShown = false
+//                                    self.mode.wrappedValue.dismiss()
                                 }){
                                     HStack {
                                         Image(systemName: "arrow.uturn.left")

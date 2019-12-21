@@ -9,10 +9,15 @@
 import Foundation
 import SwiftUI
 
+
+
 struct GeneralTabView: View {
+
+@Binding var isShown: Bool
+
     var body: some View {
         TabView {
-            ProfileTabView()
+            ProfileTabView(isShown: $isShown)
                 .tabItem {
                     Image(systemName: "person")
             }
