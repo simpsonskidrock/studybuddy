@@ -5,10 +5,154 @@ const functions = require('firebase-functions');
 const admin = require('firebase-admin');
 admin.initializeApp();
 
-/*exports.newLike = functions.database.ref('/Users/{userId}/likedUsers')
-    .onWrite((change: any, context: any) => {
-        const original = change.after.val()
-        console.log("LowerCasing", context.params.userId, original)
-        const lowercase = original.toLowerCase()
-        return change.afer.ref.parent.child('lowercase').set(lowercase)
-    })*/
+
+// --------------- Likes --------------- //
+exports.updatedLikes = functions.database.ref('/Users/{userId}/likedUsers')
+	.onWrite((change: any, context: any) => {
+		const uid = context.params.userId
+		const oldEntrys = change.before.val()
+		const newEntrys = change.after.val()
+		console.log(`User ${uid}: Updated Likes from ${oldEntrys} to: ${newEntrys}`)
+		if (oldEntrys !== newEntrys) {
+
+			// deleted likedUser
+			for (let entry in oldEntrys) {
+				if (!newEntrys.includes(oldEntrys[entry])) {
+					console.log("deleted:", oldEntrys[entry])
+				}
+			}
+
+			// added likedUser
+			for (let entry in newEntrys) {
+				if (!oldEntrys.includes(newEntrys[entry])) {
+					console.log("added:", newEntrys[entry])
+					const refUser = change.after.ref.parent
+					const refOtherUser = change.after.ref.parent.parent.child(newEntrys[entry])
+
+					var numberOfEntrysContacts = '0'
+
+					// get number of contacts
+					change.after.ref.parent.child('contacts').once('value', (snapshot: any) => {
+						if (snapshot.val()) {
+							numberOfEntrysContacts = snapshot.val().length
+						}
+        			})
+
+        			// snapshot of other user
+					refOtherUser.once('value', (snapshot: any) => {
+						const snapshotLikedUsers = snapshot.val().likedUsers
+						const snapshotContacts = snapshot.val().contacts
+
+        				for (let snapshotEntry in snapshotLikedUsers) {
+        					// check if other user liked user
+        					if (snapshotLikedUsers[snapshotEntry] == uid) {
+        						// otherUser: add user to other users contacts
+        						if (snapshotContacts) {
+        							refOtherUser.child('contacts').child(snapshotContacts.length).set(uid)
+        						} else {
+        							refOtherUser.child('contacts').child('0').set(uid)
+        						}
+        						// otherUser: delete user of other users likedUsers
+        						refOtherUser.child('likedUsers').child(snapshotEntry).set(null)
+
+        						// user: add other user to contacts
+        						refUser.child('contacts').child(numberOfEntrysContacts).set(newEntrys[entry])
+        						// user: delete other user of likedUsers
+        						refUser.child('likedUsers').child(entry).set(null)
+        					}
+        				}
+        			})
+				}
+			}
+			return change.after.ref.parent.child('likedUsers').set(newEntrys)
+		}
+	})
+
+exports.addedLike = functions.database.ref('/Users/{userId}/likedUsers')
+	.onCreate((change: any, context: any) => {
+		const uid = context.params.userId
+		const oldEntrys = change.before.val()
+		const newEntrys = change.after.val()
+		console.log(`User ${uid}: Updated Likes from ${oldEntrys} to: ${newEntrys}`)
+		if (oldEntrys !== newEntrys) {
+			// added likedUser
+			for (let entry in newEntrys) {
+				if (!oldEntrys.includes(newEntrys[entry])) {
+					console.log("added:", newEntrys[entry])
+					const refUser = change.after.ref.parent
+					const refOtherUser = change.after.ref.parent.parent.child(newEntrys[entry])
+
+					var numberOfEntrysContacts = '0'
+
+					// get number of contacts
+					change.after.ref.parent.child('contacts').once('value', (snapshot: any) => {
+						if (snapshot.val()) {
+							numberOfEntrysContacts = snapshot.val().length
+						}
+        			})
+
+        			// snapshot of other user
+					refOtherUser.once('value', (snapshot: any) => {
+						const snapshotLikedUsers = snapshot.val().likedUsers
+						const snapshotContacts = snapshot.val().contacts
+
+        				for (let snapshotEntry in snapshotLikedUsers) {
+        					// check if other user liked user
+        					if (snapshotLikedUsers[snapshotEntry] == uid) {
+        						// otherUser: add user to other users contacts
+        						if (snapshotContacts) {
+        							refOtherUser.child('contacts').child(snapshotContacts.length).set(uid)
+        						} else {
+        							refOtherUser.child('contacts').child('0').set(uid)
+        						}
+        						// otherUser: delete user of other users likedUsers
+        						refOtherUser.child('likedUsers').child(snapshotEntry).set(null)
+
+        						// user: add other user to contacts
+        						refUser.child('contacts').child(numberOfEntrysContacts).set(newEntrys[entry])
+        						// user: delete other user of likedUsers
+        						refUser.child('likedUsers').child(entry).set(null)
+        					}
+        				}
+        			})
+				}
+			}
+			return change.after.ref.parent.child('likedUsers').set(newEntrys)
+		}
+	})
+
+// --------------- Contacts --------------- //
+
+exports.updatedContacts = functions.database.ref('/Users/{userId}/contacts')
+	.onWrite((change: any, context: any) => {
+		const uid = context.params.userId
+		const oldEntrys = change.before.val()
+		const newEntrys = change.after.val()
+		console.log(`User ${uid}: Updated Contacts from ${oldEntrys} to: ${newEntrys}`)
+		if (oldEntrys !== newEntrys) {
+
+			// deleted contact
+			for (let entry in oldEntrys) {
+				if (!newEntrys || !newEntrys.includes(oldEntrys[entry])) {
+					const refOtherUser = change.after.ref.parent.parent.child(oldEntrys[entry]).child('contacts')
+					refOtherUser.once('value', (snapshot: any) => {
+						const snapshotEntrys = snapshot.val()
+        				for (let snapshotEntry in snapshotEntrys) {
+        					if (snapshotEntrys[snapshotEntry] == uid) {
+        						refOtherUser.child(snapshotEntry).set(null)
+        					}
+        				}
+        			})
+					console.log("deleted:", oldEntrys[entry])
+				}
+			}
+
+			// added contact
+			for (let entry in newEntrys) {
+				if (newEntrys && (!oldEntrys || !oldEntrys.includes(newEntrys[entry])) ) {
+					console.log("added:", newEntrys[entry])
+				}
+			}
+			return change.after.ref.parent.child('contacts').set(newEntrys)
+		}
+	})

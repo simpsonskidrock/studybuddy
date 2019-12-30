@@ -15,6 +15,10 @@ struct ContactsTabView: View {
     @State private var searchText = ""
     @State private var showCancelButton: Bool = false
     
+    private func initialize() {
+        self.session.downloadOtherUsers()
+    }
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -53,7 +57,7 @@ struct ContactsTabView: View {
                         let tempContactsAfter: [String] = self.session.sessionUser!.contacts
                         for element in tempContactsBefore {
                             if !tempContactsAfter.contains(element) {
-                                self.session.removeContact(otherUserUid: element)
+                                self.session.uploadContacts()
                             }
                         }
                     }
@@ -61,7 +65,7 @@ struct ContactsTabView: View {
                         ContactsLineView(uid: contact, chatAllowed: false)
                     }.onDelete { (indexSet) in
                         self.session.sessionUser!.likedUsers.remove(atOffsets: indexSet)
-                        self.session.removeLikedUser()
+                        self.session.uploadLikedUsers()
                     }
                 }.navigationBarTitle(Text("Chats"))
                     .resignKeyboardOnDragGesture()
@@ -69,6 +73,7 @@ struct ContactsTabView: View {
         }.navigationBarTitle("")
             .navigationBarBackButtonHidden(true)
             .navigationBarHidden(true)
+            .onAppear(perform: initialize)
     }
 }
 

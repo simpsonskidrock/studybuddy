@@ -17,7 +17,7 @@ struct SwipeTabView: View {
     let spacing: CGFloat = 10
     
     private func initialize() {
-        self.session.getOtherUsers()
+        self.session.downloadOtherUsers()
     }
     
     var body: some View {

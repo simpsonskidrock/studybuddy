@@ -231,7 +231,7 @@ class CommunicationStore: ObservableObject {
 
     // ---------------- Other User|s ---------------- //
 
-    func getOtherUsers() {
+    func downloadOtherUsers() {
         self.otherUsers = []
         var uids: [String] = []
         let rootRef = Database.database().reference(withPath: FixedStringValues.urlIdentifierUser)
@@ -256,110 +256,33 @@ class CommunicationStore: ObservableObject {
     // ---------------- Like and Match ---------------- //
 
     func addLikedUser(uid: String) {
-        let tempUid: String = String((self.sessionUser?.uid)!)
         if !(self.sessionUser?.likedUsers.contains(uid) ?? false) {
             self.sessionUser?.likedUsers.append(uid)
-            let dict: Dictionary<String, Any> = [
-                FixedStringValues.likedUsers: self.sessionUser?.likedUsers ?? ""
-            ]
-            Database.database().reference().child(FixedStringValues.urlIdentifierUser).child(tempUid).updateChildValues(dict, withCompletionBlock: { (error, ref) in
-                if error == nil {
-                    self.checkIfLikedUserLikedYou(otherUserUid: uid)
-                    self.getOtherUsers()
-                }
-            })
+            self.uploadLikedUsers()
         }
     }
     
-    func removeLikedUser() {
+    func uploadLikedUsers() {
         let tempUid: String = String((self.sessionUser?.uid)!)
         let dict: Dictionary<String, Any> = [
             FixedStringValues.likedUsers: self.sessionUser?.likedUsers ?? ""
         ]
         Database.database().reference().child(FixedStringValues.urlIdentifierUser).child(tempUid).updateChildValues(dict, withCompletionBlock: {(error, ref) in
             if error == nil {
-                self.getOtherUsers()
+                self.downloadOtherUsers()
             }
         } )
     }
     
-    func removeContact(otherUserUid: String) {
+    func uploadContacts() {
         let tempUid: String = String((self.sessionUser?.uid)!)
         let dict: Dictionary<String, Any> = [
             FixedStringValues.contacts: self.sessionUser?.contacts ?? ""
         ]
         Database.database().reference().child(FixedStringValues.urlIdentifierUser).child(tempUid).updateChildValues(dict, withCompletionBlock: {(error, ref) in
             if error == nil {
-                print ("Deleted likedUser")
-                self.getProfile(uid: otherUserUid, handler: { profile in
-                    self.otherUsers.append(profile)
-                })
-                self.getProfile(uid: otherUserUid, handler: { user in
-                    var updatedOtherUsersContacts: [String] = []
-                    for contact in user.contacts {
-                        if contact != tempUid {
-                            updatedOtherUsersContacts.append(contact)
-                        }
-                    }
-                    let dictOtherUser: Dictionary<String, Any> = [
-                        FixedStringValues.contacts: updatedOtherUsersContacts
-                    ]
-                    Database.database().reference().child(FixedStringValues.urlIdentifierUser).child(otherUserUid).updateChildValues(dictOtherUser, withCompletionBlock: {(error, ref) in
-                        if error == nil {
-                            print ("Deleted your uid in other users contacts list")
-                        }
-                    } )
-                })
+                self.downloadOtherUsers()
             }
         } )
-    }
-
-    private func checkIfLikedUserLikedYou(otherUserUid: String) {
-        let rootRef = Database.database().reference(withPath: FixedStringValues.urlIdentifierUser).child(otherUserUid)
-        rootRef.observe(.value, with: { (snapshot) in
-            let value = snapshot.value as? NSDictionary
-            let otherUserLikedUsers = value?[FixedStringValues.likedUsers] as? [String] ?? []
-            var otherUserContacts = value?[FixedStringValues.contacts] as? [String] ?? []
-            
-            if (otherUserLikedUsers.contains(self.sessionUser!.uid)) {
-                if !(self.sessionUser?.contacts.contains(otherUserUid) ?? false) {
-                    self.sessionUser?.contacts.append(otherUserUid)
-                }
-                if !(otherUserContacts.contains(self.sessionUser!.uid)) {
-                    otherUserContacts.append(self.sessionUser!.uid)
-                }
-                let tempLikes1: [String] = self.sessionUser!.likedUsers
-                self.sessionUser?.likedUsers = []
-                for likedUser in tempLikes1 {
-                    if (likedUser != otherUserUid) {
-                        self.sessionUser?.likedUsers.append(otherUserUid)
-                    }
-                }
-                let tempLikes2: [String] = otherUserLikedUsers
-                var otherUserLikedUsers: [String] = []
-                for likedUser in tempLikes2 {
-                    if (likedUser != self.sessionUser?.uid) {
-                        otherUserLikedUsers.append(likedUser)
-                    }
-                }
-                self.shareMatch(uid: self.sessionUser!.uid, likedUsers: self.sessionUser?.likedUsers ?? [], contacts: self.sessionUser?.contacts ?? [])
-                self.shareMatch(uid: otherUserUid, likedUsers: otherUserLikedUsers, contacts: otherUserContacts)
-                self.presentMatchAlert = true
-            }
-        }) { (error) in
-            print(error.localizedDescription)
-        }
-    }
-
-    private func shareMatch(uid: String, likedUsers: [String], contacts: [String]) {
-        let dict: Dictionary<String, Any> = [
-            FixedStringValues.likedUsers: likedUsers,
-            FixedStringValues.contacts: contacts
-        ]
-        Database.database().reference().child(FixedStringValues.urlIdentifierUser).child(uid).updateChildValues(dict, withCompletionBlock: { (error, ref) in
-            if error == nil {
-                print("Match!")
-            }
-        })
     }
 }
