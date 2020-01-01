@@ -10,10 +10,16 @@ import SwiftUI
 import Firebase
 
 struct ChatView: View {
+    
+    @EnvironmentObject var session: CommunicationStore
+
     let db = Firestore.firestore()
     @ObservedObject var chatController = ChatController()
     @State private var composedMessage: String = ""
-    
+
+     
+
+
     func sendMsg(){
         if !composedMessage.isEmpty,
             let messageSender = Auth.auth().currentUser?.email{
@@ -34,12 +40,12 @@ struct ChatView: View {
         }
     }
     
-
   
     var body: some View {
         
         VStack {
-        List {
+            
+            List {
             ForEach(chatController.message, id: \.self) { msg in
                 ChatRow(chatMessage: msg)
             }
@@ -92,6 +98,7 @@ struct ChatRow : View {
                             .foregroundColor(Color.white)
                             .padding(10)
                             .cornerRadius(10)
+                        Image("MeAvatar")
                     }
                 }
             }
