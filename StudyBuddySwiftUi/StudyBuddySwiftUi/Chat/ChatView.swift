@@ -44,6 +44,17 @@ struct ChatView: View {
         }
     }
     
+    // Save messages to Realtime Database
+    func sendMessage(){
+        let ref = Database.database().reference().child(FStore.collectionName)
+        let messageSender = Auth.auth().currentUser?.email
+       let messageReceiver = self.uid
+        let values = [FStore.senderField: messageSender, FStore.receiverField: messageReceiver, FStore.bodyField: composedMessage]
+        let childRef = ref.childByAutoId()
+        childRef.updateChildValues(values as [AnyHashable : Any])
+    }
+    
+    
   
     var body: some View {
         
