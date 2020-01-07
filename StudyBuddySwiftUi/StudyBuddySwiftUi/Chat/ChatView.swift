@@ -72,12 +72,15 @@ struct ChatView: View {
 }
 
 struct ChatRow : View {
+    
+    @EnvironmentObject var session: CommunicationStore
+    
     let chatMessage: Message
     
     var body: some View {
         
      Group {
-            if !chatMessage.isMe {
+        if (chatMessage.sender != self.session.sessionUser!.uid) {
                 HStack {
                     Group {
                         Text(chatMessage.body)
@@ -93,7 +96,6 @@ struct ChatRow : View {
                         Spacer()
                         Text(chatMessage.body)
                             .bold()
-                            .foregroundColor(Color.white)
                             .padding(10)
                             .cornerRadius(10)
                         Image("MeAvatar")
