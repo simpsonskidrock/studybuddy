@@ -68,8 +68,10 @@ struct ChatView: View {
             }
 
             HStack {
-                TextField("Message...", text: $composedMessage).frame(minHeight: CGFloat(30))
-                    .textFieldStyle(StudyTextFieldStyle())
+                TextField(" Message...", text: $composedMessage).frame(minHeight: CGFloat(50))
+                .background(Color.white)
+                .cornerRadius(10)
+                .foregroundColor(.black)
                 Button(action: sendMsg) {
                     Text("Send")
                         .foregroundColor(.black)
