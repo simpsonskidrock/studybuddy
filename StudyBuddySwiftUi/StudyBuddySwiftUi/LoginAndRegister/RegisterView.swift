@@ -19,7 +19,7 @@ struct RegisterView: View {
     @Environment(\.presentationMode)
     var mode
     @EnvironmentObject var session: SessionStore
-    @ObservedObject private var keyboard = KeyboardResponder()
+    //@ObservedObject private var keyboard = KeyboardResponder()
     
     @State private var signUpSuccessFlagForNavigation: Bool = false
     @State private var errorText: String = ""
@@ -121,7 +121,7 @@ struct RegisterView: View {
                 }
             }.padding(.horizontal)
                 .background(Color.lmuGreen.edgesIgnoringSafeArea(.vertical))
-                .offset(x: 0, y: -keyboard.currentHeight)
+                //.offset(x: 0, y: -keyboard.currentHeight)
                 .edgesIgnoringSafeArea(.bottom)
                 .animation(.easeOut(duration: 0.16))
                 .alert(isPresented: $errorDialogVisible) {
