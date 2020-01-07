@@ -95,7 +95,6 @@ struct ChatRow : View {
                 HStack {
                     Group {
                         Text(chatMessage.body)
-                            .bold()
                             .padding(10)
                             .cornerRadius(10)
                     }
@@ -106,7 +105,6 @@ struct ChatRow : View {
                     Group {
                         Spacer()
                         Text(chatMessage.body)
-                            .bold()
                             .padding(10)
                             .cornerRadius(10)
                         Image("MeAvatar")

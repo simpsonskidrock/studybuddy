@@ -24,23 +24,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         // Use a UIHostingController as window root view controller.
         
-        
-        //
-        
-        
-                
-        // TODO for the ChatVIew
-          /*     let chatView = ChatView()
-               
-               if let windowScene = scene as? UIWindowScene {
-                   let window = UIWindow(windowScene: windowScene)
-                   window.rootViewController = UIHostingController(rootView: chatView.environmentObject(chatController))
-                   self.window = window
-                   window.makeKeyAndVisible()
-               }
-        
-        */
-        
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
             

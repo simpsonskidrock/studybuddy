@@ -37,10 +37,9 @@ struct ChatHeaderView: View {
     var body : some View {
         HStack {
            
-                ImageView(image: image)
-                Spacer()
-                UserNameView(name: name)
-
+            ImageView(image: image)
+            UserNameView(name: name)
+            Spacer()
                 }.onAppear(perform: initialize)
             
         }
@@ -68,6 +67,6 @@ struct ChatUserNameView: View {
     
     var body: some View {
         Text("\(name)")
-            .fontWeight(.regular)
+        .bold()
     }
 }

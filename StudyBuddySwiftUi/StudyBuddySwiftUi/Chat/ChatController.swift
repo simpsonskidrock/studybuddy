@@ -32,16 +32,10 @@ class ChatController : ObservableObject {
                             let newMessage = Message(sender: messageSender, receiver: messageReceiver, body: messageBody)
                               self.message.append(newMessage)
 
-                              
                           }
                       }
                   }
               }
           }
       }
-    
-//    func sendMessage(_ chatMessage: ChatMessage) {
-//        messages.append(chatMessage)
-//        didChange.send(())
-//    }
 }
