@@ -234,20 +234,31 @@ class SessionStore: ObservableObject {
         }
     }
 
-    // ---------------- Other User|s ---------------- //
-
-    func downloadOtherUsers() {
+    func downloadAllUserLists() {
+        print("downloadAllUserLists")
         self.otherUsers = []
+        self.likedUsers = []
+        self.matchedUsers = []
         var uids: [String] = []
         let rootRef = Database.database().reference(withPath: FixedStringValues.urlIdentifierUser)
         rootRef.observe(.value, with: { (snapshot) in
             for uid in (snapshot.value as? NSDictionary)!.allKeys as! [String] {
                 if !uids.contains(uid) {
                     uids.append(uid)
-                    if (uid != self.sessionUser?.uid && !(self.sessionUser?.contacts.contains(uid))! && !(self.sessionUser?.likedUsers.contains(uid))!) {
+                    if (uid != self.sessionUser?.uid) {
                         self.getProfile(uid: uid, handler: { user in
-                            if !self.otherUsers.contains(user) {
-                                self.otherUsers.append(user)
+                            if (self.sessionUser?.contacts.contains(uid) ?? false) {
+                                if !self.matchedUsers.contains(user) {
+                                    self.matchedUsers.append(user)
+                                }
+                            } else if (self.sessionUser?.likedUsers.contains(uid) ?? false) {
+                                if !self.likedUsers.contains(user) {
+                                    self.likedUsers.append(user)
+                                }
+                            } else {
+                                if !self.otherUsers.contains(user) {
+                                    self.otherUsers.append(user)
+                                }
                             }
                         })
                     }
@@ -256,6 +267,52 @@ class SessionStore: ObservableObject {
         }) { (error) in
             print(error.localizedDescription)
         }
+    }
+
+    func printUserLists() {
+        print("-----------------------")
+        print("OtherUsers")
+        for element in self.otherUsers {
+            print(element)
+        }
+        print("LikedUsers")
+        for element in self.likedUsers {
+            print(element)
+        }
+        print("matchedUsers")
+        for element in self.matchedUsers {
+            print(element)
+        }
+    }
+
+
+    // ---------------- Other User|s ---------------- //
+
+    func downloadOtherUsers() {
+
+        // TODO remove this method and replace with:
+        downloadAllUserLists()
+
+
+//        self.otherUsers = []
+//        var uids: [String] = []
+//        let rootRef = Database.database().reference(withPath: FixedStringValues.urlIdentifierUser)
+//        rootRef.observe(.value, with: { (snapshot) in
+//            for uid in (snapshot.value as? NSDictionary)!.allKeys as! [String] {
+//                if !uids.contains(uid) {
+//                    uids.append(uid)
+//                    if (uid != self.sessionUser?.uid && !(self.sessionUser?.contacts.contains(uid))! && !(self.sessionUser?.likedUsers.contains(uid))!) {
+//                        self.getProfile(uid: uid, handler: { user in
+//                            if !self.otherUsers.contains(user) {
+//                                self.otherUsers.append(user)
+//                            }
+//                        })
+//                    }
+//                }
+//            }
+//        }) { (error) in
+//            print(error.localizedDescription)
+//        }
     }
     
     // ---------------- Like and Match ---------------- //
