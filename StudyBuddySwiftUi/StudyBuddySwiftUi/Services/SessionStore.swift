@@ -11,16 +11,21 @@ import Firebase
 import Combine
 import os.log
 
-class CommunicationStore: ObservableObject {
+class SessionStore: ObservableObject {
 
-    var didChange = PassthroughSubject<CommunicationStore, Never>()
+    var didChange = PassthroughSubject<SessionStore, Never>()
     var sessionUser: UserModel? {
         didSet {
             self.didChange.send(self)
         }
     }
     private var handle: AuthStateDidChangeListenerHandle?
+    /* Users that havn't been interacted with (not liked, no match) */
     @Published var otherUsers: [UserModel] = []
+    /* Users the currrentUser has liked */
+    @Published var likedUsers: [UserModel] = []
+    /* Users the currentUser has matched with */
+    @Published var matchedUsers: [UserModel] = []
     var presentMatchAlert: Bool = false
     var searchWithGPS: Bool = false
 

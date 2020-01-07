@@ -10,7 +10,7 @@ import Foundation
 import SwiftUI
 
 struct ContactsTabView: View {
-    @EnvironmentObject var session: CommunicationStore
+    @EnvironmentObject var session: SessionStore
     
     @State private var searchText = ""
     @State private var showCancelButton: Bool = false

@@ -10,7 +10,7 @@ import SwiftUI
 
 struct ResetPasswordView: View {
     @Environment(\.presentationMode) var mode
-    @EnvironmentObject var session: CommunicationStore
+    @EnvironmentObject var session: SessionStore
     @ObservedObject private var keyboard = KeyboardResponder()
     
     @State private var resetPasswordSuccessFlagForNavigation: Bool = false

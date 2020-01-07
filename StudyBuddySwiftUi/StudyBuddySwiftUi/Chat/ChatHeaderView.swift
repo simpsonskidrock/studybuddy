@@ -10,7 +10,7 @@ import Foundation
 import SwiftUI
 
 struct ChatHeaderView: View {
-    @EnvironmentObject var session: CommunicationStore
+    @EnvironmentObject var session: SessionStore
     
    @State var uid: String
 

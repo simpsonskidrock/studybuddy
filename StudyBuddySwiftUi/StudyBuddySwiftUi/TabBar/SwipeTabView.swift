@@ -10,7 +10,7 @@ import Foundation
 import SwiftUI
 
 struct SwipeTabView: View {
-    @EnvironmentObject var session: CommunicationStore
+    @EnvironmentObject var session: SessionStore
     
     @State private var offset: CGFloat = 0
     @State private var index = 0

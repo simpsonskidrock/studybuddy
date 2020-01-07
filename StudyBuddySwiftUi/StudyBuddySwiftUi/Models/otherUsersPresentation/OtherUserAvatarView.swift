@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct OtherUserAvatarView: View {
-    @EnvironmentObject var session: CommunicationStore
+    @EnvironmentObject var session: SessionStore
     @State var image: UIImage = UIImage()
     let userModel: UserModel
 

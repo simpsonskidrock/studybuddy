@@ -18,7 +18,7 @@ extension String {
 struct RegisterView: View {
     @Environment(\.presentationMode)
     var mode
-    @EnvironmentObject var session: CommunicationStore
+    @EnvironmentObject var session: SessionStore
     @ObservedObject private var keyboard = KeyboardResponder()
     
     @State private var signUpSuccessFlagForNavigation: Bool = false

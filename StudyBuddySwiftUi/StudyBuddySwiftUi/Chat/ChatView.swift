@@ -11,7 +11,7 @@ import Firebase
 
 struct ChatView: View {
     
-    @EnvironmentObject var session: CommunicationStore
+    @EnvironmentObject var session: SessionStore
 
     let db = Firestore.firestore()
     @ObservedObject var chatController = ChatController()
@@ -86,7 +86,7 @@ struct ChatView: View {
 
 struct ChatRow : View {
     
-    @EnvironmentObject var session: CommunicationStore
+    @EnvironmentObject var session: SessionStore
     
     let chatMessage: Message
     

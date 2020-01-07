@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct OtherUserView: View {
-    @EnvironmentObject var session: CommunicationStore
+    @EnvironmentObject var session: SessionStore
     @State private var showText = false
     let userModel: UserModel
     

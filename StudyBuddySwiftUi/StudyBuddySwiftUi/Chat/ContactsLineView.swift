@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct ContactsLineView: View {
-    @EnvironmentObject var session: CommunicationStore
+    @EnvironmentObject var session: SessionStore
     
     var uid: String
     var chatAllowed: Bool

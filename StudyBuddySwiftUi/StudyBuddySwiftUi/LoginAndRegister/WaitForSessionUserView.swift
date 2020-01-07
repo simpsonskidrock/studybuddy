@@ -10,7 +10,7 @@ import SwiftUI
 
 struct WaitForSessionUserView: View {
     @Environment(\.presentationMode) var mode
-    @EnvironmentObject var session: CommunicationStore
+    @EnvironmentObject var session: SessionStore
     
     var email: String
     var password: String
