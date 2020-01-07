@@ -27,8 +27,9 @@ class ChatController : ObservableObject {
                       for doc in snapShotDocumnets {
                           let data = doc.data()
                           if let messageSender = data[FStore.senderField] as? String,
+                            let messageReceiver = data[FStore.receiverField] as? String,
                               let messageBody = data[FStore.bodyField] as? String {
-                              let newMessage = Message(sender: messageSender, body: messageBody)
+                            let newMessage = Message(sender: messageSender, receiver: messageReceiver, body: messageBody)
                               self.message.append(newMessage)
 
                               

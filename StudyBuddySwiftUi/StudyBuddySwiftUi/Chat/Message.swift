@@ -11,6 +11,7 @@ import Foundation
 
 struct Message: Hashable{
     let sender : String
+    let receiver : String
     let body: String
     var isMe: Bool = false
 
@@ -18,6 +19,7 @@ struct Message: Hashable{
 struct FStore {
     static let collectionName = "messages"
     static let senderField = "sender"
+    static let receiverField = "receiver"
     static let bodyField = "body"
     static let dateField = "date"
 }

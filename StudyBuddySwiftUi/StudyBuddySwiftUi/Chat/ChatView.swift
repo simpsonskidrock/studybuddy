@@ -16,14 +16,18 @@ struct ChatView: View {
     let db = Firestore.firestore()
     @ObservedObject var chatController = ChatController()
     @State private var composedMessage: String = ""
+    
+    let uid: String?
 
      
 
 
     func sendMsg(){
         if !composedMessage.isEmpty,
-            let messageSender = Auth.auth().currentUser?.email{
-            db.collection(FStore.collectionName).addDocument(data:[ FStore.senderField: messageSender, FStore.bodyField: composedMessage, FStore.dateField: Date().timeIntervalSince1970])
+            let messageSender = Auth.auth().currentUser?.uid,
+        let messageReceiver = self.uid
+        {
+            db.collection(FStore.collectionName).addDocument(data:[ FStore.senderField: messageSender, FStore.receiverField: messageReceiver, FStore.bodyField: composedMessage, FStore.dateField: Date().timeIntervalSince1970])
             { (error) in
                 if let e = error{
                     print("there was an issue saving data to Firestore,\(e)")
@@ -44,7 +48,7 @@ struct ChatView: View {
     var body: some View {
         
         VStack {
-            
+            ChatHeaderView(uid: self.uid!)
             List {
             ForEach(chatController.message, id: \.self) { msg in
                 ChatRow(chatMessage: msg)
@@ -67,14 +71,8 @@ struct ChatView: View {
     }
 }
 
-struct ChatView_Previews: PreviewProvider {
-    static var previews: some View {
-        ChatView()
-    }
-}
-
 struct ChatRow : View {
-    var chatMessage: Message
+    let chatMessage: Message
     
     var body: some View {
         

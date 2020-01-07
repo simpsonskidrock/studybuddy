@@ -41,7 +41,7 @@ struct ContactsLineView: View {
                 Spacer()
                 UserNameView(name: name)
                
-                NavigationLink(destination: ChatView()){
+                NavigationLink(destination: ChatView(uid: self.uid)){
                     Spacer()
                     Text("Match").foregroundColor(.red).font(.system(size: 12))
 
