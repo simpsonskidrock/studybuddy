@@ -16,7 +16,7 @@ struct ContactsTabView: View {
     @State private var showCancelButton: Bool = false
     
     private func initialize() {
-        self.session.downloadOtherUsers()
+        self.session.downloadAllUserLists()
     }
     
     var body: some View {
@@ -49,23 +49,17 @@ struct ContactsTabView: View {
                 }.padding(.horizontal)
                     .navigationBarHidden(showCancelButton)
                 List() {
-                    ForEach(self.session.sessionUser!.contacts.filter{$0.hasPrefix(searchText) || searchText == ""}, id: \.self) { contact in
-                        ContactsLineView(uid: contact, chatAllowed: true)
+                    ForEach(self.session.matchedUsers.filter{$0.displayName?.hasPrefix(searchText) ?? false || searchText == ""}, id: \.uid) { contact in
+                        ContactsLineView(uid: contact.uid, chatAllowed: true)
                     }.onDelete { (indexSet) in
-                        let tempContactsBefore: [String] = self.session.sessionUser!.contacts
-                        self.session.sessionUser!.contacts.remove(atOffsets: indexSet)
-                        let tempContactsAfter: [String] = self.session.sessionUser!.contacts
-                        for element in tempContactsBefore {
-                            if !tempContactsAfter.contains(element) {
-                                self.session.uploadContacts()
-                            }
-                        }
+                        self.session.matchedUsers.remove(atOffsets: indexSet)
+                        self.session.removeContact()
                     }
-                    ForEach(self.session.sessionUser!.likedUsers.filter{$0.hasPrefix(searchText) || searchText == ""}, id: \.self) { contact in
-                        ContactsLineView(uid: contact, chatAllowed: false)
+                    ForEach(self.session.likedUsers.filter{$0.displayName?.hasPrefix(searchText) ?? false || searchText == ""}, id: \.uid) { contact in
+                        ContactsLineView(uid: contact.uid, chatAllowed: false)
                     }.onDelete { (indexSet) in
-                        self.session.sessionUser!.likedUsers.remove(atOffsets: indexSet)
-                        self.session.uploadLikedUsers()
+                        self.session.likedUsers.remove(atOffsets: indexSet)
+                        self.session.removeLikedUsers()
                     }
                 }.navigationBarTitle(Text("Chats"))
                     .resignKeyboardOnDragGesture()

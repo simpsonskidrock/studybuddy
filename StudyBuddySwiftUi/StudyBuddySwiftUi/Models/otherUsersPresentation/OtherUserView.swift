@@ -33,7 +33,7 @@ struct OtherUserView: View {
                 self.showText.toggle()
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
                     withAnimation(.easeInOut(duration: 2.0)){self.showText.toggle()}
-                    self.session.addLikedUser(uid: self.userModel.uid)
+                    self.session.addLikedUser(user: self.userModel)
                 }
             }
         }
