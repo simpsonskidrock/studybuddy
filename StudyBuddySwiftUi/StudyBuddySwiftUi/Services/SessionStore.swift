@@ -284,6 +284,7 @@ class SessionStore: ObservableObject {
             Database.database().reference().child(FixedStringValues.urlIdentifierUser).child(tempUid).updateChildValues(dict, withCompletionBlock: {(error, ref) in
                 if error == nil {
                     self.getProfile(uid: self.sessionUser!.uid, handler: { user in
+                        self.sessionUser = user
                         self.downloadAllUserLists()
                     })
                 }
@@ -301,9 +302,7 @@ class SessionStore: ObservableObject {
             FixedStringValues.likedUsers: self.sessionUser?.likedUsers ?? ""
         ]
         Database.database().reference().child(FixedStringValues.urlIdentifierUser).child(tempUid).updateChildValues(dict, withCompletionBlock: {(error, ref) in
-            if error == nil {
-                self.downloadAllUserLists()
-            }
+            if error == nil {}
         } )
     }
     
@@ -317,11 +316,7 @@ class SessionStore: ObservableObject {
             FixedStringValues.contacts: self.sessionUser?.contacts ?? ""
         ]
         Database.database().reference().child(FixedStringValues.urlIdentifierUser).child(tempUid).updateChildValues(dict, withCompletionBlock: {(error, ref) in
-            if error == nil {
-                self.getProfile(uid: self.sessionUser!.uid, handler: { user in
-                    self.downloadAllUserLists()
-                })
-            }
+            if error == nil {}
         } )
     }
 }

@@ -18,6 +18,7 @@ struct SwipeTabView: View {
     
     private func initialize() {
         self.session.getProfile(uid: self.session.sessionUser!.uid, handler: { user in
+            self.session.sessionUser = user
             self.session.downloadAllUserLists()
         })
     }
