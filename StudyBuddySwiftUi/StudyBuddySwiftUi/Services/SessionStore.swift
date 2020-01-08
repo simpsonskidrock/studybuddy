@@ -20,7 +20,8 @@ class SessionStore: ObservableObject {
         }
     }
     private var handle: AuthStateDidChangeListenerHandle?
-    /* Users that havn't been interacted with (not liked, no match) */
+    
+    /* Users that haven't been interacted with (not liked, no match) */
     @Published var otherUsers: [UserModel] = []
     /* Users the currrentUser has liked */
     @Published var likedUsers: [UserModel] = []
@@ -234,8 +235,9 @@ class SessionStore: ObservableObject {
         }
     }
 
+    // ---------------- Other User|s ---------------- //
+    
     func downloadAllUserLists() {
-        print("downloadAllUserLists")
         self.otherUsers = []
         self.likedUsers = []
         self.matchedUsers = []
@@ -284,67 +286,50 @@ class SessionStore: ObservableObject {
             print(element)
         }
     }
-
-
-    // ---------------- Other User|s ---------------- //
-
-    func downloadOtherUsers() {
-
-        // TODO remove this method and replace with:
-        downloadAllUserLists()
-
-
-//        self.otherUsers = []
-//        var uids: [String] = []
-//        let rootRef = Database.database().reference(withPath: FixedStringValues.urlIdentifierUser)
-//        rootRef.observe(.value, with: { (snapshot) in
-//            for uid in (snapshot.value as? NSDictionary)!.allKeys as! [String] {
-//                if !uids.contains(uid) {
-//                    uids.append(uid)
-//                    if (uid != self.sessionUser?.uid && !(self.sessionUser?.contacts.contains(uid))! && !(self.sessionUser?.likedUsers.contains(uid))!) {
-//                        self.getProfile(uid: uid, handler: { user in
-//                            if !self.otherUsers.contains(user) {
-//                                self.otherUsers.append(user)
-//                            }
-//                        })
-//                    }
-//                }
-//            }
-//        }) { (error) in
-//            print(error.localizedDescription)
-//        }
-    }
     
-    // ---------------- Like and Match ---------------- //
+    // ---------------- Likes and Contacts ---------------- //
 
-    func addLikedUser(uid: String) {
-        if !(self.sessionUser?.likedUsers.contains(uid) ?? false) {
-            self.sessionUser?.likedUsers.append(uid)
-            self.uploadLikedUsers()
+    func addLikedUser(user: UserModel) {
+        if !(self.sessionUser?.likedUsers.contains(user.uid) ?? false) {
+            self.sessionUser?.likedUsers.append(user.uid)
+            self.likedUsers.append(user)
+            let tempUid: String = String((self.sessionUser?.uid)!)
+            let dict: Dictionary<String, Any> = [
+                FixedStringValues.likedUsers: self.sessionUser?.likedUsers ?? ""
+            ]
+            Database.database().reference().child(FixedStringValues.urlIdentifierUser).child(tempUid).updateChildValues(dict, withCompletionBlock: {(error, ref) in
+                if error == nil {
+                    self.downloadAllUserLists()
+                }
+            } )
         }
     }
     
-    func uploadLikedUsers() {
+    func removeLikedUsers() {
+        self.sessionUser?.likedUsers = []
+        for user in self.likedUsers {
+            self.sessionUser?.likedUsers.append(user.uid)
+        }
         let tempUid: String = String((self.sessionUser?.uid)!)
         let dict: Dictionary<String, Any> = [
             FixedStringValues.likedUsers: self.sessionUser?.likedUsers ?? ""
         ]
         Database.database().reference().child(FixedStringValues.urlIdentifierUser).child(tempUid).updateChildValues(dict, withCompletionBlock: {(error, ref) in
-            if error == nil {
-                self.downloadOtherUsers()
-            }
+            if error == nil {}
         } )
     }
     
-    func uploadContacts() {
+    func removeContact() {
+        self.sessionUser?.contacts = []
+        for user in self.matchedUsers {
+            self.sessionUser?.contacts.append(user.uid)
+        }
         let tempUid: String = String((self.sessionUser?.uid)!)
         let dict: Dictionary<String, Any> = [
             FixedStringValues.contacts: self.sessionUser?.contacts ?? ""
         ]
         Database.database().reference().child(FixedStringValues.urlIdentifierUser).child(tempUid).updateChildValues(dict, withCompletionBlock: {(error, ref) in
-            if error == nil {
-                self.downloadOtherUsers()
-            }
+            if error == nil {}
         } )
     }
 }
