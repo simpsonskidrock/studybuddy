@@ -270,22 +270,6 @@ class SessionStore: ObservableObject {
             print(error.localizedDescription)
         }
     }
-
-    func printUserLists() {
-        print("-----------------------")
-        print("OtherUsers")
-        for element in self.otherUsers {
-            print(element)
-        }
-        print("LikedUsers")
-        for element in self.likedUsers {
-            print(element)
-        }
-        print("matchedUsers")
-        for element in self.matchedUsers {
-            print(element)
-        }
-    }
     
     // ---------------- Likes and Contacts ---------------- //
 
@@ -299,7 +283,9 @@ class SessionStore: ObservableObject {
             ]
             Database.database().reference().child(FixedStringValues.urlIdentifierUser).child(tempUid).updateChildValues(dict, withCompletionBlock: {(error, ref) in
                 if error == nil {
-                    self.downloadAllUserLists()
+                    self.getProfile(uid: self.sessionUser!.uid, handler: { user in
+                        self.downloadAllUserLists()
+                    })
                 }
             } )
         }
@@ -315,7 +301,9 @@ class SessionStore: ObservableObject {
             FixedStringValues.likedUsers: self.sessionUser?.likedUsers ?? ""
         ]
         Database.database().reference().child(FixedStringValues.urlIdentifierUser).child(tempUid).updateChildValues(dict, withCompletionBlock: {(error, ref) in
-            if error == nil {}
+            if error == nil {
+                self.downloadAllUserLists()
+            }
         } )
     }
     
@@ -329,7 +317,11 @@ class SessionStore: ObservableObject {
             FixedStringValues.contacts: self.sessionUser?.contacts ?? ""
         ]
         Database.database().reference().child(FixedStringValues.urlIdentifierUser).child(tempUid).updateChildValues(dict, withCompletionBlock: {(error, ref) in
-            if error == nil {}
+            if error == nil {
+                self.getProfile(uid: self.sessionUser!.uid, handler: { user in
+                    self.downloadAllUserLists()
+                })
+            }
         } )
     }
 }
