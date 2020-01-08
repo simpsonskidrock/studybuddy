@@ -89,7 +89,7 @@ class SessionStore: ObservableObject {
     func signOut() {
         do {
             try Auth.auth().signOut()
-            self.sessionUser = nil
+            self.clearProfile()
             print("successfully logged out")
         } catch let signOutError as NSError {
             print("Error signing out: %@", signOutError)
@@ -104,6 +104,13 @@ class SessionStore: ObservableObject {
                 print(error!.localizedDescription)
             }
         }
+    }
+    
+    private func clearProfile() {
+        self.otherUsers = []
+        self.likedUsers = []
+        self.matchedUsers = []
+        self.sessionUser = nil
     }
 
     // ---------------- Profile ---------------- //
