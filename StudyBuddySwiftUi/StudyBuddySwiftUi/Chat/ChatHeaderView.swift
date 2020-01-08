@@ -12,8 +12,8 @@ import SwiftUI
 struct ChatHeaderView: View {
     @EnvironmentObject var session: SessionStore
     
-   @State var uid: String
-
+    @State var uid: String
+    
     @State var name: String = ""
     @State var image: UIImage = UIImage()
     
@@ -36,14 +36,14 @@ struct ChatHeaderView: View {
     
     var body : some View {
         HStack {
-           
+            
             ImageView(image: image)
             UserNameView(name: name)
             Spacer()
-                }.onAppear(perform: initialize)
-            
-        }
+        }.onAppear(perform: initialize)
+        
     }
+}
 
 
 struct ChatImageView: View {
@@ -56,9 +56,7 @@ struct ChatImageView: View {
             .clipShape(Circle())
             .frame(width: 80, height: 80)
             .overlay(
-                Circle().stroke(Color.white,lineWidth: 1)
-                    
-        )
+                Circle().stroke(Color.white,lineWidth: 1))
     }
 }
 
@@ -67,6 +65,6 @@ struct ChatUserNameView: View {
     
     var body: some View {
         Text("\(name)")
-        .bold()
+            .bold()
     }
 }

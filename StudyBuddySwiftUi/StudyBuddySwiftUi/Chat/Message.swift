@@ -13,7 +13,6 @@ struct Message: Hashable {
     let sender : String
     let receiver : String
     let body: String
-    var isMe: Bool = false
 
 }
 struct FStore {

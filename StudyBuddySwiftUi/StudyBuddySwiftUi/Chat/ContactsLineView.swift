@@ -40,11 +40,11 @@ struct ContactsLineView: View {
                 ImageView(image: image)
                 Spacer()
                 UserNameView(name: name)
-               
+                
                 NavigationLink(destination: ChatView(uid: self.uid)){
                     Spacer()
                     Text("Match").foregroundColor(.red).font(.system(size: 12))
-
+                    
                 }
             } else {
                 ImageView(image: image)
@@ -68,7 +68,7 @@ struct ImageView: View {
             .frame(width: 80, height: 80)
             .overlay(
                 Circle().stroke(Color.white,lineWidth: 1)
-                    
+                
         )
     }
 }

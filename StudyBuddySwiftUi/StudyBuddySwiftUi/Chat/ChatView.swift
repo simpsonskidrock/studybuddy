@@ -19,12 +19,14 @@ struct ChatView: View {
     
     let uid: String?
     
+    func initialize() {
+        self.chatController.loadMessages(uid: self.session.sessionUser!.uid, otherUid: uid!)
+    }
     
-    
-    
+    //send message and save it to Firestore
     func sendMsg(){
         if !composedMessage.isEmpty,
-            let messageSender = Auth.auth().currentUser?.uid,
+            let messageSender = self.session.sessionUser?.uid,
             let messageReceiver = self.uid
         {
             db.collection(FStore.collectionName).addDocument(data:[ FStore.senderField: messageSender, FStore.receiverField: messageReceiver, FStore.bodyField: composedMessage, FStore.dateField: Date().timeIntervalSince1970])
@@ -43,18 +45,6 @@ struct ChatView: View {
             }
         }
     }
-    
-    // Save messages to Realtime Database
-    func sendMessage(){
-        let ref = Database.database().reference().child(FStore.collectionName)
-        let messageSender = Auth.auth().currentUser?.email
-        let messageReceiver = self.uid
-        let values = [FStore.senderField: messageSender, FStore.receiverField: messageReceiver, FStore.bodyField: composedMessage]
-        let childRef = ref.childByAutoId()
-        childRef.updateChildValues(values as [AnyHashable : Any])
-    }
-    
-    
     
     var body: some View {
         
@@ -78,8 +68,9 @@ struct ChatView: View {
                 }
             }.frame(minHeight: CGFloat(50)).padding()
                 .background(Color.lmuGreen)
-        }.onAppear(perform: chatController.loadMessages)
+        }.onAppear(perform: initialize)
             .navigationBarTitle(Text(""))
+        
         
     }
 }
