@@ -66,10 +66,7 @@ struct ImageView: View {
             .scaledToFit()
             .clipShape(Circle())
             .frame(width: 80, height: 80)
-            .overlay(
-                Circle().stroke(Color.white,lineWidth: 1)
-                
-        )
+        
     }
 }
 

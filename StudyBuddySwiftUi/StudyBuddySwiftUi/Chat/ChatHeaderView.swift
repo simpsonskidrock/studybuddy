@@ -37,8 +37,8 @@ struct ChatHeaderView: View {
     var body : some View {
         HStack {
             
-            ImageView(image: image)
-            UserNameView(name: name)
+            ChatImageView(image: image)
+            ChatUserNameView(name: name)
             Spacer()
         }.onAppear(perform: initialize)
         
@@ -54,9 +54,7 @@ struct ChatImageView: View {
             .resizable()
             .scaledToFit()
             .clipShape(Circle())
-            .frame(width: 80, height: 80)
-            .overlay(
-                Circle().stroke(Color.white,lineWidth: 1))
+            .frame(width: 40, height: 40)
     }
 }
 

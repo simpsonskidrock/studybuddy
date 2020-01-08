@@ -46,10 +46,11 @@ struct ChatView: View {
         }
     }
     
+    
     var body: some View {
         
         VStack {
-            ChatHeaderView(uid: self.uid!)
+            
             List {
                 ForEach(chatController.message, id: \.self) { msg in
                     ChatRow(chatMessage: msg)
@@ -58,18 +59,22 @@ struct ChatView: View {
             }
             
             HStack {
-                TextField(" Message...", text: $composedMessage).frame(minHeight: CGFloat(50))
+                TextField(" Message...", text: $composedMessage).frame(minHeight: CGFloat(40))
                     .background(Color.white)
                     .cornerRadius(10)
                     .foregroundColor(.black)
                 Button(action: sendMsg) {
-                    Text("Send")
-                        .foregroundColor(.black)
+                    Image(systemName:"paperplane")
+                    .resizable()
+                    .frame(width: 20, height: 20)
+                        .foregroundColor(.white)
+                        
                 }
             }.frame(minHeight: CGFloat(50)).padding()
                 .background(Color.lmuGreen)
         }.onAppear(perform: initialize)
-            .navigationBarTitle(Text(""))
+            .navigationBarItems(trailing:ChatHeaderView(uid: self.uid!))
+        
         
         
     }
@@ -88,8 +93,11 @@ struct ChatRow : View {
                 HStack {
                     Group {
                         Text(chatMessage.body)
-                            .padding(10)
+                            .foregroundColor(.white)
+                             .padding(10)
+                            .background(Color.lmuDarkGrey)
                             .cornerRadius(10)
+                        
                     }
                     
                 }
@@ -99,8 +107,8 @@ struct ChatRow : View {
                         Spacer()
                         Text(chatMessage.body)
                             .padding(10)
+                            .background(Color.lmuLightGrey)
                             .cornerRadius(10)
-                        Image("MeAvatar")
                     }
                 }
             }
