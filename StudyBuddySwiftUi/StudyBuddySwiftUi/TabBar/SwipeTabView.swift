@@ -23,6 +23,13 @@ struct SwipeTabView: View {
         })
     }
     
+    private func close() {
+        if (self.index == self.session.otherUsers.count) {
+            self.index = 0
+            self.offset = 0
+        }
+    }
+    
     var body: some View {
         VStack {
             GeometryReader { geometry in
@@ -46,10 +53,10 @@ struct SwipeTabView: View {
                         })
                         .onEnded({ value in
                             if -value.predictedEndTranslation.width > geometry.size.width / 2, self.index < self.session.otherUsers.count - 1 {
-                                self.index += 1
+                                self.index += 1 // swipe to card on right side
                             }
                             if value.predictedEndTranslation.width > geometry.size.width / 2, self.index > 0 {
-                                self.index -= 1
+                                self.index -= 1 // swipe to card on left side
                             }
                             withAnimation {
                                 self.offset = -(geometry.size.width + self.spacing) * CGFloat(self.index)
@@ -64,5 +71,6 @@ struct SwipeTabView: View {
             .padding(.bottom)
             .background(Color.lmuGreen.edgesIgnoringSafeArea(.vertical))
             .onAppear(perform: initialize)
+            .onDisappear(perform: close)
     }
 }
