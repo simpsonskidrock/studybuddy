@@ -151,7 +151,8 @@ struct ProfileTabView: View {
                             TextField("Enter your name", text:  $displayName)
                                 .disableAutocorrection(true)
                                 .disabled(!self.editProfile)
-                                .textFieldStyle(StudyTextFieldLightStyle())
+                                .font(.title)
+                                .foregroundColor(.white)
                         }
                         HStack {
                             if (editProfile) {
@@ -161,12 +162,11 @@ struct ProfileTabView: View {
                             }
                                 TextField("ex: Informatik", text:  $fieldOfStudy)
                                 .disabled(!self.editProfile)
-                                .textFieldStyle(StudyTextFieldLightStyle())
+                                .font(.title)
+                                .foregroundColor(.white)
                         }
-                        HStack {
-                            Text("Description")
+                        Text("Description")
                                 .foregroundColor(.lmuLightGrey)
-                        }
 
                         TextField("Describe your self", text: $description)
                             .fixedSize(horizontal: false, vertical: true)
