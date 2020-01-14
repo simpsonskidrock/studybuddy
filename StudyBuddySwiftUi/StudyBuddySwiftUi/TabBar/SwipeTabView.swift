@@ -29,10 +29,13 @@ struct SwipeTabView: View {
             self.offset = 0
         }
     }
-    
+
+    let tagsForTesting = ["Informatik", "LMU", "iOS", "Medieninformatik"]
+
     var body: some View {
         VStack {
             Spacer()
+            // GPS BUTTON
             Button(action: {
                 self.session.searchWithGPS.toggle()
             }) {
@@ -44,9 +47,22 @@ struct SwipeTabView: View {
                         Image(systemName: "location.slash")
                         Text("No GPS").fontWeight(.semibold)
                     }
-
                 }
             }.buttonStyle(StudyBuddyIconButtonStyleLevel2())
+            // TAGS
+            HStack {
+                ForEach(tagsForTesting, id: \.self) { tag in
+                    Button(action: {
+                        print("You tapped on a tag, feature to filter by tags is not implemented yet :(")
+                    }) {
+                        Text("#\(tag)")
+                            .background(Color.lmuDarkGrey)
+                            .foregroundColor(Color.white)
+                            .cornerRadius(5)
+                    }
+                }
+            }
+            // PROFILES
             GeometryReader { geometry in
                 return ScrollView(.horizontal, showsIndicators: true) {
                     HStack(spacing: self.spacing) {
