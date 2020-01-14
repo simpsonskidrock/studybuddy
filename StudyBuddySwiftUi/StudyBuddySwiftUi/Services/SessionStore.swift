@@ -301,29 +301,27 @@ class SessionStore: ObservableObject {
 
     func removeLikedUser(uidToRemove: String) {
         let prevSize: Int = self.sessionUser?.likedUsers.count ?? 0
-        self.sessionUser?.likedUsers = self.sessionUser?.likedUsers.filter{$0 == uidToRemove} ?? []
+        self.sessionUser?.likedUsers = self.sessionUser?.likedUsers.filter{$0 != uidToRemove} ?? []
         if (prevSize > self.sessionUser?.likedUsers.count ?? 0) {
             print("Removal successful")
         } else {
             print("Removal failed! likedUsers:\(self.sessionUser?.likedUsers)")
         }
+        updateLikedUsersInDB()
     }
 
     func removeMatchedUser(uidToRemove: String) {
         let prevSize: Int = self.sessionUser?.contacts.count ?? 0
-        self.sessionUser?.contacts = self.sessionUser?.contacts.filter{$0 == uidToRemove} ?? []
+        self.sessionUser?.contacts = self.sessionUser?.contacts.filter{$0 != uidToRemove} ?? []
         if (prevSize > self.sessionUser?.contacts.count ?? 0) {
             print("Removal successful")
         } else {
             print("Removal failed! contacts:\(self.sessionUser?.contacts)")
         }
+        updateMatchedUsersInDB()
     }
 
-    func removeLikedUsers() {
-        self.sessionUser?.likedUsers = []
-        for user in self.likedUsers {
-            self.sessionUser?.likedUsers.append(user.uid)
-        }
+    func updateLikedUsersInDB() {
         let tempUid: String = String((self.sessionUser?.uid)!)
         let dict: Dictionary<String, Any> = [
             FixedStringValues.likedUsers: self.sessionUser?.likedUsers ?? ""
@@ -332,12 +330,8 @@ class SessionStore: ObservableObject {
             if error == nil {}
         } )
     }
-    
-    func removeContact() {
-        self.sessionUser?.contacts = []
-        for user in self.matchedUsers {
-            self.sessionUser?.contacts.append(user.uid)
-        }
+
+    func updateMatchedUsersInDB() {
         let tempUid: String = String((self.sessionUser?.uid)!)
         let dict: Dictionary<String, Any> = [
             FixedStringValues.contacts: self.sessionUser?.contacts ?? ""
