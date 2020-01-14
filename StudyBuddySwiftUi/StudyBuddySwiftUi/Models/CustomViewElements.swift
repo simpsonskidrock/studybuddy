@@ -14,6 +14,12 @@ extension Color {
     static let lmuDarkGrey = Color("LMU Dark Grey")
 }
 
+extension Text {
+    func textStyle<Style: ViewModifier>(_ style: Style) -> some View {
+        ModifiedContent(content: self, modifier: style)
+    }
+}
+
 // ------- Level 1 - Views: LoginView, ChangePasswordView, RegisterView, ResetPasswordView ------ //
 
 public struct StudyBuddyTitleStyleLevel1a : ViewModifier {
@@ -53,12 +59,6 @@ public struct StudyBuddyTextStyleLevel1c : ViewModifier {
     }
 }
 
-extension Text {
-    func textStyle<Style: ViewModifier>(_ style: Style) -> some View {
-        ModifiedContent(content: self, modifier: style)
-    }
-}
-
 public struct StudyBuddyTextFieldStyleLevel1 : TextFieldStyle {
     public func _body(configuration: TextField<Self._Label>) -> some View {
         configuration
@@ -84,6 +84,14 @@ public struct StudyBuddyButtonStyleLevel1: ButtonStyle {
 }
 
 // ------- Level 2 - all other Views ------- //
+
+public struct StudyBuddySubTitleStyleLevel2 : ViewModifier {
+    public func body(content: Content) -> some View {
+        content
+            .font(.largeTitle)
+            .foregroundColor(Color.white)
+    }
+}
 
 public struct StudyTextFieldStyle : TextFieldStyle {
     public func _body(configuration: TextField<Self._Label>) -> some View {
