@@ -79,9 +79,9 @@ struct RegisterView: View {
         return ZStack {
             VStack {
                 Group {
+                    Spacer()
                     Text(FixedStringValues.appName).font(.largeTitle)
                         .foregroundColor(Color.white)
-                    Spacer()
                     Text("SignUp").font(.largeTitle)
                         .foregroundColor(.lmuLightGrey)
                     Spacer()
@@ -89,11 +89,11 @@ struct RegisterView: View {
                 VStack {
                     Text("Create a new Account").foregroundColor(Color.white).font(.title)
                     TextField("E-mail", text: $email)
-                        .textFieldStyle(StudyTextFieldStyle())
+                        .textFieldStyle(StudyBuddyTextFieldStyleLevel1())
                     SecureField("Password", text: $password)
-                        .textFieldStyle(StudyTextFieldStyle())
+                        .textFieldStyle(StudyBuddyTextFieldStyleLevel1())
                     SecureField("Confirm Password", text: repeatPasswordBinding)
-                        .textFieldStyle(StudyTextFieldStyle())
+                        .textFieldStyle(StudyBuddyTextFieldStyleLevel1())
                 }
                 Group {
                     Spacer()
@@ -102,7 +102,7 @@ struct RegisterView: View {
                         self.signUpAction()
                     }) {
                         Text("Register")
-                    }.buttonStyle(StudyButtonStyle())
+                    }.buttonStyle(StudyBuddyButtonStyleLevel1())
                     
                     // Phantom navigation link:
                     NavigationLink("", destination: GeneralTabView(), isActive: $signUpSuccessFlagForNavigation)

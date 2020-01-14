@@ -100,18 +100,7 @@ struct ProfileTabView: View {
                             .fontWeight(.semibold)
                         Spacer()
                         HStack {
-                            Image(systemName: "gear").contextMenu {
-                                Button(action: {
-                                    self.session.searchWithGPS.toggle()
-                                }) {
-                                    Text("Search with Location")
-                                    if self.session.searchWithGPS {
-                                        Image(systemName: "location")
-                                    } else {
-                                        Image(systemName: "location.slash")
-                                    }
-                                }
-                                Button(action: {
+                            Button(action: {
                                     self.session.signOut()
                                     self.mode.wrappedValue.dismiss()
                                 }){
@@ -124,7 +113,6 @@ struct ProfileTabView: View {
                             }.padding()
                                 .font(.system(size: 17))
                                 .foregroundColor(.white)
-                        }
                     }.frame(height: 50)
                         .padding(.leading, 10)
                     Image(uiImage: self.image)

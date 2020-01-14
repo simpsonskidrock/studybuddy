@@ -54,16 +54,16 @@ struct ChangePasswordView: View {
                 VStack {
                     Text("Enter new password").foregroundColor(Color.white)
                     TextField("E-mail", text: $email)
-                        .textFieldStyle(StudyTextFieldStyle())
+                        .textFieldStyle(StudyBuddyTextFieldStyleLevel1())
                     SecureField("New Password", text: $newPassword)
-                        .textFieldStyle(StudyTextFieldStyle())
+                        .textFieldStyle(StudyBuddyTextFieldStyleLevel1())
                     SecureField("Confirm New Password", text: $repeatNewPassword)
-                        .textFieldStyle(StudyTextFieldStyle())
+                        .textFieldStyle(StudyBuddyTextFieldStyleLevel1())
                 }
                 NavigationLink(destination: ProfileTabView()) {
                     Text("Change Password").font(.system(size: 20))
                         .fontWeight(.heavy)
-                }.buttonStyle(StudyButtonStyle())
+                }.buttonStyle(StudyBuddyButtonStyleLevel1())
                     .simultaneousGesture(TapGesture().onEnded{self.changePassword()})
                 HStack {
                     Text("Don't want to change your password?").foregroundColor(Color.lmuLightGrey)
