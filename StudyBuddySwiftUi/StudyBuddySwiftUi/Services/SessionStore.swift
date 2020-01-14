@@ -28,7 +28,7 @@ class SessionStore: ObservableObject {
     /* Users the currentUser has matched with */
     @Published var matchedUsers: [UserModel] = []
     var presentMatchAlert: Bool = false
-    var searchWithGPS: Bool = false
+    @Published var searchWithGPS: Bool = false
 
     func listen(handler: @escaping ((UserModel) -> ())) {
         // monitor authentication changes using firebase
