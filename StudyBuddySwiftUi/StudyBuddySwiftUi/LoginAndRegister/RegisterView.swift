@@ -79,9 +79,9 @@ struct RegisterView: View {
         return ZStack {
             VStack {
                 Group {
+                    Spacer()
                     Text(FixedStringValues.appName).font(.largeTitle)
                         .foregroundColor(Color.white)
-                    Spacer()
                     Text("SignUp").font(.largeTitle)
                         .foregroundColor(.lmuLightGrey)
                     Spacer()

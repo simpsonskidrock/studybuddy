@@ -37,15 +37,14 @@ struct SwipeTabView: View {
                 self.session.searchWithGPS.toggle()
             }) {
                 HStack {
-                    // location und location.slash
                     if (self.session.searchWithGPS) {
                         Image(systemName: "location")
                             .font(.system(size: 15))
-                        Text("Gps active").fontWeight(.semibold)    
+                        Text("GPS active").fontWeight(.semibold)
                     } else {
                         Image(systemName: "location.slash")
                             .font(.system(size: 15))
-                        Text("No Gps").fontWeight(.semibold)
+                        Text("No GPS").fontWeight(.semibold)
                     }
 
                 }
