@@ -27,8 +27,7 @@ struct LoginView: View {
                 Spacer()
                 Group {
                     Image("fountainicon")
-                    Text(FixedStringValues.appName).font(.largeTitle)
-                        .foregroundColor(Color.white)
+                    Text(FixedStringValues.appName).textStyle(StudyBuddyTitleStyleLevel1a())
                 }
                 Spacer()
                 Group {

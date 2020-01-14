@@ -16,6 +16,28 @@ extension Color {
 
 // ------- Level 1 ------- //
 
+public struct StudyBuddyTitleStyleLevel1a : ViewModifier {
+    public func body(content: Content) -> some View {
+        content
+            .font(.largeTitle)
+            .foregroundColor(Color.white)
+    }
+}
+
+public struct StudyBuddyTitleStyleLevel1b : ViewModifier {
+    public func body(content: Content) -> some View {
+        content
+            .font(.largeTitle)
+            .foregroundColor(.lmuLightGrey)
+    }
+}
+
+extension Text {
+    func textStyle<Style: ViewModifier>(_ style: Style) -> some View {
+        ModifiedContent(content: self, modifier: style)
+    }
+}
+
 // background: white, placeholder: lightGrey, textColor: black, cursor: blue
 public struct StudyBuddyTextFieldStyleLevel1 : TextFieldStyle {
     public func _body(configuration: TextField<Self._Label>) -> some View {

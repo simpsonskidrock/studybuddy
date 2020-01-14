@@ -58,10 +58,8 @@ struct ResetPasswordView: View {
             VStack {
                 Group{
                     Spacer()
-                    Text(FixedStringValues.appName).font(.largeTitle)
-                        .foregroundColor(Color.white)
-                    Text("Reset Password").font(.largeTitle)
-                        .foregroundColor(.lmuLightGrey)
+                    Text(FixedStringValues.appName).textStyle(StudyBuddyTitleStyleLevel1a())
+                    Text("Reset Password").textStyle(StudyBuddyTitleStyleLevel1b())
                     Spacer()
                 }
                 VStack {

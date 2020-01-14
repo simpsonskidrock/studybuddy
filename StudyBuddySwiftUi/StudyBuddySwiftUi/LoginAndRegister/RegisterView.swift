@@ -80,10 +80,8 @@ struct RegisterView: View {
             VStack {
                 Group {
                     Spacer()
-                    Text(FixedStringValues.appName).font(.largeTitle)
-                        .foregroundColor(Color.white)
-                    Text("SignUp").font(.largeTitle)
-                        .foregroundColor(.lmuLightGrey)
+                    Text(FixedStringValues.appName).textStyle(StudyBuddyTitleStyleLevel1a())
+                    Text("SignUp").textStyle(StudyBuddyTitleStyleLevel1b())
                     Spacer()
                 }
                 VStack {
