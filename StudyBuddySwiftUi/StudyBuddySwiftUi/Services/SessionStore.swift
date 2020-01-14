@@ -298,7 +298,27 @@ class SessionStore: ObservableObject {
             } )
         }
     }
-    
+
+    func removeLikedUser(uidToRemove: String) {
+        let prevSize: Int = self.sessionUser?.likedUsers.count ?? 0
+        self.sessionUser?.likedUsers = self.sessionUser?.likedUsers.filter{$0 == uidToRemove} ?? []
+        if (prevSize > self.sessionUser?.likedUsers.count ?? 0) {
+            print("Removal successful")
+        } else {
+            print("Removal failed! likedUsers:\(self.sessionUser?.likedUsers)")
+        }
+    }
+
+    func removeMatchedUser(uidToRemove: String) {
+        let prevSize: Int = self.sessionUser?.contacts.count ?? 0
+        self.sessionUser?.contacts = self.sessionUser?.contacts.filter{$0 == uidToRemove} ?? []
+        if (prevSize > self.sessionUser?.contacts.count ?? 0) {
+            print("Removal successful")
+        } else {
+            print("Removal failed! contacts:\(self.sessionUser?.contacts)")
+        }
+    }
+
     func removeLikedUsers() {
         self.sessionUser?.likedUsers = []
         for user in self.likedUsers {

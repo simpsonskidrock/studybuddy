@@ -55,14 +55,20 @@ struct ContactsTabView: View {
                     ForEach(self.session.matchedUsers.filter{$0.displayName?.hasPrefix(searchText) ?? false || searchText == ""}, id: \.uid) { contact in
                         ContactsLineView(uid: contact.uid, chatAllowed: true)
                     }.onDelete { (indexSet) in
+                        indexSet.forEach {i in
+                            let uidToRemove:String = self.session.matchedUsers[i].uid
+                            self.session.removeMatchedUser(uidToRemove: uidToRemove)
+                        }
                         self.session.matchedUsers.remove(atOffsets: indexSet)
-                        self.session.removeContact()
                     }
                     ForEach(self.session.likedUsers.filter{$0.displayName?.hasPrefix(searchText) ?? false || searchText == ""}, id: \.uid) { contact in
                         ContactsLineView(uid: contact.uid, chatAllowed: false)
                     }.onDelete { (indexSet) in
+                        indexSet.forEach {i in
+                            let uidToRemove:String = self.session.likedUsers[i].uid
+                            self.session.removeLikedUser(uidToRemove: uidToRemove)
+                        }
                         self.session.likedUsers.remove(atOffsets: indexSet)
-                        self.session.removeLikedUsers()
                     }
                 }.navigationBarTitle(Text("Chats"))
                     .resignKeyboardOnDragGesture()
