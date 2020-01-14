@@ -198,6 +198,8 @@
 		7375795223CDCD520003FE2A /* View */ = {
 			isa = PBXGroup;
 			children = (
+				84B3AD5D237D973800CB2160 /* CustomViewElements.swift */,
+				73A355EB23AA404B001C3EF0 /* NoOtherUsersView.swift */,
 			);
 			name = View;
 			path = Controllers/View;
@@ -210,8 +212,6 @@
 				3391BDFD238557FB00643581 /* UserModel.swift */,
 				73A69B4823869D2700ECEAC2 /* ListedAlerts.swift */,
 				734FC386238F094B00350F82 /* FixedStringValues.swift */,
-				84B3AD5D237D973800CB2160 /* CustomViewElements.swift */,
-				73A355EB23AA404B001C3EF0 /* NoOtherUsersView.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
