@@ -85,6 +85,14 @@ public struct StudyBuddyButtonStyleLevel1: ButtonStyle {
 
 // ------- Level 2 - all other Views ------- //
 
+public struct StudyBuddyTitleStyleLevel2 : ViewModifier {
+    public func body(content: Content) -> some View {
+        content
+            .font(.largeTitle)
+            .foregroundColor(Color.white)
+    }
+}
+
 public struct StudyBuddySubTitleStyleLevel2 : ViewModifier {
     public func body(content: Content) -> some View {
         content

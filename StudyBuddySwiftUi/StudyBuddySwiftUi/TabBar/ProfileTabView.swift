@@ -95,9 +95,8 @@ struct ProfileTabView: View {
                 VStack {
                     HStack {
                         Text("Profile")
-                            .font(.largeTitle)
-                            .foregroundColor(Color.white)
                             .fontWeight(.semibold)
+                            .textStyle(StudyBuddyTitleStyleLevel2())
                         Spacer()
                         HStack {
                             Button(action: {
@@ -106,10 +105,11 @@ struct ProfileTabView: View {
                                 }){
                                     HStack {
                                         Image(systemName: "arrow.uturn.left")
+                                            .font(.system(size: 15))
                                         Text("Logout")
                                             .fontWeight(.semibold)
                                     }
-                                }
+                                }.buttonStyle(StudyButtonLightStyle())
                             }.padding()
                                 .font(.system(size: 17))
                                 .foregroundColor(.white)
@@ -133,6 +133,7 @@ struct ProfileTabView: View {
                         }) {
                             Image(systemName: "camera.on.rectangle")
                                 .foregroundColor(.white)
+                                .font(.system(size: 15))
                         }.padding()
                             .sheet(isPresented: $isShowingImagePicker, content: {
                                 ImagePickerViewController(isPresented: self.$isShowingImagePicker, selectedImage: self.$image)
@@ -200,7 +201,11 @@ struct ProfileTabView: View {
                         self.session.updateProfile(displayName: self.displayName, fieldOfStudy: self.fieldOfStudy, description: self.description, hashtags: self.hashtags, image: self.image)
                         self.editProfile.toggle()
                     }) {
-                        Text("Save").fontWeight(.semibold)
+                        HStack {
+                            Image(systemName: "checkmark")
+                                .font(.system(size: 15))
+                            Text("Save").fontWeight(.semibold)
+                        }
                     }.buttonStyle(StudyButtonLightStyle())
                 }
             }
