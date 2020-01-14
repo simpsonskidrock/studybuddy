@@ -39,16 +39,14 @@ struct SwipeTabView: View {
                 HStack {
                     if (self.session.searchWithGPS) {
                         Image(systemName: "location")
-                            .font(.system(size: 15))
                         Text("GPS active").fontWeight(.semibold)
                     } else {
                         Image(systemName: "location.slash")
-                            .font(.system(size: 15))
                         Text("No GPS").fontWeight(.semibold)
                     }
 
                 }
-            }.buttonStyle(StudyButtonLightStyle())
+            }.buttonStyle(StudyBuddyIconButtonStyleLevel2())
             GeometryReader { geometry in
                 return ScrollView(.horizontal, showsIndicators: true) {
                     HStack(spacing: self.spacing) {

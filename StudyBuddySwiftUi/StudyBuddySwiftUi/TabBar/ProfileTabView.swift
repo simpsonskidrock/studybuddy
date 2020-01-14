@@ -105,14 +105,11 @@ struct ProfileTabView: View {
                                 }){
                                     HStack {
                                         Image(systemName: "arrow.uturn.left")
-                                            .font(.system(size: 15))
                                         Text("Logout")
                                             .fontWeight(.semibold)
                                     }
-                                }.buttonStyle(StudyButtonLightStyle())
+                                }.buttonStyle(StudyBuddyIconButtonStyleLevel2())
                             }.padding()
-                                .font(.system(size: 17))
-                                .foregroundColor(.white)
                     }.frame(height: 50)
                         .padding(.leading, 10)
                     Image(uiImage: self.image)
@@ -132,9 +129,7 @@ struct ProfileTabView: View {
                             }
                         }) {
                             Image(systemName: "camera.on.rectangle")
-                                .foregroundColor(.white)
-                                .font(.system(size: 15))
-                        }.padding()
+                        }.buttonStyle(StudyBuddyIconButtonStyleLevel2())
                             .sheet(isPresented: $isShowingImagePicker, content: {
                                 ImagePickerViewController(isPresented: self.$isShowingImagePicker, selectedImage: self.$image)
                             })
@@ -152,8 +147,7 @@ struct ProfileTabView: View {
                             TextField("Enter your name", text:  $displayName)
                                 .disableAutocorrection(true)
                                 .disabled(!self.editProfile)
-                                .font(.title)
-                                .foregroundColor(.white)
+                                .textFieldStyle(StudyBuddySubTitleStyleLevel2a())
                         }
                         HStack {
                             if (editProfile) {
@@ -163,25 +157,19 @@ struct ProfileTabView: View {
                             }
                                 TextField("ex: Informatik", text:  $fieldOfStudy)
                                 .disabled(!self.editProfile)
-                                .font(.title)
-                                .foregroundColor(.white)
+                                .textFieldStyle(StudyBuddySubTitleStyleLevel2a())
                         }
                         Text("Description")
                                 .foregroundColor(.lmuLightGrey)
 
                         TextField("Describe your self", text: $description)
-                            .fixedSize(horizontal: false, vertical: true)
-                            .lineLimit(5)
                             .disabled(!self.editProfile)
-                            .multilineTextAlignment(.leading)
-                            .textFieldStyle(StudyTextFieldLightStyle())
+                            .textFieldStyle(StudyBuddySubTitleStyleLevel2b())
                         Text("Hashtags").foregroundColor(.lmuLightGrey)
-                        TextField("#", text: $hashtags).lineLimit(nil)
-                            .fixedSize(horizontal: false, vertical: true)
-                            .lineLimit(5)
-                            .multilineTextAlignment(.leading)
+                        TextField("#", text: $hashtags)
+                            .lineLimit(nil)
                             .disabled(!self.editProfile)
-                            .textFieldStyle(StudyTextFieldLightStyle())
+                            .textFieldStyle(StudyBuddySubTitleStyleLevel2b())
                     }.padding()
                 }
                 Spacer()
@@ -191,10 +179,9 @@ struct ProfileTabView: View {
                     }) {
                         HStack {
                             Image(systemName: "pencil")
-                                .font(.system(size: 15))
                             Text("Edit").fontWeight(.semibold)
                         }
-                    }.buttonStyle(StudyButtonLightStyle())
+                    }.buttonStyle(StudyBuddyIconButtonStyleLevel2())
                 }
                 if self.editProfile {
                     Button(action: {
@@ -203,10 +190,9 @@ struct ProfileTabView: View {
                     }) {
                         HStack {
                             Image(systemName: "checkmark")
-                                .font(.system(size: 15))
                             Text("Save").fontWeight(.semibold)
                         }
-                    }.buttonStyle(StudyButtonLightStyle())
+                    }.buttonStyle(StudyBuddyIconButtonStyleLevel2())
                 }
             }
         }.navigationBarTitle("")
