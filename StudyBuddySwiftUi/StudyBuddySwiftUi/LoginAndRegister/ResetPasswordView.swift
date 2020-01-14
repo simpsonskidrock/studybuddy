@@ -78,11 +78,11 @@ struct ResetPasswordView: View {
                 }
                 HStack {
                     Group{
-                        Text("Don't want to reset your password?").foregroundColor(Color.lmuLightGrey)
+                        Text("Don't want to reset your password?").textStyle(StudyBuddyTextStyleLevel1b())
                         Button(action: {
                             self.mode.wrappedValue.dismiss()
                         }) {
-                            Text("Cancel").foregroundColor(.white)
+                            Text("Cancel").textStyle(StudyBuddyTextStyleLevel1c())
                         }
                     }
                 }

@@ -11,7 +11,6 @@ import SwiftUI
 struct ChangePasswordView: View {
     @Environment(\.presentationMode) var mode
     @EnvironmentObject var session: SessionStore
-    //@ObservedObject private var keyboard = KeyboardResponder()
     
     @State private var loading = false
     @State private var error = false
@@ -47,12 +46,12 @@ struct ChangePasswordView: View {
     var body: some View {
         ZStack {
             VStack {
-                Text("Change Password").font(.largeTitle).foregroundColor(.lmuLightGrey)
                 Spacer()
-                Text(FixedStringValues.appName).font(.largeTitle).foregroundColor(Color.white)
+                Text(FixedStringValues.appName).textStyle(StudyBuddyTitleStyleLevel1a())
+                Text("Change Password").textStyle(StudyBuddyTitleStyleLevel1b())
                 Spacer()
                 VStack {
-                    Text("Enter new password").foregroundColor(Color.white)
+                    Text("Enter new password").textStyle(StudyBuddyTextStyleLevel1a())
                     TextField("E-mail", text: $email)
                         .textFieldStyle(StudyBuddyTextFieldStyleLevel1())
                     SecureField("New Password", text: $newPassword)
@@ -66,17 +65,16 @@ struct ChangePasswordView: View {
                 }.buttonStyle(StudyBuddyButtonStyleLevel1())
                     .simultaneousGesture(TapGesture().onEnded{self.changePassword()})
                 HStack {
-                    Text("Don't want to change your password?").foregroundColor(Color.lmuLightGrey)
+                    Text("Don't want to change your password?").textStyle(StudyBuddyTextStyleLevel1b())
                     Button(action: {
                         self.mode.wrappedValue.dismiss()
                     }) {
-                        Text("Cancel") .foregroundColor(.white)
+                        Text("Cancel").textStyle(StudyBuddyTextStyleLevel1c())
                     }
                 }
                 Spacer()
             }
             .padding(.horizontal) .background(Color.lmuGreen.edgesIgnoringSafeArea(.vertical))
-           // .padding(.bottom, keyboard.currentHeight)
             .edgesIgnoringSafeArea(.bottom)
             .animation(.easeOut(duration: 0.16))
             .navigationBarTitle("")

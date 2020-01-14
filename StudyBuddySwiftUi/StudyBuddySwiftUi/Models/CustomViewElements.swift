@@ -14,7 +14,7 @@ extension Color {
     static let lmuDarkGrey = Color("LMU Dark Grey")
 }
 
-// ------- Level 1 ------- //
+// ------- Level 1 - Views: LoginView, ChangePasswordView, RegisterView, ResetPasswordView ------ //
 
 public struct StudyBuddyTitleStyleLevel1a : ViewModifier {
     public func body(content: Content) -> some View {
@@ -39,13 +39,26 @@ public struct StudyBuddyTextStyleLevel1a : ViewModifier {
     }
 }
 
+public struct StudyBuddyTextStyleLevel1b : ViewModifier {
+    public func body(content: Content) -> some View {
+        content
+            .foregroundColor(Color.lmuLightGrey)
+    }
+}
+
+public struct StudyBuddyTextStyleLevel1c : ViewModifier {
+    public func body(content: Content) -> some View {
+        content
+            .foregroundColor(Color.white)
+    }
+}
+
 extension Text {
     func textStyle<Style: ViewModifier>(_ style: Style) -> some View {
         ModifiedContent(content: self, modifier: style)
     }
 }
 
-// background: white, placeholder: lightGrey, textColor: black, cursor: blue
 public struct StudyBuddyTextFieldStyleLevel1 : TextFieldStyle {
     public func _body(configuration: TextField<Self._Label>) -> some View {
         configuration
@@ -57,7 +70,6 @@ public struct StudyBuddyTextFieldStyleLevel1 : TextFieldStyle {
     }
 }
 
-// background: lmuDarkGrey, textColor: white
 public struct StudyBuddyButtonStyleLevel1: ButtonStyle {
     public func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label
@@ -71,7 +83,7 @@ public struct StudyBuddyButtonStyleLevel1: ButtonStyle {
     }
 }
 
-// ------- Level 2 ------- //
+// ------- Level 2 - all other Views ------- //
 
 public struct StudyTextFieldStyle : TextFieldStyle {
     public func _body(configuration: TextField<Self._Label>) -> some View {

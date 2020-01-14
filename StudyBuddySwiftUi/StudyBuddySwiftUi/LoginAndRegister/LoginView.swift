@@ -59,9 +59,9 @@ struct LoginView: View {
                 }
                 HStack {
                     Group {
-                        Text("Forgot your password?").foregroundColor(Color.lmuLightGrey)
+                        Text("Forgot your password?").textStyle(StudyBuddyTextStyleLevel1b())
                         NavigationLink(destination: ResetPasswordView()) {
-                            Text("Click here").foregroundColor(.white)
+                            Text("Click here").textStyle(StudyBuddyTextStyleLevel1c())
                         }
                     }
                 }

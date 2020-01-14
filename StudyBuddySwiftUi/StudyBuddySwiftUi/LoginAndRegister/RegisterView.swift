@@ -106,11 +106,11 @@ struct RegisterView: View {
                     NavigationLink("", destination: GeneralTabView(), isActive: $signUpSuccessFlagForNavigation)
                 }
                 HStack {
-                    Text("Already have an account?").foregroundColor(Color.lmuLightGrey)
+                    Text("Already have an account?").textStyle(StudyBuddyTextStyleLevel1b())
                     Button(action: {
                         self.mode.wrappedValue.dismiss()
                     }) {
-                        Text("Sign In").foregroundColor(.white)
+                        Text("Sign In").textStyle(StudyBuddyTextStyleLevel1c())
                     }
                 }
                 Group {
