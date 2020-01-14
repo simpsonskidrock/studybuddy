@@ -13,7 +13,7 @@ struct ChatView: View {
     
     @EnvironmentObject var session: SessionStore
     @Environment(\.presentationMode) var mode
-
+    
     
     let db = Firestore.firestore()
     @ObservedObject var chatController = ChatController()
@@ -67,10 +67,10 @@ struct ChatView: View {
                     .foregroundColor(.black)
                 Button(action: sendMsg) {
                     Image(systemName:"paperplane")
-                    .resizable()
-                    .frame(width: 20, height: 20)
+                        .resizable()
+                        .frame(width: 20, height: 20)
                         .foregroundColor(.white)
-                        
+                    
                 }
             }.frame(minHeight: CGFloat(50)).padding()
                 .background(Color.lmuGreen)
@@ -82,15 +82,8 @@ struct ChatView: View {
                     }) {
                         Image(systemName: "chevron.left")
                     }
-                    
-                    
                     ChatHeaderView(uid: self.uid!)
-              
-                
             })
-        
-        
-        
     }
 }
 
@@ -108,7 +101,7 @@ struct ChatRow : View {
                     Group {
                         Text(chatMessage.body)
                             .foregroundColor(.white)
-                             .padding(10)
+                            .padding(10)
                             .background(Color.lmuDarkGrey)
                             .cornerRadius(10)
                         
