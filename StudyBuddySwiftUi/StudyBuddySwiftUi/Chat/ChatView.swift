@@ -12,6 +12,8 @@ import Firebase
 struct ChatView: View {
     
     @EnvironmentObject var session: SessionStore
+    @Environment(\.presentationMode) var mode
+
     
     let db = Firestore.firestore()
     @ObservedObject var chatController = ChatController()
@@ -73,7 +75,19 @@ struct ChatView: View {
             }.frame(minHeight: CGFloat(50)).padding()
                 .background(Color.lmuGreen)
         }.onAppear(perform: initialize)
-            .navigationBarItems(trailing:ChatHeaderView(uid: self.uid!))
+            .navigationBarItems(leading:
+                HStack{
+                    Button(action: {
+                        self.mode.wrappedValue.dismiss()
+                    }) {
+                        Image(systemName: "chevron.left")
+                    }
+                    
+                    
+                    ChatHeaderView(uid: self.uid!)
+              
+                
+            })
         
         
         

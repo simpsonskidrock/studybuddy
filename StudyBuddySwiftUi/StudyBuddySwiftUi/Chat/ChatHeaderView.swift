@@ -54,7 +54,7 @@ struct ChatImageView: View {
             .resizable()
             .scaledToFit()
             .clipShape(Circle())
-            .frame(width: 40, height: 40)
+            .frame(width:60, height: 60)
     }
 }
 
@@ -64,5 +64,7 @@ struct ChatUserNameView: View {
     var body: some View {
         Text("\(name)")
             .bold()
+            .font(Font.system(size: 30))
+        
     }
 }
