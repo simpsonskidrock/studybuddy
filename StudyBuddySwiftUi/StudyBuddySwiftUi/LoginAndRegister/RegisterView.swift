@@ -85,7 +85,7 @@ struct RegisterView: View {
                     Spacer()
                 }
                 VStack {
-                    Text("Create a new Account").foregroundColor(Color.white).font(.title)
+                    Text("Create a new Account").textStyle(StudyBuddyTextStyleLevel1a())
                     TextField("E-mail", text: $email)
                         .textFieldStyle(StudyBuddyTextFieldStyleLevel1())
                     SecureField("Password", text: $password)

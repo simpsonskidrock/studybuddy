@@ -31,7 +31,7 @@ struct LoginView: View {
                 }
                 Spacer()
                 Group {
-                    Text("Enter email and password").foregroundColor(Color.white)
+                    Text("Enter email and password").textStyle(StudyBuddyTextStyleLevel1a())
                     TextField("Email", text: $email)
                         .textFieldStyle(StudyBuddyTextFieldStyleLevel1())
                     SecureField("Password", text: $password)

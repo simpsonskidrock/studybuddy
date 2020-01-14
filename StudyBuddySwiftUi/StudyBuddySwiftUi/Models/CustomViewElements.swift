@@ -32,6 +32,13 @@ public struct StudyBuddyTitleStyleLevel1b : ViewModifier {
     }
 }
 
+public struct StudyBuddyTextStyleLevel1a : ViewModifier {
+    public func body(content: Content) -> some View {
+        content
+            .foregroundColor(Color.white)
+    }
+}
+
 extension Text {
     func textStyle<Style: ViewModifier>(_ style: Style) -> some View {
         ModifiedContent(content: self, modifier: style)

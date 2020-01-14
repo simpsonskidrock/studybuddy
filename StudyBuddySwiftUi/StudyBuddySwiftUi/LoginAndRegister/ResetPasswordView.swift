@@ -63,7 +63,7 @@ struct ResetPasswordView: View {
                     Spacer()
                 }
                 VStack {
-                    Text("Enter your email address").foregroundColor(Color.white)
+                    Text("Enter your email address").textStyle(StudyBuddyTextStyleLevel1a())
                     TextField("Email", text: emailBinding).textFieldStyle(StudyBuddyTextFieldStyleLevel1())
                 }
                 Group{
