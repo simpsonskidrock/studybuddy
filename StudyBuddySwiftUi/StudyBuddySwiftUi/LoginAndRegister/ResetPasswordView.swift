@@ -66,7 +66,7 @@ struct ResetPasswordView: View {
                 }
                 VStack {
                     Text("Enter your email address").foregroundColor(Color.white)
-                    TextField("Email", text: emailBinding).textFieldStyle(StudyTextFieldStyle())
+                    TextField("Email", text: emailBinding).textFieldStyle(StudyBuddyTextFieldStyleLevel1())
                 }
                 Group{
                     Text(errorText).foregroundColor(.orange)
@@ -74,7 +74,7 @@ struct ResetPasswordView: View {
                         self.ResetPassword()
                     }) {
                         Text("Reset Password")
-                    }.buttonStyle(StudyButtonStyle())
+                    }.buttonStyle(StudyBuddyButtonStyleLevel1())
                     // Phantom navigation link:
                     NavigationLink("", destination: LoginView(), isActive: $resetPasswordSuccessFlagForNavigation)
                 }

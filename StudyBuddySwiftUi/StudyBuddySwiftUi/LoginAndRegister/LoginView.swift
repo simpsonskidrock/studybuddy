@@ -34,9 +34,9 @@ struct LoginView: View {
                 Group {
                     Text("Enter email and password").foregroundColor(Color.white)
                     TextField("Email", text: $email)
-                        .textFieldStyle(StudyTextFieldStyle())
+                        .textFieldStyle(StudyBuddyTextFieldStyleLevel1())
                     SecureField("Password", text: $password)
-                        .textFieldStyle(StudyTextFieldStyle())
+                        .textFieldStyle(StudyBuddyTextFieldStyleLevel1())
                 }
                 HStack {
                     if (self.showInfoMessage && !self.validated) {
@@ -50,12 +50,12 @@ struct LoginView: View {
                     Group {
                         NavigationLink(destination: WaitForSessionUserView(email: self.email, password: self.password)) {
                             Text("Log In")
-                        }.buttonStyle(StudyButtonStyle())
+                        }.buttonStyle(StudyBuddyButtonStyleLevel1())
                             .simultaneousGesture(TapGesture().onEnded{self.showInfoMessage.toggle()})
                         Text("or").foregroundColor(Color.white)
                         NavigationLink(destination: RegisterView()) {
                             Text("Register")
-                        }.buttonStyle(StudyButtonStyle())
+                        }.buttonStyle(StudyBuddyButtonStyleLevel1())
                     }
                 }
                 HStack {
