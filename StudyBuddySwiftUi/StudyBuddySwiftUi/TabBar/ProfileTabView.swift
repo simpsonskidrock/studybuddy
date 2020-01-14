@@ -143,31 +143,38 @@ struct ProfileTabView: View {
                     }
                     VStack {
                         HStack {
-                            Text("Name:")
-                                .foregroundColor(.black)
-                                .fontWeight(.semibold)
+                            if (editProfile) {
+                                Text("Name:")
+                                    .foregroundColor(.lmuLightGrey)
+                                    .fontWeight(.semibold)
+                            }
                             TextField("Enter your name", text:  $displayName)
                                 .disableAutocorrection(true)
                                 .disabled(!self.editProfile)
                                 .textFieldStyle(StudyTextFieldLightStyle())
                         }
                         HStack {
-                            Text("Field Of Study:")
-                                .foregroundColor(.black)
-                                .fontWeight(.semibold)
-                            TextField("ex: Informatik", text:  $fieldOfStudy)
+                            if (editProfile) {
+                                Text("Field Of Study:")
+                                    .foregroundColor(.black)
+                                    .fontWeight(.semibold)
+                            }
+                                TextField("ex: Informatik", text:  $fieldOfStudy)
                                 .disabled(!self.editProfile)
                                 .textFieldStyle(StudyTextFieldLightStyle())
                         }
-                        Text("Description")
-                            .foregroundColor(.black)
+                        HStack {
+                            Text("Description")
+                                .foregroundColor(.lmuLightGrey)
+                        }
+
                         TextField("Describe your self", text: $description)
                             .fixedSize(horizontal: false, vertical: true)
                             .lineLimit(5)
                             .disabled(!self.editProfile)
                             .multilineTextAlignment(.leading)
-                            .foregroundColor(.lmuLightGrey)
-                        Text("Hashtags").foregroundColor(.black)
+                            .textFieldStyle(StudyTextFieldLightStyle())
+                        Text("Hashtags").foregroundColor(.lmuLightGrey)
                         TextField("#", text: $hashtags).lineLimit(nil)
                             .fixedSize(horizontal: false, vertical: true)
                             .lineLimit(5)
