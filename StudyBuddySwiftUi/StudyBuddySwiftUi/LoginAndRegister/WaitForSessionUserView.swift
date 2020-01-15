@@ -42,8 +42,7 @@ struct WaitForSessionUserView: View {
                     .overlay(
                         VStack {
                             Spacer()
-                            Image("fountainicon").foregroundColor(Color.white)
-                                .animation(.interpolatingSpring(stiffness: 20, damping: 0.5))
+                            Image("fountainicon").animation(.interpolatingSpring(stiffness: 20, damping: 0.5))
                             Spacer()
                     })
             }

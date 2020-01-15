@@ -81,7 +81,6 @@
 		3391BDFD238557FB00643581 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		4E5B7ECB2382A871002C72B2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5229308A2865911F0E6F797C /* Pods-StudyBuddySwiftUiTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StudyBuddySwiftUiTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-StudyBuddySwiftUiTests/Pods-StudyBuddySwiftUiTests.release.xcconfig"; sourceTree = "<group>"; };
-		58603FB17900E93AA0882E63 /* Enums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		598C953324D99E410D1B9A0F /* Pods-StudyBuddySwiftUi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StudyBuddySwiftUi.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StudyBuddySwiftUi/Pods-StudyBuddySwiftUi.debug.xcconfig"; sourceTree = "<group>"; };
 		63A1D570831FA0B30FC24AE1 /* Pods-StudyBuddySwiftUiUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StudyBuddySwiftUiUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-StudyBuddySwiftUiUITests/Pods-StudyBuddySwiftUiUITests.release.xcconfig"; sourceTree = "<group>"; };
 		732023D5239921C90031F120 /* WaitForSessionUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitForSessionUserView.swift; sourceTree = "<group>"; };
@@ -193,7 +192,6 @@
 				292EF2F92381F5760062FBB5 /* ChangePasswordView.swift */,
 				7367D201237D85F5002EE928 /* RegisterView.swift */,
 				290A21972393E08700E0BC81 /* ResetPasswordView.swift */,
-				58603FB17900E93AA0882E63 /* Enums.swift */,
 			);
 			path = LoginAndRegister;
 			sourceTree = "<group>";
@@ -201,6 +199,7 @@
 		7375795223CDCD520003FE2A /* View */ = {
 			isa = PBXGroup;
 			children = (
+				73CDE4402390FB120078654C /* otherUsersPresentation */,
 				73A355EB23AA404B001C3EF0 /* NoOtherUsersView.swift */,
 				7397242323CF75F10003DFD0 /* CustomViewElementsLevel1.swift */,
 				84B3AD5D237D973800CB2160 /* CustomViewElementsLevel2.swift */,
@@ -212,7 +211,6 @@
 		739A531E2386942A00A46746 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				73CDE4402390FB120078654C /* otherUsersPresentation */,
 				3391BDFD238557FB00643581 /* UserModel.swift */,
 				73A69B4823869D2700ECEAC2 /* ListedAlerts.swift */,
 				734FC386238F094B00350F82 /* FixedStringValues.swift */,
