@@ -82,19 +82,7 @@ struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
         LoginView()
     }
-    struct GeometryGetter: View {
-        @Binding var rect: CGRect
-        var body: some View {
-            GeometryReader { geometry in
-                Group { () -> AnyView in
-                    DispatchQueue.main.async {
-                        self.rect = geometry.frame(in: .global)
-                    }
-                    return AnyView(Color.clear)
-                }
-            }
-        }
-    }
+  
 }
 
 
