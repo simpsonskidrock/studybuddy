@@ -21,6 +21,10 @@ struct LoginView: View {
         !self.email.isEmpty && !self.password.isEmpty
     }
     
+    private func onLeave() {
+        self.password = ""
+    }
+    
     var body: some View {
         NavigationView {
             VStack(spacing: 16) {
@@ -74,16 +78,7 @@ struct LoginView: View {
                 .offset(x: 0, y: -keyboard.currentHeight)
                 .edgesIgnoringSafeArea(.bottom)
                 .animation(.easeOut(duration: 0.16))
+                .onDisappear(perform: onLeave)
         }
     }
 }
-
-struct LoginView_Previews: PreviewProvider {
-    static var previews: some View {
-        LoginView()
-    }
-  
-}
-
-
-

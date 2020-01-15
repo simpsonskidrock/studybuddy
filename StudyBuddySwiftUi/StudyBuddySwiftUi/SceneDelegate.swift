@@ -27,16 +27,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
             
-            // && false added to avoid auto login
-            if Auth.auth().currentUser != nil && true {
-                window.rootViewController = UIHostingController(
-                    rootView: GeneralTabView().environmentObject(SessionStore())
-                )
-            } else {
-                window.rootViewController = UIHostingController(
-                    rootView: LoginView().environmentObject(SessionStore())
-                )
-            }
+            window.rootViewController = UIHostingController(
+                rootView: WaitForLogin().environmentObject(SessionStore())
+            )
+            
             self.window = window
             window.makeKeyAndVisible()
         }

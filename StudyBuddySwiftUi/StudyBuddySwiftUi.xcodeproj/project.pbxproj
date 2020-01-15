@@ -27,6 +27,7 @@
 		7367D1FA237D7279002EE928 /* ContactsTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7367D1F9237D7279002EE928 /* ContactsTabView.swift */; };
 		7367D1FF237D8496002EE928 /* GeneralTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7367D1FE237D8496002EE928 /* GeneralTabView.swift */; };
 		7367D202237D85F5002EE928 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7367D201237D85F5002EE928 /* RegisterView.swift */; };
+		7397242223CF585D0003DFD0 /* WaitForLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7397242123CF585D0003DFD0 /* WaitForLogin.swift */; };
 		73A355EC23AA404B001C3EF0 /* NoOtherUsersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A355EB23AA404B001C3EF0 /* NoOtherUsersView.swift */; };
 		73A69B4923869D2700ECEAC2 /* ListedAlerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A69B4823869D2700ECEAC2 /* ListedAlerts.swift */; };
 		73B9D150237C2484000E268E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B9D14F237C2484000E268E /* AppDelegate.swift */; };
@@ -89,6 +90,7 @@
 		7367D1F9237D7279002EE928 /* ContactsTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsTabView.swift; sourceTree = "<group>"; };
 		7367D1FE237D8496002EE928 /* GeneralTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralTabView.swift; sourceTree = "<group>"; };
 		7367D201237D85F5002EE928 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
+		7397242123CF585D0003DFD0 /* WaitForLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitForLogin.swift; sourceTree = "<group>"; };
 		73A355EB23AA404B001C3EF0 /* NoOtherUsersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoOtherUsersView.swift; sourceTree = "<group>"; };
 		73A69B4823869D2700ECEAC2 /* ListedAlerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListedAlerts.swift; sourceTree = "<group>"; };
 		73B9D14C237C2484000E268E /* StudyBuddy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StudyBuddy.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -183,6 +185,7 @@
 			isa = PBXGroup;
 			children = (
 				73FD807C239F971700A9EDFA /* Enums.swift */,
+				7397242123CF585D0003DFD0 /* WaitForLogin.swift */,
 				732023D5239921C90031F120 /* WaitForSessionUserView.swift */,
 				73B9D153237C2484000E268E /* LoginView.swift */,
 				292EF2F92381F5760062FBB5 /* ChangePasswordView.swift */,
@@ -564,6 +567,7 @@
 				73A69B4923869D2700ECEAC2 /* ListedAlerts.swift in Sources */,
 				29F7660D2396FE5800A7209C /* LocationManager.swift in Sources */,
 				290A21982393E08700E0BC81 /* ResetPasswordView.swift in Sources */,
+				7397242223CF585D0003DFD0 /* WaitForLogin.swift in Sources */,
 				73B9D154237C2484000E268E /* LoginView.swift in Sources */,
 				293AA0732384947A00436E02 /* KeyboardSettings.swift in Sources */,
 				732023D6239921C90031F120 /* WaitForSessionUserView.swift in Sources */,
