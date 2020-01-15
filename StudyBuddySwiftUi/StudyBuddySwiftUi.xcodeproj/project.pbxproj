@@ -28,6 +28,7 @@
 		7367D1FF237D8496002EE928 /* GeneralTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7367D1FE237D8496002EE928 /* GeneralTabView.swift */; };
 		7367D202237D85F5002EE928 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7367D201237D85F5002EE928 /* RegisterView.swift */; };
 		7397242223CF585D0003DFD0 /* WaitForLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7397242123CF585D0003DFD0 /* WaitForLogin.swift */; };
+		7397242423CF75F10003DFD0 /* CustomViewElementsLevel1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7397242323CF75F10003DFD0 /* CustomViewElementsLevel1.swift */; };
 		73A355EC23AA404B001C3EF0 /* NoOtherUsersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A355EB23AA404B001C3EF0 /* NoOtherUsersView.swift */; };
 		73A69B4923869D2700ECEAC2 /* ListedAlerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A69B4823869D2700ECEAC2 /* ListedAlerts.swift */; };
 		73B9D150237C2484000E268E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B9D14F237C2484000E268E /* AppDelegate.swift */; };
@@ -43,7 +44,7 @@
 		73CDE4462390FB710078654C /* OtherUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CDE4452390FB710078654C /* OtherUserView.swift */; };
 		73FD807D239F971700A9EDFA /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FD807C239F971700A9EDFA /* Enums.swift */; };
 		73FD807F239F9C0600A9EDFA /* ContactsLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FD807E239F9C0600A9EDFA /* ContactsLineView.swift */; };
-		84B3AD5E237D973800CB2160 /* CustomViewElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B3AD5D237D973800CB2160 /* CustomViewElements.swift */; };
+		84B3AD5E237D973800CB2160 /* CustomViewElementsLevel2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B3AD5D237D973800CB2160 /* CustomViewElementsLevel2.swift */; };
 		CF854863D7027E9469E19F2D /* Pods_StudyBuddySwiftUiTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76516A7E48373BF7697BBA75 /* Pods_StudyBuddySwiftUiTests.framework */; };
 		E87DA23D6B154FEDD64065D7 /* Pods_StudyBuddySwiftUiUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82F6226B31D87D2778C9E4BA /* Pods_StudyBuddySwiftUiUITests.framework */; };
 /* End PBXBuildFile section */
@@ -91,6 +92,7 @@
 		7367D1FE237D8496002EE928 /* GeneralTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralTabView.swift; sourceTree = "<group>"; };
 		7367D201237D85F5002EE928 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		7397242123CF585D0003DFD0 /* WaitForLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitForLogin.swift; sourceTree = "<group>"; };
+		7397242323CF75F10003DFD0 /* CustomViewElementsLevel1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomViewElementsLevel1.swift; sourceTree = "<group>"; };
 		73A355EB23AA404B001C3EF0 /* NoOtherUsersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoOtherUsersView.swift; sourceTree = "<group>"; };
 		73A69B4823869D2700ECEAC2 /* ListedAlerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListedAlerts.swift; sourceTree = "<group>"; };
 		73B9D14C237C2484000E268E /* StudyBuddy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StudyBuddy.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -114,7 +116,7 @@
 		73FD807E239F9C0600A9EDFA /* ContactsLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsLineView.swift; sourceTree = "<group>"; };
 		76516A7E48373BF7697BBA75 /* Pods_StudyBuddySwiftUiTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StudyBuddySwiftUiTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		82F6226B31D87D2778C9E4BA /* Pods_StudyBuddySwiftUiUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StudyBuddySwiftUiUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		84B3AD5D237D973800CB2160 /* CustomViewElements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomViewElements.swift; sourceTree = "<group>"; };
+		84B3AD5D237D973800CB2160 /* CustomViewElementsLevel2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomViewElementsLevel2.swift; sourceTree = "<group>"; };
 		C9A3931C9E7E135C89EFD08A /* Pods-StudyBuddySwiftUi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StudyBuddySwiftUi.release.xcconfig"; path = "Pods/Target Support Files/Pods-StudyBuddySwiftUi/Pods-StudyBuddySwiftUi.release.xcconfig"; sourceTree = "<group>"; };
 		E880CE267D995F2D844EA96D /* Pods_StudyBuddySwiftUi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StudyBuddySwiftUi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F13381C1CD44DACE1E441D9D /* Pods-StudyBuddySwiftUiTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StudyBuddySwiftUiTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StudyBuddySwiftUiTests/Pods-StudyBuddySwiftUiTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -199,8 +201,9 @@
 		7375795223CDCD520003FE2A /* View */ = {
 			isa = PBXGroup;
 			children = (
-				84B3AD5D237D973800CB2160 /* CustomViewElements.swift */,
 				73A355EB23AA404B001C3EF0 /* NoOtherUsersView.swift */,
+				7397242323CF75F10003DFD0 /* CustomViewElementsLevel1.swift */,
+				84B3AD5D237D973800CB2160 /* CustomViewElementsLevel2.swift */,
 			);
 			name = View;
 			path = Controllers/View;
@@ -550,6 +553,7 @@
 				73A355EC23AA404B001C3EF0 /* NoOtherUsersView.swift in Sources */,
 				7367D1FF237D8496002EE928 /* GeneralTabView.swift in Sources */,
 				734FC387238F094B00350F82 /* FixedStringValues.swift in Sources */,
+				7397242423CF75F10003DFD0 /* CustomViewElementsLevel1.swift in Sources */,
 				29FB9AA8238C77D5005914CC /* ImageController.swift in Sources */,
 				29F56C4123A8F249000A676D /* ChatView.swift in Sources */,
 				7367D1F8237D7255002EE928 /* SwipeTabView.swift in Sources */,
@@ -563,7 +567,7 @@
 				73FD807D239F971700A9EDFA /* Enums.swift in Sources */,
 				2937ACC22389819F00E07611 /* ChatController.swift in Sources */,
 				292EF2FA2381F5760062FBB5 /* ChangePasswordView.swift in Sources */,
-				84B3AD5E237D973800CB2160 /* CustomViewElements.swift in Sources */,
+				84B3AD5E237D973800CB2160 /* CustomViewElementsLevel2.swift in Sources */,
 				73A69B4923869D2700ECEAC2 /* ListedAlerts.swift in Sources */,
 				29F7660D2396FE5800A7209C /* LocationManager.swift in Sources */,
 				290A21982393E08700E0BC81 /* ResetPasswordView.swift in Sources */,
