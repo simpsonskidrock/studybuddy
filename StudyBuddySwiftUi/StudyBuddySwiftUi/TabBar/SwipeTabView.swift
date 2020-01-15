@@ -15,12 +15,39 @@ struct SwipeTabView: View {
     @State private var offset: CGFloat = 0
     @State private var index = 0
     let spacing: CGFloat = 10
-    
+
+    @State private var tagsRow1: [String] = []
+    @State private var tagsRow2: [String] = []
+
     private func initialize() {
         self.session.getProfile(uid: self.session.sessionUser!.uid, handler: { user in
             self.session.sessionUser = user
             self.session.downloadAllUserLists()
+            self.setBothTagRows(hashtagsAsString: self.session.hashtags)
         })
+    }
+
+    /* compare two strins by length Used for sorting */
+    func shorter(value1: String, value2: String) -> Bool {
+        // ... True means value1 precedes value2.
+        return value1.count < value2.count
+    }
+
+    func setBothTagRows(hashtagsAsString: String?) {
+        tagsRow1 = []
+        tagsRow2 = []
+        if let newTags = hashtagsAsString {
+            var strArray = newTags.components(separatedBy: " ")
+            strArray.sort(by: shorter)
+            for n in 0..<(min(strArray.count, 6)) {
+                if n % 2 == 0 {
+                    tagsRow1.append(strArray[n])
+                } else {
+                    tagsRow2.append(strArray[n])
+                }
+            }
+        }
+        print("1Row: \(tagsRow1) \n 2Row: \(tagsRow2) ")
     }
     
     private func close() {
@@ -29,8 +56,6 @@ struct SwipeTabView: View {
             self.offset = 0
         }
     }
-
-    let tagsForTesting = ["Informatik", "LMU", "iOS", "Medieninformatik"]
 
     var body: some View {
         VStack {
@@ -50,15 +75,29 @@ struct SwipeTabView: View {
                 }
             }.buttonStyle(StudyBuddyIconButtonStyleLevel2())
             // TAGS
-            HStack {
-                ForEach(tagsForTesting, id: \.self) { tag in
-                    Button(action: {
-                        print("You tapped on a tag, feature to filter by tags is not implemented yet :(")
-                    }) {
-                        Text("#\(tag)")
-                            .background(Color.lmuDarkGrey)
-                            .foregroundColor(Color.white)
-                            .cornerRadius(5)
+            VStack {
+                HStack {
+                    ForEach(tagsRow1, id: \.self) { tag in
+                        Button(action: {
+                            print("You tapped on a tag, feature to filter by tags is not implemented yet :(")
+                        }) {
+                            Text("#\(tag)")
+                                .background(Color.lmuDarkGrey)
+                                .foregroundColor(Color.white)
+                                .cornerRadius(5)
+                        }
+                    }
+                }
+                HStack {
+                    ForEach(tagsRow2, id: \.self) { tag in
+                        Button(action: {
+                            print("You tapped on a tag, feature to filter by tags is not implemented yet :(")
+                        }) {
+                            Text("#\(tag)")
+                                .background(Color.lmuDarkGrey)
+                                .foregroundColor(Color.white)
+                                .cornerRadius(5)
+                        }
                     }
                 }
             }

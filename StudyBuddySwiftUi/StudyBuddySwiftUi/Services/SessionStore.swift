@@ -29,6 +29,7 @@ class SessionStore: ObservableObject {
     @Published var matchedUsers: [UserModel] = []
     var presentMatchAlert: Bool = false
     @Published var searchWithGPS: Bool = false
+    var hashtags: String = ""
 
     func listen(handler: @escaping ((UserModel) -> ())) {
         // monitor authentication changes using firebase
@@ -124,13 +125,14 @@ class SessionStore: ObservableObject {
             let displayName = value?[FixedStringValues.displayName] as? String ?? ""
             let fieldOfStudy = value?[FixedStringValues.fieldOfStudy] as? String ?? ""
             let description = value?[FixedStringValues.description] as? String ?? ""
-            let hashtags = value?[FixedStringValues.hashtags] as? String ?? ""
+            self.hashtags = value?[FixedStringValues.hashtags] as? String ?? ""
             let profileImageUrl = value?[FixedStringValues.profileImageUrl] as? String ?? ""
             let likedUsers = value?[FixedStringValues.likedUsers] as? [String] ?? []
             let contacts = value?[FixedStringValues.contacts] as? [String] ?? []
             var tempUser: UserModel = UserModel(uid: uid, email: email)
-            tempUser.updateCompleteProfile(displayName: displayName, fieldOfStudy: fieldOfStudy, description: description, hashtags: hashtags, profileImageUrl: profileImageUrl, likedUsers: likedUsers, contacts: contacts)
+            tempUser.updateCompleteProfile(displayName: displayName, fieldOfStudy: fieldOfStudy, description: description, hashtags: self.hashtags, profileImageUrl: profileImageUrl, likedUsers: likedUsers, contacts: contacts)
             handler(tempUser)
+
         }) { (error) in
             print(error.localizedDescription)
         }
@@ -172,6 +174,13 @@ class SessionStore: ObservableObject {
                 print("Update ProfileDetails: Done")
             }
         })
+        // update tags for swipeView
+        if let newTags = hashtags {
+            self.hashtags = newTags
+        } else {
+            self.hashtags = ""
+        }
+
     }
 
     // ---------------- Image ---------------- //
