@@ -142,7 +142,7 @@ struct ProfileTabView: View {
                             if (editProfile) {
                                 Text("Name:")
                                     .foregroundColor(.lmuLightGrey)
-                                    .fontWeight(.semibold)
+                                    .fontWeight(.bold)
                             }
                             TextField("Enter your name", text:  $displayName)
                                 .disableAutocorrection(true)
@@ -152,24 +152,31 @@ struct ProfileTabView: View {
                         HStack {
                             if (editProfile) {
                                 Text("Field Of Study:")
-                                    .foregroundColor(.black)
-                                    .fontWeight(.semibold)
+                                    .foregroundColor(.lmuLightGrey)
+                                    .fontWeight(.bold)
                             }
                                 TextField("ex: Informatik", text:  $fieldOfStudy)
                                 .disabled(!self.editProfile)
                                 .textFieldStyle(StudyBuddySubTitleStyleLevel2a())
                         }
-                        Text("Description")
+                        VStack(alignment: .leading){
+                            Text("Description:")
                                 .foregroundColor(.lmuLightGrey)
-
-                        TextField("Describe your self", text: $description)
-                            .disabled(!self.editProfile)
-                            .textFieldStyle(StudyBuddySubTitleStyleLevel2b())
-                        Text("Hashtags").foregroundColor(.lmuLightGrey)
+                                .fontWeight(.bold)
+                            TextField("Describe your self", text: $description)
+                                .disabled(!self.editProfile)
+                                .textFieldStyle(StudyBuddySubTitleStyleLevel2b())
+                            
+                        }
+                        VStack(alignment: .leading){
+                        Text("Hashtags:")
+                            .foregroundColor(.lmuLightGrey)
+                            .fontWeight(.bold)
                         TextField("#", text: $hashtags)
                             .lineLimit(nil)
                             .disabled(!self.editProfile)
                             .textFieldStyle(StudyBuddySubTitleStyleLevel2b())
+                        }
                     }.padding()
                 }
                 Spacer()
