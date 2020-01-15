@@ -20,16 +20,15 @@ class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObject {
         self.locationManager.delegate = self
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
         self.locationManager.requestWhenInUseAuthorization()
-        self.locationManager.startUpdatingLocation()
     }
     
-    @Published var lastLocation: CLLocation? {
+    @Published var locationStatus: CLAuthorizationStatus? {
         willSet {
             objectWillChange.send()
         }
     }
     
-    @Published var locationStatus: CLAuthorizationStatus? {
+    @Published var lastLocation: CLLocation? {
         willSet {
             objectWillChange.send()
         }
@@ -51,6 +50,17 @@ class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObject {
         
     }
     
+    private var updatedLocation: ((CLLocation)->())?
+    
+    func requestLocation(_ handler: @escaping (CLLocation)->()) {
+        locationManager.startUpdatingLocation()
+        updatedLocation = { location in
+            handler(location)
+            self.locationManager.stopUpdatingLocation()
+            self.updatedLocation = nil
+        }
+    }
+    
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         self.locationStatus = status
         print(#function, statusString)
@@ -58,7 +68,8 @@ class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObject {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.last else { return }
-        self.lastLocation = location
+        //self.lastLocation = location
+        updatedLocation?(location)
         print(#function, location)
     }
 }

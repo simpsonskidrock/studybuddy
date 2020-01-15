@@ -49,22 +49,20 @@ struct ProfileTabView: View {
         ])
     }
     // get user location and print it
-    var userLatitude: String {
-        return "\(locationManager.lastLocation?.coordinate.latitude ?? 0)"
-    }
-    
-    var userLongitude: String {
-        return "\(locationManager.lastLocation?.coordinate.longitude ?? 0)"
-    }
-    
     func printLocation(){
-        print ("LocationStatus: \(locationManager.statusString)")
-        print ("latitude: \(userLatitude)")
-        print ("longtitude: \(userLongitude)")
+        
+        locationManager.requestLocation { (location) in
+            print ("LocationStatus: \(self.locationManager.statusString)")
+            print ("latitude: \(location.coordinate.latitude)")
+            print ("longtitude: \(location.coordinate.longitude)")
+        }
+        //TODO: save location to DB (not here,but in sessionStore)
+        //Database.database().reference().child("Location").child(self.session.sessionUser!.uid).setValue(["Latitude: \(location.coordinate.latitude)", "Longitude: \(location.coordinate.longitude)" ])
+        
     }
     
     private func initialize() {
-        // here the print location is called
+        // here the printLocation is called
         self.printLocation()
         if (self.session.sessionUser == nil) {
             self.session.listen(handler: { user in
