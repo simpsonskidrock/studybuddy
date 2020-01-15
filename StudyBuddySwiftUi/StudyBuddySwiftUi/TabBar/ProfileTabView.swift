@@ -12,6 +12,7 @@ import SwiftUI
 struct ProfileTabView: View {
     @ObservedObject var locationManager = LocationManager()
     
+    
     @Environment(\.presentationMode) var mode
     @EnvironmentObject var session: SessionStore
     
@@ -25,7 +26,7 @@ struct ProfileTabView: View {
     
     @State private var isShowingImagePicker: Bool = false
     @State var showAction: Bool = false
-
+    
     @State private var image: UIImage = UIImage()
     
     var sheet: ActionSheet {
@@ -45,10 +46,26 @@ struct ProfileTabView: View {
                     self.session.deleteProfilePic()
                     self.image = UIImage()
                 })
-            ])
+        ])
+    }
+    // get user location and print it
+    var userLatitude: String {
+        return "\(locationManager.lastLocation?.coordinate.latitude ?? 0)"
+    }
+    
+    var userLongitude: String {
+        return "\(locationManager.lastLocation?.coordinate.longitude ?? 0)"
+    }
+    
+    func printLocation(){
+        print ("LocationStatus: \(locationManager.statusString)")
+        print ("latitude: \(userLatitude)")
+        print ("longtitude: \(userLongitude)")
     }
     
     private func initialize() {
+        // here the print location is called
+        self.printLocation()
         if (self.session.sessionUser == nil) {
             self.session.listen(handler: { user in
                 self.session.sessionUser = user
@@ -100,16 +117,16 @@ struct ProfileTabView: View {
                         Spacer()
                         HStack {
                             Button(action: {
-                                    self.session.signOut()
-                                    self.mode.wrappedValue.dismiss()
-                                }){
-                                    HStack {
-                                        Image(systemName: "arrow.uturn.left")
-                                        Text("Logout")
-                                            .fontWeight(.semibold)
-                                    }
-                                }.buttonStyle(StudyBuddyIconButtonStyleLevel2())
-                            }.padding()
+                                self.session.signOut()
+                                self.mode.wrappedValue.dismiss()
+                            }){
+                                HStack {
+                                    Image(systemName: "arrow.uturn.left")
+                                    Text("Logout")
+                                        .fontWeight(.semibold)
+                                }
+                            }.buttonStyle(StudyBuddyIconButtonStyleLevel2())
+                        }.padding()
                     }.frame(height: 50)
                         .padding(.leading, 10)
                     Image(uiImage: self.image)
@@ -122,7 +139,7 @@ struct ProfileTabView: View {
                     if self.editProfile {
                         Button(action: {
                             if (self.image == UIImage(systemName: "person.circle.fill")){
-                            self.isShowingImagePicker.toggle()
+                                self.isShowingImagePicker.toggle()
                             }
                             else {
                                 self.showAction = true
@@ -133,8 +150,8 @@ struct ProfileTabView: View {
                             .sheet(isPresented: $isShowingImagePicker, content: {
                                 ImagePickerViewController(isPresented: self.$isShowingImagePicker, selectedImage: self.$image)
                             })
-                        .actionSheet(isPresented: $showAction) {
-                            sheet
+                            .actionSheet(isPresented: $showAction) {
+                                sheet
                         }
                     }
                     VStack {
@@ -155,7 +172,7 @@ struct ProfileTabView: View {
                                     .foregroundColor(.lmuLightGrey)
                                     .fontWeight(.bold)
                             }
-                                TextField("ex: Informatik", text:  $fieldOfStudy)
+                            TextField("ex: Informatik", text:  $fieldOfStudy)
                                 .disabled(!self.editProfile)
                                 .textFieldStyle(StudyBuddySubTitleStyleLevel2a())
                         }
@@ -169,13 +186,13 @@ struct ProfileTabView: View {
                             
                         }
                         VStack(alignment: .leading){
-                        Text("Hashtags:")
-                            .foregroundColor(.lmuLightGrey)
-                            .fontWeight(.bold)
-                        TextField("#", text: $hashtags)
-                            .lineLimit(nil)
-                            .disabled(!self.editProfile)
-                            .textFieldStyle(StudyBuddySubTitleStyleLevel2b())
+                            Text("Hashtags:")
+                                .foregroundColor(.lmuLightGrey)
+                                .fontWeight(.bold)
+                            TextField("#", text: $hashtags)
+                                .lineLimit(nil)
+                                .disabled(!self.editProfile)
+                                .textFieldStyle(StudyBuddySubTitleStyleLevel2b())
                         }
                     }.padding()
                 }
