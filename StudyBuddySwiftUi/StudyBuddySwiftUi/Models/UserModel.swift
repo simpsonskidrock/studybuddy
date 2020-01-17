@@ -18,6 +18,7 @@ struct UserModel : Hashable {
     var likedUsers: [String] = []
     var contacts: [String] = []
     var gpsUsage: Bool?
+    var location: [String] = []
 
     var hashValue: Int {
         return uid.hashValue ^ email.hashValue ^ displayName.hashValue
@@ -28,11 +29,12 @@ struct UserModel : Hashable {
         self.email = email
     }
     
-    mutating func updateCompleteProfile(displayName: String?, fieldOfStudy: String?, description: String?, hashtags: String?, profileImageUrl: String?, likedUsers: [String]?, contacts: [String]?, gpsUsage: Bool) {
+    mutating func updateCompleteProfile(displayName: String?, fieldOfStudy: String?, description: String?, hashtags: String?, profileImageUrl: String?, likedUsers: [String]?, contacts: [String]?, gpsUsage: Bool, location: [String]) {
         self.updateDetails(displayName: displayName, fieldOfStudy: fieldOfStudy, description: description, hashtags: hashtags)
         self.updatePicture(profileImageUrl: profileImageUrl)
         self.updateLikeAndMatch(likedUsers: likedUsers, contacts: contacts)
         self.updateGpsUsage(gpsUsage: gpsUsage)
+        self.updateLocation(location: location)
     }
     
     mutating func updateDetails(displayName: String?, fieldOfStudy: String?, description: String?, hashtags: String?) {
@@ -53,6 +55,10 @@ struct UserModel : Hashable {
     
     mutating func updateGpsUsage(gpsUsage: Bool) {
         self.gpsUsage = gpsUsage
+    }
+    
+    mutating func updateLocation(location: [String]) {
+        self.location = location
     }
 
     func toString() -> String {

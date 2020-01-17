@@ -112,6 +112,7 @@ class SessionStore: ObservableObject {
         self.otherUsers = []
         self.likedUsers = []
         self.matchedUsers = []
+        self.searchWithGPS = false
         self.sessionUser = nil
     }
 
@@ -131,8 +132,9 @@ class SessionStore: ObservableObject {
             let likedUsers = value?[FixedStringValues.likedUsers] as? [String] ?? []
             let contacts = value?[FixedStringValues.contacts] as? [String] ?? []
             let gpsUsage = value?[FixedStringValues.gpsUsage] as? Bool ?? false
+            let location = value?[FixedStringValues.location] as? [String] ?? []
             var tempUser: UserModel = UserModel(uid: uid, email: email)
-            tempUser.updateCompleteProfile(displayName: displayName, fieldOfStudy: fieldOfStudy, description: description, hashtags: self.hashtags, profileImageUrl: profileImageUrl, likedUsers: likedUsers, contacts: contacts, gpsUsage: gpsUsage)
+            tempUser.updateCompleteProfile(displayName: displayName, fieldOfStudy: fieldOfStudy, description: description, hashtags: self.hashtags, profileImageUrl: profileImageUrl, likedUsers: likedUsers, contacts: contacts, gpsUsage: gpsUsage, location: location)
             handler(tempUser)
 
         }) { (error) in
@@ -303,6 +305,7 @@ class SessionStore: ObservableObject {
                 if error == nil {
                     self.getProfile(uid: self.sessionUser!.uid, handler: { user in
                         self.sessionUser = user
+                        self.searchWithGPS = self.sessionUser?.gpsUsage ?? false
                         self.downloadAllUserLists()
                     })
                 }
@@ -355,15 +358,16 @@ class SessionStore: ObservableObject {
     // ---------------- Location ---------------- //
     
     func updateGpsUsage() {
-        print("update")
         let tempUid: String = String((self.sessionUser?.uid)!)
-        print(tempUid)
         let dict: Dictionary<String, Any> = [
             FixedStringValues.gpsUsage: self.sessionUser?.gpsUsage ?? false
         ]
         Database.database().reference().child(FixedStringValues.urlIdentifierUser).child(tempUid).updateChildValues(dict, withCompletionBlock: {(error, ref) in
             if error == nil {}
         } )
+        if self.searchWithGPS {
+            self.updateLocation()
+        }
     }
     
     func updateLocation() {

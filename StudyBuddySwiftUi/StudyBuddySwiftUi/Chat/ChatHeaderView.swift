@@ -30,6 +30,7 @@ struct ChatHeaderView: View {
     func initialize() {
         self.session.getProfile(uid: uid, handler: { user in
             self.name = user.displayName!
+            self.session.searchWithGPS = user.gpsUsage ?? false
             self.getImage(path: user.profileImageUrl!)
         })
     }
