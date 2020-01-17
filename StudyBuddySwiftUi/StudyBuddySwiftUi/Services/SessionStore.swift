@@ -12,7 +12,8 @@ import Combine
 import os.log
 
 class SessionStore: ObservableObject {
-
+    @ObservedObject var locationManager = LocationManager()
+    
     var didChange = PassthroughSubject<SessionStore, Never>()
     var sessionUser: UserModel? {
         didSet {
@@ -129,8 +130,9 @@ class SessionStore: ObservableObject {
             let profileImageUrl = value?[FixedStringValues.profileImageUrl] as? String ?? ""
             let likedUsers = value?[FixedStringValues.likedUsers] as? [String] ?? []
             let contacts = value?[FixedStringValues.contacts] as? [String] ?? []
+            let gpsUsage = value?[FixedStringValues.gpsUsage] as? Bool ?? false
             var tempUser: UserModel = UserModel(uid: uid, email: email)
-            tempUser.updateCompleteProfile(displayName: displayName, fieldOfStudy: fieldOfStudy, description: description, hashtags: self.hashtags, profileImageUrl: profileImageUrl, likedUsers: likedUsers, contacts: contacts)
+            tempUser.updateCompleteProfile(displayName: displayName, fieldOfStudy: fieldOfStudy, description: description, hashtags: self.hashtags, profileImageUrl: profileImageUrl, likedUsers: likedUsers, contacts: contacts, gpsUsage: gpsUsage)
             handler(tempUser)
 
         }) { (error) in
@@ -348,5 +350,30 @@ class SessionStore: ObservableObject {
         Database.database().reference().child(FixedStringValues.urlIdentifierUser).child(tempUid).updateChildValues(dict, withCompletionBlock: {(error, ref) in
             if error == nil {}
         } )
+    }
+    
+    // ---------------- Location ---------------- //
+    
+    func updateGpsUsage() {
+        print("update")
+        let tempUid: String = String((self.sessionUser?.uid)!)
+        print(tempUid)
+        let dict: Dictionary<String, Any> = [
+            FixedStringValues.gpsUsage: self.sessionUser?.gpsUsage ?? false
+        ]
+        Database.database().reference().child(FixedStringValues.urlIdentifierUser).child(tempUid).updateChildValues(dict, withCompletionBlock: {(error, ref) in
+            if error == nil {}
+        } )
+    }
+    
+    func updateLocation() {
+        locationManager.requestLocation { (location) in
+            print ("LocationStatus: \(self.locationManager.statusString)")
+            print ("latitude: \(location.coordinate.latitude)")
+            print ("longtitude: \(location.coordinate.longitude)")
+        }
+        //TODO: save location to DB
+        //Database.database().reference().child("Location").child(self.session.sessionUser!.uid).setValue(["Latitude: \(location.coordinate.latitude)", "Longitude: \(location.coordinate.longitude)" ])
+        
     }
 }

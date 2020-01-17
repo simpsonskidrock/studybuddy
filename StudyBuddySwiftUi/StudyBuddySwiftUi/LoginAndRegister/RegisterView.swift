@@ -131,9 +131,3 @@ struct RegisterView: View {
         .navigationBarHidden(true)
     }
 }
-
-struct RegisterView_Previews: PreviewProvider {
-    static var previews: some View {
-        RegisterView()
-    }
-}

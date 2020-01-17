@@ -63,6 +63,8 @@ struct SwipeTabView: View {
             // GPS BUTTON
             Button(action: {
                 self.session.searchWithGPS.toggle()
+                self.session.sessionUser?.updateGpsUsage(gpsUsage: self.session.searchWithGPS)
+                self.session.updateGpsUsage()
             }) {
                 HStack {
                     if (self.session.searchWithGPS) {

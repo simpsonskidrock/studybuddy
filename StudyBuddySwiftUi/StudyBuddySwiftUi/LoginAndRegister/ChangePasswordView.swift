@@ -82,9 +82,3 @@ struct ChangePasswordView: View {
             .navigationBarHidden(true)
     }
 }
-
-struct ChangePasswordView_Previews: PreviewProvider {
-    static var previews: some View {
-        ChangePasswordView()
-    }
-}

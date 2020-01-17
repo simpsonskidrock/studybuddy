@@ -17,6 +17,7 @@ struct FixedStringValues {
     static let uid: String = "uid"
     static let likedUsers: String = "likedUsers"
     static let contacts: String = "contacts"
+    static let gpsUsage: String = "gpsUsage"
     
     static let appName: String = "StudyBuddy"
     static let urlIdentifierUser: String = "Users"
