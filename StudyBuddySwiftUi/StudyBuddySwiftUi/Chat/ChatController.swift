@@ -27,11 +27,14 @@ class ChatController : ObservableObject {
                         let data = doc.data()
                         if let messageSender = data[FStore.senderField] as? String,
                             let messageReceiver = data[FStore.receiverField] as? String,
-                            let messageBody = data[FStore.bodyField] as? String {
+                            let messageBody = data[FStore.bodyField] as? String,
+                             let messageTime = data[FStore.timeField] as? String
+                            
+                        {
                             //filter messages per user
                             if (messageSender == uid && messageReceiver == otherUid) || (messageSender == otherUid && messageReceiver == uid) {
                                 
-                                let newMessage = Message(sender: messageSender, receiver: messageReceiver, body: messageBody)
+                                let newMessage = Message(sender: messageSender, receiver: messageReceiver, body: messageBody, time: messageTime)
                                 self.message.append(newMessage)
                             }
                         }

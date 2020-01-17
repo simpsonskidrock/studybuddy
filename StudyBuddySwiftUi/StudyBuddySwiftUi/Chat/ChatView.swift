@@ -29,9 +29,11 @@ struct ChatView: View {
     func sendMsg(){
         if !composedMessage.isEmpty,
             let messageSender = self.session.sessionUser?.uid,
-            let messageReceiver = self.uid
-        {
-            db.collection(FStore.collectionName).addDocument(data:[ FStore.senderField: messageSender, FStore.receiverField: messageReceiver, FStore.bodyField: composedMessage, FStore.dateField: Date().timeIntervalSince1970])
+            let messageReceiver = self.uid {
+            let timeNow = Date()
+            let formater = DateFormatter()
+            formater.dateFormat = "HH:mm"
+            db.collection(FStore.collectionName).addDocument(data:[ FStore.senderField: messageSender, FStore.receiverField: messageReceiver, FStore.bodyField: composedMessage, FStore.dateField: Date().timeIntervalSince1970, FStore.timeField: formater.string(from: timeNow)])
             { (error) in
                 if let e = error{
                     print("there was an issue saving data to Firestore,\(e)")
@@ -42,8 +44,6 @@ struct ChatView: View {
                         self.composedMessage = ""
                     }
                 }
-                
-                
             }
         }
     }
@@ -57,7 +57,6 @@ struct ChatView: View {
                 ForEach(chatController.message, id: \.self) { msg in
                     ChatRow(chatMessage: msg)
                 }
-                
             }
             
             HStack {
@@ -86,45 +85,3 @@ struct ChatView: View {
             })
     }
 }
-
-struct ChatRow : View {
-    
-    @EnvironmentObject var session: SessionStore
-    
-    let chatMessage: Message
-    
-    var body: some View {
-        
-        Group {
-            if (chatMessage.sender != self.session.sessionUser!.uid) {
-                HStack {
-                    Group {
-                        Text(chatMessage.body)
-                            .foregroundColor(.white)
-                            .padding(10)
-                            .background(Color.lmuDarkGrey)
-                            .cornerRadius(10)
-                        
-                    }
-                    
-                }
-            } else {
-                HStack {
-                    Group {
-                        Spacer()
-                        Text(chatMessage.body)
-                            .padding(10)
-                            .background(Color.lmuLightGrey)
-                            .cornerRadius(10)
-                    }
-                }
-            }
-        }
-        
-    }
-}
-
-
-
-
-

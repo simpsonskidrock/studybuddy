@@ -13,12 +13,15 @@ struct Message: Hashable {
     let sender : String
     let receiver : String
     let body: String
-
+    let time: String
 }
+
 struct FStore {
     static let collectionName = "messages"
     static let senderField = "sender"
     static let receiverField = "receiver"
     static let bodyField = "body"
     static let dateField = "date"
+    static let timeField = "time"
+
 }
