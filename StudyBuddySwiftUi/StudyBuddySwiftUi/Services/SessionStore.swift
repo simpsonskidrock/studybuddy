@@ -371,13 +371,26 @@ class SessionStore: ObservableObject {
     }
     
     func updateLocation() {
-        locationManager.requestLocation { (location) in
-            print ("LocationStatus: \(self.locationManager.statusString)")
-            print ("latitude: \(location.coordinate.latitude)")
-            print ("longtitude: \(location.coordinate.longitude)")
-        }
-        //TODO: save location to DB
-        //Database.database().reference().child("Location").child(self.session.sessionUser!.uid).setValue(["Latitude: \(location.coordinate.latitude)", "Longitude: \(location.coordinate.longitude)" ])
-        
+        let tempUid: String = String((self.sessionUser?.uid)!)
+        let dict: Dictionary<String, Any> = [
+            FixedStringValues.latitude: self.sessionUser?.latitude ?? "",
+            FixedStringValues.longitude: self.sessionUser?.longitude ?? ""
+          
+               ]
+       
+
+            Database.database().reference().child(FixedStringValues.urlIdentifierUser).child(tempUid).updateChildValues(dict, withCompletionBlock: {(error, ref) in
+                if error == nil {
+                    self.locationManager.requestLocation { (location) in
+                        self.sessionUser?.updateLatitude(latitude: location.coordinate.latitude)
+                        self.sessionUser?.updateLongitude(longitude: location.coordinate.longitude)
+                    print("Update coordinates: Done")
+                        print(location.coordinate.latitude)
+                        print(location.coordinate.longitude)
+                    
+                }
+                }
+        })
     }
+
 }

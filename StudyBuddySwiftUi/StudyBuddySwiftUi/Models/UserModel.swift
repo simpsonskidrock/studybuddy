@@ -19,7 +19,9 @@ struct UserModel : Hashable {
     var contacts: [String] = []
     var gpsUsage: Bool?
     var location: [String] = []
-
+    var latitude: Double?
+    var longitude: Double?
+    
     var hashValue: Int {
         return uid.hashValue ^ email.hashValue ^ displayName.hashValue
     }
@@ -60,7 +62,15 @@ struct UserModel : Hashable {
     mutating func updateLocation(location: [String]) {
         self.location = location
     }
+    
+    mutating func updateLongitude(longitude: Double?){
+        self.longitude = longitude
+    }
 
+    mutating func updateLatitude(latitude: Double?){
+        self.latitude = latitude
+    }
+    
     func toString() -> String {
         var line = ""
         line += displayName?.padding(toLength: 25, withPad: " ", startingAt: 0) ?? "Name is null"
