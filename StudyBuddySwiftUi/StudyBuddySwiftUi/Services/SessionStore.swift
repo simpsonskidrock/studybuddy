@@ -115,9 +115,9 @@ class SessionStore: ObservableObject {
         self.searchWithGPS = false
         self.sessionUser = nil
     }
-
+    
     // ---------------- Profile ---------------- //
-
+    
     func getProfile(uid: String?, handler: @escaping ((UserModel) -> ())) {
         let rootRef = Database.database().reference(withPath: FixedStringValues.urlIdentifierUser).child(uid!)
         rootRef.observeSingleEvent(of: .value, with: { (snapshot) in
@@ -127,21 +127,30 @@ class SessionStore: ObservableObject {
             let displayName = value?[FixedStringValues.displayName] as? String ?? ""
             let fieldOfStudy = value?[FixedStringValues.fieldOfStudy] as? String ?? ""
             let description = value?[FixedStringValues.description] as? String ?? ""
-            self.hashtags = value?[FixedStringValues.hashtags] as? String ?? ""
+            let hashtags = value?[FixedStringValues.hashtags] as? String ?? ""
             let profileImageUrl = value?[FixedStringValues.profileImageUrl] as? String ?? ""
             let likedUsers = value?[FixedStringValues.likedUsers] as? [String] ?? []
             let contacts = value?[FixedStringValues.contacts] as? [String] ?? []
             let gpsUsage = value?[FixedStringValues.gpsUsage] as? Bool ?? false
-            let location = value?[FixedStringValues.location] as? [String] ?? []
             var tempUser: UserModel = UserModel(uid: uid, email: email)
-            tempUser.updateCompleteProfile(displayName: displayName, fieldOfStudy: fieldOfStudy, description: description, hashtags: self.hashtags, profileImageUrl: profileImageUrl, likedUsers: likedUsers, contacts: contacts, gpsUsage: gpsUsage, location: location)
-            handler(tempUser)
-
+            if gpsUsage {
+                rootRef.child(FixedStringValues.location).observeSingleEvent(of: .value, with: { (snapshot) in
+                    let value = snapshot.value as? NSDictionary
+                    let latitude = value?[FixedStringValues.latitude] as? Double ?? 0.0
+                    let longitude = value?[FixedStringValues.longitude] as? Double ?? 0.0
+                    let location: LocationModel = LocationModel(latitude: latitude, longitude: longitude)
+                    tempUser.updateCompleteProfile(displayName: displayName, fieldOfStudy: fieldOfStudy, description: description, hashtags: hashtags, profileImageUrl: profileImageUrl, likedUsers: likedUsers, contacts: contacts, gpsUsage: gpsUsage, location: location)
+                    handler(tempUser)
+                })
+            } else {
+                tempUser.updateCompleteProfile(displayName: displayName, fieldOfStudy: fieldOfStudy, description: description, hashtags: hashtags, profileImageUrl: profileImageUrl, likedUsers: likedUsers, contacts: contacts, gpsUsage: gpsUsage, location: nil)
+                handler(tempUser)
+            }
         }) { (error) in
             print(error.localizedDescription)
         }
     }
-
+    
     func addSessionUserProfile(result: AuthDataResult?,  handler: @escaping (Error?) -> () ) {
         if let authData = result {
             let dict: Dictionary<String, Any> = [
@@ -162,7 +171,7 @@ class SessionStore: ObservableObject {
                 })
         }
     }
-
+    
     func updateProfile(displayName: String?, fieldOfStudy: String?, description: String?, hashtags: String?, image: UIImage?) {
         let tempUid: String = String((self.sessionUser?.uid)!)
         self.updateProfileImage(uid: tempUid, image: image)
@@ -184,11 +193,11 @@ class SessionStore: ObservableObject {
         } else {
             self.hashtags = ""
         }
-
+        
     }
-
+    
     // ---------------- Image ---------------- //
-
+    
     private func updateProfileImage(uid: String, image: UIImage?) {
         guard let imageSelected = image else {
             print("Image is nil")
@@ -237,7 +246,7 @@ class SessionStore: ObservableObject {
         }
         self.sessionUser?.profileImageUrl = ""
     }
-
+    
     func getProfileImage(profileImageUrl: String, handler: @escaping ((UIImage) -> ())) {
         if (profileImageUrl.isEmpty) {
             print("no profile image")
@@ -254,7 +263,7 @@ class SessionStore: ObservableObject {
             }
         }
     }
-
+    
     // ---------------- Other User|s ---------------- //
     
     func downloadAllUserLists() {
@@ -292,7 +301,7 @@ class SessionStore: ObservableObject {
     }
     
     // ---------------- Likes and Contacts ---------------- //
-
+    
     func addLikedUser(user: UserModel) {
         if !(self.sessionUser?.likedUsers.contains(user.uid) ?? false) {
             self.sessionUser?.likedUsers.append(user.uid)
@@ -312,7 +321,7 @@ class SessionStore: ObservableObject {
             } )
         }
     }
-
+    
     func removeLikedUser(uidToRemove: String) {
         let prevSize: Int = self.sessionUser?.likedUsers.count ?? 0
         self.sessionUser?.likedUsers = self.sessionUser?.likedUsers.filter{$0 != uidToRemove} ?? []
@@ -323,7 +332,7 @@ class SessionStore: ObservableObject {
         }
         updateLikedUsersInDB()
     }
-
+    
     func removeMatchedUser(uidToRemove: String) {
         let prevSize: Int = self.sessionUser?.contacts.count ?? 0
         self.sessionUser?.contacts = self.sessionUser?.contacts.filter{$0 != uidToRemove} ?? []
@@ -334,7 +343,7 @@ class SessionStore: ObservableObject {
         }
         updateMatchedUsersInDB()
     }
-
+    
     func updateLikedUsersInDB() {
         let tempUid: String = String((self.sessionUser?.uid)!)
         let dict: Dictionary<String, Any> = [
@@ -344,7 +353,7 @@ class SessionStore: ObservableObject {
             if error == nil {}
         } )
     }
-
+    
     func updateMatchedUsersInDB() {
         let tempUid: String = String((self.sessionUser?.uid)!)
         let dict: Dictionary<String, Any> = [
@@ -367,30 +376,34 @@ class SessionStore: ObservableObject {
         } )
         if self.searchWithGPS {
             self.updateLocation()
+        } else {
+            self.removeLocation()
         }
     }
     
     func updateLocation() {
         let tempUid: String = String((self.sessionUser?.uid)!)
+        print("updateLocation")
+        self.locationManager.requestLocation { (location) in
+            self.sessionUser?.updateLocation(location: LocationModel(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude))
+            let dict: Dictionary<String, Any> = [
+                FixedStringValues.latitude: self.sessionUser?.location?.latitude ?? "",
+                FixedStringValues.longitude: self.sessionUser?.location?.longitude ?? ""
+            ]
+            Database.database().reference().child(FixedStringValues.urlIdentifierUser).child(tempUid).child(FixedStringValues.location).updateChildValues(dict, withCompletionBlock: {(error, ref) in
+                if error == nil {}
+            })
+        }
+    }
+    
+    func removeLocation() {
+        let tempUid: String = String((self.sessionUser?.uid)!)
+        self.sessionUser?.location = nil
         let dict: Dictionary<String, Any> = [
-            FixedStringValues.latitude: self.sessionUser?.latitude ?? "",
-            FixedStringValues.longitude: self.sessionUser?.longitude ?? ""
-          
-               ]
-       
-
-            Database.database().reference().child(FixedStringValues.urlIdentifierUser).child(tempUid).updateChildValues(dict, withCompletionBlock: {(error, ref) in
-                if error == nil {
-                    self.locationManager.requestLocation { (location) in
-                        self.sessionUser?.updateLatitude(latitude: location.coordinate.latitude)
-                        self.sessionUser?.updateLongitude(longitude: location.coordinate.longitude)
-                    print("Update coordinates: Done")
-                        print(location.coordinate.latitude)
-                        print(location.coordinate.longitude)
-                    
-                }
-                }
+            FixedStringValues.location: self.sessionUser?.location
+        ]
+        Database.database().reference().child(FixedStringValues.urlIdentifierUser).child(tempUid).updateChildValues(dict, withCompletionBlock: {(error, ref) in
+            if error == nil {}
         })
     }
-
 }

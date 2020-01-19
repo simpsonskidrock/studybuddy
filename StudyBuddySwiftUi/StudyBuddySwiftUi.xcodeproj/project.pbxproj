@@ -23,6 +23,7 @@
 		5F6706AD580144BD7E148704 /* Pods_StudyBuddySwiftUi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E880CE267D995F2D844EA96D /* Pods_StudyBuddySwiftUi.framework */; };
 		732023D6239921C90031F120 /* WaitForSessionUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732023D5239921C90031F120 /* WaitForSessionUserView.swift */; };
 		734FC387238F094B00350F82 /* FixedStringValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734FC386238F094B00350F82 /* FixedStringValues.swift */; };
+		735FED7623D49D1B004350EB /* LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735FED7523D49D1B004350EB /* LocationModel.swift */; };
 		7367D1F6237D6670002EE928 /* ProfileTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7367D1F5237D6670002EE928 /* ProfileTabView.swift */; };
 		7367D1F8237D7255002EE928 /* SwipeTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7367D1F7237D7255002EE928 /* SwipeTabView.swift */; };
 		7367D1FA237D7279002EE928 /* ContactsTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7367D1F9237D7279002EE928 /* ContactsTabView.swift */; };
@@ -87,6 +88,7 @@
 		63A1D570831FA0B30FC24AE1 /* Pods-StudyBuddySwiftUiUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StudyBuddySwiftUiUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-StudyBuddySwiftUiUITests/Pods-StudyBuddySwiftUiUITests.release.xcconfig"; sourceTree = "<group>"; };
 		732023D5239921C90031F120 /* WaitForSessionUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitForSessionUserView.swift; sourceTree = "<group>"; };
 		734FC386238F094B00350F82 /* FixedStringValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixedStringValues.swift; sourceTree = "<group>"; };
+		735FED7523D49D1B004350EB /* LocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationModel.swift; sourceTree = "<group>"; };
 		7367D1F5237D6670002EE928 /* ProfileTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTabView.swift; sourceTree = "<group>"; };
 		7367D1F7237D7255002EE928 /* SwipeTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeTabView.swift; sourceTree = "<group>"; };
 		7367D1F9237D7279002EE928 /* ContactsTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsTabView.swift; sourceTree = "<group>"; };
@@ -215,6 +217,7 @@
 			isa = PBXGroup;
 			children = (
 				3391BDFD238557FB00643581 /* UserModel.swift */,
+				735FED7523D49D1B004350EB /* LocationModel.swift */,
 				73A69B4823869D2700ECEAC2 /* ListedAlerts.swift */,
 				734FC386238F094B00350F82 /* FixedStringValues.swift */,
 			);
@@ -561,6 +564,7 @@
 				73B9D152237C2484000E268E /* SceneDelegate.swift in Sources */,
 				29F56C4323A8FE5E000A676D /* Message.swift in Sources */,
 				2967910923AD755B00887FB3 /* ChatHeaderView.swift in Sources */,
+				735FED7623D49D1B004350EB /* LocationModel.swift in Sources */,
 				3391BDFE238557FC00643581 /* UserModel.swift in Sources */,
 				7367D202237D85F5002EE928 /* RegisterView.swift in Sources */,
 				7367D1F6237D6670002EE928 /* ProfileTabView.swift in Sources */,
