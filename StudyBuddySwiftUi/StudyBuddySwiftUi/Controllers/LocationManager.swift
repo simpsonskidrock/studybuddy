@@ -70,5 +70,15 @@ class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObject {
         updatedLocation?(location)
         print(#function, location)
     }
+    
+    func distance(lat1: Double, long1: Double, lat2: Double, long2: Double)->Double{
+        let locA = CLLocation(latitude: lat1, longitude: long1)
+        let locB = CLLocation(latitude: lat2, longitude: long2)
+        let distance = locA.distance(from: locB)
+        
+        return distance
+        
+    }
+    
 }
 

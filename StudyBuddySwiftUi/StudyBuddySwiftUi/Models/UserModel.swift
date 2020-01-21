@@ -19,6 +19,7 @@ struct UserModel : Hashable {
     var contacts: [String] = []
     var gpsUsage: Bool?
     var location: LocationModel?
+    var distance: Double?
     
     var hashValue: Int {
         return uid.hashValue ^ email.hashValue ^ displayName.hashValue
@@ -61,6 +62,10 @@ struct UserModel : Hashable {
     
     mutating func updateLocation(location: LocationModel) {
         self.location = location
+    }
+    
+    mutating func updateDistance(distance: Double?){
+        self.distance = distance
     }
     
     func toString() -> String {
