@@ -366,10 +366,20 @@ class SessionStore: ObservableObject {
                             } else {
                                 if !self.otherUsers.contains(user) && self.isUserPartOfFilter(user: user) {
                                     var tempUser = user
-                                    if (self.sessionUser?.gpsUsage ?? false) && (user.gpsUsage ?? false){
-                                       
-                                        tempUser.updateDistance(distance: self.locationManager.distance(lat1: self.sessionUser!.location!.latitude as! Double, long1: self.sessionUser!.location!.longitude as! Double, lat2: user.location!.latitude as! Double, long2: user.location!.longitude as! Double))}
+                                    if self.sessionUser?.gpsUsage ?? false {
+                                        if user.gpsUsage ?? false {
+                                            tempUser.updateDistance(distance: self.locationManager.distance(lat1: self.sessionUser!.location!.latitude as! Double, long1: self.sessionUser!.location!.longitude as! Double, lat2: user.location!.latitude as! Double, long2: user.location!.longitude as! Double)
+                                            )
+                                        } else {
+                                            tempUser.updateDistance(distance: 200.0)
+                                        }
+                                    }
                                     self.otherUsers.append(tempUser)
+                                    if self.searchWithGPS {
+                                        self.otherUsers.sort {
+                                            Unicode.CanonicalCombiningClass(rawValue: Unicode.CanonicalCombiningClass.RawValue($0.distance!)) < Unicode.CanonicalCombiningClass(rawValue: Unicode.CanonicalCombiningClass.RawValue($1.distance!))
+                                        }
+                                    }
                                 }
                             }
                         })

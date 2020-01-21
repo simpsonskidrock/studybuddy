@@ -74,11 +74,12 @@ class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObject {
     func distance(lat1: Double, long1: Double, lat2: Double, long2: Double)->Double{
         let locA = CLLocation(latitude: lat1, longitude: long1)
         let locB = CLLocation(latitude: lat2, longitude: long2)
-        let distance = locA.distance(from: locB)
-        
+        var distance = (locA.distance(from: locB)).rounded()
+        distance = distance/1000 // meters to kilometers
+        let maxDistance: Double = 200 // kilometers
+        if distance > maxDistance {
+            distance = maxDistance
+        }
         return distance
-        
     }
-    
 }
-
