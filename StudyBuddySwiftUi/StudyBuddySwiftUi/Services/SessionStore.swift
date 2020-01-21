@@ -30,7 +30,32 @@ class SessionStore: ObservableObject {
     @Published var matchedUsers: [UserModel] = []
     var presentMatchAlert: Bool = false
     @Published var searchWithGPS: Bool = false
-    var hashtags: String = ""
+    var myHashtags: String = ""
+    // hashtags to filter by divided by a space
+    var tagsToFilterBy: [String] = []
+    
+    func appendFilter(newTag: String) {
+        tagsToFilterBy.append(newTag)
+    }
+    func removeFilter(tag: String) {
+        tagsToFilterBy = tagsToFilterBy.filter{$0 != tag}
+    }
+
+    private func isUserPartOfFilter(user: UserModel) -> Bool {
+        let userTags = user.hashtags?.components(separatedBy: " ") ?? []
+
+        // compare elements of both array to each other and if at least one matches the other,
+        // the given user is part of the search
+        for filterTag in tagsToFilterBy {
+            for userTag in userTags {
+                if userTag == filterTag {
+                    return true
+                }
+            }
+        }
+        return false
+    }
+
 
     func listen(handler: @escaping ((UserModel) -> ())) {
         // monitor authentication changes using firebase
@@ -199,19 +224,15 @@ class SessionStore: ObservableObject {
             FixedStringValues.description: description ?? "",
             FixedStringValues.hashtags: hashtags ?? ""
         ]
+        // Save fomatted hashtags without # symbols
+        self.myHashtags = hashtags?.replacingOccurrences(of: "#", with: "") ?? ""
+
         Database.database().reference().child(FixedStringValues.urlIdentifierUser).child(tempUid).updateChildValues(dict, withCompletionBlock: { (error, ref) in
             if error == nil {
-                self.sessionUser?.updateDetails(displayName: displayName!, fieldOfStudy: fieldOfStudy!, description: description!, hashtags: hashtags!)
+                self.sessionUser?.updateDetails(displayName: displayName!, fieldOfStudy: fieldOfStudy!, description: description!, hashtags: self.myHashtags)
                 print("Update ProfileDetails: Done")
             }
         })
-        // update tags for swipeView
-        if let newTags = hashtags {
-            self.hashtags = newTags
-        } else {
-            self.hashtags = ""
-        }
-        
     }
     
     // ---------------- Image ---------------- //

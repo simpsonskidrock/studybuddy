@@ -13,7 +13,7 @@ import Firebase
 class ChatController : ObservableObject {
     let db = Firestore.firestore()
     @Published var message : [Message] = []
-
+    
     // ---------------- load messages from FS ---------------- //
     func loadMessages(uid: String, otherUid: String) {
         //retrieve messages and order it by date
@@ -28,7 +28,7 @@ class ChatController : ObservableObject {
                         if let messageSender = data[FStore.senderField] as? String,
                             let messageReceiver = data[FStore.receiverField] as? String,
                             let messageBody = data[FStore.bodyField] as? String,
-                             let messageTime = data[FStore.timeField] as? String
+                            let messageTime = data[FStore.timeField] as? String
                             
                         {
                             //filter messages per user

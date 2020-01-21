@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		2909A73523D1E91300689BD3 /* MessageBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2909A73423D1E91300689BD3 /* MessageBubble.swift */; };
 		290A21982393E08700E0BC81 /* ResetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290A21972393E08700E0BC81 /* ResetPasswordView.swift */; };
-		292EF2FA2381F5760062FBB5 /* ChangePasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292EF2F92381F5760062FBB5 /* ChangePasswordView.swift */; };
 		2937ACC22389819F00E07611 /* ChatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2937ACC12389819F00E07611 /* ChatController.swift */; };
 		293AA0732384947A00436E02 /* KeyboardSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 293AA0722384947A00436E02 /* KeyboardSettings.swift */; };
 		2967910923AD755B00887FB3 /* ChatHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2967910823AD755B00887FB3 /* ChatHeaderView.swift */; };
@@ -20,6 +19,7 @@
 		3391BDFC238557B600643581 /* SessionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3391BDFB238557B600643581 /* SessionStore.swift */; };
 		3391BDFE238557FC00643581 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3391BDFD238557FB00643581 /* UserModel.swift */; };
 		4E5B7ECC2382A871002C72B2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4E5B7ECB2382A871002C72B2 /* GoogleService-Info.plist */; };
+		586036583DEF78AB0017B384 /* HashtagButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58603A2B07FB4F88C61B3801 /* HashtagButton.swift */; };
 		5F6706AD580144BD7E148704 /* Pods_StudyBuddySwiftUi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E880CE267D995F2D844EA96D /* Pods_StudyBuddySwiftUi.framework */; };
 		732023D6239921C90031F120 /* WaitForSessionUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732023D5239921C90031F120 /* WaitForSessionUserView.swift */; };
 		734FC387238F094B00350F82 /* FixedStringValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734FC386238F094B00350F82 /* FixedStringValues.swift */; };
@@ -73,7 +73,6 @@
 		117D2FA1FE202F08383D7EB9 /* Pods-StudyBuddySwiftUiUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StudyBuddySwiftUiUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StudyBuddySwiftUiUITests/Pods-StudyBuddySwiftUiUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		2909A73423D1E91300689BD3 /* MessageBubble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBubble.swift; sourceTree = "<group>"; };
 		290A21972393E08700E0BC81 /* ResetPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordView.swift; sourceTree = "<group>"; };
-		292EF2F92381F5760062FBB5 /* ChangePasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordView.swift; sourceTree = "<group>"; };
 		2937ACC12389819F00E07611 /* ChatController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatController.swift; sourceTree = "<group>"; };
 		293AA0722384947A00436E02 /* KeyboardSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardSettings.swift; sourceTree = "<group>"; };
 		2967910823AD755B00887FB3 /* ChatHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatHeaderView.swift; sourceTree = "<group>"; };
@@ -85,6 +84,7 @@
 		3391BDFD238557FB00643581 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		4E5B7ECB2382A871002C72B2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5229308A2865911F0E6F797C /* Pods-StudyBuddySwiftUiTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StudyBuddySwiftUiTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-StudyBuddySwiftUiTests/Pods-StudyBuddySwiftUiTests.release.xcconfig"; sourceTree = "<group>"; };
+		58603A2B07FB4F88C61B3801 /* HashtagButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HashtagButton.swift; sourceTree = "<group>"; };
 		598C953324D99E410D1B9A0F /* Pods-StudyBuddySwiftUi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StudyBuddySwiftUi.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StudyBuddySwiftUi/Pods-StudyBuddySwiftUi.debug.xcconfig"; sourceTree = "<group>"; };
 		63A1D570831FA0B30FC24AE1 /* Pods-StudyBuddySwiftUiUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StudyBuddySwiftUiUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-StudyBuddySwiftUiUITests/Pods-StudyBuddySwiftUiUITests.release.xcconfig"; sourceTree = "<group>"; };
 		732023D5239921C90031F120 /* WaitForSessionUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitForSessionUserView.swift; sourceTree = "<group>"; };
@@ -197,7 +197,6 @@
 				735FED7723D6E695004350EB /* WaitForAutoLogin.swift */,
 				732023D5239921C90031F120 /* WaitForSessionUserView.swift */,
 				73B9D153237C2484000E268E /* LoginView.swift */,
-				292EF2F92381F5760062FBB5 /* ChangePasswordView.swift */,
 				7367D201237D85F5002EE928 /* RegisterView.swift */,
 				290A21972393E08700E0BC81 /* ResetPasswordView.swift */,
 			);
@@ -211,6 +210,7 @@
 				73A355EB23AA404B001C3EF0 /* NoOtherUsersView.swift */,
 				7397242323CF75F10003DFD0 /* CustomViewElementsLevel1.swift */,
 				84B3AD5D237D973800CB2160 /* CustomViewElementsLevel2.swift */,
+				58603A2B07FB4F88C61B3801 /* HashtagButton.swift */,
 			);
 			name = View;
 			path = Controllers/View;
@@ -574,7 +574,6 @@
 				73CDE4442390FB570078654C /* OtherUserAvatarView.swift in Sources */,
 				73FD807D239F971700A9EDFA /* Enums.swift in Sources */,
 				2937ACC22389819F00E07611 /* ChatController.swift in Sources */,
-				292EF2FA2381F5760062FBB5 /* ChangePasswordView.swift in Sources */,
 				84B3AD5E237D973800CB2160 /* CustomViewElementsLevel2.swift in Sources */,
 				73A69B4923869D2700ECEAC2 /* ListedAlerts.swift in Sources */,
 				29F7660D2396FE5800A7209C /* LocationManager.swift in Sources */,
@@ -585,6 +584,7 @@
 				293AA0732384947A00436E02 /* KeyboardSettings.swift in Sources */,
 				732023D6239921C90031F120 /* WaitForSessionUserView.swift in Sources */,
 				2909A73523D1E91300689BD3 /* MessageBubble.swift in Sources */,
+				586036583DEF78AB0017B384 /* HashtagButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

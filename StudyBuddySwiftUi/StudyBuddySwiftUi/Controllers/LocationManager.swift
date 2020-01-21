@@ -43,7 +43,6 @@ class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObject {
         case .notDetermined: return "notDetermined"
         case .authorizedWhenInUse: return "authorizedWhenInUse"
         case .authorizedAlways: return "authorizedAlways"
-        case .restricted: return "restricted"
         case .denied: return "denied"
         default: return "unknown"
         }
@@ -68,7 +67,6 @@ class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObject {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.last else { return }
-        //self.lastLocation = location
         updatedLocation?(location)
         print(#function, location)
     }

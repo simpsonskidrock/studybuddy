@@ -23,17 +23,17 @@ struct SwipeTabView: View {
         self.session.getProfile(uid: self.session.sessionUser!.uid, handler: { user in
             self.session.sessionUser = user
             self.session.downloadAllUserLists()
-            self.setBothTagRows(hashtagsAsString: self.session.hashtags)
+            self.setBothTagRows(hashtagsAsString: self.session.myHashtags)
         })
     }
 
     /* compare two strins by length Used for sorting */
-    func shorter(value1: String, value2: String) -> Bool {
+    private func shorter(value1: String, value2: String) -> Bool {
         // ... True means value1 precedes value2.
         return value1.count < value2.count
     }
 
-    func setBothTagRows(hashtagsAsString: String?) {
+    private func setBothTagRows(hashtagsAsString: String?) {
         tagsRow1 = []
         tagsRow2 = []
         if let newTags = hashtagsAsString {
@@ -81,7 +81,7 @@ struct SwipeTabView: View {
                 HStack {
                     ForEach(tagsRow1, id: \.self) { tag in
                         Button(action: {
-                            print("You tapped on a tag, feature to filter by tags is not implemented yet :(")
+                            self.session.appendFilter(newTag: tag)
                         }) {
                             Text("#\(tag)")
                                 .background(Color.lmuDarkGrey)
@@ -93,7 +93,7 @@ struct SwipeTabView: View {
                 HStack {
                     ForEach(tagsRow2, id: \.self) { tag in
                         Button(action: {
-                            print("You tapped on a tag, feature to filter by tags is not implemented yet :(")
+                            self.session.appendFilter(newTag: tag)
                         }) {
                             Text("#\(tag)")
                                 .background(Color.lmuDarkGrey)

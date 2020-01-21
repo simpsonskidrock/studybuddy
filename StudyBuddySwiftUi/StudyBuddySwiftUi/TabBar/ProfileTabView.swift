@@ -164,13 +164,12 @@ struct ProfileTabView: View {
                             TextField("Describe your self", text: $description)
                                 .disabled(!self.editProfile)
                                 .textFieldStyle(StudyBuddySubTitleStyleLevel2b())
-                            
                         }
                         VStack(alignment: .leading){
-                            Text("Hashtags:")
+                            Text(self.editProfile ? "Hashtags (Up to 6 tags)" : "Hashtags:")
                                 .foregroundColor(.lmuLightGrey)
                                 .fontWeight(.bold)
-                            TextField("#", text: $hashtags)
+                            TextField("", text: $hashtags)
                                 .lineLimit(nil)
                                 .disabled(!self.editProfile)
                                 .textFieldStyle(StudyBuddySubTitleStyleLevel2b())
