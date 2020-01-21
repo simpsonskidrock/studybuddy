@@ -33,29 +33,42 @@ class SessionStore: ObservableObject {
     var myHashtags: String = ""
     // hashtags to filter by divided by a space
     var tagsToFilterBy: [String] = []
-    
+
     func appendFilter(newTag: String) {
         tagsToFilterBy.append(newTag)
+        printFilters()
     }
     func removeFilter(tag: String) {
         tagsToFilterBy = tagsToFilterBy.filter{$0 != tag}
+        printFilters()
+    }
+
+    func printFilters() {
+        print("[", terminator:"")
+        for tag in tagsToFilterBy {
+            print(tag, terminator:" ")
+        }
+        print("]")
     }
 
     private func isUserPartOfFilter(user: UserModel) -> Bool {
+        if (tagsToFilterBy.count < 1) {
+            return true
+        }
+
         let userTags = user.hashtags?.components(separatedBy: " ") ?? []
 
         // compare elements of both array to each other and if at least one matches the other,
         // the given user is part of the search
         for filterTag in tagsToFilterBy {
             for userTag in userTags {
-                if userTag == filterTag {
+                if userTag.lowercased() == filterTag.lowercased() {
                     return true
                 }
             }
         }
         return false
     }
-
 
     func listen(handler: @escaping ((UserModel) -> ())) {
         // monitor authentication changes using firebase
@@ -218,14 +231,17 @@ class SessionStore: ObservableObject {
     func updateProfile(displayName: String?, fieldOfStudy: String?, description: String?, hashtags: String?, image: UIImage?) {
         let tempUid: String = String((self.sessionUser?.uid)!)
         self.updateProfileImage(uid: tempUid, image: image)
+
+        // Save fomatted hashtags without # symbols
+        self.myHashtags = hashtags?.replacingOccurrences(of: "#", with: "") ?? ""
+        self.myHashtags = self.myHashtags.replacingOccurrences(of: "  ", with: " ")
+
         let dict: Dictionary<String, Any> = [
             FixedStringValues.displayName: displayName ?? "",
             FixedStringValues.fieldOfStudy: fieldOfStudy ?? "",
             FixedStringValues.description: description ?? "",
-            FixedStringValues.hashtags: hashtags ?? ""
+            FixedStringValues.hashtags: self.myHashtags ?? ""
         ]
-        // Save fomatted hashtags without # symbols
-        self.myHashtags = hashtags?.replacingOccurrences(of: "#", with: "") ?? ""
 
         Database.database().reference().child(FixedStringValues.urlIdentifierUser).child(tempUid).updateChildValues(dict, withCompletionBlock: { (error, ref) in
             if error == nil {
@@ -344,7 +360,7 @@ class SessionStore: ObservableObject {
                                     self.likedUsers.append(user)
                                 }
                             } else {
-                                if !self.otherUsers.contains(user) {
+                                if !self.otherUsers.contains(user) { //  TODO lorenz && self.isUserPartOfFilter(user: user) {
                                     self.otherUsers.append(user)
                                 }
                             }

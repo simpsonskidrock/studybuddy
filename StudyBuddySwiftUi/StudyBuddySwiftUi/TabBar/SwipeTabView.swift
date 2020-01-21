@@ -40,10 +40,12 @@ struct SwipeTabView: View {
             var strArray = newTags.components(separatedBy: " ")
             strArray.sort(by: shorter)
             for n in 0..<(min(strArray.count, 6)) {
-                if n % 2 == 0 {
-                    tagsRow1.append(strArray[n])
-                } else {
-                    tagsRow2.append(strArray[n])
+                if (strArray[n].count > 1) {
+                    if n % 2 == 0 {
+                        tagsRow1.append(strArray[n])
+                    } else {
+                        tagsRow2.append(strArray[n])
+                    }
                 }
             }
         }
