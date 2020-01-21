@@ -49,7 +49,7 @@ struct SwipeTabView: View {
                 }
             }
         }
-        print("1Row: \(tagsRow1) \n 2Row: \(tagsRow2) ")
+        // print("1Row: \(tagsRow1) \n 2Row: \(tagsRow2) ")
     }
     
     private func close() {
@@ -70,11 +70,11 @@ struct SwipeTabView: View {
             }) {
                 HStack {
                     if (self.session.searchWithGPS) {
-                        Image(systemName: "location")
-                        Text("GPS active").fontWeight(.semibold)
-                    } else {
                         Image(systemName: "location.slash")
-                        Text("No GPS").fontWeight(.semibold)
+                        Text("GPS-Search disabled - tap to activate").fontWeight(.semibold)
+                    } else {
+                        Image(systemName: "location")
+                        Text("GPS-Search active").fontWeight(.semibold)
                     }
                 }
             }.buttonStyle(StudyBuddyIconButtonStyleLevel2())

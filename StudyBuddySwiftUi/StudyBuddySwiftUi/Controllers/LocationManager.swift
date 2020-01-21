@@ -62,13 +62,13 @@ class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObject {
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         self.locationStatus = status
-        print(#function, statusString)
+        // print(#function, statusString)
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.last else { return }
         updatedLocation?(location)
-        print(#function, location)
+        // print(#function, location)
     }
     
     func distance(lat1: Double, long1: Double, lat2: Double, long2: Double)->Double{

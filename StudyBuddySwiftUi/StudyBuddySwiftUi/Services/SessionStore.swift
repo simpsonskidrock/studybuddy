@@ -375,7 +375,7 @@ class SessionStore: ObservableObject {
                                         }
                                     }
                                     self.otherUsers.append(tempUser)
-                                    if self.searchWithGPS {
+                                    if self.sessionUser?.gpsUsage ?? false {
                                         self.otherUsers.sort {
                                             Unicode.CanonicalCombiningClass(rawValue: Unicode.CanonicalCombiningClass.RawValue($0.distance!)) < Unicode.CanonicalCombiningClass(rawValue: Unicode.CanonicalCombiningClass.RawValue($1.distance!))
                                         }
@@ -501,7 +501,6 @@ class SessionStore: ObservableObject {
      */
     func updateLocation() {
         let tempUid: String = String((self.sessionUser?.uid)!)
-        print("updateLocation")
         self.locationManager.requestLocation { (location) in
             self.sessionUser?.updateLocation(location: LocationModel(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude))
             let dict: Dictionary<String, Any> = [
