@@ -108,6 +108,10 @@ class SessionStore: ObservableObject {
         }
     }
     
+    /**
+     * Clear some variable for no unauthorized access (after logout then login of other user)
+     * otherwise these variables are still be set before the data of the new user has been downloaded
+     */
     private func clearProfile() {
         self.otherUsers = []
         self.likedUsers = []
@@ -118,6 +122,12 @@ class SessionStore: ObservableObject {
     
     // ---------------- Profile ---------------- //
     
+    /**
+     * Download a profile with a given uid
+     * ( ! not only for getting the current users profile ! )
+     * returns a UserModel with all entries of the database
+     * in case of no gps usage: without location-entry
+     */
     func getProfile(uid: String?, handler: @escaping ((UserModel) -> ())) {
         let rootRef = Database.database().reference(withPath: FixedStringValues.urlIdentifierUser).child(uid!)
         rootRef.observeSingleEvent(of: .value, with: { (snapshot) in
@@ -151,6 +161,10 @@ class SessionStore: ObservableObject {
         }
     }
     
+    /**
+     * Create a new user
+     * used for registration
+     */
     func addSessionUserProfile(result: AuthDataResult?,  handler: @escaping (Error?) -> () ) {
         if let authData = result {
             let dict: Dictionary<String, Any> = [
@@ -172,6 +186,10 @@ class SessionStore: ObservableObject {
         }
     }
     
+    /**
+     * Upload some data from current user which the user can edit:
+     * displayName, fieldOfStudy, description, hashtags
+     */
     func updateProfile(displayName: String?, fieldOfStudy: String?, description: String?, hashtags: String?, image: UIImage?) {
         let tempUid: String = String((self.sessionUser?.uid)!)
         self.updateProfileImage(uid: tempUid, image: image)
@@ -198,6 +216,10 @@ class SessionStore: ObservableObject {
     
     // ---------------- Image ---------------- //
     
+    /**
+     * Upload the new profile image of the current user to Firebase Storage
+     * Add link to the profile image in Firebase Storage to the current user UserModel
+     */
     private func updateProfileImage(uid: String, image: UIImage?) {
         guard let imageSelected = image else {
             print("Image is nil")
@@ -231,11 +253,14 @@ class SessionStore: ObservableObject {
         })
     }
     
+    /**
+     * Remove profile image of current user from Firebase Storage
+     * and delete the url in the UserModel
+     */
     func deleteProfilePic() {
         guard let userUid = self.sessionUser?.uid else {
             return
         }
-        
         let pictureRef = Storage.storage().reference().child("\(FixedStringValues.urlIdentifierProfile)/\(userUid)")
         pictureRef.delete { error in
             if let error = error {
@@ -247,6 +272,10 @@ class SessionStore: ObservableObject {
         self.sessionUser?.profileImageUrl = ""
     }
     
+    /**
+     * Download a profile image from a users profileImageUrl
+     * ( !  used for all users ! )
+     */
     func getProfileImage(profileImageUrl: String, handler: @escaping ((UIImage) -> ())) {
         if (profileImageUrl.isEmpty) {
             print("no profile image")
@@ -266,6 +295,13 @@ class SessionStore: ObservableObject {
     
     // ---------------- Other User|s ---------------- //
     
+    /**
+     * Get all users from database
+     * split them into lists: otherUsers, likedUsers, matchedUsers
+     * otherUsers: users which are not liked by the current user & users which are not matched with the current user
+     * likedUsers: users which are liked by the current user
+     * matchedUsers: users which are matched with the current user
+     */
     func downloadAllUserLists() {
         self.otherUsers = []
         self.likedUsers = []
@@ -302,6 +338,9 @@ class SessionStore: ObservableObject {
     
     // ---------------- Likes and Contacts ---------------- //
     
+    /**
+     * Add a UserModel to the likedUsers (local) list and the uid of the UserModel to the sessionUser.likedUsers (local and database)
+     */
     func addLikedUser(user: UserModel) {
         if !(self.sessionUser?.likedUsers.contains(user.uid) ?? false) {
             self.sessionUser?.likedUsers.append(user.uid)
@@ -314,7 +353,6 @@ class SessionStore: ObservableObject {
                 if error == nil {
                     self.getProfile(uid: self.sessionUser!.uid, handler: { user in
                         self.sessionUser = user
-                        self.searchWithGPS = self.sessionUser?.gpsUsage ?? false
                         self.downloadAllUserLists()
                     })
                 }
@@ -322,6 +360,11 @@ class SessionStore: ObservableObject {
         }
     }
     
+    /**
+     * Remove a userId from the likedUsers (list with uids) from current user
+     * only local!
+     * change in database with self.updateLikedUsersInDB
+     */
     func removeLikedUser(uidToRemove: String) {
         let prevSize: Int = self.sessionUser?.likedUsers.count ?? 0
         self.sessionUser?.likedUsers = self.sessionUser?.likedUsers.filter{$0 != uidToRemove} ?? []
@@ -330,9 +373,14 @@ class SessionStore: ObservableObject {
         } else {
             print("Removal failed! likedUsers:\(self.sessionUser?.likedUsers)")
         }
-        updateLikedUsersInDB()
+        self.updateLikedUsersInDB()
     }
     
+    /**
+    * Remove a userId from the matchedUsers (list with uids) from current user
+    * only local!
+    * change in database with self.updateMatchedUsersInDB
+    */
     func removeMatchedUser(uidToRemove: String) {
         let prevSize: Int = self.sessionUser?.contacts.count ?? 0
         self.sessionUser?.contacts = self.sessionUser?.contacts.filter{$0 != uidToRemove} ?? []
@@ -341,9 +389,12 @@ class SessionStore: ObservableObject {
         } else {
             print("Removal failed! contacts:\(self.sessionUser?.contacts)")
         }
-        updateMatchedUsersInDB()
+        self.updateMatchedUsersInDB()
     }
     
+    /**
+     * Upload the current likedUsers (list with uids) from current user to database
+     */
     func updateLikedUsersInDB() {
         let tempUid: String = String((self.sessionUser?.uid)!)
         let dict: Dictionary<String, Any> = [
@@ -354,6 +405,9 @@ class SessionStore: ObservableObject {
         } )
     }
     
+    /**
+     * Upload the current matchedUsers (list with uids) from current user to database
+     */
     func updateMatchedUsersInDB() {
         let tempUid: String = String((self.sessionUser?.uid)!)
         let dict: Dictionary<String, Any> = [
@@ -366,6 +420,11 @@ class SessionStore: ObservableObject {
     
     // ---------------- Location ---------------- //
     
+    /**
+     * Upload current gpsUsage state from current user
+     * gpsUsage is true: self.updateLocation
+     * gpsUsage is false: removeLocation
+     */
     func updateGpsUsage() {
         let tempUid: String = String((self.sessionUser?.uid)!)
         let dict: Dictionary<String, Any> = [
@@ -381,6 +440,10 @@ class SessionStore: ObservableObject {
         }
     }
     
+    /**
+     * Request for location of current user and outcome is stored in the database
+     * ( location(latitude, longitude) )
+     */
     func updateLocation() {
         let tempUid: String = String((self.sessionUser?.uid)!)
         print("updateLocation")
@@ -396,6 +459,9 @@ class SessionStore: ObservableObject {
         }
     }
     
+    /**
+     * Remove location of current user (local and database)
+     */
     func removeLocation() {
         let tempUid: String = String((self.sessionUser?.uid)!)
         self.sessionUser?.location = nil
