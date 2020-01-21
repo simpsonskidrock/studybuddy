@@ -371,7 +371,7 @@ class SessionStore: ObservableObject {
                                             tempUser.updateDistance(distance: self.locationManager.distance(lat1: self.sessionUser!.location!.latitude as! Double, long1: self.sessionUser!.location!.longitude as! Double, lat2: user.location!.latitude as! Double, long2: user.location!.longitude as! Double)
                                             )
                                         } else {
-                                            tempUser.updateDistance(distance: 200.0)
+                                            tempUser.updateDistance(distance: 201.0)
                                         }
                                     }
                                     self.otherUsers.append(tempUser)
