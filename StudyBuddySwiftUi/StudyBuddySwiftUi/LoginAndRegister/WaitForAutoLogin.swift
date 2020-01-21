@@ -17,6 +17,7 @@ struct WaitForAutoLogin: View {
         if (self.session.sessionUser == nil) {
             self.session.listen(handler: { user in
                 self.session.sessionUser = user
+                self.session.searchWithGPS = self.session.sessionUser?.gpsUsage ?? false
                 if self.session.sessionUser?.gpsUsage ?? false {
                     self.session.updateLocation()
                 }
@@ -37,7 +38,7 @@ struct WaitForAutoLogin: View {
                 Color.lmuGreen
                     .edgesIgnoringSafeArea(.vertical)
                     .overlay(
-                        ZStack {
+                        VStack {
                             Spacer()
                             Image("fountainicon").animation(.interpolatingSpring(stiffness: 20, damping: 0.5))
                             Text("loading data...").foregroundColor(.white)
