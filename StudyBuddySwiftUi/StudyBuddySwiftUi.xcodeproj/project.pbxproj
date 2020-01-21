@@ -19,6 +19,7 @@
 		3391BDFC238557B600643581 /* SessionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3391BDFB238557B600643581 /* SessionStore.swift */; };
 		3391BDFE238557FC00643581 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3391BDFD238557FB00643581 /* UserModel.swift */; };
 		4E5B7ECC2382A871002C72B2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4E5B7ECB2382A871002C72B2 /* GoogleService-Info.plist */; };
+		586036583DEF78AB0017B384 /* HashtagButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58603A2B07FB4F88C61B3801 /* HashtagButton.swift */; };
 		5F6706AD580144BD7E148704 /* Pods_StudyBuddySwiftUi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E880CE267D995F2D844EA96D /* Pods_StudyBuddySwiftUi.framework */; };
 		732023D6239921C90031F120 /* WaitForSessionUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732023D5239921C90031F120 /* WaitForSessionUserView.swift */; };
 		734FC387238F094B00350F82 /* FixedStringValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734FC386238F094B00350F82 /* FixedStringValues.swift */; };
@@ -83,6 +84,7 @@
 		3391BDFD238557FB00643581 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		4E5B7ECB2382A871002C72B2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5229308A2865911F0E6F797C /* Pods-StudyBuddySwiftUiTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StudyBuddySwiftUiTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-StudyBuddySwiftUiTests/Pods-StudyBuddySwiftUiTests.release.xcconfig"; sourceTree = "<group>"; };
+		58603A2B07FB4F88C61B3801 /* HashtagButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HashtagButton.swift; sourceTree = "<group>"; };
 		598C953324D99E410D1B9A0F /* Pods-StudyBuddySwiftUi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StudyBuddySwiftUi.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StudyBuddySwiftUi/Pods-StudyBuddySwiftUi.debug.xcconfig"; sourceTree = "<group>"; };
 		63A1D570831FA0B30FC24AE1 /* Pods-StudyBuddySwiftUiUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StudyBuddySwiftUiUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-StudyBuddySwiftUiUITests/Pods-StudyBuddySwiftUiUITests.release.xcconfig"; sourceTree = "<group>"; };
 		732023D5239921C90031F120 /* WaitForSessionUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitForSessionUserView.swift; sourceTree = "<group>"; };
@@ -208,6 +210,7 @@
 				73A355EB23AA404B001C3EF0 /* NoOtherUsersView.swift */,
 				7397242323CF75F10003DFD0 /* CustomViewElementsLevel1.swift */,
 				84B3AD5D237D973800CB2160 /* CustomViewElementsLevel2.swift */,
+				58603A2B07FB4F88C61B3801 /* HashtagButton.swift */,
 			);
 			name = View;
 			path = Controllers/View;
@@ -581,6 +584,7 @@
 				293AA0732384947A00436E02 /* KeyboardSettings.swift in Sources */,
 				732023D6239921C90031F120 /* WaitForSessionUserView.swift in Sources */,
 				2909A73523D1E91300689BD3 /* MessageBubble.swift in Sources */,
+				586036583DEF78AB0017B384 /* HashtagButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

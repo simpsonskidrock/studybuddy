@@ -17,7 +17,7 @@ struct WaitForAutoLogin: View {
         if (self.session.sessionUser == nil) {
             self.session.listen(handler: { user in
                 self.session.sessionUser = user
-                self.session.hashtags = user.hashtags ?? ""
+                self.session.myHashtags = user.hashtags ?? ""
                 self.session.searchWithGPS = self.session.sessionUser?.gpsUsage ?? false
                 if self.session.sessionUser?.gpsUsage ?? false {
                     self.session.updateLocation()
@@ -27,7 +27,7 @@ struct WaitForAutoLogin: View {
         } else {
             self.session.listen(handler: { user in
                 self.session.sessionUser = user
-                self.session.hashtags = user.hashtags ?? ""
+                self.session.myHashtags = user.hashtags ?? ""
                 self.session.searchWithGPS = self.session.sessionUser?.gpsUsage ?? false
                 if self.session.sessionUser?.gpsUsage ?? false {
                     self.session.updateLocation()

@@ -23,7 +23,7 @@ struct SwipeTabView: View {
         self.session.getProfile(uid: self.session.sessionUser!.uid, handler: { user in
             self.session.sessionUser = user
             self.session.downloadAllUserLists()
-            self.setBothTagRows(hashtagsAsString: self.session.hashtags)
+            self.setBothTagRows(hashtagsAsString: self.session.myHashtags)
         })
     }
 
@@ -81,7 +81,7 @@ struct SwipeTabView: View {
                 HStack {
                     ForEach(tagsRow1, id: \.self) { tag in
                         Button(action: {
-                            print("You tapped on a tag, feature to filter by tags is not implemented yet :(")
+                            self.session.appendFilter(newTag: tag)
                         }) {
                             Text("#\(tag)")
                                 .background(Color.lmuDarkGrey)
@@ -93,7 +93,7 @@ struct SwipeTabView: View {
                 HStack {
                     ForEach(tagsRow2, id: \.self) { tag in
                         Button(action: {
-                            print("You tapped on a tag, feature to filter by tags is not implemented yet :(")
+                            self.session.appendFilter(newTag: tag)
                         }) {
                             Text("#\(tag)")
                                 .background(Color.lmuDarkGrey)
