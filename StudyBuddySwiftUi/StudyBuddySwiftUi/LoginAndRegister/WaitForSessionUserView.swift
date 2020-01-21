@@ -26,6 +26,9 @@ struct WaitForSessionUserView: View {
             } else {
                 self.session.listen(handler: { user in
                     self.session.sessionUser = user
+                    if self.session.sessionUser?.gpsUsage ?? false {
+                        self.session.updateLocation()
+                    }
                     self.correctLoginData.toggle()
                 })
             }
