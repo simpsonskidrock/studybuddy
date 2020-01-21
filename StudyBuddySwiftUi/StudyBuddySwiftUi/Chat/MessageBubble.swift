@@ -42,7 +42,7 @@ struct ChatRow : View {
                     }
                     HStack{
                         Text(chatMessage.time).font(.custom("SFProText-Bold", size: 12))
-                    }.padding(.init(top: 0, leading: 3, bottom: 0, trailing: 0))
+                    }.padding(.init(top: 0, leading: 5, bottom: 0, trailing: 0))
                 }
             }
             else {
