@@ -204,7 +204,7 @@ class SessionStore: ObservableObject {
 
         Database.database().reference().child(FixedStringValues.urlIdentifierUser).child(tempUid).updateChildValues(dict, withCompletionBlock: { (error, ref) in
             if error == nil {
-                self.sessionUser?.updateDetails(displayName: displayName!, fieldOfStudy: fieldOfStudy!, description: description!, hashtags: formattedHashtags)
+                self.sessionUser?.updateDetails(displayName: displayName!, fieldOfStudy: fieldOfStudy!, description: description!, hashtags: self.hashtags)
                 print("Update ProfileDetails: Done")
             }
         })
