@@ -199,19 +199,15 @@ class SessionStore: ObservableObject {
             FixedStringValues.description: description ?? "",
             FixedStringValues.hashtags: hashtags ?? ""
         ]
+        // Save fomatted hashtags without # symbols
+        self.hashtags = hashtags?.replacingOccurrences(of: "#", with: "") ?? ""
+
         Database.database().reference().child(FixedStringValues.urlIdentifierUser).child(tempUid).updateChildValues(dict, withCompletionBlock: { (error, ref) in
             if error == nil {
-                self.sessionUser?.updateDetails(displayName: displayName!, fieldOfStudy: fieldOfStudy!, description: description!, hashtags: hashtags!)
+                self.sessionUser?.updateDetails(displayName: displayName!, fieldOfStudy: fieldOfStudy!, description: description!, hashtags: formattedHashtags)
                 print("Update ProfileDetails: Done")
             }
         })
-        // update tags for swipeView
-        if let newTags = hashtags {
-            self.hashtags = newTags
-        } else {
-            self.hashtags = ""
-        }
-        
     }
     
     // ---------------- Image ---------------- //
