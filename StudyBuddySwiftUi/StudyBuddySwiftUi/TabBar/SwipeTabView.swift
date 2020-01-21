@@ -70,11 +70,11 @@ struct SwipeTabView: View {
             }) {
                 HStack {
                     if (self.session.searchWithGPS) {
-                        Image(systemName: "location.slash")
-                        Text("GPS-Search disabled - tap to activate").fontWeight(.semibold)
-                    } else {
                         Image(systemName: "location")
                         Text("GPS-Search active").fontWeight(.semibold)
+                    } else {
+                        Image(systemName: "location.slash")
+                        Text("GPS-Search disabled - tap to activate").fontWeight(.semibold)
                     }
                 }
             }.buttonStyle(StudyBuddyIconButtonStyleLevel2())
