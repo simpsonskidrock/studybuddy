@@ -324,7 +324,11 @@ class SessionStore: ObservableObject {
                                 }
                             } else {
                                 if !self.otherUsers.contains(user) {
-                                    self.otherUsers.append(user)
+                                    var tempUser = user
+                                    if (self.sessionUser?.gpsUsage ?? false) && (user.gpsUsage ?? false){
+                                       
+                                        tempUser.updateDistance(distance: self.locationManager.distance(lat1: self.sessionUser!.location!.latitude as! Double, long1: self.sessionUser!.location!.longitude as! Double, lat2: user.location!.latitude as! Double, long2: user.location!.longitude as! Double))}
+                                    self.otherUsers.append(tempUser)
                                 }
                             }
                         })
