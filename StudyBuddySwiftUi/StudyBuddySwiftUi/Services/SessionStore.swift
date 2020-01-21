@@ -62,7 +62,11 @@ class SessionStore: ObservableObject {
         // the given user is part of the search
         for filterTag in tagsToFilterBy {
             for userTag in userTags {
-                if userTag.lowercased() == filterTag.lowercased() {
+                // standardize
+                let userTagMod = userTag.lowercased().replacingOccurrences(of: "#", with: "")
+                let filterTagMod = filterTag.lowercased().replacingOccurrences(of: "#", with: "")
+                
+                if userTagMod == filterTagMod {
                     return true
                 }
             }
@@ -360,7 +364,7 @@ class SessionStore: ObservableObject {
                                     self.likedUsers.append(user)
                                 }
                             } else {
-                                if !self.otherUsers.contains(user) { //  TODO lorenz && self.isUserPartOfFilter(user: user) {
+                                if !self.otherUsers.contains(user) && self.isUserPartOfFilter(user: user) {
                                     var tempUser = user
                                     if (self.sessionUser?.gpsUsage ?? false) && (user.gpsUsage ?? false){
                                        
