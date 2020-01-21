@@ -28,12 +28,12 @@ struct SwipeTabView: View {
     }
 
     /* compare two strins by length Used for sorting */
-    func shorter(value1: String, value2: String) -> Bool {
+    private func shorter(value1: String, value2: String) -> Bool {
         // ... True means value1 precedes value2.
         return value1.count < value2.count
     }
 
-    func setBothTagRows(hashtagsAsString: String?) {
+    private func setBothTagRows(hashtagsAsString: String?) {
         tagsRow1 = []
         tagsRow2 = []
         if let newTags = hashtagsAsString {
