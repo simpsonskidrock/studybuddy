@@ -32,7 +32,7 @@ struct ChatView: View {
             let messageReceiver = self.uid {
             let timeNow = Date()
             let formater = DateFormatter()
-            formater.dateFormat = "HH:mm"
+            formater.dateFormat = "EE' 'HH:mm"
             db.collection(FStore.collectionName).addDocument(data:[ FStore.senderField: messageSender, FStore.receiverField: messageReceiver, FStore.bodyField: composedMessage, FStore.dateField: Date().timeIntervalSince1970, FStore.timeField: formater.string(from: timeNow)])
             { (error) in
                 if let e = error{
