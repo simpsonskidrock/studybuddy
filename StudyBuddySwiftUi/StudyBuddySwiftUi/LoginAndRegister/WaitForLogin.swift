@@ -15,7 +15,7 @@ struct WaitForLogin: View {
     var body: some View {
         VStack {
             if Auth.auth().currentUser != nil {
-                GeneralTabView()
+                WaitForAutoLogin()
             } else {
                 LoginView()
             }
