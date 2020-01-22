@@ -26,7 +26,6 @@ struct WaitForSessionUserView: View {
             } else {
                 self.session.listen(handler: { user in
                     self.session.sessionUser = user
-                    self.session.myHashtags = user.hashtags ?? ""
                     self.session.searchWithGPS = self.session.sessionUser?.gpsUsage ?? false
                     if self.session.sessionUser?.gpsUsage ?? false {
                         self.session.updateLocation()

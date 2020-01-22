@@ -13,7 +13,7 @@ struct UserModel : Hashable {
     var displayName: String?
     var fieldOfStudy: String?
     var description: String?
-    var hashtags: String?
+    var hashtags: [String] = []
     var profileImageUrl: String?
     var likedUsers: [String] = []
     var contacts: [String] = []
@@ -30,7 +30,7 @@ struct UserModel : Hashable {
         self.email = email
     }
     
-    mutating func updateCompleteProfile(displayName: String?, fieldOfStudy: String?, description: String?, hashtags: String?, profileImageUrl: String?, likedUsers: [String]?, contacts: [String]?, gpsUsage: Bool, location: LocationModel?) {
+    mutating func updateCompleteProfile(displayName: String?, fieldOfStudy: String?, description: String?, hashtags: [String], profileImageUrl: String?, likedUsers: [String]?, contacts: [String]?, gpsUsage: Bool, location: LocationModel?) {
         self.updateDetails(displayName: displayName, fieldOfStudy: fieldOfStudy, description: description, hashtags: hashtags)
         self.updatePicture(profileImageUrl: profileImageUrl)
         self.updateLikeAndMatch(likedUsers: likedUsers, contacts: contacts)
@@ -40,7 +40,7 @@ struct UserModel : Hashable {
         }
     }
     
-    mutating func updateDetails(displayName: String?, fieldOfStudy: String?, description: String?, hashtags: String?) {
+    mutating func updateDetails(displayName: String?, fieldOfStudy: String?, description: String?, hashtags: [String]) {
         self.displayName = displayName
         self.fieldOfStudy = fieldOfStudy
         self.description = description
@@ -74,5 +74,13 @@ struct UserModel : Hashable {
         line += fieldOfStudy?.padding(toLength: 30, withPad: " ", startingAt: 0) ?? "Study is null"
         line += description?.padding(toLength: 40, withPad: " ", startingAt: 0) ?? "Description is null"
         return line
+    }
+    
+    func getHashtagsAsString() -> String {
+        var temp: String = ""
+        for tag in self.hashtags {
+            temp += "#\(tag) "
+        }
+        return temp
     }
 }

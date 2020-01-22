@@ -16,7 +16,7 @@ struct OtherUserView: View {
     var body: some View {
         ZStack(alignment: .leading) {
             OtherUserAvatarView(userModel: userModel)
-            OtherUserNameView(name: userModel.displayName!, fieldOfStudy: userModel.fieldOfStudy!, description: userModel.description!, hashtags: userModel.hashtags!)
+            OtherUserNameView(name: userModel.displayName!, fieldOfStudy: userModel.fieldOfStudy!, description: userModel.description!, hashtags: userModel.getHashtagsAsString())
             if self.session.searchWithGPS {
                 VStack {
                     HStack {

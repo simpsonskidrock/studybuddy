@@ -23,7 +23,7 @@ struct SwipeTabView: View {
         self.session.getProfile(uid: self.session.sessionUser!.uid, handler: { user in
             self.session.sessionUser = user
             self.session.downloadAllUserLists()
-            self.setBothTagRows(hashtagsAsString: self.session.myHashtags)
+            self.setBothTagRows(hashtags: self.session.sessionUser?.hashtags ?? [])
         })
     }
 
@@ -33,22 +33,21 @@ struct SwipeTabView: View {
         return value1.count < value2.count
     }
 
-    private func setBothTagRows(hashtagsAsString: String?) {
+    private func setBothTagRows(hashtags: [String]) {
         tagsRow1 = []
         tagsRow2 = []
-        if let newTags = hashtagsAsString {
-            var strArray = newTags.components(separatedBy: " ")
-            strArray.sort(by: shorter)
-            for n in 0..<(min(strArray.count, 6)) {
-                if (strArray[n].count > 1) {
-                    if n % 2 == 0 {
-                        tagsRow1.append(strArray[n])
-                    } else {
-                        tagsRow2.append(strArray[n])
-                    }
+        var strArray = hashtags
+        strArray.sort(by: shorter)
+        for n in 0..<(min(strArray.count, 6)) {
+            if (strArray[n].count > 1) {
+                if n % 2 == 0 {
+                    tagsRow1.append(strArray[n])
+                } else {
+                    tagsRow2.append(strArray[n])
                 }
             }
         }
+    
         // print("1Row: \(tagsRow1) \n 2Row: \(tagsRow2) ")
     }
     

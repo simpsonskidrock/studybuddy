@@ -30,49 +30,8 @@ class SessionStore: ObservableObject {
     @Published var matchedUsers: [UserModel] = []
     var presentMatchAlert: Bool = false
     @Published var searchWithGPS: Bool = false
-    var myHashtags: String = ""
     // hashtags to filter by divided by a space
     var tagsToFilterBy: [String] = []
-
-    func appendFilter(newTag: String) {
-        tagsToFilterBy.append(newTag)
-        printFilters()
-    }
-    func removeFilter(tag: String) {
-        tagsToFilterBy = tagsToFilterBy.filter{$0 != tag}
-        printFilters()
-    }
-
-    func printFilters() {
-        print("[", terminator:"")
-        for tag in tagsToFilterBy {
-            print(tag, terminator:" ")
-        }
-        print("]")
-    }
-
-    private func isUserPartOfFilter(user: UserModel) -> Bool {
-        if (tagsToFilterBy.count < 1) {
-            return true
-        }
-
-        let userTags = user.hashtags?.components(separatedBy: " ") ?? []
-
-        // compare elements of both array to each other and if at least one matches the other,
-        // the given user is part of the search
-        for filterTag in tagsToFilterBy {
-            for userTag in userTags {
-                // standardize
-                let userTagMod = userTag.lowercased().replacingOccurrences(of: "#", with: "")
-                let filterTagMod = filterTag.lowercased().replacingOccurrences(of: "#", with: "")
-                
-                if userTagMod == filterTagMod {
-                    return true
-                }
-            }
-        }
-        return false
-    }
 
     func listen(handler: @escaping ((UserModel) -> ())) {
         // monitor authentication changes using firebase
@@ -179,7 +138,7 @@ class SessionStore: ObservableObject {
             let displayName = value?[FixedStringValues.displayName] as? String ?? ""
             let fieldOfStudy = value?[FixedStringValues.fieldOfStudy] as? String ?? ""
             let description = value?[FixedStringValues.description] as? String ?? ""
-            let hashtags = value?[FixedStringValues.hashtags] as? String ?? ""
+            let hashtags = value?[FixedStringValues.hashtags] as? [String] ?? []
             let profileImageUrl = value?[FixedStringValues.profileImageUrl] as? String ?? ""
             let likedUsers = value?[FixedStringValues.likedUsers] as? [String] ?? []
             let contacts = value?[FixedStringValues.contacts] as? [String] ?? []
@@ -234,22 +193,29 @@ class SessionStore: ObservableObject {
      */
     func updateProfile(displayName: String?, fieldOfStudy: String?, description: String?, hashtags: String?, image: UIImage?) {
         let tempUid: String = String((self.sessionUser?.uid)!)
+        var myHashtags: [String] = []
         self.updateProfileImage(uid: tempUid, image: image)
-
-        // Save fomatted hashtags without # symbols
-        self.myHashtags = hashtags?.replacingOccurrences(of: "#", with: "") ?? ""
-        self.myHashtags = self.myHashtags.replacingOccurrences(of: "  ", with: " ")
-
+        
+        if hashtags != nil {
+            // Save fomatted hashtags without # symbols
+            let tempHashtags: [String] = hashtags!.components(separatedBy: " ")
+            for tag in tempHashtags {
+                var tempTag: String = tag.replacingOccurrences(of: "#", with: "")
+                tempTag = tempTag.replacingOccurrences(of: " ", with: "")
+                myHashtags.append(tempTag)
+            }
+        }
+        
         let dict: Dictionary<String, Any> = [
             FixedStringValues.displayName: displayName ?? "",
             FixedStringValues.fieldOfStudy: fieldOfStudy ?? "",
             FixedStringValues.description: description ?? "",
-            FixedStringValues.hashtags: self.myHashtags ?? ""
+            FixedStringValues.hashtags: myHashtags
         ]
 
         Database.database().reference().child(FixedStringValues.urlIdentifierUser).child(tempUid).updateChildValues(dict, withCompletionBlock: { (error, ref) in
             if error == nil {
-                self.sessionUser?.updateDetails(displayName: displayName!, fieldOfStudy: fieldOfStudy!, description: description!, hashtags: self.myHashtags)
+                self.sessionUser?.updateDetails(displayName: displayName!, fieldOfStudy: fieldOfStudy!, description: description!, hashtags: myHashtags)
                 print("Update ProfileDetails: Done")
             }
         })
@@ -389,6 +355,47 @@ class SessionStore: ObservableObject {
         }) { (error) in
             print(error.localizedDescription)
         }
+    }
+    
+    // ---------------- Filters ---------------- //
+    
+    func appendFilter(newTag: String) {
+        tagsToFilterBy.append(newTag)
+        printFilters()
+    }
+    
+    func removeFilter(tag: String) {
+        tagsToFilterBy = tagsToFilterBy.filter{$0 != tag}
+        printFilters()
+    }
+    
+    func printFilters() {
+        print("[", terminator:"")
+        for tag in tagsToFilterBy {
+            print(tag, terminator:" ")
+        }
+        print("]")
+    }
+    
+    private func isUserPartOfFilter(user: UserModel) -> Bool {
+        if (tagsToFilterBy.count < 1) {
+            return true
+        }
+        
+        // compare elements of both array to each other and if at least one matches the other,
+        // the given user is part of the search
+        for filterTag in tagsToFilterBy {
+            for userTag in user.hashtags {
+                // standardize
+                let userTagMod = userTag.lowercased().replacingOccurrences(of: "#", with: "")
+                let filterTagMod = filterTag.lowercased().replacingOccurrences(of: "#", with: "")
+                
+                if userTagMod == filterTagMod {
+                    return true
+                }
+            }
+        }
+        return false
     }
     
     // ---------------- Likes and Contacts ---------------- //

@@ -53,7 +53,7 @@ struct ProfileTabView: View {
                 self.displayName = user.displayName ?? ""
                 self.fieldOfStudy = user.fieldOfStudy ?? ""
                 self.description = user.description ?? ""
-                self.hashtags = user.hashtags ?? ""
+                self.hashtags = user.getHashtagsAsString()
                 self.profileImageUrl = user.profileImageUrl ?? ""
                 if (self.profileImageUrl.isEmpty){
                     self.image = UIImage(systemName: "person.circle.fill")!
@@ -69,7 +69,7 @@ struct ProfileTabView: View {
             self.displayName = self.session.sessionUser?.displayName ?? ""
             self.fieldOfStudy = self.session.sessionUser?.fieldOfStudy ?? ""
             self.description = self.session.sessionUser?.description ?? ""
-            self.hashtags = self.session.sessionUser?.hashtags ?? ""
+            self.hashtags = self.session.sessionUser?.getHashtagsAsString() ?? ""
             self.profileImageUrl = self.session.sessionUser?.profileImageUrl ?? ""
             if (self.profileImageUrl.isEmpty){
                 self.image = UIImage(systemName: "person.circle.fill")!
