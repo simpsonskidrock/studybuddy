@@ -12,6 +12,7 @@ struct MultilineTextView: UIViewRepresentable {
     
     typealias UIViewType = UITextView
     @Binding var text: String
+    var placeHolder : String
     
     func makeUIView(context: UIViewRepresentableContext<MultilineTextView>) -> UITextView {
         let view = UITextView()
@@ -22,13 +23,21 @@ struct MultilineTextView: UIViewRepresentable {
         view.font = UIFont.systemFont(ofSize: 16)
         view.backgroundColor = UIColor.lmuGreen
         view.delegate = context.coordinator
-        view.textColor = .white
+        view.textColor = .placeholderText
+        view.text = placeHolder
         
         return view
-        
     }
+    
     func updateUIView(_ uiView: UITextView, context: UIViewRepresentableContext<MultilineTextView>) {
-        uiView.text = text
+        if text.isEmpty{
+            uiView.textColor = .placeholderText
+            uiView.text = placeHolder
+        }else{
+            uiView.text = text
+            uiView.textColor = .white
+            
+        }
     }
     
     func makeCoordinator() -> MultilineTextView.Coordinator {
@@ -45,10 +54,18 @@ struct MultilineTextView: UIViewRepresentable {
         func textViewDidChange(_ textView: UITextView) {
             control.text = textView.text
         }
+        
+        func textViewDidBeginEditing(_ textView: UITextView) {
+            if textView.textColor == UIColor.placeholderText {
+                textView.text = nil
+                textView.textColor = UIColor.white
+            }
+        }
+        func textViewDidEndEditing(_ textView: UITextView) {
+            if textView.text.isEmpty {
+                textView.text = control.placeHolder
+                textView.textColor = UIColor.placeholderText
+            }
+        }
     }
-    
-    
-    
-    
 }
-

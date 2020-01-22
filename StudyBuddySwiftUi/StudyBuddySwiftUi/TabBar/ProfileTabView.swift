@@ -167,7 +167,7 @@ struct ProfileTabView: View {
                                     .foregroundColor(.lmuLightGrey)
                                     .fontWeight(.bold)
                                 
-                                MultilineTextView(text: $description)
+                                MultilineTextView(text: $description, placeHolder: "describe your self")
                                     .disabled(!self.editProfile)
                                     .frame(height: 100)
                                     .padding()
@@ -176,7 +176,7 @@ struct ProfileTabView: View {
                                 Text(self.editProfile ? "Hashtags (Up to 6 tags)" : "Hashtags:")
                                     .foregroundColor(.lmuLightGrey)
                                     .fontWeight(.bold)
-                                MultilineTextView(text: $hashtags)
+                                MultilineTextView(text: $hashtags, placeHolder: "#")
                                     .disabled(!self.editProfile)
                                     .frame(height: 100)
                                     .padding()
