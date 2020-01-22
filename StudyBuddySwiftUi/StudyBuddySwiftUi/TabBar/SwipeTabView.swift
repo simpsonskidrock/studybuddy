@@ -67,6 +67,7 @@ struct SwipeTabView: View {
                     self.session.searchWithGPS.toggle()
                     self.session.sessionUser?.updateGpsUsage(gpsUsage: self.session.searchWithGPS)
                     self.session.updateGpsUsage()
+                    self.session.downloadAllUserLists()
                 }) {
                     HStack {
                         if (self.session.searchWithGPS) {
@@ -84,6 +85,7 @@ struct SwipeTabView: View {
                         .contextMenu {
                             Button(action: {
                                 self.session.updateLocation()
+                                self.session.downloadAllUserLists()
                             }) {
                                 Image(systemName: "mappin.and.ellipse")
                                 Text("My location")
@@ -91,24 +93,28 @@ struct SwipeTabView: View {
                             Button(action: {
                                 self.session.sessionUser?.updateLocation(location: Locations.locationMunichOe)
                                 self.session.updateLocationAsCity()
+                                self.session.downloadAllUserLists()
                             }) {
                                 Text("Oettingenstaße 67, München")
                             }
                             Button(action: {
                                 self.session.sessionUser?.updateLocation(location: Locations.locationMunichHgb)
                                 self.session.updateLocationAsCity()
+                                self.session.downloadAllUserLists()
                             }) {
                                 Text("Geschwister-Scholl-Platz 1, München")
                             }
                             Button(action: {
                                 self.session.sessionUser?.updateLocation(location: Locations.locationMunichTs)
                                 self.session.updateLocationAsCity()
+                                self.session.downloadAllUserLists()
                             }) {
                                 Text("Theresienstraße 39, München")
                             }
                             Button(action: {
                                 self.session.sessionUser?.updateLocation(location: Locations.locationMunichPs)
                                 self.session.updateLocationAsCity()
+                                self.session.downloadAllUserLists()
                             }) {
                                 Text("Pettenkoferstraße 14, München")
                             }
