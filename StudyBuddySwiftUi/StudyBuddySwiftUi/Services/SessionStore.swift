@@ -202,7 +202,9 @@ class SessionStore: ObservableObject {
             for tag in tempHashtags {
                 var tempTag: String = tag.replacingOccurrences(of: "#", with: "")
                 tempTag = tempTag.replacingOccurrences(of: " ", with: "")
-                hashtagsForDatabase.append(tempTag)
+                if tempTag != "" {
+                    hashtagsForDatabase.append(tempTag)
+                }
             }
         }
         
