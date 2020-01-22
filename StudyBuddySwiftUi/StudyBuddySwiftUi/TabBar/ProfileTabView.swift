@@ -181,7 +181,7 @@ struct ProfileTabView: View {
                                     .frame(height: 100)
                                     .padding()
                             }
-                        }.padding()
+                    }.padding()
                     }
                 }
                 Spacer()

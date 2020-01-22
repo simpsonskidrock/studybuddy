@@ -81,6 +81,9 @@ struct UserModel : Hashable {
         for tag in self.hashtags {
             temp += "#\(tag) "
         }
+        if temp.count > 0 {
+            temp.removeLast()
+        }
         return temp
     }
 }
