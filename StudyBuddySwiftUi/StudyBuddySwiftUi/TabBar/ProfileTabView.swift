@@ -161,7 +161,7 @@ struct ProfileTabView: View {
                             Text("Description:")
                                 .foregroundColor(.lmuLightGrey)
                                 .fontWeight(.bold)
-                            TextField("Describe your self", text: $description)
+                            TextField("Describe yourself", text: $description)
                                 .disabled(!self.editProfile)
                                 .textFieldStyle(StudyBuddySubTitleStyleLevel2b())
                         }
@@ -169,7 +169,7 @@ struct ProfileTabView: View {
                             Text(self.editProfile ? "Hashtags (Up to 6 tags)" : "Hashtags:")
                                 .foregroundColor(.lmuLightGrey)
                                 .fontWeight(.bold)
-                            TextField("", text: $hashtags)
+                            TextField("#university #pizza", text: $hashtags)
                                 .lineLimit(nil)
                                 .disabled(!self.editProfile)
                                 .textFieldStyle(StudyBuddySubTitleStyleLevel2b())
