@@ -17,6 +17,12 @@ extension Color {
     static let lmuDarkGrey = Color("LMU Dark Grey")
 }
 
+extension UIColor{
+    static let lmuGreen = UIColor(named: "LMU Green")
+    static let lmuDarkGrey = UIColor(named: "LMU Dark Grey")
+
+}
+
 extension Text {
     func textStyle<Style: ViewModifier>(_ style: Style) -> some View {
         ModifiedContent(content: self, modifier: style)

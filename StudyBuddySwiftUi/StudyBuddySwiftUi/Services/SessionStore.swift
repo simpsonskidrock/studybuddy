@@ -338,7 +338,7 @@ class SessionStore: ObservableObject {
                                     var tempUser = user
                                     if self.sessionUser?.gpsUsage ?? false {
                                         if user.gpsUsage ?? false {
-                                            tempUser.updateDistance(distance: self.locationManager.getDistance(lat1: self.sessionUser!.location!.latitude as! Double, long1: self.sessionUser!.location!.longitude as! Double, lat2: user.location!.latitude as! Double, long2: user.location!.longitude as! Double)
+                                            tempUser.updateDistance(distance: self.locationManager.getDistance(lat1: self.sessionUser!.location!.latitude!, long1: self.sessionUser!.location!.longitude!, lat2: user.location!.latitude!, long2: user.location!.longitude!)
                                             )
                                         } else {
                                             tempUser.updateDistance(distance: 201.0)
@@ -526,6 +526,23 @@ class SessionStore: ObservableObject {
         let tempUid: String = String((self.sessionUser?.uid)!)
         self.locationManager.requestLocation { (location) in
             self.sessionUser?.updateLocation(location: LocationModel(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude))
+            let dict: Dictionary<String, Any> = [
+                FixedStringValues.latitude: self.sessionUser?.location?.latitude ?? "",
+                FixedStringValues.longitude: self.sessionUser?.location?.longitude ?? ""
+            ]
+            Database.database().reference().child(FixedStringValues.urlIdentifierUser).child(tempUid).child(FixedStringValues.location).updateChildValues(dict, withCompletionBlock: {(error, ref) in
+                if error == nil {}
+            })
+        }
+    }
+    
+    /**
+     * City location is stored in the database
+     * ( location(latitude, longitude) )
+     */
+    func updateLocationAsCity() {
+        let tempUid: String = String((self.sessionUser?.uid)!)
+        self.locationManager.requestLocation { (location) in
             let dict: Dictionary<String, Any> = [
                 FixedStringValues.latitude: self.sessionUser?.location?.latitude ?? "",
                 FixedStringValues.longitude: self.sessionUser?.location?.longitude ?? ""
