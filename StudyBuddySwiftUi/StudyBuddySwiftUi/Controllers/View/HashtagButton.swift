@@ -4,9 +4,41 @@
 //
 
 import Foundation
+import SwiftUI
 
 // author: Lorenz
-// TODO extend button so acts like a toggleable button that changes background color when it's activated / deactivated
-class HashtagButton {
+// Extend button so it acts like a toggleable button that changes background color when it's activated / deactivated
 
+struct HashtagButton<Label>: View where Label: View {
+
+    private let actionWhenInactive: () -> ()
+    private let actionWhenActive: () -> ()
+    private let label: () -> Label
+
+    init(actionWhenInactive: @escaping () -> (), actionWhenActive: @escaping () -> (), label: @escaping () -> Label, active: Bool = false) {
+        self.actionWhenActive = actionWhenActive
+        self.actionWhenInactive = actionWhenInactive
+        self.label = label
+        self.active = active
+    }
+
+    @State private var active: Bool = false
+
+    var body: some View {
+        Button(action: {
+            if self.active {
+                self.actionWhenActive()
+            } else {
+                self.actionWhenInactive()
+            }
+
+
+        }) {
+            label()
+                .foregroundColor(.white)
+                .padding(5)
+                .background(RoundedRectangle(cornerRadius: 5).fill(active ? Color(.darkGray) : Color(.gray)))
+                .shadow(color: .black, radius: 3)
+        }
+    }
 }
