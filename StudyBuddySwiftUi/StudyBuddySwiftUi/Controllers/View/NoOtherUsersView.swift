@@ -24,7 +24,7 @@ struct NoOtherUsersView: View {
                 ).cornerRadius(12.0)
                     .shadow(radius: 12.0)
                 Text("no possible StudyBuddy")
-                    .font(.title)
+                    .font(.system(size: 14))
                     .fontWeight(.semibold)
                     .foregroundColor(.orange)
             }.padding()
