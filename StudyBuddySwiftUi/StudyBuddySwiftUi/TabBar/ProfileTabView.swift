@@ -112,15 +112,15 @@ struct ProfileTabView: View {
                         }.padding()
                     }.frame(height: 50)
                         .padding(.leading, 10)
-                    ScrollView{
+                    ScrollView {
                         Image(uiImage: self.image)
                             .resizable()
                             .scaledToFit()
                             .clipShape(Circle())
                             .overlay(Circle()
                                 .stroke(Color.white, lineWidth: 5)
-                        )
-                            .padding(.top)
+                        ).padding(.top)
+                            .padding(.horizontal, 50)
                         
                         if self.editProfile {
                             Button(action: {
