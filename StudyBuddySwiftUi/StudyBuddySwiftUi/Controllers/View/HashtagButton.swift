@@ -15,11 +15,11 @@ struct HashtagButton<Label>: View where Label: View {
     private let actionWhenActive: () -> ()
     private let label: () -> Label
 
-    init(actionWhenInactive: @escaping () -> (), actionWhenActive: @escaping () -> (), label: @escaping () -> Label, active: Bool = false) {
+    init(actionWhenInactive: @escaping () -> (), actionWhenActive: @escaping () -> (), label: @escaping () -> Label) {
         self.actionWhenActive = actionWhenActive
         self.actionWhenInactive = actionWhenInactive
         self.label = label
-        self.active = active
+//        self.active = false
     }
 
     @State private var active: Bool = false
