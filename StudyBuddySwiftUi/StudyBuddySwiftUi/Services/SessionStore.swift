@@ -334,7 +334,7 @@ class SessionStore: ObservableObject {
                                     var tempUser = user
                                     if self.sessionUser?.gpsUsage ?? false {
                                         if user.gpsUsage ?? false {
-                                            tempUser.updateDistance(distance: self.locationManager.getDistance(lat1: self.sessionUser!.location!.latitude as! Double, long1: self.sessionUser!.location!.longitude as! Double, lat2: user.location!.latitude as! Double, long2: user.location!.longitude as! Double)
+                                            tempUser.updateDistance(distance: self.locationManager.getDistance(lat1: self.sessionUser!.location!.latitude!, long1: self.sessionUser!.location!.longitude!, lat2: user.location!.latitude!, long2: user.location!.longitude!)
                                             )
                                         } else {
                                             tempUser.updateDistance(distance: 201.0)

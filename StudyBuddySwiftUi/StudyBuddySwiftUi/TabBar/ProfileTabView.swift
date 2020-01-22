@@ -88,8 +88,10 @@ struct ProfileTabView: View {
     }
     
     var body: some View {
+        
         VStack {
             VStack {
+                
                 VStack {
                     HStack {
                         Text("Profile")
@@ -110,71 +112,77 @@ struct ProfileTabView: View {
                         }.padding()
                     }.frame(height: 50)
                         .padding(.leading, 10)
-                    Image(uiImage: self.image)
-                        .resizable()
-                        .scaledToFit()
-                        .clipShape(Circle())
-                        .overlay(Circle()
-                            .stroke(Color.white, lineWidth: 5)
-                    )
-                    if self.editProfile {
-                        Button(action: {
-                            if (self.image == UIImage(systemName: "person.circle.fill")){
-                                self.isShowingImagePicker.toggle()
+                    ScrollView{
+                        Image(uiImage: self.image)
+                            .resizable()
+                            .scaledToFit()
+                            .clipShape(Circle())
+                            .overlay(Circle()
+                                .stroke(Color.white, lineWidth: 5)
+                        )
+                            .padding(.top)
+                        
+                        if self.editProfile {
+                            Button(action: {
+                                if (self.image == UIImage(systemName: "person.circle.fill")){
+                                    self.isShowingImagePicker.toggle()
+                                }
+                                else {
+                                    self.showAction = true
+                                }
+                            }) {
+                                Image(systemName: "camera.on.rectangle")
+                            }.buttonStyle(StudyBuddyIconButtonStyleLevel2())
+                                .sheet(isPresented: $isShowingImagePicker, content: {
+                                    ImagePickerViewController(isPresented: self.$isShowingImagePicker, selectedImage: self.$image)
+                                })
+                                .actionSheet(isPresented: $showAction) {
+                                    sheet
                             }
-                            else {
-                                self.showAction = true
-                            }
-                        }) {
-                            Image(systemName: "camera.on.rectangle")
-                        }.buttonStyle(StudyBuddyIconButtonStyleLevel2())
-                            .sheet(isPresented: $isShowingImagePicker, content: {
-                                ImagePickerViewController(isPresented: self.$isShowingImagePicker, selectedImage: self.$image)
-                            })
-                            .actionSheet(isPresented: $showAction) {
-                                sheet
                         }
+                        VStack {
+                            HStack {
+                                if (editProfile) {
+                                    Text("Name:")
+                                        .foregroundColor(.lmuLightGrey)
+                                        .fontWeight(.bold)
+                                }
+                                TextField("Enter your name", text:  $displayName)
+                                    .disableAutocorrection(true)
+                                    .disabled(!self.editProfile)
+                                    .textFieldStyle(StudyBuddySubTitleStyleLevel2a())
+                            }
+                            HStack {
+                                if (editProfile) {
+                                    Text("Field Of Study:")
+                                        .foregroundColor(.lmuLightGrey)
+                                        .fontWeight(.bold)
+                                }
+                                TextField("ex: Informatik", text:  $fieldOfStudy)
+                                    .disabled(!self.editProfile)
+                                    .textFieldStyle(StudyBuddySubTitleStyleLevel2a())
+                            }
+                            VStack(alignment: .leading){
+                                Text("Description:")
+                                    .foregroundColor(.lmuLightGrey)
+                                    .fontWeight(.bold)
+                                
+                                MultilineTextView(text: $description)
+                                    .disabled(!self.editProfile)
+                                    .frame(height: 100)
+                                    .padding()
+                            }
+                            VStack(alignment: .leading){
+                                Text(self.editProfile ? "Hashtags (Up to 6 tags)" : "Hashtags:")
+                                    .foregroundColor(.lmuLightGrey)
+                                    .fontWeight(.bold)
+                                MultilineTextView(text: $hashtags)
+                                    .disabled(!self.editProfile)
+                                    .frame(height: 100)
+                                    .padding()
+                            }
+                        }.padding()
                     }
-                    VStack {
-                        HStack {
-                            if (editProfile) {
-                                Text("Name:")
-                                    .foregroundColor(.lmuLightGrey)
-                                    .fontWeight(.bold)
-                            }
-                            TextField("Enter your name", text:  $displayName)
-                                .disableAutocorrection(true)
-                                .disabled(!self.editProfile)
-                                .textFieldStyle(StudyBuddySubTitleStyleLevel2a())
-                        }
-                        HStack {
-                            if (editProfile) {
-                                Text("Field Of Study:")
-                                    .foregroundColor(.lmuLightGrey)
-                                    .fontWeight(.bold)
-                            }
-                            TextField("ex: Informatik", text:  $fieldOfStudy)
-                                .disabled(!self.editProfile)
-                                .textFieldStyle(StudyBuddySubTitleStyleLevel2a())
-                        }
-                        VStack(alignment: .leading){
-                            Text("Description:")
-                                .foregroundColor(.lmuLightGrey)
-                                .fontWeight(.bold)
-                            TextField("Describe your self", text: $description)
-                                .disabled(!self.editProfile)
-                                .textFieldStyle(StudyBuddySubTitleStyleLevel2b())
-                        }
-                        VStack(alignment: .leading){
-                            Text(self.editProfile ? "Hashtags (Up to 6 tags)" : "Hashtags:")
-                                .foregroundColor(.lmuLightGrey)
-                                .fontWeight(.bold)
-                            TextField("", text: $hashtags)
-                                .lineLimit(nil)
-                                .disabled(!self.editProfile)
-                                .textFieldStyle(StudyBuddySubTitleStyleLevel2b())
-                        }
-                    }.padding()
                 }
                 Spacer()
                 if !self.editProfile {
@@ -207,4 +215,6 @@ struct ProfileTabView: View {
             .background(Color.lmuGreen.edgesIgnoringSafeArea(.vertical))
             .onDisappear(perform: leaveView)
     }
+    
+    
 }
