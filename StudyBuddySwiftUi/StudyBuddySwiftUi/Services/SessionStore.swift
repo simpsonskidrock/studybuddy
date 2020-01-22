@@ -523,6 +523,23 @@ class SessionStore: ObservableObject {
     }
     
     /**
+     * City location is stored in the database
+     * ( location(latitude, longitude) )
+     */
+    func updateLocationAsCity() {
+        let tempUid: String = String((self.sessionUser?.uid)!)
+        self.locationManager.requestLocation { (location) in
+            let dict: Dictionary<String, Any> = [
+                FixedStringValues.latitude: self.sessionUser?.location?.latitude ?? "",
+                FixedStringValues.longitude: self.sessionUser?.location?.longitude ?? ""
+            ]
+            Database.database().reference().child(FixedStringValues.urlIdentifierUser).child(tempUid).child(FixedStringValues.location).updateChildValues(dict, withCompletionBlock: {(error, ref) in
+                if error == nil {}
+            })
+        }
+    }
+    
+    /**
      * Remove location of current user (local and database)
      */
     func removeLocation() {
