@@ -764,14 +764,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"StudyBuddySwiftUi/Preview Content\"";
-				DEVELOPMENT_TEAM = 6T8T8284X7;
+				DEVELOPMENT_TEAM = WWWTSU436A;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = StudyBuddySwiftUi/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = LilianeKabboura;
+				PRODUCT_BUNDLE_IDENTIFIER = manuelsuess;
 				PRODUCT_NAME = StudyBuddy;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -785,14 +785,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"StudyBuddySwiftUi/Preview Content\"";
-				DEVELOPMENT_TEAM = 6T8T8284X7;
+				DEVELOPMENT_TEAM = WWWTSU436A;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = StudyBuddySwiftUi/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = LilianeKabboura;
+				PRODUCT_BUNDLE_IDENTIFIER = manuelsuess;
 				PRODUCT_NAME = StudyBuddy;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
