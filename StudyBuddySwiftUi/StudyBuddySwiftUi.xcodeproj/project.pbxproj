@@ -42,6 +42,8 @@
 		73B9D15C237C2485000E268E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73B9D15A237C2485000E268E /* LaunchScreen.storyboard */; };
 		73B9D167237C2485000E268E /* StudyBuddySwiftUiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B9D166237C2485000E268E /* StudyBuddySwiftUiTests.swift */; };
 		73B9D172237C2485000E268E /* StudyBuddySwiftUiUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B9D171237C2485000E268E /* StudyBuddySwiftUiUITests.swift */; };
+		73C736AC23D815B000B7FD1C /* LikeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C736AB23D815B000B7FD1C /* LikeView.swift */; };
+		73C736AE23D815D000B7FD1C /* DistanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C736AD23D815D000B7FD1C /* DistanceView.swift */; };
 		73CDE4422390FB380078654C /* OtherUserNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CDE4412390FB380078654C /* OtherUserNameView.swift */; };
 		73CDE4442390FB570078654C /* OtherUserAvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CDE4432390FB570078654C /* OtherUserAvatarView.swift */; };
 		73CDE4462390FB710078654C /* OtherUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CDE4452390FB710078654C /* OtherUserView.swift */; };
@@ -114,6 +116,8 @@
 		73B9D16D237C2485000E268E /* StudyBuddySwiftUiUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StudyBuddySwiftUiUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		73B9D171237C2485000E268E /* StudyBuddySwiftUiUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyBuddySwiftUiUITests.swift; sourceTree = "<group>"; };
 		73B9D173237C2485000E268E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		73C736AB23D815B000B7FD1C /* LikeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeView.swift; sourceTree = "<group>"; };
+		73C736AD23D815D000B7FD1C /* DistanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceView.swift; sourceTree = "<group>"; };
 		73CDE4412390FB380078654C /* OtherUserNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherUserNameView.swift; sourceTree = "<group>"; };
 		73CDE4432390FB570078654C /* OtherUserAvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherUserAvatarView.swift; sourceTree = "<group>"; };
 		73CDE4452390FB710078654C /* OtherUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherUserView.swift; sourceTree = "<group>"; };
@@ -320,6 +324,8 @@
 				73CDE4452390FB710078654C /* OtherUserView.swift */,
 				73CDE4432390FB570078654C /* OtherUserAvatarView.swift */,
 				73CDE4412390FB380078654C /* OtherUserNameView.swift */,
+				73C736AB23D815B000B7FD1C /* LikeView.swift */,
+				73C736AD23D815D000B7FD1C /* DistanceView.swift */,
 			);
 			path = otherUsersPresentation;
 			sourceTree = "<group>";
@@ -558,6 +564,7 @@
 				7367D1FA237D7279002EE928 /* ContactsTabView.swift in Sources */,
 				73CDE4462390FB710078654C /* OtherUserView.swift in Sources */,
 				73A355EC23AA404B001C3EF0 /* NoOtherUsersView.swift in Sources */,
+				73C736AC23D815B000B7FD1C /* LikeView.swift in Sources */,
 				7367D1FF237D8496002EE928 /* GeneralTabView.swift in Sources */,
 				734FC387238F094B00350F82 /* FixedStringValues.swift in Sources */,
 				7397242423CF75F10003DFD0 /* CustomViewElementsLevel1.swift in Sources */,
@@ -581,6 +588,7 @@
 				290A21982393E08700E0BC81 /* ResetPasswordView.swift in Sources */,
 				7397242223CF585D0003DFD0 /* WaitForLogin.swift in Sources */,
 				73B9D154237C2484000E268E /* LoginView.swift in Sources */,
+				73C736AE23D815D000B7FD1C /* DistanceView.swift in Sources */,
 				293AA0732384947A00436E02 /* KeyboardSettings.swift in Sources */,
 				732023D6239921C90031F120 /* WaitForSessionUserView.swift in Sources */,
 				2909A73523D1E91300689BD3 /* MessageBubble.swift in Sources */,

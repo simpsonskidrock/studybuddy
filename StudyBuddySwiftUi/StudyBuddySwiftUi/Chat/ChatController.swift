@@ -7,7 +7,6 @@
 //
 import Combine
 import SwiftUI
-import Foundation
 import Firebase
 
 class ChatController : ObservableObject {
@@ -16,7 +15,7 @@ class ChatController : ObservableObject {
     
     // ---------------- load messages from FS ---------------- //
     func loadMessages(uid: String, otherUid: String) {
-        //retrieve messages and order it by date
+        // retrieve messages and order it by date
         db.collection(FStore.collectionName).order(by: FStore.dateField).addSnapshotListener{ (querySnapshot, error) in
             self.message = []
             if let e = error {
@@ -29,9 +28,8 @@ class ChatController : ObservableObject {
                             let messageReceiver = data[FStore.receiverField] as? String,
                             let messageBody = data[FStore.bodyField] as? String,
                             let messageTime = data[FStore.timeField] as? String
-                            
                         {
-                            //filter messages per user
+                            // filter messages per user
                             if (messageSender == uid && messageReceiver == otherUid) || (messageSender == otherUid && messageReceiver == uid) {
                                 
                                 let newMessage = Message(sender: messageSender, receiver: messageReceiver, body: messageBody, time: messageTime)

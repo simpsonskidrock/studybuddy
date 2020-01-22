@@ -27,7 +27,7 @@ struct SwipeTabView: View {
         })
     }
 
-    /* compare two strins by length Used for sorting */
+    /* compare two strings by length used for sorting */
     private func shorter(value1: String, value2: String) -> Bool {
         // ... True means value1 precedes value2.
         return value1.count < value2.count

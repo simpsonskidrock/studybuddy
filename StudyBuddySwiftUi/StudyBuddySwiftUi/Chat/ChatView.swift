@@ -10,22 +10,20 @@ import SwiftUI
 import Firebase
 
 struct ChatView: View {
-    
     @EnvironmentObject var session: SessionStore
     @Environment(\.presentationMode) var mode
     
-    
-    let db = Firestore.firestore()
     @ObservedObject var chatController = ChatController()
     @State private var composedMessage: String = ""
     
+    let db = Firestore.firestore()
     let uid: String?
     
     func initialize() {
         self.chatController.loadMessages(uid: self.session.sessionUser!.uid, otherUid: uid!)
     }
     
-    //send message and save it to Firestore
+    // send message and save it to Firestore
     func sendMsg(){
         if !composedMessage.isEmpty,
             let messageSender = self.session.sessionUser?.uid,
@@ -48,17 +46,14 @@ struct ChatView: View {
         }
     }
     
-    
     var body: some View {
         
         VStack {
-            
             List {
                 ForEach(chatController.message, id: \.self) { msg in
                     ChatRow(chatMessage: msg)
                 }
             }
-            
             HStack {
                 TextField(" Message...", text: $composedMessage).frame(minHeight: CGFloat(40))
                     .background(Color.white)
@@ -69,7 +64,6 @@ struct ChatView: View {
                         .resizable()
                         .frame(width: 20, height: 20)
                         .foregroundColor(.white)
-                    
                 }
             }.frame(minHeight: CGFloat(50)).padding()
                 .background(Color.lmuGreen)

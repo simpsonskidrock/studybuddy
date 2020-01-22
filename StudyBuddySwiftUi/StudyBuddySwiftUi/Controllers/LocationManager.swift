@@ -71,12 +71,18 @@ class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObject {
         // print(#function, location)
     }
     
-    func distance(lat1: Double, long1: Double, lat2: Double, long2: Double)->Double{
+    /**
+     * Get distance between two locations
+     * location 1 (lat1, long1)
+     * location 2 (lat2, long2)
+     * returns the distance measured in kilometers
+     */
+    func getDistance(lat1: Double, long1: Double, lat2: Double, long2: Double) -> Double{
         let locA = CLLocation(latitude: lat1, longitude: long1)
         let locB = CLLocation(latitude: lat2, longitude: long2)
         var distance = (locA.distance(from: locB)).rounded()
         distance = distance/1000 // meters to kilometers
-        let maxDistance: Double = 200 // kilometers
+        let maxDistance: Double = 200 // kilometers             // we need the maxDistence because app crashes if the value is to high
         if distance > maxDistance {
             distance = maxDistance
         }

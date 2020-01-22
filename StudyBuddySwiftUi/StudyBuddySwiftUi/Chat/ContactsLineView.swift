@@ -11,11 +11,18 @@ import SwiftUI
 struct ContactsLineView: View {
     @EnvironmentObject var session: SessionStore
     
+    @State var name: String = ""
+    @State var image: UIImage = UIImage()
+    
     var uid: String
     var chatAllowed: Bool
     
-    @State var name: String = ""
-    @State var image: UIImage = UIImage()
+    func initialize() {
+        self.session.getProfile(uid: uid, handler: { user in
+            self.name = user.displayName!
+            self.getImage(path: user.profileImageUrl!)
+        })
+    }
     
     func getImage(path: String) {
         if (!path.isEmpty) {
@@ -27,24 +34,15 @@ struct ContactsLineView: View {
         }
     }
     
-    func initialize() {
-        self.session.getProfile(uid: uid, handler: { user in
-            self.name = user.displayName!
-            self.getImage(path: user.profileImageUrl!)
-        })
-    }
-    
     var body : some View {
         HStack {
             if chatAllowed {
                 ImageView(image: image)
                 Spacer()
                 UserNameView(name: name)
-                
                 NavigationLink(destination: ChatView(uid: self.uid)){
                     Spacer()
                     Text("Match").foregroundColor(.red).font(.system(size: 12))
-                    
                 }
             } else {
                 ImageView(image: image)
@@ -57,22 +55,18 @@ struct ContactsLineView: View {
 }
 
 struct ImageView: View {
-    
     let image: UIImage
-    
     var body: some View {
         Image(uiImage: image)
             .resizable()
             .scaledToFit()
             .clipShape(Circle())
             .frame(width: 80, height: 80)
-        
     }
 }
 
 struct UserNameView: View {
     let name: String
-    
     var body: some View {
         Text("\(name)")
             .fontWeight(.regular)

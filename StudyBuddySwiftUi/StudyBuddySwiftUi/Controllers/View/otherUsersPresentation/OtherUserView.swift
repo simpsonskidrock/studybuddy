@@ -48,37 +48,3 @@ struct OtherUserView: View {
         }
     }
 }
-
-struct LikeView: View {
-    var body: some View {
-        let image = Image(systemName: "hand.thumbsup.fill").resizable().foregroundColor(Color.white).frame(width: 300, height: 300, alignment: .center).shadow(radius: 10.0)
-        return image
-    }
-}
-
-struct DistanceView: View {
-    let userModel: UserModel
-    
-    var body: some View {
-        HStack {
-            if self.userModel.distance != nil {
-                if self.userModel.distance!  >= 201.0 {
-                    Image(systemName: "location.slash")
-                    Text("no GPS")
-                } else if self.userModel.distance! == 200.0 {
-                    Image(systemName: "location")
-                    Text("over 200km")
-                } else if self.userModel.distance! >= 10.0 {
-                    Image(systemName: "location")
-                    Text("\(String(format: "%.0f", self.userModel.distance!))km")
-                } else if self.userModel.distance! >= 1.0 {
-                    Image(systemName: "location")
-                    Text("\(String(format: "%.1f", self.userModel.distance!))km")
-                } else {
-                    Image(systemName: "location")
-                    Text("\(String(format: "%.0f", self.userModel.distance!*1000))m")
-                }
-            }
-        }.foregroundColor(.lmuLightGrey)
-    }
-}

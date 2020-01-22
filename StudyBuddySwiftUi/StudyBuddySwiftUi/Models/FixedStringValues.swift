@@ -19,7 +19,6 @@ struct FixedStringValues {
     static let contacts: String = "contacts"
     static let gpsUsage: String = "gpsUsage"
     static let location: String = "location"
-    static let locationtest: String = "locationtest"
     static let latitude: String = "latitude"
     static let longitude: String = "longitude"
     

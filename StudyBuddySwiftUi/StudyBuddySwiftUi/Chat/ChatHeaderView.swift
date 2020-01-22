@@ -13,9 +13,15 @@ struct ChatHeaderView: View {
     @EnvironmentObject var session: SessionStore
     
     @State var uid: String
-    
     @State var name: String = ""
     @State var image: UIImage = UIImage()
+    
+    func initialize() {
+        self.session.getProfile(uid: uid, handler: { user in
+            self.name = user.displayName!
+            self.getImage(path: user.profileImageUrl!)
+        })
+    }
     
     func getImage(path: String) {
         if (!path.isEmpty) {
@@ -27,27 +33,16 @@ struct ChatHeaderView: View {
         }
     }
     
-    func initialize() {
-        self.session.getProfile(uid: uid, handler: { user in
-            self.name = user.displayName!
-            self.getImage(path: user.profileImageUrl!)
-        })
-    }
-    
     var body : some View {
         HStack {
-            
             ChatImageView(image: image)
             ChatUserNameView(name: name)
             Spacer()
         }.onAppear(perform: initialize)
-        
     }
 }
 
-
 struct ChatImageView: View {
-    
     let image: UIImage
     var body: some View {
         Image(uiImage: image)
@@ -60,11 +55,9 @@ struct ChatImageView: View {
 
 struct ChatUserNameView: View {
     let name: String
-    
     var body: some View {
         Text("\(name)")
             .bold()
             .font(Font.system(size: 30))
-        
     }
 }

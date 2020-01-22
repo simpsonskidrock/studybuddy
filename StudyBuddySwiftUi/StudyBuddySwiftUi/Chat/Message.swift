@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 struct Message: Hashable {
     let sender : String
     let receiver : String
@@ -23,5 +22,4 @@ struct FStore {
     static let bodyField = "body"
     static let dateField = "date"
     static let timeField = "time"
-
 }
