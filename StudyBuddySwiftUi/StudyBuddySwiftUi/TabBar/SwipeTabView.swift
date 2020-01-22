@@ -62,21 +62,60 @@ struct SwipeTabView: View {
         VStack {
             Spacer()
             // GPS BUTTON
-            Button(action: {
-                self.session.searchWithGPS.toggle()
-                self.session.sessionUser?.updateGpsUsage(gpsUsage: self.session.searchWithGPS)
-                self.session.updateGpsUsage()
-            }) {
-                HStack {
-                    if (self.session.searchWithGPS) {
-                        Image(systemName: "location")
-                        Text("GPS-Search active").fontWeight(.semibold)
-                    } else {
-                        Image(systemName: "location.slash")
-                        Text("GPS-Search disabled - tap to activate").fontWeight(.semibold)
+            HStack {
+                Button(action: {
+                    self.session.searchWithGPS.toggle()
+                    self.session.sessionUser?.updateGpsUsage(gpsUsage: self.session.searchWithGPS)
+                    self.session.updateGpsUsage()
+                }) {
+                    HStack {
+                        if (self.session.searchWithGPS) {
+                            Image(systemName: "location")
+                            Text("GPS-Search active").fontWeight(.semibold)
+                        } else {
+                            Image(systemName: "location.slash")
+                            Text("GPS-Search disabled - tap to activate").fontWeight(.semibold)
+                        }
                     }
+                }.buttonStyle(StudyBuddyIconButtonStyleLevel2())
+                if self.session.sessionUser?.gpsUsage ?? false {
+                    Spacer()
+                    Image(systemName: "globe")
+                        .contextMenu {
+                            Button(action: {
+                                self.session.updateLocation()
+                            }) {
+                                Image(systemName: "mappin.and.ellipse")
+                                Text("My location")
+                            }
+                            Button(action: {
+                                self.session.sessionUser?.updateLocation(location: Locations.locationMunichOe)
+                                self.session.updateLocationAsCity()
+                            }) {
+                                Text("Oettingenstaße 67, München")
+                            }
+                            Button(action: {
+                                self.session.sessionUser?.updateLocation(location: Locations.locationMunichHgb)
+                                self.session.updateLocationAsCity()
+                            }) {
+                                Text("Geschwister-Scholl-Platz 1, München")
+                            }
+                            Button(action: {
+                                self.session.sessionUser?.updateLocation(location: Locations.locationMunichTs)
+                                self.session.updateLocationAsCity()
+                            }) {
+                                Text("Theresienstraße 39, München")
+                            }
+                            Button(action: {
+                                self.session.sessionUser?.updateLocation(location: Locations.locationMunichPs)
+                                self.session.updateLocationAsCity()
+                            }) {
+                                Text("Pettenkoferstraße 14, München")
+                            }
+                    }
+                    .foregroundColor(.white)
                 }
-            }.buttonStyle(StudyBuddyIconButtonStyleLevel2())
+            }
             // TAGS
             VStack {
                 HStack {
