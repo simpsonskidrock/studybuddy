@@ -19,6 +19,8 @@ struct SwipeTabView: View {
     @State private var tagsRow1: [String] = []
     @State private var tagsRow2: [String] = []
 
+    @State var flag: Bool = false
+
     private func initialize() {
         self.session.getProfile(uid: self.session.sessionUser!.uid, handler: { user in
             self.session.sessionUser = user
@@ -43,7 +45,7 @@ struct SwipeTabView: View {
                 if n % 2 == 0 {
                     tagsRow1.append(strArray[n])
                 } else {
-                    tagsRow2.append(strArray[n])
+                    tagsRow2.append( strArray[n])
                 }
             }
         }
@@ -81,26 +83,26 @@ struct SwipeTabView: View {
             VStack {
                 HStack {
                     ForEach(tagsRow1, id: \.self) { tag in
-                        Button(action: {
-                            self.session.appendFilter(newTag: tag)
-                        }) {
-                            Text("#\(tag)")
-                                .background(Color.lmuDarkGrey)
-                                .foregroundColor(Color.white)
-                                .cornerRadius(5)
-                        }
+                        Text(tag)
+//                        HashtagButton(actionWhenInactive: {
+//                            self.session.appendFilter(newTag: tag)
+//                        }, actionWhenActive: {
+//                            self.session.removeFilter(tag: tag)
+//                        }) {
+//                            Text(tag)
+//                        }
                     }
                 }
                 HStack {
                     ForEach(tagsRow2, id: \.self) { tag in
-                        Button(action: {
-                            self.session.appendFilter(newTag: tag)
-                        }) {
-                            Text("#\(tag)")
-                                .background(Color.lmuDarkGrey)
-                                .foregroundColor(Color.white)
-                                .cornerRadius(5)
-                        }
+                        Text(tag)
+//                        HashtagButton(actionWhenInactive: {
+//                            self.session.appendFilter(newTag: tag)
+//                        }, actionWhenActive: {
+//                            self.session.removeFilter(tag: tag)
+//                        }) {
+//                            Text(tag)
+//                        }
                     }
                 }
             }

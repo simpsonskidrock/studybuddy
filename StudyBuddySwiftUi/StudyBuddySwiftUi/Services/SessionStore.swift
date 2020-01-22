@@ -33,6 +33,8 @@ class SessionStore: ObservableObject {
     // hashtags to filter by divided by a space
     var tagsToFilterBy: [String] = []
 
+    var tagFilters: [TagFilter] = []
+
     func listen(handler: @escaping ((UserModel) -> ())) {
         // monitor authentication changes using firebase
         handle = Auth.auth().addStateDidChangeListener { (auth, user) in
@@ -360,16 +362,28 @@ class SessionStore: ObservableObject {
     }
     
     // ---------------- Filters ---------------- //
-    
+
     func appendFilter(newTag: String) {
+        print("obsolete")
         tagsToFilterBy.append(newTag)
         printFilters()
     }
-    
+
     func removeFilter(tag: String) {
+        print("obsolete")
         tagsToFilterBy = tagsToFilterBy.filter{$0 != tag}
         printFilters()
     }
+
+//    func appendFilter(newTag: TagFilter) {
+//        tagFilters.append(newTag)
+//        printFilters()
+//    }
+//
+//    func removeFilter(tag: TagFilter) {
+//        tagFilters = tagFilters.filter{$0.tag != tag.tag}
+//        printFilters()
+//    }
     
     func printFilters() {
         print("[", terminator:"")
