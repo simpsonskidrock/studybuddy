@@ -193,7 +193,7 @@ class SessionStore: ObservableObject {
      */
     func updateProfile(displayName: String?, fieldOfStudy: String?, description: String?, hashtags: String?, image: UIImage?) {
         let tempUid: String = String((self.sessionUser?.uid)!)
-        var myHashtags: [String] = []
+        var hashtagsForDatabase: [String] = []
         self.updateProfileImage(uid: tempUid, image: image)
         
         if hashtags != nil {
@@ -202,7 +202,7 @@ class SessionStore: ObservableObject {
             for tag in tempHashtags {
                 var tempTag: String = tag.replacingOccurrences(of: "#", with: "")
                 tempTag = tempTag.replacingOccurrences(of: " ", with: "")
-                myHashtags.append(tempTag)
+                hashtagsForDatabase.append(tempTag)
             }
         }
         
@@ -210,12 +210,12 @@ class SessionStore: ObservableObject {
             FixedStringValues.displayName: displayName ?? "",
             FixedStringValues.fieldOfStudy: fieldOfStudy ?? "",
             FixedStringValues.description: description ?? "",
-            FixedStringValues.hashtags: myHashtags
+            FixedStringValues.hashtags: hashtagsForDatabase
         ]
 
         Database.database().reference().child(FixedStringValues.urlIdentifierUser).child(tempUid).updateChildValues(dict, withCompletionBlock: { (error, ref) in
             if error == nil {
-                self.sessionUser?.updateDetails(displayName: displayName!, fieldOfStudy: fieldOfStudy!, description: description!, hashtags: myHashtags)
+                self.sessionUser?.updateDetails(displayName: displayName!, fieldOfStudy: fieldOfStudy!, description: description!, hashtags: hashtagsForDatabase)
                 print("Update ProfileDetails: Done")
             }
         })
