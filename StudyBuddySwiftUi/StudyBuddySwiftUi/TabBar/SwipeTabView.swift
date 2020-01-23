@@ -92,36 +92,11 @@ struct SwipeTabView: View {
                                 Image(systemName: "mappin.and.ellipse")
                                 Text("My location")
                             }
-                            Button(action: {
-                                self.session.sessionUser?.updateLocation(location: Locations.locationMunichOe)
-                                self.session.updateLocationAsCity()
-                                self.session.downloadAllUserLists()
-                            }) {
-                                Text("Oettingenstaße 67, München")
-                            }
-                            Button(action: {
-                                self.session.sessionUser?.updateLocation(location: Locations.locationMunichHgb)
-                                self.session.updateLocationAsCity()
-                                self.session.downloadAllUserLists()
-                            }) {
-                                Text("Geschwister-Scholl-Platz 1, München")
-                            }
-                            Button(action: {
-                                self.session.sessionUser?.updateLocation(location: Locations.locationMunichTs)
-                                self.session.updateLocationAsCity()
-                                self.session.downloadAllUserLists()
-                            }) {
-                                Text("Theresienstraße 39, München")
-                            }
-                            Button(action: {
-                                self.session.sessionUser?.updateLocation(location: Locations.locationMunichPs)
-                                self.session.updateLocationAsCity()
-                                self.session.downloadAllUserLists()
-                            }) {
-                                Text("Pettenkoferstraße 14, München")
-                            }
-                    }
-                    .foregroundColor(.white)
+                            LocationButton(buttonText: "Oettingenstaße 67, München", location: Locations.locationMunichOe)
+                            LocationButton(buttonText: "Geschwister-Scholl-Platz 1, München", location: Locations.locationMunichHgb)
+                            LocationButton(buttonText: "Theresienstraße 39, München", location: Locations.locationMunichTs)
+                            LocationButton(buttonText: "Pettenkoferstraße 14, München", location: Locations.locationMunichPs)
+                    }.foregroundColor(.white)
                 }
             }
             // TAGS

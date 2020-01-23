@@ -47,6 +47,7 @@
 		73C736AC23D815B000B7FD1C /* LikeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C736AB23D815B000B7FD1C /* LikeView.swift */; };
 		73C736AE23D815D000B7FD1C /* DistanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C736AD23D815D000B7FD1C /* DistanceView.swift */; };
 		73C736B023D8688100B7FD1C /* Locations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C736AF23D8688100B7FD1C /* Locations.swift */; };
+		73C736B223D98B7E00B7FD1C /* LocationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C736B123D98B7E00B7FD1C /* LocationButton.swift */; };
 		73CDE4422390FB380078654C /* OtherUserNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CDE4412390FB380078654C /* OtherUserNameView.swift */; };
 		73CDE4442390FB570078654C /* OtherUserAvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CDE4432390FB570078654C /* OtherUserAvatarView.swift */; };
 		73CDE4462390FB710078654C /* OtherUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CDE4452390FB710078654C /* OtherUserView.swift */; };
@@ -124,6 +125,7 @@
 		73C736AB23D815B000B7FD1C /* LikeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeView.swift; sourceTree = "<group>"; };
 		73C736AD23D815D000B7FD1C /* DistanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceView.swift; sourceTree = "<group>"; };
 		73C736AF23D8688100B7FD1C /* Locations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Locations.swift; sourceTree = "<group>"; };
+		73C736B123D98B7E00B7FD1C /* LocationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationButton.swift; sourceTree = "<group>"; };
 		73CDE4412390FB380078654C /* OtherUserNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherUserNameView.swift; sourceTree = "<group>"; };
 		73CDE4432390FB570078654C /* OtherUserAvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherUserAvatarView.swift; sourceTree = "<group>"; };
 		73CDE4452390FB710078654C /* OtherUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherUserView.swift; sourceTree = "<group>"; };
@@ -222,6 +224,7 @@
 				84B3AD5D237D973800CB2160 /* CustomViewElementsLevel2.swift */,
 				58603A2B07FB4F88C61B3801 /* HashtagButton.swift */,
 				29AC111123D85275002FE7AC /* MultilineTextView.swift */,
+				73C736B123D98B7E00B7FD1C /* LocationButton.swift */,
 			);
 			name = View;
 			path = Controllers/View;
@@ -586,6 +589,7 @@
 				2967910923AD755B00887FB3 /* ChatHeaderView.swift in Sources */,
 				735FED7623D49D1B004350EB /* LocationModel.swift in Sources */,
 				3391BDFE238557FC00643581 /* UserModel.swift in Sources */,
+				73C736B223D98B7E00B7FD1C /* LocationButton.swift in Sources */,
 				7367D202237D85F5002EE928 /* RegisterView.swift in Sources */,
 				7367D1F6237D6670002EE928 /* ProfileTabView.swift in Sources */,
 				73CDE4442390FB570078654C /* OtherUserAvatarView.swift in Sources */,
