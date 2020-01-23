@@ -49,6 +49,8 @@
 		73C736B023D8688100B7FD1C /* Locations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C736AF23D8688100B7FD1C /* Locations.swift */; };
 		73C736B223D98B7E00B7FD1C /* LocationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C736B123D98B7E00B7FD1C /* LocationButton.swift */; };
 		73C736B423D990DB00B7FD1C /* GpsButtonsLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C736B323D990DB00B7FD1C /* GpsButtonsLine.swift */; };
+		73C736B823D993D800B7FD1C /* ColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C736B723D993D800B7FD1C /* ColorExtensions.swift */; };
+		73C736BA23D9940200B7FD1C /* TextExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C736B923D9940200B7FD1C /* TextExtensions.swift */; };
 		73CDE4422390FB380078654C /* OtherUserNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CDE4412390FB380078654C /* OtherUserNameView.swift */; };
 		73CDE4442390FB570078654C /* OtherUserAvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CDE4432390FB570078654C /* OtherUserAvatarView.swift */; };
 		73CDE4462390FB710078654C /* OtherUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CDE4452390FB710078654C /* OtherUserView.swift */; };
@@ -128,6 +130,8 @@
 		73C736AF23D8688100B7FD1C /* Locations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Locations.swift; sourceTree = "<group>"; };
 		73C736B123D98B7E00B7FD1C /* LocationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationButton.swift; sourceTree = "<group>"; };
 		73C736B323D990DB00B7FD1C /* GpsButtonsLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GpsButtonsLine.swift; sourceTree = "<group>"; };
+		73C736B723D993D800B7FD1C /* ColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtensions.swift; sourceTree = "<group>"; };
+		73C736B923D9940200B7FD1C /* TextExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextExtensions.swift; sourceTree = "<group>"; };
 		73CDE4412390FB380078654C /* OtherUserNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherUserNameView.swift; sourceTree = "<group>"; };
 		73CDE4432390FB570078654C /* OtherUserAvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherUserAvatarView.swift; sourceTree = "<group>"; };
 		73CDE4452390FB710078654C /* OtherUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherUserView.swift; sourceTree = "<group>"; };
@@ -220,15 +224,12 @@
 		7375795223CDCD520003FE2A /* View */ = {
 			isa = PBXGroup;
 			children = (
+				73C736BB23D9941D00B7FD1C /* Styles */,
+				73C736B623D9923500B7FD1C /* Extensions */,
+				73C736B523D991DE00B7FD1C /* Buttons */,
 				73CDE4402390FB120078654C /* otherUsersPresentation */,
 				73A355EB23AA404B001C3EF0 /* NoOtherUsersView.swift */,
-				7397242323CF75F10003DFD0 /* CustomViewElementsLevel1.swift */,
-				84B3AD5D237D973800CB2160 /* CustomViewElementsLevel2.swift */,
-				58603A2B07FB4F88C61B3801 /* HashtagButton.swift */,
 				58603EBB3586F9F802C80A55 /* TagFilter.swift */,
-				29AC111123D85275002FE7AC /* MultilineTextView.swift */,
-				73C736B323D990DB00B7FD1C /* GpsButtonsLine.swift */,
-				73C736B123D98B7E00B7FD1C /* LocationButton.swift */,
 			);
 			name = View;
 			path = Controllers/View;
@@ -239,9 +240,9 @@
 			children = (
 				3391BDFD238557FB00643581 /* UserModel.swift */,
 				735FED7523D49D1B004350EB /* LocationModel.swift */,
+				73C736AF23D8688100B7FD1C /* Locations.swift */,
 				73A69B4823869D2700ECEAC2 /* ListedAlerts.swift */,
 				734FC386238F094B00350F82 /* FixedStringValues.swift */,
-				73C736AF23D8688100B7FD1C /* Locations.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -331,6 +332,35 @@
 				73B9D173237C2485000E268E /* Info.plist */,
 			);
 			path = StudyBuddySwiftUiUITests;
+			sourceTree = "<group>";
+		};
+		73C736B523D991DE00B7FD1C /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				58603A2B07FB4F88C61B3801 /* HashtagButton.swift */,
+				73C736B323D990DB00B7FD1C /* GpsButtonsLine.swift */,
+				73C736B123D98B7E00B7FD1C /* LocationButton.swift */,
+			);
+			path = Buttons;
+			sourceTree = "<group>";
+		};
+		73C736B623D9923500B7FD1C /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				73C736B723D993D800B7FD1C /* ColorExtensions.swift */,
+				73C736B923D9940200B7FD1C /* TextExtensions.swift */,
+				29AC111123D85275002FE7AC /* MultilineTextView.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		73C736BB23D9941D00B7FD1C /* Styles */ = {
+			isa = PBXGroup;
+			children = (
+				7397242323CF75F10003DFD0 /* CustomViewElementsLevel1.swift */,
+				84B3AD5D237D973800CB2160 /* CustomViewElementsLevel2.swift */,
+			);
+			path = Styles;
 			sourceTree = "<group>";
 		};
 		73CDE4402390FB120078654C /* otherUsersPresentation */ = {
@@ -580,6 +610,7 @@
 				73FD807F239F9C0600A9EDFA /* ContactsLineView.swift in Sources */,
 				7367D1FA237D7279002EE928 /* ContactsTabView.swift in Sources */,
 				73CDE4462390FB710078654C /* OtherUserView.swift in Sources */,
+				73C736BA23D9940200B7FD1C /* TextExtensions.swift in Sources */,
 				73A355EC23AA404B001C3EF0 /* NoOtherUsersView.swift in Sources */,
 				73C736AC23D815B000B7FD1C /* LikeView.swift in Sources */,
 				7367D1FF237D8496002EE928 /* GeneralTabView.swift in Sources */,
@@ -613,6 +644,7 @@
 				2909A73523D1E91300689BD3 /* MessageBubble.swift in Sources */,
 				586036583DEF78AB0017B384 /* HashtagButton.swift in Sources */,
 				5860347C0F6532313037211E /* TagFilter.swift in Sources */,
+				73C736B823D993D800B7FD1C /* ColorExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

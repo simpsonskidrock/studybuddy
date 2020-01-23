@@ -9,26 +9,6 @@
 import Foundation
 import SwiftUI
 
-// ------- General additions ------- //
-
-extension Color {
-    static let lmuGreen = Color("LMU Green")
-    static let lmuLightGrey = Color("LMU Light Grey")
-    static let lmuDarkGrey = Color("LMU Dark Grey")
-}
-
-extension UIColor{
-    static let lmuGreen = UIColor(named: "LMU Green")
-    static let lmuDarkGrey = UIColor(named: "LMU Dark Grey")
-
-}
-
-extension Text {
-    func textStyle<Style: ViewModifier>(_ style: Style) -> some View {
-        ModifiedContent(content: self, modifier: style)
-    }
-}
-
 // ------- Level 1 - Views: LoginView, ChangePasswordView, RegisterView, ResetPasswordView ------ //
 
 public struct StudyBuddyTitleStyleLevel1a : ViewModifier {
