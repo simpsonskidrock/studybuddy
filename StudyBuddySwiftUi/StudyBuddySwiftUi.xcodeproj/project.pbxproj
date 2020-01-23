@@ -48,6 +48,7 @@
 		73C736AE23D815D000B7FD1C /* DistanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C736AD23D815D000B7FD1C /* DistanceView.swift */; };
 		73C736B023D8688100B7FD1C /* Locations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C736AF23D8688100B7FD1C /* Locations.swift */; };
 		73C736B223D98B7E00B7FD1C /* LocationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C736B123D98B7E00B7FD1C /* LocationButton.swift */; };
+		73C736B423D990DB00B7FD1C /* GpsButtonsLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C736B323D990DB00B7FD1C /* GpsButtonsLine.swift */; };
 		73CDE4422390FB380078654C /* OtherUserNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CDE4412390FB380078654C /* OtherUserNameView.swift */; };
 		73CDE4442390FB570078654C /* OtherUserAvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CDE4432390FB570078654C /* OtherUserAvatarView.swift */; };
 		73CDE4462390FB710078654C /* OtherUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CDE4452390FB710078654C /* OtherUserView.swift */; };
@@ -126,6 +127,7 @@
 		73C736AD23D815D000B7FD1C /* DistanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceView.swift; sourceTree = "<group>"; };
 		73C736AF23D8688100B7FD1C /* Locations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Locations.swift; sourceTree = "<group>"; };
 		73C736B123D98B7E00B7FD1C /* LocationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationButton.swift; sourceTree = "<group>"; };
+		73C736B323D990DB00B7FD1C /* GpsButtonsLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GpsButtonsLine.swift; sourceTree = "<group>"; };
 		73CDE4412390FB380078654C /* OtherUserNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherUserNameView.swift; sourceTree = "<group>"; };
 		73CDE4432390FB570078654C /* OtherUserAvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherUserAvatarView.swift; sourceTree = "<group>"; };
 		73CDE4452390FB710078654C /* OtherUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherUserView.swift; sourceTree = "<group>"; };
@@ -223,7 +225,9 @@
 				7397242323CF75F10003DFD0 /* CustomViewElementsLevel1.swift */,
 				84B3AD5D237D973800CB2160 /* CustomViewElementsLevel2.swift */,
 				58603A2B07FB4F88C61B3801 /* HashtagButton.swift */,
+				58603EBB3586F9F802C80A55 /* TagFilter.swift */,
 				29AC111123D85275002FE7AC /* MultilineTextView.swift */,
+				73C736B323D990DB00B7FD1C /* GpsButtonsLine.swift */,
 				73C736B123D98B7E00B7FD1C /* LocationButton.swift */,
 			);
 			name = View;
@@ -337,7 +341,6 @@
 				73CDE4412390FB380078654C /* OtherUserNameView.swift */,
 				73C736AB23D815B000B7FD1C /* LikeView.swift */,
 				73C736AD23D815D000B7FD1C /* DistanceView.swift */,
-				58603EBB3586F9F802C80A55 /* TagFilter.swift */,
 			);
 			path = otherUsersPresentation;
 			sourceTree = "<group>";
@@ -573,6 +576,7 @@
 				73B9D150237C2484000E268E /* AppDelegate.swift in Sources */,
 				73CDE4422390FB380078654C /* OtherUserNameView.swift in Sources */,
 				29AC111223D85275002FE7AC /* MultilineTextView.swift in Sources */,
+				73C736B423D990DB00B7FD1C /* GpsButtonsLine.swift in Sources */,
 				73FD807F239F9C0600A9EDFA /* ContactsLineView.swift in Sources */,
 				7367D1FA237D7279002EE928 /* ContactsTabView.swift in Sources */,
 				73CDE4462390FB710078654C /* OtherUserView.swift in Sources */,

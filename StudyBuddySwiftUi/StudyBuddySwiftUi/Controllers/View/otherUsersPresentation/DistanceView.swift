@@ -31,8 +31,8 @@ struct DistanceView: View {
                     Text("\(String(format: "%.0f", self.userModel.distance!*1000))m")
                 }
             }
-            }
+        }
         .foregroundColor(.white)
-        .background(Color.lmuLightGrey)
+        .background(Color.lmuGreen)
     }
 }
