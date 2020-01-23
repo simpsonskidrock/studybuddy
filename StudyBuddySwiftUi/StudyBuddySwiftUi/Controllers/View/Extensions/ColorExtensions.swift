@@ -14,8 +14,7 @@ extension Color {
     static let lmuDarkGrey = Color("LMU Dark Grey")
 }
 
-extension UIColor{
+extension UIColor {
     static let lmuGreen = UIColor(named: "LMU Green")
     static let lmuDarkGrey = UIColor(named: "LMU Dark Grey")
-
 }

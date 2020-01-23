@@ -31,8 +31,8 @@ class SessionStore: ObservableObject {
     var presentMatchAlert: Bool = false
     @Published var searchWithGPS: Bool = false
     
-    // hashtags to filter by divided by a space
-    private var tagsToFilterBy: [String] = []
+    @Published var activeFilterTags: [String] = []
+    @Published var inactiveFilterTags: [String] = []
 
     func listen(handler: @escaping ((UserModel) -> ())) {
         // monitor authentication changes using firebase
@@ -152,10 +152,12 @@ class SessionStore: ObservableObject {
                     let longitude = value?[FixedStringValues.longitude] as? Double ?? 0.0
                     let location: LocationModel = LocationModel(latitude: latitude, longitude: longitude)
                     tempUser.updateCompleteProfile(displayName: displayName, fieldOfStudy: fieldOfStudy, description: description, hashtags: hashtags, profileImageUrl: profileImageUrl, likedUsers: likedUsers, contacts: contacts, gpsUsage: gpsUsage, location: location)
+                    if self.sessionUser?.uid == tempUser.uid { self.generateFilterTags() }
                     handler(tempUser)
                 })
             } else {
                 tempUser.updateCompleteProfile(displayName: displayName, fieldOfStudy: fieldOfStudy, description: description, hashtags: hashtags, profileImageUrl: profileImageUrl, likedUsers: likedUsers, contacts: contacts, gpsUsage: gpsUsage, location: nil)
+                if self.sessionUser?.uid == tempUser.uid { self.generateFilterTags() }
                 handler(tempUser)
             }
         }) { (error) in
@@ -361,39 +363,49 @@ class SessionStore: ObservableObject {
     }
     
     // ---------------- Filters ---------------- //
+    
+    func generateFilterTags() {
+        for tag in self.sessionUser?.hashtags ?? [] {
+            if (!self.inactiveFilterTags.contains(tag) && !self.activeFilterTags.contains(tag)) {
+                self.inactiveFilterTags.append(tag)
+            }
+        }
+        print("active:", self.activeFilterTags)
+        print("inactive:", self.inactiveFilterTags)
+    }
 
-    func appendFilter(newTag: String) {
-        print("appendFilter:", newTag)
-        if !self.tagsToFilterBy.contains(newTag) {
-            self.tagsToFilterBy.append(newTag)
+    func updateFilter(tag: String) {
+        if self.inactiveFilterTags.contains(tag) {
+            self.inactiveFilterTags = self.inactiveFilterTags.filter{$0 != tag}
+            self.activeFilterTags.append(tag)
         } else {
-            self.removeFilter(tag: newTag) // workaround to deactivate filter, if better way found: removeFilter needs to call self.downloadAllUserLists() by ifself
+            self.activeFilterTags = self.activeFilterTags.filter{$0 != tag}
+            self.inactiveFilterTags.append(tag)
         }
         self.downloadAllUserLists()
         printFilters()
     }
-
-    func removeFilter(tag: String) {
-        print("removeFilter:", tag)
-        self.tagsToFilterBy = tagsToFilterBy.filter{$0 != tag}
-        // self.downloadAllUserLists()
-    }
     
     func printFilters() {
         print("[", terminator:"")
-        for tag in self.tagsToFilterBy {
+        print("active:", terminator:"")
+        for tag in self.activeFilterTags {
+            print(tag, terminator:" ")
+        }
+        print("- inactive:", terminator:"")
+        for tag in self.inactiveFilterTags {
             print(tag, terminator:" ")
         }
         print("]")
     }
     
     private func isUserPartOfFilter(user: UserModel) -> Bool {
-        if (self.tagsToFilterBy.count < 1) {
+        if (self.activeFilterTags.count < 1) {
             return true
         }
         // compare elements of both array to each other and if at least one matches the other,
         // the given user is part of the search
-        for filterTag in self.tagsToFilterBy {
+        for filterTag in self.activeFilterTags {
             for userTag in user.hashtags {
                 // standardize
                 let userTagMod = userTag.lowercased().replacingOccurrences(of: "#", with: "")

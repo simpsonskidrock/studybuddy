@@ -25,7 +25,7 @@ struct SwipeTabView: View {
         self.session.getProfile(uid: self.session.sessionUser!.uid, handler: { user in
             self.session.sessionUser = user
             self.session.downloadAllUserLists()
-            self.setBothTagRows(hashtags: self.session.sessionUser?.hashtags ?? [])
+            self.setBothTagRows(hashtags: self.session.activeFilterTags + self.session.inactiveFilterTags)
         })
     }
 
@@ -69,24 +69,12 @@ struct SwipeTabView: View {
             VStack {
                 HStack {
                     ForEach(tagsRow1, id: \.self) { tag in
-                        HashtagButton(actionWhenInactive: {
-                            self.session.appendFilter(newTag: tag)
-                        }, actionWhenActive: {
-                            self.session.removeFilter(tag: tag)
-                        }) {
-                            Text(tag)
-                        }
+                        HashtagButton(tag: tag)
                     }
                 }
                 HStack {
                     ForEach(tagsRow2, id: \.self) { tag in
-                        HashtagButton(actionWhenInactive: {
-                            self.session.appendFilter(newTag: tag)
-                        }, actionWhenActive: {
-                            self.session.removeFilter(tag: tag)
-                        }) {
-                            Text(tag)
-                        }
+                        HashtagButton(tag: tag)
                     }
                 }
             }
