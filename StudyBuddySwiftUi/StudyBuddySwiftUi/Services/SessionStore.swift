@@ -30,10 +30,9 @@ class SessionStore: ObservableObject {
     @Published var matchedUsers: [UserModel] = []
     var presentMatchAlert: Bool = false
     @Published var searchWithGPS: Bool = false
+    
     // hashtags to filter by divided by a space
-    var tagsToFilterBy: [String] = []
-
-    var tagFilters: [TagFilter] = []
+    private var tagsToFilterBy: [String] = []
 
     func listen(handler: @escaping ((UserModel) -> ())) {
         // monitor authentication changes using firebase
@@ -364,43 +363,37 @@ class SessionStore: ObservableObject {
     // ---------------- Filters ---------------- //
 
     func appendFilter(newTag: String) {
-        print("obsolete")
-        tagsToFilterBy.append(newTag)
+        print("appendFilter:", newTag)
+        if !self.tagsToFilterBy.contains(newTag) {
+            self.tagsToFilterBy.append(newTag)
+        } else {
+            self.removeFilter(tag: newTag) // workaround to deactivate filter, if better way found: removeFilter needs to call self.downloadAllUserLists() by ifself
+        }
+        self.downloadAllUserLists()
         printFilters()
     }
 
     func removeFilter(tag: String) {
-        print("obsolete")
-        tagsToFilterBy = tagsToFilterBy.filter{$0 != tag}
-        printFilters()
+        print("removeFilter:", tag)
+        self.tagsToFilterBy = tagsToFilterBy.filter{$0 != tag}
+        // self.downloadAllUserLists()
     }
-
-//    func appendFilter(newTag: TagFilter) {
-//        tagFilters.append(newTag)
-//        printFilters()
-//    }
-//
-//    func removeFilter(tag: TagFilter) {
-//        tagFilters = tagFilters.filter{$0.tag != tag.tag}
-//        printFilters()
-//    }
     
     func printFilters() {
         print("[", terminator:"")
-        for tag in tagsToFilterBy {
+        for tag in self.tagsToFilterBy {
             print(tag, terminator:" ")
         }
         print("]")
     }
     
     private func isUserPartOfFilter(user: UserModel) -> Bool {
-        if (tagsToFilterBy.count < 1) {
+        if (self.tagsToFilterBy.count < 1) {
             return true
         }
-        
         // compare elements of both array to each other and if at least one matches the other,
         // the given user is part of the search
-        for filterTag in tagsToFilterBy {
+        for filterTag in self.tagsToFilterBy {
             for userTag in user.hashtags {
                 // standardize
                 let userTagMod = userTag.lowercased().replacingOccurrences(of: "#", with: "")
