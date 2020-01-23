@@ -52,7 +52,7 @@ struct ContactsTabView: View {
                 }.padding(.horizontal)
                     .navigationBarHidden(showCancelButton)
                 List() {
-                    ForEach(self.session.matchedUsers.filter{$0.displayName.hasPrefix(searchText) ?? false || searchText == ""}, id: \.uid) { contact in
+                    ForEach(self.session.matchedUsers.filter{$0.displayName.hasPrefix(searchText) || searchText == ""}, id: \.uid) { contact in
                         ContactsLineView(uid: contact.uid, chatAllowed: true)
                     }.onDelete { (indexSet) in
                         indexSet.forEach {i in
@@ -61,7 +61,7 @@ struct ContactsTabView: View {
                         }
                         self.session.matchedUsers.remove(atOffsets: indexSet)
                     }
-                    ForEach(self.session.likedUsers.filter{$0.displayName.hasPrefix(searchText) ?? false || searchText == ""}, id: \.uid) { contact in
+                    ForEach(self.session.likedUsers.filter{$0.displayName.hasPrefix(searchText) || searchText == ""}, id: \.uid) { contact in
                         ContactsLineView(uid: contact.uid, chatAllowed: false)
                     }.onDelete { (indexSet) in
                         indexSet.forEach {i in

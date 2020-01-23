@@ -337,7 +337,7 @@ class SessionStore: ObservableObject {
                                 if !self.otherUsers.contains(user) && self.isUserPartOfFilter(user: user) {
                                     var tempUser = user
                                     if self.sessionUser?.gpsUsage ?? false {
-                                        if user.gpsUsage ?? false {
+                                        if user.gpsUsage {
                                             tempUser.updateDistance(distance: self.locationManager.getDistance(lat1: self.sessionUser!.location!.latitude!, long1: self.sessionUser!.location!.longitude!, lat2: user.location!.latitude!, long2: user.location!.longitude!)
                                             )
                                         } else {

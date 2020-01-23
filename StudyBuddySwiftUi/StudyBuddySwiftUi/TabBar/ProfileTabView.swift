@@ -50,11 +50,11 @@ struct ProfileTabView: View {
         if (self.session.sessionUser == nil) {
             self.session.listen(handler: { user in
                 self.session.sessionUser = user
-                self.displayName = user.displayName ?? ""
-                self.fieldOfStudy = user.fieldOfStudy ?? ""
-                self.description = user.description ?? ""
+                self.displayName = user.displayName
+                self.fieldOfStudy = user.fieldOfStudy
+                self.description = user.description
                 self.hashtags = user.getHashtagsAsString()
-                self.profileImageUrl = user.profileImageUrl ?? ""
+                self.profileImageUrl = user.profileImageUrl
                 if (self.profileImageUrl.isEmpty){
                     self.image = UIImage(systemName: "person.circle.fill")!
                 } else {
