@@ -14,11 +14,9 @@ struct OtherUserAvatarView: View {
     let userModel: UserModel
 
     func initialize() {
-        if (userModel.profileImageUrl != nil) {
-            self.session.getProfileImage(profileImageUrl: userModel.profileImageUrl!, handler: { image in
-                self.image = image
-            })
-        }
+        self.session.getProfileImage(profileImageUrl: userModel.profileImageUrl, handler: { image in
+            self.image = image
+        })
     }
     
     var body: some View {

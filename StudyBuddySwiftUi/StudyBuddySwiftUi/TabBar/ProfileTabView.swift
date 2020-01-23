@@ -22,7 +22,7 @@ struct ProfileTabView: View {
     @State private var editProfile: Bool = false
     
     @State private var isShowingImagePicker: Bool = false
-    @State var showAction: Bool = false
+    @State private var showAction: Bool = false
     
     @State private var image: UIImage = UIImage()
     
@@ -88,10 +88,8 @@ struct ProfileTabView: View {
     }
     
     var body: some View {
-        
         VStack {
             VStack {
-                
                 VStack {
                     HStack {
                         Text("Profile")
@@ -102,7 +100,7 @@ struct ProfileTabView: View {
                             Button(action: {
                                 self.session.signOut()
                                 self.mode.wrappedValue.dismiss()
-                            }){
+                            }) {
                                 HStack {
                                     Image(systemName: "arrow.uturn.left")
                                     Text("Logout")
@@ -181,7 +179,7 @@ struct ProfileTabView: View {
                                     .frame(height: 100)
                                     .padding()
                             }
-                    }.padding()
+                        }.padding()
                     }
                 }
                 Spacer()
@@ -215,6 +213,4 @@ struct ProfileTabView: View {
             .background(Color.lmuGreen.edgesIgnoringSafeArea(.vertical))
             .onDisappear(perform: leaveView)
     }
-    
-    
 }

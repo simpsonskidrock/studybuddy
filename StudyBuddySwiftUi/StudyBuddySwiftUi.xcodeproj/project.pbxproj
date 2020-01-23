@@ -210,10 +210,8 @@
 		7367D200237D8550002EE928 /* LoginAndRegister */ = {
 			isa = PBXGroup;
 			children = (
+				73C736BC23D994A700B7FD1C /* LoadingPages */,
 				73FD807C239F971700A9EDFA /* Enums.swift */,
-				7397242123CF585D0003DFD0 /* WaitForLogin.swift */,
-				735FED7723D6E695004350EB /* WaitForAutoLogin.swift */,
-				732023D5239921C90031F120 /* WaitForSessionUserView.swift */,
 				73B9D153237C2484000E268E /* LoginView.swift */,
 				7367D201237D85F5002EE928 /* RegisterView.swift */,
 				290A21972393E08700E0BC81 /* ResetPasswordView.swift */,
@@ -361,6 +359,16 @@
 				84B3AD5D237D973800CB2160 /* CustomViewElementsLevel2.swift */,
 			);
 			path = Styles;
+			sourceTree = "<group>";
+		};
+		73C736BC23D994A700B7FD1C /* LoadingPages */ = {
+			isa = PBXGroup;
+			children = (
+				7397242123CF585D0003DFD0 /* WaitForLogin.swift */,
+				735FED7723D6E695004350EB /* WaitForAutoLogin.swift */,
+				732023D5239921C90031F120 /* WaitForSessionUserView.swift */,
+			);
+			path = LoadingPages;
 			sourceTree = "<group>";
 		};
 		73CDE4402390FB120078654C /* otherUsersPresentation */ = {

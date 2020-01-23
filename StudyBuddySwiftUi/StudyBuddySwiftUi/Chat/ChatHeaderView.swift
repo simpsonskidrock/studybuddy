@@ -18,8 +18,8 @@ struct ChatHeaderView: View {
     
     func initialize() {
         self.session.getProfile(uid: uid, handler: { user in
-            self.name = user.displayName!
-            self.getImage(path: user.profileImageUrl!)
+            self.name = user.displayName
+            self.getImage(path: user.profileImageUrl)
         })
     }
     
