@@ -32,9 +32,11 @@ struct ChatRow : View {
                             .padding(10)
                             .background(Color.lmuDarkGrey)
                             .clipShape(messageTail(mymsg: chatMessage.sender == session.sessionUser?.uid ))
+                        Spacer()
                     }
                     HStack {
                         Text(chatMessage.time).font(.custom("SFProText-Bold", size: 12))
+                        Spacer()
                     }.padding(.init(top: 0, leading: 5, bottom: 0, trailing: 0))
                 }
             } else {
