@@ -28,8 +28,10 @@ struct HashtagButton<Label>: View where Label: View {
         Button(action: {
             if self.active {
                 self.actionWhenActive()
+                self.active = false
             } else {
                 self.actionWhenInactive()
+                self.active = true
             }
 
 
@@ -37,7 +39,7 @@ struct HashtagButton<Label>: View where Label: View {
             label()
                 .foregroundColor(.white)
                 .padding(5)
-                .background(RoundedRectangle(cornerRadius: 5).fill(active ? Color(.darkGray) : Color(.gray)))
+                .background(RoundedRectangle(cornerRadius: 5).fill(active ? Color(.lightGray) : Color(.gray)))
                 .shadow(color: .black, radius: 3)
         }
     }
