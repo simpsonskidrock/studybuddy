@@ -24,16 +24,22 @@ struct OtherUserAvatarView: View {
             Spacer()
             Image(uiImage: image)
                 .resizable()
-                .frame(width: 300, height: 400)
-                .scaledToFit()
-                .overlay(
-                    Rectangle()
-                        .fill(LinearGradient(gradient: Gradient(colors: [.clear, .black]),
-                                             startPoint: .center, endPoint: .bottom))
-                        .clipped()
-            )
-                .cornerRadius(12.0)
+                .aspectRatio(1, contentMode: .fit)
+                //.scaledToFit()
+                //.frame(width: 300, height: 400)
+                //.aspectRatio(contentMode: .fit)
+                //.aspectRatio(CGSize(width: 300, height: 400), contentMode: .fill)
+                
+                
             Spacer()
-        }.onAppear(perform: initialize)
+        }.frame(width: 350, height: nil)
+            .overlay(
+                Rectangle()
+                    .fill(LinearGradient(gradient: Gradient(colors: [.clear, .black]),
+                                         startPoint: .center, endPoint: .bottom))
+                    .clipped()
+        )
+            .cornerRadius(12.0)
+        .onAppear(perform: initialize)
     }
 }

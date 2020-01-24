@@ -91,6 +91,7 @@ struct ProfileTabView: View {
         VStack {
             VStack {
                 VStack {
+                    Spacer()
                     HStack {
                         Text("Profile")
                             .fontWeight(.semibold)
@@ -108,8 +109,8 @@ struct ProfileTabView: View {
                                 }
                             }.buttonStyle(StudyBuddyIconButtonStyleLevel2())
                         }.padding()
-                    }.frame(height: 50)
-                        .padding(.leading, 10)
+                    }.frame(height: 40)
+                    Spacer()
                     ScrollView {
                         Image(uiImage: self.image)
                             .resizable()
@@ -171,7 +172,7 @@ struct ProfileTabView: View {
                                     .padding()
                             }
                             VStack(alignment: .leading){
-                                Text(self.editProfile ? "Hashtags (Up to 6 tags)" : "Hashtags:")
+                                Text("Hashtags:")
                                     .foregroundColor(.lmuLightGrey)
                                     .fontWeight(.bold)
                                 MultilineTextView(text: $hashtags, placeHolder: "#")

@@ -25,32 +25,7 @@ struct SwipeTabView: View {
         self.session.getProfile(uid: self.session.sessionUser!.uid, handler: { user in
             self.session.sessionUser = user
             self.session.downloadAllUserLists()
-            self.setBothTagRows(hashtags: self.session.activeFilterTags + self.session.inactiveFilterTags)
         })
-    }
-
-    /* compare two strings by length used for sorting */
-    private func shorter(value1: String, value2: String) -> Bool {
-        // ... True means value1 precedes value2.
-        return value1.count < value2.count
-    }
-
-    private func setBothTagRows(hashtags: [String]) {
-        tagsRow1 = []
-        tagsRow2 = []
-        var strArray = hashtags
-        strArray.sort(by: shorter)
-        for n in 0..<(min(strArray.count, 6)) {
-            if (strArray[n].count > 1) {
-                if n % 2 == 0 {
-                    tagsRow1.append(strArray[n])
-                } else {
-                    tagsRow2.append( strArray[n])
-                }
-            }
-        }
-    
-        // print("1Row: \(tagsRow1) \n 2Row: \(tagsRow2) ")
     }
     
     private func close() {
@@ -66,28 +41,19 @@ struct SwipeTabView: View {
             // GPS BUTTON
             GpsButtonsLine()
             // TAGS
-            VStack {
-                HStack {
-                    ForEach(tagsRow1, id: \.self) { tag in
-                        HashtagButton(actionWhenInactive: {
-                            self.session.updateFilter(tag: tag)
-                        }, actionWhenActive: {
-                            self.session.updateFilter(tag: tag)
-                        }) {
-                            Text(tag)
+            HStack {
+                ScrollView (.horizontal) {
+                    HStack {
+                        ForEach(self.session.activeFilterTags + self.session.inactiveFilterTags, id: \.self) { tag in
+                            HashtagButton(actionWhenInactive: {
+                                self.session.updateFilter(tag: tag)
+                            }, actionWhenActive: {
+                                self.session.updateFilter(tag: tag)
+                            }) {
+                                Text(tag)
+                            }
                         }
-                    }
-                }
-                HStack {
-                    ForEach(tagsRow2, id: \.self) { tag in
-                        HashtagButton(actionWhenInactive: {
-                            self.session.updateFilter(tag: tag)
-                        }, actionWhenActive: {
-                            self.session.updateFilter(tag: tag)
-                        }) {
-                            Text(tag)
-                        }
-                    }
+                    }.padding()
                 }
             }
             // PROFILES

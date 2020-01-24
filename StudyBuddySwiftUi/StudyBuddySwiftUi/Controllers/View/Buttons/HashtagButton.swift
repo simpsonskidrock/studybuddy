@@ -34,10 +34,10 @@ struct HashtagButton<Label>: View where Label: View {
             }
         }) {
             label()
-                .foregroundColor(.white)
+                .foregroundColor(active ? .black : .white)
                 .padding(5)
                 .background(RoundedRectangle(cornerRadius: 5).fill(active ? Color(.lightGray) : Color(.gray)))
-                .shadow(color: .black, radius: 3)
+                .shadow(color: active ? Color(.white) : Color(.black), radius: 3)
         }
     }
 }
