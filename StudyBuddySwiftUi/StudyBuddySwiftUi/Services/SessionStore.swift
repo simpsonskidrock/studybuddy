@@ -118,6 +118,8 @@ class SessionStore: ObservableObject {
         self.otherUsers = []
         self.likedUsers = []
         self.matchedUsers = []
+        self.activeFilterTags = []
+        self.inactiveFilterTags = []
         self.searchWithGPS = false
         self.sessionUser = nil
     }

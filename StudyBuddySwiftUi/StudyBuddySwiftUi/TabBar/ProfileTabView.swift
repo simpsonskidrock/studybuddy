@@ -172,7 +172,7 @@ struct ProfileTabView: View {
                                     .padding()
                             }
                             VStack(alignment: .leading){
-                                Text(self.editProfile ? "Hashtags (Up to 6 tags):" : "Hashtags:")
+                                Text("Hashtags:")
                                     .foregroundColor(.lmuLightGrey)
                                     .fontWeight(.bold)
                                 MultilineTextView(text: $hashtags, placeHolder: "#")
