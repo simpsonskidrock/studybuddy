@@ -22,6 +22,7 @@ struct ChatView: View {
     /** this method is to remove the line seprators from list */
     func removeLines() {
         UITableView.appearance().separatorStyle = .none
+        UITableView.appearance().backgroundColor = .none
     }
     
     func loadChatMessages() {
@@ -62,7 +63,9 @@ struct ChatView: View {
                 }
             }
             HStack {
-                TextField(" Message...", text: $composedMessage).frame(minHeight: CGFloat(40))
+                TextField(" Message...", text: $composedMessage)
+                    .font(.system(size: 15))
+                    .frame(minHeight: CGFloat(40))
                     .background(Color.white)
                     .cornerRadius(10)
                     .foregroundColor(.black)
@@ -77,12 +80,13 @@ struct ChatView: View {
         }.onAppear(perform: loadChatMessages)
             .navigationBarItems(leading:
                 HStack{
+                   
                     Button(action: {
                         self.mode.wrappedValue.dismiss()
                     }) {
                         Image(systemName: "chevron.left")
                     }
                     ChatHeaderView(uid: self.uid!)
-            })
+                })
     }
 }
