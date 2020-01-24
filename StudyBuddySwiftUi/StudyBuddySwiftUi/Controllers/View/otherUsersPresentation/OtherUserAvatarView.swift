@@ -24,7 +24,6 @@ struct OtherUserAvatarView: View {
             Spacer()
             Image(uiImage: image)
                 .resizable()
-                .frame(width: 300, height: 400)
                 .scaledToFit()
                 .overlay(
                     Rectangle()

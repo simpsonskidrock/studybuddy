@@ -15,18 +15,19 @@ struct OtherUserView: View {
     
     var body: some View {
         ZStack(alignment: .leading) {
-            OtherUserAvatarView(userModel: userModel)
-            OtherUserNameView(name: userModel.displayName, fieldOfStudy: userModel.fieldOfStudy, description: userModel.description, hashtags: userModel.getHashtagsAsString())
-            if self.session.searchWithGPS {
-                VStack {
-                    HStack {
-                        Spacer()
-                        DistanceView(userModel: self.userModel)
-                        Spacer()
+            VStack {
+                if self.session.searchWithGPS {
+                    VStack {
+                        HStack {
+                            Spacer()
+                            DistanceView(userModel: self.userModel)
+                            Spacer()
+                        }
                     }
-                    Spacer()
                 }
+                OtherUserAvatarView(userModel: userModel)
             }
+            OtherUserNameView(name: userModel.displayName, fieldOfStudy: userModel.fieldOfStudy, description: userModel.description, hashtags: userModel.getHashtagsAsString())
             if showText {
                 HStack {
                     Spacer()

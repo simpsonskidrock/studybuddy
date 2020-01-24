@@ -33,6 +33,5 @@ struct DistanceView: View {
             }
         }
         .foregroundColor(.white)
-        //.background(Color.lmuGreen)
     }
 }
