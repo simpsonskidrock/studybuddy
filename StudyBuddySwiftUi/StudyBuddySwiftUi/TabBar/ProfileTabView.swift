@@ -112,14 +112,31 @@ struct ProfileTabView: View {
                     }.frame(height: 40)
                     Spacer()
                     ScrollView {
-                        Image(uiImage: self.image)
-                            .resizable()
-                            .scaledToFit()
+                        ZStack {
+                            GeometryReader { proxy in
+                                Image(uiImage: self.image)
+                                    .resizable()
+                                    .scaledToFill()
+                                    .frame(width: proxy.size.width)
+                                    .cornerRadius(10)
+                            }
+                        }
                             .clipShape(Circle())
+                            .aspectRatio(1, contentMode: .fit)
                             .overlay(Circle()
-                                .stroke(Color.white, lineWidth: 5)
-                        ).padding(.top)
+                                .stroke(Color.white, lineWidth: 5))
+                            .padding(.top)
                             .padding(.horizontal, 50)
+
+
+//                        Image(uiImage: self.image)
+//                            .resizable()
+//                            .scaledToFit()
+//                            .clipShape(Circle())
+//                            .overlay(Circle()
+//                                .stroke(Color.white, lineWidth: 5)
+//                        ).padding(.top)
+//                            .padding(.horizontal, 50)
                         
                         if self.editProfile {
                             Button(action: {
