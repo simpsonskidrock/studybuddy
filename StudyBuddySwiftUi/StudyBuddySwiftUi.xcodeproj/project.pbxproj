@@ -13,6 +13,7 @@
 		293AA0732384947A00436E02 /* KeyboardSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 293AA0722384947A00436E02 /* KeyboardSettings.swift */; };
 		2967910923AD755B00887FB3 /* ChatHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2967910823AD755B00887FB3 /* ChatHeaderView.swift */; };
 		29AC111223D85275002FE7AC /* MultilineTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AC111123D85275002FE7AC /* MultilineTextView.swift */; };
+		29D6C60523DAFA70001CD261 /* NoMatchesOrLikesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D6C60423DAFA70001CD261 /* NoMatchesOrLikesView.swift */; };
 		29F56C4123A8F249000A676D /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F56C4023A8F249000A676D /* ChatView.swift */; };
 		29F56C4323A8FE5E000A676D /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F56C4223A8FE5E000A676D /* Message.swift */; };
 		29F7660D2396FE5800A7209C /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F7660C2396FE5800A7209C /* LocationManager.swift */; };
@@ -86,6 +87,7 @@
 		293AA0722384947A00436E02 /* KeyboardSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardSettings.swift; sourceTree = "<group>"; };
 		2967910823AD755B00887FB3 /* ChatHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatHeaderView.swift; sourceTree = "<group>"; };
 		29AC111123D85275002FE7AC /* MultilineTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultilineTextView.swift; sourceTree = "<group>"; };
+		29D6C60423DAFA70001CD261 /* NoMatchesOrLikesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoMatchesOrLikesView.swift; sourceTree = "<group>"; };
 		29F56C4023A8F249000A676D /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		29F56C4223A8FE5E000A676D /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		29F7660C2396FE5800A7209C /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
@@ -186,11 +188,12 @@
 		733211512385868800B7660A /* Chat */ = {
 			isa = PBXGroup;
 			children = (
-				2937ACC12389819F00E07611 /* ChatController.swift */,
+				29D6C60423DAFA70001CD261 /* NoMatchesOrLikesView.swift */,
 				73FD807E239F9C0600A9EDFA /* ContactsLineView.swift */,
-				29F56C4023A8F249000A676D /* ChatView.swift */,
-				29F56C4223A8FE5E000A676D /* Message.swift */,
 				2967910823AD755B00887FB3 /* ChatHeaderView.swift */,
+				29F56C4023A8F249000A676D /* ChatView.swift */,
+				2937ACC12389819F00E07611 /* ChatController.swift */,
+				29F56C4223A8FE5E000A676D /* Message.swift */,
 				2909A73423D1E91300689BD3 /* MessageBubble.swift */,
 			);
 			path = Chat;
@@ -617,6 +620,7 @@
 				73C736B423D990DB00B7FD1C /* GpsButtonsLine.swift in Sources */,
 				73FD807F239F9C0600A9EDFA /* ContactsLineView.swift in Sources */,
 				7367D1FA237D7279002EE928 /* ContactsTabView.swift in Sources */,
+				29D6C60523DAFA70001CD261 /* NoMatchesOrLikesView.swift in Sources */,
 				73CDE4462390FB710078654C /* OtherUserView.swift in Sources */,
 				73C736BA23D9940200B7FD1C /* TextExtensions.swift in Sources */,
 				73A355EC23AA404B001C3EF0 /* NoOtherUsersView.swift in Sources */,
@@ -820,14 +824,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"StudyBuddySwiftUi/Preview Content\"";
-				DEVELOPMENT_TEAM = 9PV32G6D3K;
+				DEVELOPMENT_TEAM = 6T8T8284X7;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = StudyBuddySwiftUi/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = AnnikaJung;
+				PRODUCT_BUNDLE_IDENTIFIER = LilianeKabboura;
 				PRODUCT_NAME = StudyBuddy;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -841,14 +845,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"StudyBuddySwiftUi/Preview Content\"";
-				DEVELOPMENT_TEAM = 9PV32G6D3K;
+				DEVELOPMENT_TEAM = 6T8T8284X7;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = StudyBuddySwiftUi/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = AnnikaJung;
+				PRODUCT_BUNDLE_IDENTIFIER = LilianeKabboura;
 				PRODUCT_NAME = StudyBuddy;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
