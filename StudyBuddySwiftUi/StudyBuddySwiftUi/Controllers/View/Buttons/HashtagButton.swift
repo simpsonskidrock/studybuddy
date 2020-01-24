@@ -9,29 +9,35 @@ import SwiftUI
 // author: Lorenz
 // Extend button so it acts like a toggleable button that changes background color when it's activated / deactivated
 
-struct HashtagButton: View {
-    @EnvironmentObject var session: SessionStore
-    let tag: String
-
+struct HashtagButton<Label>: View where Label: View {
+    
+    private let actionWhenInactive: () -> ()
+    private let actionWhenActive: () -> ()
+    private let label: () -> Label
+    
+    init(actionWhenInactive: @escaping () -> (), actionWhenActive: @escaping () -> (), label: @escaping () -> Label) {
+        self.actionWhenActive = actionWhenActive
+        self.actionWhenInactive = actionWhenInactive
+        self.label = label
+    }
+    
+    @State private var active: Bool = false
     var body: some View {
-        if self.session.activeFilterTags.contains(tag) {
-            return Button(action: {
-                self.session.updateFilter(tag: self.tag)
-            }) {
-                Text(tag).foregroundColor(Color.lmuLightGrey)
-                    .padding(5)
-                    .background(RoundedRectangle(cornerRadius: 5).fill(Color.lmuDarkGrey))
-                    .shadow(color: .black, radius: 3)
+        
+        Button(action: {
+            if self.active {
+                self.actionWhenActive()
+                self.active = false
+            } else {
+                self.actionWhenInactive()
+                self.active = true
             }
-        } else {
-            return Button(action: {
-                self.session.updateFilter(tag: self.tag)
-            }) {
-                Text(tag).foregroundColor(Color.white)
-                    .padding(5)
-                    .background(RoundedRectangle(cornerRadius: 5).fill(Color.lmuLightGrey))
-                    .shadow(color: .black, radius: 3)
-            }
+        }) {
+            label()
+                .foregroundColor(.white)
+                .padding(5)
+                .background(RoundedRectangle(cornerRadius: 5).fill(active ? Color(.lightGray) : Color(.gray)))
+                .shadow(color: .black, radius: 3)
         }
     }
 }
