@@ -59,9 +59,8 @@ struct ImageView: View {
     var body: some View {
         Image(uiImage: image)
             .resizable()
-            .scaledToFit()
             .clipShape(Circle())
-            .frame(width: 80, height: 80)
+            .frame(width: 60, height: 60)
     }
 }
 
