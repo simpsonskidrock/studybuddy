@@ -19,11 +19,17 @@ struct ChatView: View {
     let db = Firestore.firestore()
     let uid: String?
     
-    func initialize() {
-        self.chatController.loadMessages(uid: self.session.sessionUser!.uid, otherUid: uid!)
+    /** this method is to remove the line seprators from list */
+    func removeLines() {
+        UITableView.appearance().separatorStyle = .none
     }
     
-    // send message and save it to Firestore
+    func loadChatMessages() {
+        self.chatController.loadMessages(uid: self.session.sessionUser!.uid, otherUid: uid!)
+        removeLines()
+    }
+    
+    /** send message and save it to Firestore */
     func sendMsg(){
         if !composedMessage.isEmpty,
             let messageSender = self.session.sessionUser?.uid,
@@ -46,6 +52,7 @@ struct ChatView: View {
         }
     }
     
+    
     var body: some View {
         
         VStack {
@@ -67,7 +74,7 @@ struct ChatView: View {
                 }
             }.frame(minHeight: CGFloat(50)).padding()
                 .background(Color.lmuGreen)
-        }.onAppear(perform: initialize)
+        }.onAppear(perform: loadChatMessages)
             .navigationBarItems(leading:
                 HStack{
                     Button(action: {

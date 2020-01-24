@@ -15,11 +15,16 @@ struct ContactsTabView: View {
     @State private var searchText = ""
     @State private var showCancelButton: Bool = false
     
+    func removeLines() {
+        UITableView.appearance().separatorStyle = .none
+    }
+    
     private func initialize() {
         self.session.getProfile(uid: self.session.sessionUser!.uid, handler: { user in
             self.session.sessionUser = user
             self.session.downloadAllUserLists()
         })
+        removeLines()
     }
     
     var body: some View {
@@ -51,28 +56,39 @@ struct ContactsTabView: View {
                     }
                 }.padding(.horizontal)
                     .navigationBarHidden(showCancelButton)
+                
                 List() {
-                    ForEach(self.session.matchedUsers.filter{$0.displayName.hasPrefix(searchText) || searchText == ""}, id: \.uid) { contact in
-                        ContactsLineView(uid: contact.uid, chatAllowed: true)
-                    }.onDelete { (indexSet) in
-                        indexSet.forEach {i in
-                            let uidToRemove:String = self.session.matchedUsers[i].uid
-                            self.session.removeMatchedUser(uidToRemove: uidToRemove)
-                        }
-                        self.session.matchedUsers.remove(atOffsets: indexSet)
+                    /** if the current user does not have any likes ao matches yet the NoMatchesOrLikesView will appear **/
+                    if (self.session.matchedUsers.isEmpty && self.session.likedUsers.isEmpty) {
+                        NoMatchesOrLikesView()
                     }
-                    ForEach(self.session.likedUsers.filter{$0.displayName.hasPrefix(searchText) || searchText == ""}, id: \.uid) { contact in
-                        ContactsLineView(uid: contact.uid, chatAllowed: false)
-                    }.onDelete { (indexSet) in
-                        indexSet.forEach {i in
-                            let uidToRemove:String = self.session.likedUsers[i].uid
-                            self.session.removeLikedUser(uidToRemove: uidToRemove)
+                        /** else the likes and matches will be loaded **/
+                    else{
+                        ForEach(self.session.matchedUsers.filter{$0.displayName.hasPrefix(searchText) || searchText == ""}, id: \.uid) { contact in
+                            ContactsLineView(uid: contact.uid, chatAllowed: true)
                         }
-                        self.session.likedUsers.remove(atOffsets: indexSet)
+                        .onDelete { (indexSet) in
+                            indexSet.forEach {i in
+                                let uidToRemove:String = self.session.matchedUsers[i].uid
+                                self.session.removeMatchedUser(uidToRemove: uidToRemove)
+                            }
+                            self.session.matchedUsers.remove(atOffsets: indexSet)
+                        }
+                        ForEach(self.session.likedUsers.filter{$0.displayName.hasPrefix(searchText) || searchText == ""}, id: \.uid) { contact in
+                            ContactsLineView(uid: contact.uid, chatAllowed: false)
+                        }.onDelete { (indexSet) in
+                            indexSet.forEach {i in
+                                let uidToRemove:String = self.session.likedUsers[i].uid
+                                self.session.removeLikedUser(uidToRemove: uidToRemove)
+                            }
+                            self.session.likedUsers.remove(atOffsets: indexSet)
+                        }
                     }
                 }.navigationBarTitle(Text("Chats"))
                     .resignKeyboardOnDragGesture()
             }
+            
+            
         }.navigationBarTitle("")
             .navigationBarBackButtonHidden(true)
             .navigationBarHidden(true)

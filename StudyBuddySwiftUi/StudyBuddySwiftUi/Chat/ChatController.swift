@@ -15,7 +15,7 @@ class ChatController : ObservableObject {
     
     // ---------------- load messages from FS ---------------- //
     func loadMessages(uid: String, otherUid: String) {
-        // retrieve messages and order it by date
+        /** retrieve messages from FireStore and order them by date */
         db.collection(FStore.collectionName).order(by: FStore.dateField).addSnapshotListener{ (querySnapshot, error) in
             self.message = []
             if let e = error {
