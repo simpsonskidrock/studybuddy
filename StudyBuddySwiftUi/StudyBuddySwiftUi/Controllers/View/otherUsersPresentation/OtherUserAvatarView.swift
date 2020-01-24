@@ -24,7 +24,7 @@ struct OtherUserAvatarView: View {
             Spacer()
             Image(uiImage: image)
                 .resizable()
-                .aspectRatio(1, contentMode: .fill)
+                .aspectRatio(1, contentMode: .fit)
                 //.scaledToFit()
                 //.frame(width: 300, height: 400)
                 //.aspectRatio(contentMode: .fit)
