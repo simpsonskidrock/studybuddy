@@ -69,12 +69,24 @@ struct SwipeTabView: View {
             VStack {
                 HStack {
                     ForEach(tagsRow1, id: \.self) { tag in
-                        HashtagButton(tag: tag)
+                        HashtagButton(actionWhenInactive: {
+                            self.session.updateFilter(tag: tag)
+                        }, actionWhenActive: {
+                            self.session.updateFilter(tag: tag)
+                        }) {
+                            Text(tag)
+                        }
                     }
                 }
                 HStack {
                     ForEach(tagsRow2, id: \.self) { tag in
-                        HashtagButton(tag: tag)
+                        HashtagButton(actionWhenInactive: {
+                            self.session.updateFilter(tag: tag)
+                        }, actionWhenActive: {
+                            self.session.updateFilter(tag: tag)
+                        }) {
+                            Text(tag)
+                        }
                     }
                 }
             }
