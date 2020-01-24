@@ -22,14 +22,18 @@ struct OtherUserAvatarView: View {
     var body: some View {
         HStack {
             Spacer()
-            Image(uiImage: image)
-                .resizable()
+            ZStack {
+                GeometryReader { proxy in
+                    Image(uiImage: self.image)
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: proxy.size.width)
+                        .cornerRadius(10)
+                }
+            }
+                .clipped()
                 .aspectRatio(1, contentMode: .fit)
-                //.scaledToFit()
-                //.frame(width: 300, height: 400)
-                //.aspectRatio(contentMode: .fit)
-                //.aspectRatio(CGSize(width: 300, height: 400), contentMode: .fill)
-                
+
                 
             Spacer()
         }.frame(width: 350, height: nil)
