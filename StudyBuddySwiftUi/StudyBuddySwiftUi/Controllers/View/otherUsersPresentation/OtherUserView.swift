@@ -22,6 +22,7 @@ struct OtherUserView: View {
                     HStack {
                         Spacer()
                         DistanceView(userModel: self.userModel)
+                        Spacer()
                     }
                     Spacer()
                 }
